@@ -218,7 +218,7 @@ window = Tk()
 
 window.geometry("758x466+540+150")
 window.configure(bg = "#FFFFFF")
-window.title("Ezra's Math Flashcards 2.2")
+window.title("Ezra's Math Flashcards v0.3.2.1")
 window.iconbitmap("math.ico")
 
 
