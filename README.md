@@ -3,7 +3,7 @@ A Python program, using tkinter GUI libraries to create a working math flash car
 
 Keep in mind that the source code has various dependencies on different libraries, so make sure they are all fully installed!
 
-_New and improved Math Flash Cards utilizing the tkinter GUI library on the version v0.2.3! Biggest Overhaul Yet!_ 
+_New and improved Math Flash Cards utilizing the tkinter GUI library on the version v0.2.3.1! Biggest Overhaul Yet!_ 
 
 ### **Newest Features**
 
@@ -42,7 +42,7 @@ _pygame_
 
 _tkinter_
 
- _Please note that ONLY if your trying to run on Linux or Mac YOU MUST download the required libraries, and run through the ptkinter-flashcards-v0.2.3.linux.py or the ptkinter-flashcards-v0.2.3.mac.py file, however if your a windows user, the script is packaged up with all the necessary libraries needed to run_
+ _Please note that ONLY if your trying to run on Linux or Mac YOU MUST download the required libraries, and run through the ptkinter-flashcards-v0.2.3.1.other.py file, however if your a windows user, the script is packaged up with all the necessary libraries needed to run_
 
 _This build has also only been tested python version 3.10.10_
  
