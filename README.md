@@ -1,4 +1,3 @@
-# python-tkinter-mathflashcards
 ### **Python-Tkinter Math Flash Cards Release v0.2.2**
 
 
