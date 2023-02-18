@@ -3,7 +3,7 @@ A Python program, using tkinter GUI libraries to create a working math flash car
 
 Keep in mind that the source code has various dependencies on different libraries, so make sure they are all fully installed!
 
-_New and improved Math Flash Cards utilizing the tkinter GUI library on the version v0.2.3!_ 
+_New and improved Math Flash Cards utilizing the tkinter GUI library on the version v0.2.3! Biggest Overhaul Yet!_ 
 
 ### **Newest Features**
 
