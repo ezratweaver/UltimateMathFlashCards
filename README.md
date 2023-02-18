@@ -1,2 +1,2 @@
 # python-tkinter-mathflashcards
-Python Math Game
+Legacy Release of my Tkinter Python Math Flashcards Game!
