@@ -1,5 +1,5 @@
 # Python-Tkinter Math Flash Cards
-A Python program, using tkinter GUI libraries to create a working math flash card game, with a working timer, score, trackable highscore, and sound effects.
+A Python program, using tkinter GUI libraries to create a working math flash card game, with a working timer, score, trackable highscore, and sound effects, that quizzes you up to the 12's! 
 
 Keep in mind that the source code has various dependencies on different libraries, so make sure they are all fully installed!
 
