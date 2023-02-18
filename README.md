@@ -33,9 +33,13 @@ _New and improved Math Flash Cards utilizing the tkinter GUI library on the vers
  
 
 _pathlib_
+
 _random_
+
 _os_
+
 _pygame_
+
 _tkinter_
 
  _Please note that ONLY if your trying to run on Linux or Mac YOU MUST download the required libraries, and run through the ptkinter-flashcards-v0.2.3.linux.py or the ptkinter-flashcards-v0.2.3.mac.py file, however if your a windows user, the script is packaged up with all the necessary libraries needed to run_
