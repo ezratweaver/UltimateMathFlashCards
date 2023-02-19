@@ -1,12 +1,12 @@
 from pathlib import Path
 from random import randint
-from os import chdir, path, system
+from os import chdir, path, system, name
 from pygame import mixer
 from tkinter import Tk, Canvas, Entry, Button, PhotoImage, messagebox
 chdir(path.dirname(path.abspath(__file__)))
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path("assets/frame0") 
-system('cls' if os.name == 'nt' else 'clear')
+system('cls' if name == 'nt' else 'clear')
 print('Loading Assets...')
 
 
@@ -240,7 +240,7 @@ canvas.create_rectangle(
     fill="#177CD9",
     outline="")
 
-system('cls' if os.name == 'nt' else 'clear')
+system('cls' if name == 'nt' else 'clear')
 print('Building GUI...')
 
 image_image_1 = PhotoImage(
@@ -490,9 +490,9 @@ highScoreCanv = canvas.create_text(
     fill="#000000",
     font=("Helvetica", 27 * -1)
 )
-system('cls' if os.name == 'nt' else 'clear')
+system('cls' if name == 'nt' else 'clear')
 print('Running...')
 
 window.resizable(False, False)
 window.mainloop()
-system('cls' if os.name == 'nt' else 'clear')
+system('cls' if name == 'nt' else 'clear')
