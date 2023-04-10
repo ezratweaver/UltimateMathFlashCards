@@ -1,13 +1,13 @@
 from pathlib import Path
 from json import loads, dumps
 from cryptography.fernet import Fernet
-from tkinter import Tk, Canvas, Entry, Button, PhotoImage, Label, messagebox
+from tkinter import Tk, Canvas, Entry, Button, PhotoImage, Label, ttk, NO
 from os import chdir, path, listdir
 from random import randint
 from operator import add, sub, floordiv, mul
 from playsound import playsound
 from datetime import datetime
-
+from sv_ttk import set_theme
 
 
 chdir(path.dirname(path.abspath(__file__)))
@@ -430,7 +430,7 @@ class profilescreen_class():
         profilescreen_canvas.itemconfig(profilescreen_class.username_text, text=username)
 
 
-    #all moved down by 30 to center
+
     username_text = profilescreen_canvas.create_text( 405.0, 81.0, anchor="center", text="Ezra Weaver", fill="#000000", font=("Encode Sans", 28 * -1) )
     grade_text = profilescreen_canvas.create_text( 291.0, 117.0, anchor="nw", text="A+", fill="#000000", font=("Encode Sans", 17 * -1) )
     average_percent = profilescreen_canvas.create_text( 326.0, 154.0, anchor="nw", text="95", fill="#000000", font=("Encode Sans", 17 * -1) )
@@ -533,7 +533,27 @@ class profilescreen_class():
     button_edit.bind("<Enter>", button_edit_onenter)
     button_edit.bind("<Leave>", button_edit_onleave)
 
-    button_history = Button(profilescreen_canvas, image=image_history, borderwidth=0, bg="#D9D9D9", highlightthickness=0, command=lambda: print("button_3 clicked"), relief="flat" )
+
+    def button_history_pressed():
+        historyscreen_class.display_data(profilescreen_class.current_user)
+        historyscreen_class.back_button.config(command=lambda: profilescreen_class.changed_back_button_pressed())
+
+        historyscreen_canvas.coords(historyscreen_class.buttonbanner_2, 1000, 1000)
+        historyscreen_canvas.coords(historyscreen_class.actionbuttonbg_2, 1000, 1000)
+        historyscreen_class.info_button.place_configure(x=1000, y=1000)
+
+        profilescreen_canvas.pack_forget()
+        historyscreen_canvas.pack()
+    def changed_back_button_pressed():
+        historyscreen_canvas.pack_forget()
+        profilescreen_canvas.pack()
+
+        historyscreen_canvas.coords(historyscreen_class.buttonbanner_2, 710.0, 453.0,)
+        historyscreen_canvas.coords(historyscreen_class.actionbuttonbg_2, 710.0, 453.0)
+        historyscreen_class.info_button.place_configure(x=663.0, y=438.0)
+
+        historyscreen_class.back_button.config(command=lambda: historyscreen_class.back_button_pressed())
+    button_history = Button(profilescreen_canvas, image=image_history, borderwidth=0, bg="#D9D9D9", highlightthickness=0, command=lambda: profilescreen_class.button_history_pressed(), relief="flat" )
     button_history.place( x=366.0, y=437.0, width=66.0, height=28.0 )
     button_history.config(activebackground="#C3C3C3")
     def button_history_onenter(event): event.widget.config(bg="#C3C3C3"), profilescreen_canvas.itemconfigure(profilescreen_class.history_bg, image=profilescreen_class.image_action_bg_selected),
@@ -819,6 +839,7 @@ class mainscreen_class():
 
     #History Button
     def history_button_pressed():
+        historyscreen_class.display_data(data_class.userlevel)
         mainscreen_canvas.pack_forget()
         historyscreen_canvas.pack()
     history_button = Button(mainscreen_canvas, image=image_historybutton, bg="#D9D9D9", borderwidth=0, highlightthickness=0, command=lambda: mainscreen_class.history_button_pressed(), relief="flat")
@@ -1094,7 +1115,7 @@ class mainscreen_class():
 
     def log_game():
         current_datetime = datetime.now()
-        current_date = current_datetime.strftime("%m-%d-%Y")
+        current_date = current_datetime.strftime("%m/%d/%Y")
         current_time = current_datetime.strftime("%H:%M")
         log_dictionary = {"date" : current_date, "time" : current_time, "correct" : mainscreen_class.currentscore, "incorrect" : mainscreen_class.incorrect, "mode" : f"{optionsscreen_class.flashcardtype}-{optionsscreen_class.flashcarddifficulty}-{optionsscreen_class.flashcardtime}"}
         data_class.user_data[data_class.userlevel]['gamehistory'].append(log_dictionary)
@@ -1711,76 +1732,101 @@ class finalscreen_class():
 
 
 #----------------------------------------------------------------------------------------------- historyScreen
-class historyScreen():
-    #historyscreen Images
-    image_datachart = PhotoImage( file=relative_to_assets("historyscreen/datachart.png"))
-    image_buttonbanner = PhotoImage( file=relative_to_assets("historyscreen/buttonbanner.png"))
-    image_longbuttonbanner = PhotoImage( file=relative_to_assets("historyscreen/longbuttonbanner.png"))
-    image_directorybuttonbg = PhotoImage( file=relative_to_assets("historyscreen/directorybuttonbg.png"))
-    image_directorybuttonbg_selected = PhotoImage( file=relative_to_assets("historyscreen/directorybuttonbg_selected.png"))
+class historyscreen_class():
     image_actionbuttonbg = PhotoImage( file=relative_to_assets("historyscreen/actionbuttonbg.png"))
     image_actionbuttonbg_selected = PhotoImage( file=relative_to_assets("historyscreen/actionbuttonbg_selected.png"))
-    image_directory_back_button = PhotoImage( file=relative_to_assets("historyscreen/directory_back_button.png"))
-    image_directory_foward_button = PhotoImage( file=relative_to_assets("historyscreen/directory_foward_button.png"))
+    image_buttonbanner = PhotoImage( file=relative_to_assets("historyscreen/buttonbanner.png"))
     image_back_button = PhotoImage( file=relative_to_assets("historyscreen/back_button.png"))
+    image_datasheet_bg = PhotoImage( file=relative_to_assets("historyscreen/datasheet_bg.png"))
     image_info_button = PhotoImage( file=relative_to_assets("historyscreen/info_button.png"))
-    #Placed Elements
+
     bg_image = historyscreen_canvas.create_image( 395.0, 255.0, image=userscreen_class.image_bg_image)
-    datachart = historyscreen_canvas.create_image( 396.0, 239.0, image=image_datachart )
     buttonbanner_1 = historyscreen_canvas.create_image( 89.0, 454.0, image=image_buttonbanner )
     buttonbanner_2 = historyscreen_canvas.create_image( 709.0, 454.0, image=image_buttonbanner )
-    longbuttonbanner = historyscreen_canvas.create_image( 399.0, 454.0, image=image_longbuttonbanner )
-    directorybuttonbg_2 = historyscreen_canvas.create_image( 481.0, 455.0, image=image_directorybuttonbg )
-    directorybuttonbg_1 = historyscreen_canvas.create_image( 315.0, 455.0, image=image_directorybuttonbg )
     actionbuttonbg_1 = historyscreen_canvas.create_image( 89.0, 453.0, image=image_actionbuttonbg )
     actionbuttonbg_2 = historyscreen_canvas.create_image( 710.0, 453.0, image=image_actionbuttonbg )
+    datasheet_bg = historyscreen_canvas.create_image( 399.0, 227.0, image=image_datasheet_bg )
 
 
-    #directory buttons
-    directory_back_button = Button(historyscreen_canvas, image=image_directory_back_button, borderwidth=0, highlightthickness=0, bg="#D9D9D9", command=lambda: print("button_1 clicked"), relief="flat" )
-    directory_back_button.place( x=290.0, y=444.0, width=50.0, height=22.0 )
-    directory_back_button.config(activebackground="#C3C3C3")
-    def directorybackbutton_onenter(event): event.widget.config(bg="#C3C3C3"), historyscreen_canvas.itemconfigure(historyScreen.directorybuttonbg_1, image=historyScreen.image_directorybuttonbg_selected),
-    def directorybackbutton_onleave(event): event.widget.config(bg="#D9D9D9"), historyscreen_canvas.itemconfigure(historyScreen.directorybuttonbg_1, image=historyScreen.image_directorybuttonbg)
-    directory_back_button.bind("<Enter>", directorybackbutton_onenter)
-    directory_back_button.bind("<Leave>", directorybackbutton_onleave)
-
-    directory_foward_button = Button(historyscreen_canvas, image=image_directory_foward_button, borderwidth=0, highlightthickness=0, bg="#D9D9D9", command=lambda: print("button_2 clicked"), relief="flat" )
-    directory_foward_button.place( x=456.0, y=444.0, width=50.0, height=22.0 )
-    directory_foward_button.config(activebackground="#C3C3C3")
-    def directoryfowardbutton_onenter(event): event.widget.config(bg="#C3C3C3"), historyscreen_canvas.itemconfigure(historyScreen.directorybuttonbg_2, image=historyScreen.image_directorybuttonbg_selected),
-    def directoryfowardbutton_onleave(event): event.widget.config(bg="#D9D9D9"), historyscreen_canvas.itemconfigure(historyScreen.directorybuttonbg_2, image=historyScreen.image_directorybuttonbg)
-    directory_foward_button.bind("<Enter>", directoryfowardbutton_onenter)
-    directory_foward_button.bind("<Leave>", directoryfowardbutton_onleave)
-
-    #back button
     def back_button_pressed():
         historyscreen_canvas.pack_forget()
         mainscreen_canvas.pack()
-    back_button = Button(historyscreen_canvas, image=image_back_button, borderwidth=0, highlightthickness=0, bg="#D9D9D9", command=lambda: historyScreen.back_button_pressed(), relief="flat" )
+    back_button = Button(historyscreen_canvas, image=image_back_button, borderwidth=0, highlightthickness=0, bg="#D9D9D9", command=lambda: historyscreen_class.back_button_pressed(), relief="flat" )
     back_button.place( x=42.0, y=438.0, width=93.0, height=30.0 )
     back_button.config(activebackground="#C3C3C3")
-    def backbutton_onenter(event): event.widget.config(bg="#C3C3C3"), historyscreen_canvas.itemconfigure(historyScreen.actionbuttonbg_1, image=historyScreen.image_actionbuttonbg_selected),
-    def backbutton_onleave(event): event.widget.config(bg="#D9D9D9"), historyscreen_canvas.itemconfigure(historyScreen.actionbuttonbg_1, image=historyScreen.image_actionbuttonbg)
+    def backbutton_onenter(event): event.widget.config(bg="#C3C3C3"), historyscreen_canvas.itemconfigure(historyscreen_class.actionbuttonbg_1, image=historyscreen_class.image_actionbuttonbg_selected),
+    def backbutton_onleave(event): event.widget.config(bg="#D9D9D9"), historyscreen_canvas.itemconfigure(historyscreen_class.actionbuttonbg_1, image=historyscreen_class.image_actionbuttonbg)
     back_button.bind("<Enter>", backbutton_onenter)
     back_button.bind("<Leave>", backbutton_onleave)
 
-    #info button
-    info_button = Button(historyscreen_canvas, image=image_info_button, borderwidth=0, highlightthickness=0, bg="#D9D9D9", command=lambda: print("button_4 clicked"), relief="flat" )
+
+    def info_button_pressed():
+        profilescreen_canvas.pack()
+        historyscreen_canvas.pack_forget()
+        profilescreen_class.personalize_screen(data_class.userlevel)
+        profilescreen_class.button_back.config(command=lambda: historyscreen_class.changed_back_button_pressed())
+        profilescreen_canvas.coords(profilescreen_class.history_bg, 1000, 1000)
+        profilescreen_canvas.coords(profilescreen_class.history_banner, 1000, 1000)
+        profilescreen_canvas.coords(profilescreen_class.edit_bg, 1000, 1000)
+        profilescreen_canvas.coords(profilescreen_class.edit_banner, 1000, 1000)
+        profilescreen_class.button_history.place_configure(x=1000, y=1000)
+        profilescreen_class.button_edit.place_configure(x=1000, y=1000)
+    def changed_back_button_pressed():
+        historyscreen_canvas.pack()
+        profilescreen_canvas.pack_forget()
+        profilescreen_canvas.coords(profilescreen_class.history_bg, 399.0, 451.0)
+        profilescreen_canvas.coords(profilescreen_class.history_banner, 399.0, 452.0)
+        profilescreen_canvas.coords(profilescreen_class.edit_bg, 601.0, 452.0)
+        profilescreen_canvas.coords(profilescreen_class.edit_banner, 601.0, 451.0)
+        profilescreen_class.button_history.place_configure(x=366.0, y=437.0)
+        profilescreen_class.button_edit.place_configure(x=568.0, y=437.0)
+        profilescreen_class.button_back.config(command=lambda: profilescreen_class.button_back_pressed())
+    info_button = Button(historyscreen_canvas, image=image_info_button, borderwidth=0, highlightthickness=0, bg="#D9D9D9", command=lambda: historyscreen_class.info_button_pressed(), relief="flat" )
     info_button.place( x=663.0, y=438.0, width=93.0, height=30.0 )
     info_button.config(activebackground="#C3C3C3")
-    def infobutton_onenter(event): event.widget.config(bg="#C3C3C3"), historyscreen_canvas.itemconfigure(historyScreen.actionbuttonbg_2, image=historyScreen.image_actionbuttonbg_selected),
-    def infobutton_onleave(event): event.widget.config(bg="#D9D9D9"), historyscreen_canvas.itemconfigure(historyScreen.actionbuttonbg_2, image=historyScreen.image_actionbuttonbg)
+    def infobutton_onenter(event): event.widget.config(bg="#C3C3C3"), historyscreen_canvas.itemconfigure(historyscreen_class.actionbuttonbg_2, image=historyscreen_class.image_actionbuttonbg_selected),
+    def infobutton_onleave(event): event.widget.config(bg="#D9D9D9"), historyscreen_canvas.itemconfigure(historyscreen_class.actionbuttonbg_2, image=historyscreen_class.image_actionbuttonbg)
     info_button.bind("<Enter>", infobutton_onenter)
     info_button.bind("<Leave>", infobutton_onleave)
 
-    #placed Text (temporary)
-    historyscreen_canvas.create_text( 376.0, 442.0, anchor="nw", text="1 of 1", fill="#000000", font=("Encode Sans", 19 * -1) )
-    historyscreen_canvas.create_text( 66.0, 53.0, anchor="nw", text="2/27/22", fill="#000000", font=("Encode Sans", 16 * -1) )
-    historyscreen_canvas.create_text( 161.0, 53.0, anchor="nw", text="54", fill="#000000", font=("Encode Sans", 16 * -1) )
-    historyscreen_canvas.create_text( 241.0, 53.0, anchor="nw", text="3", fill="#000000", font=("Encode Sans", 16 * -1) )
-    historyscreen_canvas.create_text( 295.0, 53.0, anchor="nw", text="2:00", fill="#000000", font=("Encode Sans", 16 * -1) )
-    historyscreen_canvas.create_text( 351.0, 53.0, anchor="nw", text="94.74", fill="#000000", font=("Encode Sans", 16 * -1) )
+
+    tree = ttk.Treeview(historyscreen_canvas, columns=('date', 'time', 'correct', 'incorrect', 'mode', '%'), show = 'headings')
+
+    tree.heading('date', text='Date')
+    tree.heading('time', text='Time')
+    tree.heading('correct', text='Correct')
+    tree.heading('incorrect', text='Incorrect')
+    tree.heading('mode', text='Mode')
+    tree.heading('%', text='%')
+
+    tree.column('date', width=90, stretch=False, anchor='center')
+    tree.column('time', width=90, stretch='no', anchor='center')
+    tree.column('correct', width=70, stretch='no', anchor='center')
+    tree.column('incorrect', width=70, stretch='no', anchor='center')
+    tree.column('mode', width=160, stretch='no', anchor='center')
+    tree.column('%', width=70, stretch='no', anchor='center')
+
+    def display_data(userlevel):
+        for game in data_class.user_data[userlevel]['gamehistory']:
+            try:
+                game_percentage = game['correct'] / (game['incorrect'] + game['correct'])
+                historyscreen_class.tree.insert('', 'end', values=(game['date'], game['time'], game['correct'], game['incorrect'], game['mode'], f"{round(game_percentage * 100, 2)}%"))
+            except:
+                pass
+
+    scrollbar = ttk.Scrollbar(historyscreen_canvas, orient="vertical", command=tree.yview)
+    tree.configure(yscrollcommand=scrollbar.set)
+
+    def disableEvent(event):
+        return "break"
+
+    tree.bind("<Button-1>", disableEvent)
+
+
+    tree.place(x=110, y=67, height=317, width=560)
+    scrollbar.place(x=673, y=67, height=317)
+
+    set_theme("light")
 
 #-----------------------------------------------------------------
 
