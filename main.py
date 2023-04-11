@@ -789,9 +789,10 @@ class mainscreen_class():
     image_banner7 = PhotoImage(file=relative_to_assets("mainscreen/banner7.png"))
     image_banner8 = PhotoImage(file=relative_to_assets("mainscreen/banner8.png"))
     image_line1 = PhotoImage(file=relative_to_assets("mainscreen/line1.png"))
-    image_mathoperatorX = PhotoImage(file=relative_to_assets("mainscreen/mathoperatorX.png"))
-    image_mathoperatorminus = PhotoImage(file=relative_to_assets("mainscreen/mathoperator-.png"))
-    image_mathoperatorplus = PhotoImage(file=relative_to_assets("mainscreen/mathoperator+.png"))
+    image_mathoperator_multiplication = PhotoImage(file=relative_to_assets("mainscreen/mathoperatorX.png"))
+    image_mathoperator_minus = PhotoImage(file=relative_to_assets("mainscreen/mathoperator-.png"))
+    image_mathoperator_plus = PhotoImage(file=relative_to_assets("mainscreen/mathoperator+.png"))
+    image_mathoperator_divide = PhotoImage(file=relative_to_assets("mainscreen/mathoperatord.png"))
     image_entryboxbg = PhotoImage(file=relative_to_assets("mainscreen/entryboxbg.png"))
     image_timerbg = PhotoImage(file=relative_to_assets("mainscreen/timerbg.png"))
     image_scoreboxbg = PhotoImage(file=relative_to_assets("mainscreen/scoreboxbg.png"))
@@ -824,7 +825,7 @@ class mainscreen_class():
     startbuttonbgbox = mainscreen_canvas.create_image(641.0, 302.0, image=image_banner7)
     banner8 = mainscreen_canvas.create_image(410.0, 378.0, image=image_banner8)
     line1 = mainscreen_canvas.create_image(413.0, 262.0, image=image_line1)
-    mathoperator = mainscreen_canvas.create_image(462.0, 236.0, image=image_mathoperatorX)
+    mathoperator = mainscreen_canvas.create_image(462.0, 236.0, image=image_mathoperator_multiplication)
     entryboxbg = mainscreen_canvas.create_image(386.0, 289.0, image=image_entryboxbg)
     timerbg = mainscreen_canvas.create_image(642.0, 135.0, image=image_timerbg)
     scoreboxbg = mainscreen_canvas.create_image(163.0, 187.0, image=image_scoreboxbg)
@@ -1065,7 +1066,6 @@ class mainscreen_class():
         (mainscreen_class.flashcard1 == mainscreen_class.last_flashcard2 and mainscreen_class.flashcard2 == mainscreen_class.last_flashcard1):
             mainscreen_class.generate_problem()
         if optionsscreen_class.flashcardtype == "/" and not mainscreen_class.flashcard1 % mainscreen_class.flashcard2 == 0:
-            print('Problem')
             mainscreen_class.generate_problem()
 
 
@@ -1161,9 +1161,11 @@ class mainscreen_class():
             sound_class.sound_times_up.play()
 
     def log_game():
+        if mainscreen_class.currentscore == 0:
+            return
         current_datetime = datetime.now()
         current_date = current_datetime.strftime("%m/%d/%Y")
-        current_time = current_datetime.strftime("%H:%M")
+        current_time = current_datetime.strftime("%I:%M %p")
         log_dictionary = {"date" : current_date, "time" : current_time, "correct" : mainscreen_class.currentscore, "incorrect" : mainscreen_class.incorrect, "mode" : f"{optionsscreen_class.flashcardtype}-{optionsscreen_class.flashcarddifficulty}-{optionsscreen_class.flashcardtime}"}
         data_class.user_data[data_class.userlevel]['gamehistory'].append(log_dictionary)
 
@@ -1318,7 +1320,7 @@ class optionsscreen_class():
             optionsscreen_class.flashcardtype, optionsscreen_class.flashcarddifficulty)
         optionsscreen_class.explanationtitle = "Multiplication -"
         optionsscreen_class.explanation = "Put your time tables to the test!"
-        mainscreen_canvas.itemconfigure(mainscreen_class.mathoperator, image=mainscreen_class.image_mathoperatorX)
+        mainscreen_canvas.itemconfigure(mainscreen_class.mathoperator, image=mainscreen_class.image_mathoperator_multiplication)
         optionsscreen_class.clear_type_outline()
         optionsscreen_canvas.itemconfigure(optionsscreen_class.buttonbg_type_multiplication, image=optionsscreen_class.image_buttonbg_outline_selected)
     multiplication_button = Button(optionsscreen_canvas, image=image_multiplication_button, borderwidth=0, highlightthickness=0, bg="#D9D9D9", command=lambda: optionsscreen_class.multiplication_button_pressed(), relief="flat" )
@@ -1349,7 +1351,7 @@ class optionsscreen_class():
         optionsscreen_class.explanation = "Put your subtraction skills to the test!"
         optionsscreen_class.clear_type_outline()
         optionsscreen_canvas.itemconfigure(optionsscreen_class.buttonbg_type_subtraction, image=optionsscreen_class.image_buttonbg_outline_selected)
-        mainscreen_canvas.itemconfigure(mainscreen_class.mathoperator, image=mainscreen_class.image_mathoperatorminus)
+        mainscreen_canvas.itemconfigure(mainscreen_class.mathoperator, image=mainscreen_class.image_mathoperator_minus)
     subtraction_button = Button(optionsscreen_canvas, image=image_subtraction_button, borderwidth=0, highlightthickness=0, bg="#D9D9D9", command=lambda: optionsscreen_class.subtraction_button_pressed(), relief="flat" )
     subtraction_button.place(x=110.0, y=139.0, width=50.0, height=22.0 )
     subtraction_button.config(activebackground="#C3C3C3")
@@ -1378,7 +1380,7 @@ class optionsscreen_class():
         optionsscreen_class.explanation = "Put your addition skills to the test!"
         optionsscreen_class.clear_type_outline()
         optionsscreen_canvas.itemconfigure(optionsscreen_class.buttonbg_type_addition, image=optionsscreen_class.image_buttonbg_outline_selected)
-        mainscreen_canvas.itemconfigure(mainscreen_class.mathoperator, image=mainscreen_class.image_mathoperatorplus)
+        mainscreen_canvas.itemconfigure(mainscreen_class.mathoperator, image=mainscreen_class.image_mathoperator_plus)
     addition_button = Button(optionsscreen_canvas, image=image_addition_button, borderwidth=0, highlightthickness=0,  bg="#D9D9D9", command=lambda: optionsscreen_class.addition_button_pressed(), relief="flat" )
     addition_button.place(x=110.0, y=187.0, width=50.0, height=22.0 )
     addition_button.config(activebackground="#C3C3C3")
@@ -1407,6 +1409,7 @@ class optionsscreen_class():
         optionsscreen_class.explanation = "Put your division skills to the test!"
         optionsscreen_class.clear_type_outline()
         optionsscreen_canvas.itemconfigure(optionsscreen_class.buttonbg_type_division, image=optionsscreen_class.image_buttonbg_outline_selected)
+        mainscreen_canvas.itemconfigure(mainscreen_class.mathoperator, image=mainscreen_class.image_mathoperator_divide)
     division_button = Button(optionsscreen_canvas, image=image_division_button, borderwidth=0, highlightthickness=0, bg="#D9D9D9", command=lambda: optionsscreen_class.divison_button_pressed(), relief="flat" )
     division_button.place(x=110.0, y=235.0, width=50.0, height=22.0 )
     division_button.config(activebackground="#C3C3C3")
