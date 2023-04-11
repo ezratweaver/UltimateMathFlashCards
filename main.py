@@ -5,10 +5,9 @@ from tkinter import Tk, Canvas, Entry, Button, PhotoImage, Label, ttk, NO
 from os import chdir, path, listdir
 from random import randint
 from operator import add, sub, floordiv, mul
-from playsound import playsound
 from datetime import datetime
 from sv_ttk import set_theme
-
+from pygame import mixer
 
 chdir(path.dirname(path.abspath(__file__)))
 OUTPUT_PATH = Path(__file__).parent
@@ -35,11 +34,26 @@ profilescreen_canvas = Canvas( window, bg = windowcolor, height = 500, width = 8
 
 
 class sound_class():
-    clicksound = (relative_to_assets("sounds/buttonpress.wav"))
+    mixer.pre_init(44100, -16, 1, 512)
+    mixer.init()
+    sound_correct = mixer.Sound("assets/sounds/correct.wav")
+    sound_countdown_tick = mixer.Sound("assets/sounds/countdowntick.wav")
+    sound_timer_tick = mixer.Sound("assets/sounds/timertick.wav")
+    sound_wrong = mixer.Sound("assets/sounds/wrong.wav")
+    sound_buttonpress = mixer.Sound("assets/sounds/buttonpress.wav")
+    sound_win = mixer.Sound("assets/sounds/win.wav")
+    sound_times_up = mixer.Sound("assets/sounds/timesup.wav")
+    # sound_countdown_end = mixer.Sound("assets/sounds/countdownend.wav")
 
-
-
-
+    def muted_all_sounds(volume):
+        sound_class.sound_correct.set_volume(volume)
+        sound_class.sound_countdown_tick.set_volume(volume)
+        sound_class.sound_timer_tick.set_volume(volume)
+        sound_class.sound_wrong.set_volume(volume)
+        sound_class.sound_buttonpress.set_volume(volume)
+        sound_class.sound_win.set_volume(volume)
+        sound_class.sound_times_up.set_volume(volume)
+    
 class userscreen_class():
     #Images
     image_bg_image = PhotoImage( file=relative_to_assets("bg_image.png"))
@@ -134,6 +148,7 @@ class userscreen_class():
 
 
     def log_into_user(userlevel):
+        sound_class.sound_buttonpress.play()
         data_class.userlevel = userlevel
         data_class.highscore_dict = data_class.user_data[userlevel]['highscore'] 
         optionsscreen_class.reset_settings()
@@ -142,6 +157,7 @@ class userscreen_class():
 
     temp = None
     def create_user(userlevel):
+            sound_class.sound_buttonpress.play()
             userscreen_class.temp = userlevel
             userscreen_class.hide_buttons(1000, 1000)
             newuser_banner = userscreen_canvas.create_image( 400.0, 217.0, image=userscreen_class.image_newuser_banner )
@@ -187,6 +203,7 @@ class userscreen_class():
             button_confirm.bind("<Leave>", button_confirm_onleave)
 
             def exit_create_user():
+                sound_class.sound_buttonpress.play()
                 userscreen_class.hide_buttons(-1000, -1000)
                 userscreen_canvas.delete(newuser_banner)
                 userscreen_canvas.delete(newuser_text)
@@ -198,6 +215,7 @@ class userscreen_class():
                 username_entry.destroy()
 
     def show_user_profile(i):
+        sound_class.sound_buttonpress.play()
         profilescreen_class.personalize_screen(i)
         userscreen_canvas.pack_forget()
         profilescreen_canvas.pack()
@@ -243,6 +261,7 @@ class userscreen_class():
 
     
     def confirm_remove_user(i):
+        sound_class.sound_buttonpress.play()
         try:
             username = data_class.user_data[i]['displayname']
         except:
@@ -274,12 +293,14 @@ class userscreen_class():
         button_delete_no.bind("<Leave>", button_delete_no_onleave)
 
         def confirm_delete_user(i):
+            sound_class.sound_buttonpress.play()
             exit_delete_prompt()
             data_class.remove_user(i)
 
 
 
         def exit_delete_prompt():
+            sound_class.sound_buttonpress.play()
             userscreen_class.remove_user_mode()
             userscreen_canvas.delete(delete_confirm_banner)
             userscreen_canvas.delete(delete_text)
@@ -293,6 +314,7 @@ class userscreen_class():
 
     
     def remove_user_mode():
+        sound_class.sound_buttonpress.play()
         userscreen_class.remove_mode = not userscreen_class.remove_mode
         if userscreen_class.remove_mode:
             for i, element in enumerate(data_class.useraction_buttons):
@@ -304,6 +326,7 @@ class userscreen_class():
 
     
     def back_button_pressed():
+        sound_class.sound_buttonpress.play()
         if userscreen_class.remove_mode:
             userscreen_class.remove_user_mode()
         if data_class.userlevel == None:
@@ -344,6 +367,7 @@ class userscreen_class():
         button_ok.bind("<Leave>", buttonback_onleave)
         
         def hide_error():
+            sound_class.sound_buttonpress.play()
             userscreen_canvas.delete(popup_banner)
             userscreen_canvas.delete(popup_text)
             userscreen_canvas.delete(ok_bg)
@@ -445,6 +469,7 @@ class profilescreen_class():
 
 
     def button_back_pressed():
+        sound_class.sound_buttonpress.play()
         profilescreen_canvas.pack_forget()
         userscreen_canvas.pack()
     button_back = Button(profilescreen_canvas, image=image_back, borderwidth=0, bg="#D9D9D9", highlightthickness=0, command=lambda: profilescreen_class.button_back_pressed(), relief="flat" )
@@ -459,6 +484,7 @@ class profilescreen_class():
 
 
     def button_edit_pressed():
+        sound_class.sound_buttonpress.play()
         profilescreen_class.button_back.config(command=lambda: None)
         profilescreen_class.button_edit.config(command=lambda: None)
         profilescreen_class.button_history.config(command=lambda: None)
@@ -506,6 +532,7 @@ class profilescreen_class():
         button_confirm.bind("<Leave>", button_confirm_onleave)
         
         def exit_rename():
+            sound_class.sound_buttonpress.play()
             profilescreen_class.button_back.config(command=lambda: profilescreen_class.button_back_pressed())
             profilescreen_class.button_edit.config(command=lambda: profilescreen_class.button_edit_pressed())
             profilescreen_class.button_history.config(command=lambda: profilescreen_class.button_history_pressed())
@@ -535,6 +562,7 @@ class profilescreen_class():
 
 
     def button_history_pressed():
+        sound_class.sound_buttonpress.play()
         historyscreen_class.display_data(profilescreen_class.current_user)
         historyscreen_class.back_button.config(command=lambda: profilescreen_class.changed_back_button_pressed())
 
@@ -545,6 +573,7 @@ class profilescreen_class():
         profilescreen_canvas.pack_forget()
         historyscreen_canvas.pack()
     def changed_back_button_pressed():
+        sound_class.sound_buttonpress.play()
         historyscreen_canvas.pack_forget()
         profilescreen_canvas.pack()
 
@@ -598,9 +627,13 @@ class startscreen_class():
     def volume_button_pressed():
         if startscreen_class.muted == False:
             startscreen_class.volume_button.configure(image=startscreen_class.image_volumemuted)
+            sound_class.muted_all_sounds(0.0)
         else:
             startscreen_class.volume_button.configure(image=startscreen_class.image_volumeunmuted)
+            sound_class.muted_all_sounds(1.0)
+            sound_class.sound_buttonpress.play()
         startscreen_class.muted = not startscreen_class.muted
+
 
     volume_button = Button(startscreen_canvas, image=image_volumeunmuted, borderwidth=0, highlightthickness=0, bg="#D9D9D9", command=lambda: startscreen_class.volume_button_pressed(), relief="flat")
     volume_button.place(x=63, y=449.0, width=52.0, height=22.0)
@@ -612,6 +645,7 @@ class startscreen_class():
 
     #User Button
     def user_button_pressed():
+        sound_class.sound_buttonpress.play()
         startscreen_canvas.pack_forget()
         userscreen_canvas.pack()
     users_button = Button(startscreen_canvas, image=image_usersmenu, borderwidth=0, highlightthickness=0, bg="#D9D9D9", command=lambda: startscreen_class.user_button_pressed(), relief="flat")
@@ -624,6 +658,7 @@ class startscreen_class():
 
     #Launch Button
     def launch_button_pressed():
+        sound_class.sound_buttonpress.play()
         startscreen_canvas.pack_forget()
         mainscreen_canvas.pack()
     launch_button = Button(startscreen_canvas, image=image_launchbutton, borderwidth=0, highlightthickness=0, bg="#D9D9D9", command=lambda: startscreen_class.launch_button_pressed(),relief="flat")
@@ -755,7 +790,7 @@ class mainscreen_class():
     image_banner8 = PhotoImage(file=relative_to_assets("mainscreen/banner8.png"))
     image_line1 = PhotoImage(file=relative_to_assets("mainscreen/line1.png"))
     image_mathoperatorX = PhotoImage(file=relative_to_assets("mainscreen/mathoperatorX.png"))
-    image_mathoperatormius = PhotoImage(file=relative_to_assets("mainscreen/mathoperator-.png"))
+    image_mathoperatorminus = PhotoImage(file=relative_to_assets("mainscreen/mathoperator-.png"))
     image_mathoperatorplus = PhotoImage(file=relative_to_assets("mainscreen/mathoperator+.png"))
     image_entryboxbg = PhotoImage(file=relative_to_assets("mainscreen/entryboxbg.png"))
     image_timerbg = PhotoImage(file=relative_to_assets("mainscreen/timerbg.png"))
@@ -809,6 +844,7 @@ class mainscreen_class():
 
     #Back Button
     def back_button_pressed():
+        sound_class.sound_buttonpress.play()
         if mainscreen_class.game_started == True:
             mainscreen_class.confirm_quit()
         else:
@@ -825,6 +861,7 @@ class mainscreen_class():
 
     #Settings Button
     def settings_button_pressed():
+        sound_class.sound_buttonpress.play()
         optionsscreen_canvas.itemconfig(optionsscreen_class.specific_highscore_text, text=data_class.highscore_dict[f"{optionsscreen_class.flashcardtype}-{optionsscreen_class.flashcarddifficulty}-{optionsscreen_class.flashcardtime}"])
         mainscreen_canvas.pack_forget()
         optionsscreen_canvas.pack()
@@ -839,6 +876,7 @@ class mainscreen_class():
 
     #History Button
     def history_button_pressed():
+        sound_class.sound_buttonpress.play()
         historyscreen_class.display_data(data_class.userlevel)
         mainscreen_canvas.pack_forget()
         historyscreen_canvas.pack()
@@ -854,7 +892,7 @@ class mainscreen_class():
     #Start Button
     def start_button_pressed():
         mainscreen_class.place_countdownscreen()
-
+        sound_class.sound_buttonpress.play()
     start_button = Button(mainscreen_canvas, image=image_startbutton, borderwidth=0, bg="#D9D9D9", highlightthickness=0, command=lambda: mainscreen_class.start_button_pressed(), relief="flat")
     start_button.place(x=604.0, y=290.0, width=72.0, height=25.0)
     start_button.config(activebackground="#C3C3C3")
@@ -912,10 +950,12 @@ class mainscreen_class():
                 return
             mainscreen_canvas.itemconfig(countdown_counter_text, text=seconds)
             seconds -= 1
+            sound_class.sound_countdown_tick.play()
             mainscreen_canvas.countdownloop = mainscreen_canvas.after(1000, initialize_countdown, seconds, callback)
 
 
         def cancel_countdown():
+            sound_class.sound_buttonpress.play()
             mainscreen_canvas.after_cancel(mainscreen_canvas.countdownloop)
             mainscreen_class.post_game_cleanup()
             destroy_countdownscreen()
@@ -938,6 +978,7 @@ class mainscreen_class():
         quit_text = mainscreen_canvas.create_text( 294.0, 176.0, anchor="nw", text="Do you want to quit?\n", fill="#000000", font=("Encode Sans", 25 * -1) )
 
         def yes_quit_button_pressed():
+            sound_class.sound_buttonpress.play()
             destroy_quitbox()
             mainscreen_class.game_started = False
             if optionsscreen_class.flashcardtime == "practice":
@@ -956,6 +997,7 @@ class mainscreen_class():
         yes_quit_button.bind("<Leave>", yes_quitbutton_onleave)
 
         def no_quit_button_pressed():
+            sound_class.sound_buttonpress.play()
             destroy_quitbox()
         no_quit_button = Button( image=mainscreen_class.image_no_quit_button, borderwidth=0, highlightthickness=0, bg="#D9D9D9", command=lambda: no_quit_button_pressed(), relief="flat" )
         no_quit_button.place( x=308.0, y=217.0, width=80.0, height=26.0 )
@@ -994,6 +1036,7 @@ class mainscreen_class():
 
 
     def start_game():
+        # sound_class.sound_countdown_end.play()
         mainscreen_class.game_started = True
         mainscreen_canvas.itemconfig(mainscreen_class.currentscore_text, text=mainscreen_class.currentscore)
         mainscreen_class.entrybox.place(x=364.0, y=278.0, width=44.0, height=21.0)
@@ -1034,9 +1077,11 @@ class mainscreen_class():
             if int(user_answer) == mainscreen_class.correctanswer:
                 mainscreen_class.feedback = "Correct!"
                 mainscreen_class.currentscore = mainscreen_class.currentscore + 1
+                sound_class.sound_correct.play()
             else:
                 mainscreen_class.feedback = "Wrong!"
                 mainscreen_class.incorrect = mainscreen_class.incorrect + 1
+                sound_class.sound_wrong.play()
                 if mainscreen_class.currentscore > 0:
                     mainscreen_class.currentscore = mainscreen_class.currentscore - 1
         except:
@@ -1061,7 +1106,7 @@ class mainscreen_class():
             seconds = 60
 
         seconds -= 1
-
+        sound_class.sound_timer_tick.play()
         mainscreen_canvas.itemconfig(mainscreen_class.time_text, text=f'{minutes:2}:{seconds:02}')
 
         mainscreen_canvas.maintimerloop = mainscreen_canvas.after(1000, mainscreen_class.start_timer, minutes, seconds)
@@ -1109,9 +1154,11 @@ class mainscreen_class():
     def is_new_highscore():
         if int(mainscreen_class.currentscore) > int(data_class.highscore_dict[f"{optionsscreen_class.flashcardtype}-{optionsscreen_class.flashcarddifficulty}-{optionsscreen_class.flashcardtime}"]):
             finalscreen_class.finalscore_feedback_text = 'New Highscore!'
+            sound_class.sound_win.play()
             data_class.highscore_dict[f"{optionsscreen_class.flashcardtype}-{optionsscreen_class.flashcarddifficulty}-{optionsscreen_class.flashcardtime}"] = mainscreen_class.currentscore
         else:
             finalscreen_class.finalscore_feedback_text = 'Better Luck Next TIme!'
+            sound_class.sound_times_up.play()
 
     def log_game():
         current_datetime = datetime.now()
@@ -1302,7 +1349,7 @@ class optionsscreen_class():
         optionsscreen_class.explanation = "Put your subtraction skills to the test!"
         optionsscreen_class.clear_type_outline()
         optionsscreen_canvas.itemconfigure(optionsscreen_class.buttonbg_type_subtraction, image=optionsscreen_class.image_buttonbg_outline_selected)
-        mainscreen_canvas.itemconfigure(mainscreen_class.mathoperator, image=mainscreen_class.image_mathoperatormius)
+        mainscreen_canvas.itemconfigure(mainscreen_class.mathoperator, image=mainscreen_class.image_mathoperatorminus)
     subtraction_button = Button(optionsscreen_canvas, image=image_subtraction_button, borderwidth=0, highlightthickness=0, bg="#D9D9D9", command=lambda: optionsscreen_class.subtraction_button_pressed(), relief="flat" )
     subtraction_button.place(x=110.0, y=139.0, width=50.0, height=22.0 )
     subtraction_button.config(activebackground="#C3C3C3")
@@ -1384,6 +1431,7 @@ class optionsscreen_class():
 
 
     def clear_type_outline():
+        sound_class.sound_buttonpress.play()
         optionsscreen_canvas.itemconfig(optionsscreen_class.description_title, text=optionsscreen_class.explanationtitle)
         optionsscreen_class.description.config(text=optionsscreen_class.explanation)
         optionsscreen_canvas.itemconfigure(optionsscreen_class.buttonbg_type_addition, image=optionsscreen_class.image_buttonbg)
@@ -1526,6 +1574,7 @@ class optionsscreen_class():
         return optionsscreen_class.difficulty_info.get((card_type, difficulty))
 
     def clear_difficulty_outline():
+        sound_class.sound_buttonpress.play()
         optionsscreen_canvas.itemconfig(optionsscreen_class.description_title, text=optionsscreen_class.explanationtitle)
         optionsscreen_class.description.config(text=optionsscreen_class.explanation)
         optionsscreen_canvas.itemconfigure(optionsscreen_class.buttonbg_difficulty_hard, image=optionsscreen_class.image_buttonbg)
@@ -1646,6 +1695,7 @@ class optionsscreen_class():
 
 
     def clear_time_outline():
+        sound_class.sound_buttonpress.play()
         optionsscreen_canvas.itemconfig(optionsscreen_class.description_title, text=optionsscreen_class.explanationtitle)
         optionsscreen_class.description.config(text=optionsscreen_class.explanation)
         optionsscreen_canvas.itemconfigure(optionsscreen_class.buttonbg_time_thirtysecond, image=optionsscreen_class.image_buttonbg)
@@ -1657,6 +1707,7 @@ class optionsscreen_class():
 
     #Back Button
     def back_button_pressed():
+        sound_class.sound_buttonpress.play()
         optionsscreen_canvas.pack_forget()
         mainscreen_canvas.pack()
     back_button = Button(optionsscreen_canvas, image=image_back_button, borderwidth=0, highlightthickness=0, bg="#D9D9D9", command=lambda: optionsscreen_class.back_button_pressed(), relief="flat" )
@@ -1717,6 +1768,7 @@ class finalscreen_class():
 
     #Continue Button
     def continue_button_pressed():
+        sound_class.sound_buttonpress.play()
         mainscreen_class.post_game_cleanup()
         finalscreen_canvas.pack_forget()
         mainscreen_canvas.pack()
@@ -1749,6 +1801,7 @@ class historyscreen_class():
 
 
     def back_button_pressed():
+        sound_class.sound_buttonpress.play()
         historyscreen_canvas.pack_forget()
         mainscreen_canvas.pack()
     back_button = Button(historyscreen_canvas, image=image_back_button, borderwidth=0, highlightthickness=0, bg="#D9D9D9", command=lambda: historyscreen_class.back_button_pressed(), relief="flat" )
@@ -1761,6 +1814,7 @@ class historyscreen_class():
 
 
     def info_button_pressed():
+        sound_class.sound_buttonpress.play()
         profilescreen_canvas.pack()
         historyscreen_canvas.pack_forget()
         profilescreen_class.personalize_screen(data_class.userlevel)
@@ -1772,6 +1826,7 @@ class historyscreen_class():
         profilescreen_class.button_history.place_configure(x=1000, y=1000)
         profilescreen_class.button_edit.place_configure(x=1000, y=1000)
     def changed_back_button_pressed():
+        sound_class.sound_buttonpress.play()
         historyscreen_canvas.pack()
         profilescreen_canvas.pack_forget()
         profilescreen_canvas.coords(profilescreen_class.history_bg, 399.0, 451.0)
@@ -1807,6 +1862,10 @@ class historyscreen_class():
     tree.column('%', width=70, stretch='no', anchor='center')
 
     def display_data(userlevel):
+        try:
+            historyscreen_class.tree.delete(*historyscreen_class.tree.get_children())
+        except:
+            pass
         for game in data_class.user_data[userlevel]['gamehistory']:
             try:
                 game_percentage = game['correct'] / (game['incorrect'] + game['correct'])
