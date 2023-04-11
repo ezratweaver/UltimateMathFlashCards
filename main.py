@@ -692,7 +692,8 @@ class data_class():
             if filename.endswith('.json'): 
                 file_path = path.join(data_class.directory_path, filename)
                 with open(file_path) as file:
-                    data = loads(file.read())
+                    decrypted_data = data_class.fernet_key.decrypt(file.read())
+                    data = loads(decrypted_data)
                     usercount += 1
                     data_class.user_data.append(data)
                     try:
@@ -726,24 +727,27 @@ class data_class():
         newuser_dictionary = {"userlevel" : userlevel, "displayname" : username, "highscore" : {'*-classical-twominute': 0}, "gamehistory" : []}
         userfile = f"users/user{userlevel}.json"
         jsondump = dumps(newuser_dictionary)
+        encrypted_jsondump = data_class.fernet_key.encrypt(jsondump.encode())
         with open(userfile, 'w') as file:
-            file.write(jsondump)
+            file.write(encrypted_jsondump.decode())
         data_class.check_for_users()
 
     def rename_user(userlevel, name):
         data_class.user_data[userlevel]['displayname'] = name
         userfile = f"users/user{userlevel}.json"
         jsondump = dumps(data_class.user_data[userlevel])
+        encrypted_jsondump = data_class.fernet_key.encrypt(jsondump.encode())
         with open(userfile, 'w') as file:
-            file.write(jsondump)
+            file.write(encrypted_jsondump.decode())
         data_class.check_for_users()
 
     def remove_user(i):
         empty_dictionary = {}
         userfile = f"users/user{i}.json"
         jsondump = dumps(empty_dictionary)
+        encrypted_jsondump = data_class.fernet_key.encrypt(jsondump.encode())
         with open(userfile, 'w') as file:
-            file.write(jsondump)
+            file.write(encrypted_jsondump.decode())
         data_class.userlevel = None
         data_class.clean_users()
         data_class.check_for_users()
@@ -756,8 +760,9 @@ class data_class():
             usercount += 1
             userfile = f"users/user{usercount}.json"
             jsondump = dumps(dictionary)
+            encrypted_jsondump = data_class.fernet_key.encrypt(jsondump.encode())
             with open(userfile, 'w') as file:
-                file.write(jsondump)
+                file.write(encrypted_jsondump.decode())
 
 
     def does_score_exist():
