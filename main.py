@@ -6,7 +6,6 @@ from os import chdir, path, listdir
 from random import randint
 from operator import add, sub, floordiv, mul
 from datetime import datetime
-from sv_ttk import set_theme
 from pygame import mixer
 
 chdir(path.dirname(path.abspath(__file__)))
@@ -20,8 +19,8 @@ windowcolor = "#3556FB"
 window = Tk()
 window.geometry("800x500")
 window.configure(bg = windowcolor)
-
-
+window.title('Tkinter Math Flash Cards')
+window.iconbitmap('main.ico')
 
 startscreen_canvas = Canvas(window, bg = windowcolor, height = 500, width = 800, bd = 0, highlightthickness = 0, relief = "ridge")
 mainscreen_canvas = Canvas(window, bg = windowcolor, height = 500, width = 800, bd = 0, highlightthickness = 0, relief = "ridge")
@@ -1870,6 +1869,8 @@ class historyscreen_class():
     tree.column('%', width=70, stretch='no', anchor='center')
 
     def display_data(userlevel):
+        from sv_ttk import use_light_theme
+        use_light_theme()
         try:
             historyscreen_class.tree.delete(*historyscreen_class.tree.get_children())
         except:
@@ -1893,7 +1894,7 @@ class historyscreen_class():
     tree.place(x=110, y=67, height=317, width=560)
     scrollbar.place(x=673, y=67, height=317)
 
-    set_theme("light")
+    
 
 #-----------------------------------------------------------------
 
