@@ -2,11 +2,18 @@ from pathlib import Path
 from json import loads, dumps
 from cryptography.fernet import Fernet
 from tkinter import Tk, Canvas, Entry, Button, PhotoImage, Label, ttk, NO
-from os import chdir, path, listdir
+from os import chdir, path, listdir, system
 from random import randint
 from operator import add, sub, floordiv, mul
 from datetime import datetime
 from pygame import mixer
+import sys
+
+if getattr(sys, 'frozen', False):
+    bundle_dir = sys._MEIPASS
+    chdir(bundle_dir)
+
+system('cls')
 
 chdir(path.dirname(path.abspath(__file__)))
 OUTPUT_PATH = Path(__file__).parent
@@ -33,7 +40,6 @@ profilescreen_canvas = Canvas( window, bg = windowcolor, height = 500, width = 8
 
 
 class sound_class():
-    mixer.pre_init(44100, -16, 1, 512)
     mixer.init()
     sound_correct = mixer.Sound("assets/sounds/correct.wav")
     sound_countdown_tick = mixer.Sound("assets/sounds/countdowntick.wav")
@@ -42,7 +48,6 @@ class sound_class():
     sound_buttonpress = mixer.Sound("assets/sounds/buttonpress.wav")
     sound_win = mixer.Sound("assets/sounds/win.wav")
     sound_times_up = mixer.Sound("assets/sounds/timesup.wav")
-    # sound_countdown_end = mixer.Sound("assets/sounds/countdownend.wav")
 
     def muted_all_sounds(volume):
         sound_class.sound_correct.set_volume(volume)
@@ -96,10 +101,10 @@ class userscreen_class():
     usericon1_bg = userscreen_canvas.create_image( 299.0, 178.0, image=image_usericon_bg )
     usericon2_bg = userscreen_canvas.create_image( 299.0, 257.0, image=image_usericon_bg )
     usericon3_bg = userscreen_canvas.create_image( 299.0, 336.0, image=image_usericon_bg )
-    backbutton_banner = userscreen_canvas.create_image( 288.0, 453.0, image=image_actionbutton_banner )
-    backbutton_bg = userscreen_canvas.create_image( 288.0, 452.0, image=image_actionbutton_bg )
-    userremove_banner = userscreen_canvas.create_image( 511.0, 453.0, image=image_actionbutton_banner )
-    userremove_bg = userscreen_canvas.create_image( 512.0, 452.0, image=image_actionbutton_bg )
+    backbutton_banner = userscreen_canvas.create_image( 248.0, 453.0, image=image_actionbutton_banner )
+    backbutton_bg = userscreen_canvas.create_image( 248.0, 452.0, image=image_actionbutton_bg )
+    userremove_banner = userscreen_canvas.create_image( 551.0, 453.0, image=image_actionbutton_banner )
+    userremove_bg = userscreen_canvas.create_image( 552.0, 452.0, image=image_actionbutton_bg )
 
 
 
@@ -334,7 +339,7 @@ class userscreen_class():
             userscreen_canvas.pack_forget()
             startscreen_canvas.pack()
     button_back = Button(userscreen_canvas, image=image_backbutton, bg="#D9D9D9", borderwidth=0, highlightthickness=0, command=lambda: userscreen_class.back_button_pressed(), relief="flat")
-    button_back.place( x=256.0, y=441.0, width=65.0, height=23.0 )
+    button_back.place( x=216.0, y=441.0, width=65.0, height=23.0 )
     button_back.config(activebackground="#C3C3C3")
     def buttonback_onenter(event): event.widget.config(bg="#C3C3C3"), userscreen_canvas.itemconfigure(userscreen_class.backbutton_bg, image=userscreen_class.image_actionbutton_bg_selected)
     def buttonback_onleave(event): event.widget.config(bg="#D9D9D9"), userscreen_canvas.itemconfigure(userscreen_class.backbutton_bg, image=userscreen_class.image_actionbutton_bg)
@@ -343,7 +348,7 @@ class userscreen_class():
 
     remove_mode = False
     button_userremove = Button(userscreen_canvas, image=image_userremove, bg="#D9D9D9", borderwidth=0, highlightthickness=0, command=lambda: userscreen_class.remove_user_mode(), relief="flat" )
-    button_userremove.place( x=480.0, y=441.0, width=65.0, height=23.0 )
+    button_userremove.place( x=520.0, y=441.0, width=65.0, height=23.0 )
     button_userremove.config(activebackground="#C3C3C3")
     def userremove_onenter(event): event.widget.config(bg="#C3C3C3"), userscreen_canvas.itemconfigure(userscreen_class.userremove_bg, image=userscreen_class.image_actionbutton_bg_selected)
     def userremove_onleave(event): event.widget.config(bg="#D9D9D9"), userscreen_canvas.itemconfigure(userscreen_class.userremove_bg, image=userscreen_class.image_actionbutton_bg)
@@ -596,77 +601,89 @@ class profilescreen_class():
 #----------------------------------------------------------------------------------------------- StartScreen
 class startscreen_class():
     muted = False
-    #startScreen Images
-    image_banner1 = PhotoImage(file=relative_to_assets("startscreen/banner1.png"))
-    image_banner2 = PhotoImage(file=relative_to_assets("startscreen/banner2.png"))
-    image_banner3 = PhotoImage(file=relative_to_assets("startscreen/banner3.png"))
-    image_banner4 = PhotoImage(file=relative_to_assets("startscreen/banner4.png"))
-    image_banner4_selected = PhotoImage(file=relative_to_assets("startscreen/banner4_selected.png"))
-    image_banner5 = PhotoImage(file=relative_to_assets("startscreen/banner5.png"))
-    image_banner5_selected = PhotoImage(file=relative_to_assets("startscreen/banner5_selected.png"))
-    image_launchbutton = PhotoImage(file=relative_to_assets("startscreen/launchbutton.png"))
-    image_title = PhotoImage(file=relative_to_assets("startscreen/title.png"))
-    image_subtitle = PhotoImage(file=relative_to_assets("startscreen/subtitle.png"))
-    image_volumeunmuted = PhotoImage(file=relative_to_assets("startscreen/volumeunmuted.png"))
-    image_volumemuted = PhotoImage(file=relative_to_assets("startscreen/volumemuted.png"))
-    image_usersmenu = PhotoImage(file=relative_to_assets("startscreen/usersmenu.png"))
+    image_titlebanner = PhotoImage( file=relative_to_assets("startscreen/titlebanner.png"))
+    image_title = PhotoImage( file=relative_to_assets("startscreen/title.png"))
+    image_version = PhotoImage( file=relative_to_assets("startscreen/version.png"))
+    image_buttonbanner = PhotoImage( file=relative_to_assets("startscreen/buttonbanner.png"))
+    image_buttonbg = PhotoImage( file=relative_to_assets("startscreen/buttonbg.png"))
+    image_buttonbg_selected = PhotoImage( file=relative_to_assets("startscreen/buttonbg_selected.png"))
+    image_play = PhotoImage( file=relative_to_assets("startscreen/play.png"))
+    image_leaderboard = PhotoImage( file=relative_to_assets("startscreen/leaderboard.png"))
+    image_users = PhotoImage( file=relative_to_assets("startscreen/users.png"))
+    image_unmuted = PhotoImage( file=relative_to_assets("startscreen/unmuted.png"))
+    image_muted = PhotoImage(file=relative_to_assets("startscreen/volumemuted.png"))
+
     #Placed Elements
     bg_image = startscreen_canvas.create_image( 395.0, 255.0, image=userscreen_class.image_bg_image)
-    banner1 = startscreen_canvas.create_image(400.0, 106.0, image=image_banner1)
-    banner2_1 = startscreen_canvas.create_image(89.0, 460.0, image=image_banner2)
-    banner2_2 = startscreen_canvas.create_image(714.0, 460.0, image=image_banner2)
-    banner3 = startscreen_canvas.create_image(400.0, 327.0, image=image_banner3)
-    banner4 = startscreen_canvas.create_image(400.0, 327.0, image=image_banner4)
-    banner5_1 = startscreen_canvas.create_image(89.0, 460.0, image=image_banner5)
-    banner5_2 = startscreen_canvas.create_image(715.0, 460.0, image=image_banner5)
-    subtitle = startscreen_canvas.create_image(400.0, 135.0, image=image_subtitle)
-    title = startscreen_canvas.create_image(406.0, 81.0, image=image_title)
+    title_banner = startscreen_canvas.create_image( 400.0, 106.0, image=image_titlebanner )
+    title = startscreen_canvas.create_image( 400.0, 100.0, image=image_title )
+    version = startscreen_canvas.create_image( 574.0, 141.0, image=image_version )
+
+    play_buttonbanner = startscreen_canvas.create_image( 400.0, 241.0, image=image_buttonbanner )
+    play_buttonbg = startscreen_canvas.create_image( 401.0, 240.0, image=image_buttonbg )
+
+    volume_buttonbanner = startscreen_canvas.create_image( 400.0, 389.0, image=image_buttonbanner )
+    volume_buttonbg = startscreen_canvas.create_image( 401.0, 388.0, image=image_buttonbg )
+
+    users_buttonbanner = startscreen_canvas.create_image( 474.0, 315.0, image=image_buttonbanner )
+    users_buttonbg = startscreen_canvas.create_image( 475.0, 314.0, image=image_buttonbg )
+
+    leaderboard_buttonbanner = startscreen_canvas.create_image( 329.0, 315.0, image=image_buttonbanner )
+    leaderboard_buttonbg = startscreen_canvas.create_image( 330.0, 314.0, image=image_buttonbg )
 
     #Volume Button
     def volume_button_pressed():
         if startscreen_class.muted == False:
-            startscreen_class.volume_button.configure(image=startscreen_class.image_volumemuted)
+            startscreen_class.button_volume.configure(image=startscreen_class.image_muted)
             sound_class.muted_all_sounds(0.0)
         else:
-            startscreen_class.volume_button.configure(image=startscreen_class.image_volumeunmuted)
+            startscreen_class.button_volume.configure(image=startscreen_class.image_unmuted)
             sound_class.muted_all_sounds(1.0)
             sound_class.sound_buttonpress.play()
         startscreen_class.muted = not startscreen_class.muted
 
 
-    volume_button = Button(startscreen_canvas, image=image_volumeunmuted, borderwidth=0, highlightthickness=0, bg="#D9D9D9", command=lambda: startscreen_class.volume_button_pressed(), relief="flat")
-    volume_button.place(x=63, y=449.0, width=52.0, height=22.0)
-    volume_button.config(activebackground="#C3C3C3")
-    def volumebutton_onenter(event): event.widget.config(bg="#C3C3C3"), startscreen_canvas.itemconfigure(startscreen_class.banner5_1, image=startscreen_class.image_banner5_selected),
-    def volumebutton_onleave(event): event.widget.config(bg="#D9D9D9"), startscreen_canvas.itemconfigure(startscreen_class.banner5_1, image=startscreen_class.image_banner5)
-    volume_button.bind("<Enter>", volumebutton_onenter)
-    volume_button.bind("<Leave>", volumebutton_onleave)
+    button_volume = Button(startscreen_canvas, image=image_unmuted, borderwidth=0, activebackground="#C3C3C3", bg="#D9D9D9", highlightthickness=0, command=lambda: startscreen_class.volume_button_pressed(), relief="flat" )
+    button_volume.place( x=366.0, y=373.0, width=70, height=32 )
+    def button_volume_onenter(event): event.widget.config(bg="#C3C3C3"), startscreen_canvas.itemconfigure(startscreen_class.volume_buttonbg, image=startscreen_class.image_buttonbg_selected)
+    def button_volume_onleave(event): event.widget.config(bg="#D9D9D9"), startscreen_canvas.itemconfigure(startscreen_class.volume_buttonbg, image=startscreen_class.image_buttonbg)
+    button_volume.bind("<Enter>", button_volume_onenter)
+    button_volume.bind("<Leave>", button_volume_onleave)
 
-    #User Button
+
+
     def user_button_pressed():
         sound_class.sound_buttonpress.play()
         startscreen_canvas.pack_forget()
         userscreen_canvas.pack()
-    users_button = Button(startscreen_canvas, image=image_usersmenu, borderwidth=0, highlightthickness=0, bg="#D9D9D9", command=lambda: startscreen_class.user_button_pressed(), relief="flat")
-    users_button.place(x=690, y=449.5, width=52.0, height=22.0)
-    users_button.config(activebackground="#C3C3C3")
-    def usersbutton_onenter(event): event.widget.config(bg="#C3C3C3"), startscreen_canvas.itemconfigure(startscreen_class.banner5_2, image=startscreen_class.image_banner5_selected),
-    def usersbutton_onleave(event): event.widget.config(bg="#D9D9D9"), startscreen_canvas.itemconfigure(startscreen_class.banner5_2, image=startscreen_class.image_banner5)
-    users_button.bind("<Enter>", usersbutton_onenter)
-    users_button.bind("<Leave>", usersbutton_onleave)
+    button_users = Button(startscreen_canvas, image=image_users, borderwidth=0, activebackground="#C3C3C3", bg="#D9D9D9", highlightthickness=0, command=lambda: startscreen_class.user_button_pressed(), relief="flat" )
+    button_users.place( x=440.0, y=299.0, width=70, height=32 )
+    def button_users_onenter(event): event.widget.config(bg="#C3C3C3"), startscreen_canvas.itemconfigure(startscreen_class.users_buttonbg, image=startscreen_class.image_buttonbg_selected)
+    def button_users_onleave(event): event.widget.config(bg="#D9D9D9"), startscreen_canvas.itemconfigure(startscreen_class.users_buttonbg, image=startscreen_class.image_buttonbg)
+    button_users.bind("<Enter>", button_users_onenter)
+    button_users.bind("<Leave>", button_users_onleave)
 
-    #Launch Button
+
+
     def launch_button_pressed():
         sound_class.sound_buttonpress.play()
         startscreen_canvas.pack_forget()
         mainscreen_canvas.pack()
-    launch_button = Button(startscreen_canvas, image=image_launchbutton, borderwidth=0, highlightthickness=0, bg="#D9D9D9", command=lambda: startscreen_class.launch_button_pressed(),relief="flat")
-    launch_button.place(x=358.0, y=310.0, width=84.0, height=35.0)
-    launch_button.config(activebackground="#C3C3C3")
-    def launchbutton_onenter(event): event.widget.config(bg="#C3C3C3"), startscreen_canvas.itemconfigure(startscreen_class.banner4, image=startscreen_class.image_banner4_selected),
-    def launchbutton_onleave(event): event.widget.config(bg="#D9D9D9"), startscreen_canvas.itemconfigure(startscreen_class.banner4, image=startscreen_class.image_banner4)
-    launch_button.bind("<Enter>", launchbutton_onenter)
-    launch_button.bind("<Leave>", launchbutton_onleave)
+    button_play = Button(startscreen_canvas, image=image_play, borderwidth=0, activebackground="#C3C3C3", bg="#D9D9D9", highlightthickness=0, command=lambda: startscreen_class.launch_button_pressed(), relief="flat" )
+    button_play.place( x=366.0, y=225.0, width=70, height=32 )
+    def button_play_onenter(event): event.widget.config(bg="#C3C3C3"), startscreen_canvas.itemconfigure(startscreen_class.play_buttonbg, image=startscreen_class.image_buttonbg_selected)
+    def button_play_onleave(event): event.widget.config(bg="#D9D9D9"), startscreen_canvas.itemconfigure(startscreen_class.play_buttonbg, image=startscreen_class.image_buttonbg)
+    button_play.bind("<Enter>", button_play_onenter)
+    button_play.bind("<Leave>", button_play_onleave)
+
+    button_leaderboard = Button(startscreen_canvas, image=image_leaderboard, borderwidth=0, activebackground="#C3C3C3", bg="#D9D9D9", highlightthickness=0, command=lambda: print("button_2 clicked"), relief="flat" )
+    button_leaderboard.place( x=295.0, y=299.0, width=70, height=32 )
+    def button_leaderboard_onenter(event): event.widget.config(bg="#C3C3C3"), startscreen_canvas.itemconfigure(startscreen_class.leaderboard_buttonbg, image=startscreen_class.image_buttonbg_selected)
+    def button_leaderboard_onleave(event): event.widget.config(bg="#D9D9D9"), startscreen_canvas.itemconfigure(startscreen_class.leaderboard_buttonbg, image=startscreen_class.image_buttonbg)
+    button_leaderboard.bind("<Enter>", button_leaderboard_onenter)
+    button_leaderboard.bind("<Leave>", button_leaderboard_onleave)
+
+
 
 
 #-----------------------------------------------------------------
@@ -1675,7 +1692,7 @@ class optionsscreen_class():
 
     def thirtysecond_button_pressed():
         optionsscreen_class.minutes = 0
-        optionsscreen_class.seconds = 11  #--------------- DEAR GOD PLEASE CHANGE THIS
+        optionsscreen_class.seconds = 31
         optionsscreen_class.explanationtitle = "0:30 -"
         optionsscreen_class.explanation = "Wanna show off? Only thirty seconds to show your true math skills!"
         optionsscreen_class.flashcardtime = "thirtysecond"
