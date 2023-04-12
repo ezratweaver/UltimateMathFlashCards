@@ -2,16 +2,22 @@ from pathlib import Path
 from json import loads, dumps
 from cryptography.fernet import Fernet
 from tkinter import Tk, Canvas, Entry, Button, PhotoImage, Label, ttk, NO
-from os import chdir, path, listdir, system
+from os import chdir, path, listdir, system, environ
 from random import randint
 from operator import add, sub, floordiv, mul
 from datetime import datetime
 from pygame import mixer
-import sys
 
-if getattr(sys, 'frozen', False):
-    bundle_dir = sys._MEIPASS
-    chdir(bundle_dir)
+
+def resource_path(relative):
+    return path.join(
+        environ.get(
+            "_MEIPASS2",
+            path.abspath(".")
+        ),
+        relative
+    )
+
 
 system('cls')
 
@@ -27,7 +33,7 @@ window = Tk()
 window.geometry("800x500")
 window.configure(bg = windowcolor)
 window.title('Tkinter Math Flash Cards')
-window.iconbitmap('main.ico')
+window.iconbitmap(resource_path('main.ico'))
 
 startscreen_canvas = Canvas(window, bg = windowcolor, height = 500, width = 800, bd = 0, highlightthickness = 0, relief = "ridge")
 mainscreen_canvas = Canvas(window, bg = windowcolor, height = 500, width = 800, bd = 0, highlightthickness = 0, relief = "ridge")
@@ -41,13 +47,13 @@ profilescreen_canvas = Canvas( window, bg = windowcolor, height = 500, width = 8
 
 class sound_class():
     mixer.init()
-    sound_correct = mixer.Sound("assets/sounds/correct.wav")
-    sound_countdown_tick = mixer.Sound("assets/sounds/countdowntick.wav")
-    sound_timer_tick = mixer.Sound("assets/sounds/timertick.wav")
-    sound_wrong = mixer.Sound("assets/sounds/wrong.wav")
-    sound_buttonpress = mixer.Sound("assets/sounds/buttonpress.wav")
-    sound_win = mixer.Sound("assets/sounds/win.wav")
-    sound_times_up = mixer.Sound("assets/sounds/timesup.wav")
+    sound_correct = mixer.Sound(resource_path("assets/sounds/correct.wav"))
+    sound_countdown_tick = mixer.Sound(resource_path("assets/sounds/countdowntick.wav"))
+    sound_timer_tick = mixer.Sound(resource_path("assets/sounds/timertick.wav"))
+    sound_wrong = mixer.Sound(resource_path("assets/sounds/wrong.wav"))
+    sound_buttonpress = mixer.Sound(resource_path("assets/sounds/buttonpress.wav"))
+    sound_win = mixer.Sound(resource_path("assets/sounds/win.wav"))
+    sound_times_up = mixer.Sound(resource_path("assets/sounds/timesup.wav"))
 
     def muted_all_sounds(volume):
         sound_class.sound_correct.set_volume(volume)
@@ -693,7 +699,7 @@ class data_class():
     key = b"Kcq-tBBR5XbbOyH15njkMwKsO41l4J_diMGNerJQsKU="
     fernet_key = Fernet(key)
     highscore_dict = {'*-classical-twominute': 0}
-    directory_path = 'users'
+    directory_path = resource_path('users')
     user_data = []
     usertitle_buttons = [userscreen_class.button_usertitle0, userscreen_class.button_usertitle1, userscreen_class.button_usertitle2, userscreen_class.button_usertitle3]
     useraction_buttons = [userscreen_class.button_useraction0, userscreen_class.button_useraction1, userscreen_class.button_useraction2, userscreen_class.button_useraction3]
@@ -741,7 +747,7 @@ class data_class():
 
     def add_user(username, userlevel):
         newuser_dictionary = {"userlevel" : userlevel, "displayname" : username, "highscore" : {'*-classical-twominute': 0}, "gamehistory" : []}
-        userfile = f"users/user{userlevel}.json"
+        userfile = resource_path(f"users/user{userlevel}.json")
         jsondump = dumps(newuser_dictionary)
         encrypted_jsondump = data_class.fernet_key.encrypt(jsondump.encode())
         with open(userfile, 'w') as file:
@@ -750,7 +756,7 @@ class data_class():
 
     def rename_user(userlevel, name):
         data_class.user_data[userlevel]['displayname'] = name
-        userfile = f"users/user{userlevel}.json"
+        userfile = resource_path(f"users/user{userlevel}.json")
         jsondump = dumps(data_class.user_data[userlevel])
         encrypted_jsondump = data_class.fernet_key.encrypt(jsondump.encode())
         with open(userfile, 'w') as file:
@@ -759,7 +765,7 @@ class data_class():
 
     def remove_user(i):
         empty_dictionary = {}
-        userfile = f"users/user{i}.json"
+        userfile = resource_path(f"users/user{i}.json")
         jsondump = dumps(empty_dictionary)
         encrypted_jsondump = data_class.fernet_key.encrypt(jsondump.encode())
         with open(userfile, 'w') as file:
@@ -774,7 +780,7 @@ class data_class():
         usercount = -1
         for dictionary in data_class.user_data:
             usercount += 1
-            userfile = f"users/user{usercount}.json"
+            userfile = resource_path(f"users/user{usercount}.json")
             jsondump = dumps(dictionary)
             encrypted_jsondump = data_class.fernet_key.encrypt(jsondump.encode())
             with open(userfile, 'w') as file:
