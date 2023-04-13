@@ -6,13 +6,14 @@ from os import chdir, path, listdir, system, environ
 from random import randint
 from operator import add, sub, floordiv, mul
 from datetime import datetime
-from pygame import mixer
-import sys
+from sys import argv
+from sound import *
+
 
 
 system('cls')
 
-exe_dir = path.dirname(sys.argv[0])
+exe_dir = path.dirname(argv[0])
 chdir(exe_dir)
 
 
@@ -37,25 +38,7 @@ profilescreen_canvas = Canvas( window, bg = windowcolor, height = 500, width = 8
 
 
 
-class sound_class():
-    mixer.init()
-    sound_correct = mixer.Sound("assets/sounds/correct.wav")
-    sound_countdown_tick = mixer.Sound("assets/sounds/countdowntick.wav")
-    sound_timer_tick = mixer.Sound("assets/sounds/timertick.wav")
-    sound_wrong = mixer.Sound("assets/sounds/wrong.wav")
-    sound_buttonpress = mixer.Sound("assets/sounds/buttonpress.wav")
-    sound_win = mixer.Sound("assets/sounds/win.wav")
-    sound_times_up = mixer.Sound("assets/sounds/timesup.wav")
-
-    def muted_all_sounds(volume):
-        sound_class.sound_correct.set_volume(volume)
-        sound_class.sound_countdown_tick.set_volume(volume)
-        sound_class.sound_timer_tick.set_volume(volume)
-        sound_class.sound_wrong.set_volume(volume)
-        sound_class.sound_buttonpress.set_volume(volume)
-        sound_class.sound_win.set_volume(volume)
-        sound_class.sound_times_up.set_volume(volume)
-    
+   
 class userscreen_class():
     #Images
     image_bg_image = PhotoImage( file=relative_to_assets("bg_image.png"))
