@@ -25,10 +25,7 @@ def relative_to_assets(path: str) -> Path:
 
 windowcolor = "#3556FB"
 window = Tk()
-window.geometry("800x500")
-window.configure(bg = windowcolor)
-window.title('Tkinter Math Flash Cards')
-window.iconbitmap('main.ico')
+
 
 startscreen_canvas = Canvas(window, bg = windowcolor, height = 500, width = 800, bd = 0, highlightthickness = 0, relief = "ridge")
 mainscreen_canvas = Canvas(window, bg = windowcolor, height = 500, width = 800, bd = 0, highlightthickness = 0, relief = "ridge")
@@ -1926,8 +1923,10 @@ class historyscreen_class():
 
 userscreen_canvas.pack()
 
-
-
+window.geometry("800x500")
+window.configure(bg = windowcolor)
+window.title('Tkinter Math Flash Cards')
+window.iconbitmap('main.ico')
 
 window.resizable(False, False)
 window.mainloop()
