@@ -43,7 +43,7 @@ profilescreen_canvas = Canvas(window, bg=windowcolor, height=500,
                               width=800, bd=0, highlightthickness=0, relief="ridge")
 
 
-class userscreen_class():
+class UserScreen():
     image_bg_image = PhotoImage(file=relative_to_assets("bg_image.png"))
     image_mainbanner = PhotoImage(
         file=relative_to_assets("userscreen/mainbanner.png"))
@@ -131,89 +131,89 @@ class userscreen_class():
         552.0, 452.0, image=image_actionbutton_bg)
 
     button_usertitle0 = Button(userscreen_canvas, text='', fg="#000000", bg="#D9D9D9", anchor="w", font=(
-        "Encode Sans", 27 * -1), borderwidth=0, highlightthickness=0, command=lambda: userscreen_class.log_into_user(0), relief="flat")
+        "Encode Sans", 27 * -1), borderwidth=0, highlightthickness=0, command=lambda: UserScreen.log_into_user(0), relief="flat")
     button_usertitle0.place(x=352.0, y=76.5, width=170.0, height=47.0)
     button_usertitle0.config(activebackground="#C3C3C3")
 
     def user0_button_onenter(event): 
         event.widget.config(bg="#C3C3C3"), userscreen_canvas.itemconfigure(
-        userscreen_class.usertitle0_bg, image=userscreen_class.image_usertitle_bg_selected)
+        UserScreen.usertitle0_bg, image=UserScreen.image_usertitle_bg_selected)
 
     def user0_button_onleave(event): 
         event.widget.config(bg="#D9D9D9"), userscreen_canvas.itemconfigure(
-        userscreen_class.usertitle0_bg, image=userscreen_class.image_usertitle_bg)
+        UserScreen.usertitle0_bg, image=UserScreen.image_usertitle_bg)
     button_usertitle0.bind("<Enter>", user0_button_onenter)
     button_usertitle0.bind("<Leave>", user0_button_onleave)
 
     button_usertitle1 = Button(userscreen_canvas, text='', fg="#000000", bg="#D9D9D9", anchor="w", font=(
-        "Encode Sans", 27 * -1), borderwidth=0, highlightthickness=0, command=lambda: userscreen_class.log_into_user(1), relief="flat")
+        "Encode Sans", 27 * -1), borderwidth=0, highlightthickness=0, command=lambda: UserScreen.log_into_user(1), relief="flat")
     button_usertitle1.place(x=352.0, y=155.5, width=170.0, height=47.0)
     button_usertitle1.config(activebackground="#C3C3C3")
 
     def user1_button_onenter(event): 
         event.widget.config(bg="#C3C3C3"), userscreen_canvas.itemconfigure(
-        userscreen_class.usertitle1_bg, image=userscreen_class.image_usertitle_bg_selected)
+        UserScreen.usertitle1_bg, image=UserScreen.image_usertitle_bg_selected)
 
     def user1_button_onleave(event): 
         event.widget.config(bg="#D9D9D9"), userscreen_canvas.itemconfigure(
-        userscreen_class.usertitle1_bg, image=userscreen_class.image_usertitle_bg)
+        UserScreen.usertitle1_bg, image=UserScreen.image_usertitle_bg)
     button_usertitle1.bind("<Enter>", user1_button_onenter)
     button_usertitle1.bind("<Leave>", user1_button_onleave)
 
     button_usertitle2 = Button(userscreen_canvas, text='', fg="#000000", bg="#D9D9D9", anchor="w", font=(
-        "Encode Sans", 27 * -1), borderwidth=0, highlightthickness=0, command=lambda: userscreen_class.log_into_user(2), relief="flat")
+        "Encode Sans", 27 * -1), borderwidth=0, highlightthickness=0, command=lambda: UserScreen.log_into_user(2), relief="flat")
     button_usertitle2.place(x=352.0, y=233.5, width=170.0, height=47.0)
     button_usertitle2.config(activebackground="#C3C3C3")
 
     def user2_button_onenter(event): 
         event.widget.config(bg="#C3C3C3"), userscreen_canvas.itemconfigure(
-        userscreen_class.usertitle2_bg, image=userscreen_class.image_usertitle_bg_selected)
+        UserScreen.usertitle2_bg, image=UserScreen.image_usertitle_bg_selected)
 
     def user2_button_onleave(event): 
         event.widget.config(bg="#D9D9D9"), userscreen_canvas.itemconfigure(
-        userscreen_class.usertitle2_bg, image=userscreen_class.image_usertitle_bg)
+        UserScreen.usertitle2_bg, image=UserScreen.image_usertitle_bg)
     button_usertitle2.bind("<Enter>", user2_button_onenter)
     button_usertitle2.bind("<Leave>", user2_button_onleave)
 
     button_usertitle3 = Button(userscreen_canvas, text='', fg="#000000", bg="#D9D9D9", anchor="w", font=(
-        "Encode Sans", 27 * -1), borderwidth=0, highlightthickness=0, command=lambda: userscreen_class.log_into_user(3), relief="flat")
+        "Encode Sans", 27 * -1), borderwidth=0, highlightthickness=0, command=lambda: UserScreen.log_into_user(3), relief="flat")
     button_usertitle3.place(x=352.0, y=312.5, width=170.0, height=47.0)
     button_usertitle3.config(activebackground="#C3C3C3")
 
     def user3_button_onenter(event): 
         event.widget.config(bg="#C3C3C3"), userscreen_canvas.itemconfigure(
-        userscreen_class.usertitle3_bg, image=userscreen_class.image_usertitle_bg_selected)
+        UserScreen.usertitle3_bg, image=UserScreen.image_usertitle_bg_selected)
 
     def user3_button_onleave(event): 
         event.widget.config(bg="#D9D9D9"), userscreen_canvas.itemconfigure(
-        userscreen_class.usertitle3_bg, image=userscreen_class.image_usertitle_bg)
+        UserScreen.usertitle3_bg, image=UserScreen.image_usertitle_bg)
     button_usertitle3.bind("<Enter>", user3_button_onenter)
     button_usertitle3.bind("<Leave>", user3_button_onleave)
 
     def log_into_user(userlevel):
-        sound_class.sound_buttonpress.play()
-        data_class.userlevel = userlevel
-        data_class.highscore_dict = data_class.user_data[userlevel]['highscore']
-        optionsscreen_class.reset_settings()
+        Sound.sound_buttonpress.play()
+        Data.userlevel = userlevel
+        Data.highscore_dict = Data.user_data[userlevel]['highscore']
+        OptionsScreen.reset_settings()
         userscreen_canvas.pack_forget()
         startscreen_canvas.pack()
 
     temp = None
 
     def create_user(userlevel):
-        sound_class.sound_buttonpress.play()
-        userscreen_class.temp = userlevel
-        userscreen_class.hide_buttons(1000, 1000)
+        Sound.sound_buttonpress.play()
+        UserScreen.temp = userlevel
+        UserScreen.hide_buttons(1000, 1000)
         newuser_banner = userscreen_canvas.create_image(
-            400.0, 217.0, image=userscreen_class.image_newuser_banner)
+            400.0, 217.0, image=UserScreen.image_newuser_banner)
         newuser_text = userscreen_canvas.create_image(
-            401.0, 188.0, image=userscreen_class.image_newuser_text)
+            401.0, 188.0, image=UserScreen.image_newuser_text)
         entry_bg = userscreen_canvas.create_image(
-            399.0, 239.0, image=userscreen_class.image_entry_bg)
+            399.0, 239.0, image=UserScreen.image_entry_bg)
         cancel_bg = userscreen_canvas.create_image(
-            274.0, 239.0, image=userscreen_class.image_verify_bg)
+            274.0, 239.0, image=UserScreen.image_verify_bg)
         confirm_bg = userscreen_canvas.create_image(
-            524.0, 239.0, image=userscreen_class.image_verify_bg)
+            524.0, 239.0, image=UserScreen.image_verify_bg)
 
         def validate_input(current_input):
             if current_input == "":
@@ -225,46 +225,46 @@ class userscreen_class():
         def enter_pressed(event):
             newuser_username = username_entry.get()
             exit_create_user()
-            data_class.add_user(newuser_username, userscreen_class.temp)
+            Data.add_user(newuser_username, UserScreen.temp)
 
         username_entry = Entry(userscreen_canvas, bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0, font=(
             "Encode Sans", 20), justify="center", validate='key', validatecommand=(validate_cmd, '%P'))
         username_entry.place(x=313.0, y=218.0, width=173.0, height=41.0)
         username_entry.bind('<Return>', enter_pressed)
 
-        button_cancel = Button(userscreen_canvas, image=userscreen_class.image_cancel, borderwidth=0,
+        button_cancel = Button(userscreen_canvas, image=UserScreen.image_cancel, borderwidth=0,
                                bg="#D9D9D9", highlightthickness=0, command=lambda: exit_create_user(), relief="flat")
         button_cancel.place(x=252.0, y=220.0, width=45, height=39)
         button_cancel.config(activebackground="#C3C3C3")
 
         def button_cancel_onenter(event): 
             event.widget.config(bg="#C3C3C3"), userscreen_canvas.itemconfigure(
-            cancel_bg, image=userscreen_class.image_verify_bg_selected)
+            cancel_bg, image=UserScreen.image_verify_bg_selected)
 
         def button_cancel_onleave(event): 
             event.widget.config(
-            bg="#D9D9D9"), userscreen_canvas.itemconfigure(cancel_bg, image=userscreen_class.image_verify_bg)
+            bg="#D9D9D9"), userscreen_canvas.itemconfigure(cancel_bg, image=UserScreen.image_verify_bg)
         button_cancel.bind("<Enter>", button_cancel_onenter)
         button_cancel.bind("<Leave>", button_cancel_onleave)
 
-        button_confirm = Button(userscreen_canvas, image=userscreen_class.image_confirm, borderwidth=0,
+        button_confirm = Button(userscreen_canvas, image=UserScreen.image_confirm, borderwidth=0,
                                 bg="#D9D9D9", highlightthickness=0, command=lambda: enter_pressed(None), relief="flat")
         button_confirm.place(x=502.0, y=220.0, width=45, height=39)
         button_confirm.config(activebackground="#C3C3C3")
 
         def button_confirm_onenter(event): 
             event.widget.config(bg="#C3C3C3"), userscreen_canvas.itemconfigure(
-            confirm_bg, image=userscreen_class.image_verify_bg_selected)
+            confirm_bg, image=UserScreen.image_verify_bg_selected)
 
         def button_confirm_onleave(event): 
             event.widget.config(
-            bg="#D9D9D9"), userscreen_canvas.itemconfigure(confirm_bg, image=userscreen_class.image_verify_bg)
+            bg="#D9D9D9"), userscreen_canvas.itemconfigure(confirm_bg, image=UserScreen.image_verify_bg)
         button_confirm.bind("<Enter>", button_confirm_onenter)
         button_confirm.bind("<Leave>", button_confirm_onleave)
 
         def exit_create_user():
-            sound_class.sound_buttonpress.play()
-            userscreen_class.hide_buttons(-1000, -1000)
+            Sound.sound_buttonpress.play()
+            UserScreen.hide_buttons(-1000, -1000)
             userscreen_canvas.delete(newuser_banner)
             userscreen_canvas.delete(newuser_text)
             userscreen_canvas.delete(entry_bg)
@@ -275,126 +275,126 @@ class userscreen_class():
             username_entry.destroy()
 
     def show_user_profile(i):
-        sound_class.sound_buttonpress.play()
-        profilescreen_class.personalize_screen(i)
+        Sound.sound_buttonpress.play()
+        ProfileScreen.personalize_screen(i)
         userscreen_canvas.pack_forget()
         profilescreen_canvas.pack()
 
     button_useraction0 = Button(userscreen_canvas, image=image_useradd, bg="#D9D9D9", borderwidth=0,
-                                highlightthickness=0, command=lambda: userscreen_class.create_user(0), relief="flat")
+                                highlightthickness=0, command=lambda: UserScreen.create_user(0), relief="flat")
     button_useraction0.place(x=271.0, y=75.0, width=56.0, height=50.0)
     button_useraction0.config(activebackground="#C3C3C3")
 
     def useraction0_onenter(event): 
         event.widget.config(bg="#C3C3C3"), userscreen_canvas.itemconfigure(
-        userscreen_class.usericon0_bg, image=userscreen_class.image_usericon_bg_selected)
+        UserScreen.usericon0_bg, image=UserScreen.image_usericon_bg_selected)
 
     def useraction0_onleave(event): 
         event.widget.config(bg="#D9D9D9"), userscreen_canvas.itemconfigure(
-        userscreen_class.usericon0_bg, image=userscreen_class.image_usericon_bg)
+        UserScreen.usericon0_bg, image=UserScreen.image_usericon_bg)
     button_useraction0.bind("<Enter>", useraction0_onenter)
     button_useraction0.bind("<Leave>", useraction0_onleave)
 
     button_useraction1 = Button(userscreen_canvas, image=image_useradd, bg="#D9D9D9", borderwidth=0,
-                                highlightthickness=0, command=lambda: userscreen_class.create_user(1), relief="flat")
+                                highlightthickness=0, command=lambda: UserScreen.create_user(1), relief="flat")
     button_useraction1.place(x=271.0, y=154.0, width=56.0, height=50.0)
     button_useraction1.config(activebackground="#C3C3C3")
 
     def useraction1_onenter(event): 
         event.widget.config(bg="#C3C3C3"), userscreen_canvas.itemconfigure(
-        userscreen_class.usericon1_bg, image=userscreen_class.image_usericon_bg_selected)
+        UserScreen.usericon1_bg, image=UserScreen.image_usericon_bg_selected)
 
     def useraction1_onleave(event): 
         event.widget.config(bg="#D9D9D9"), userscreen_canvas.itemconfigure(
-        userscreen_class.usericon1_bg, image=userscreen_class.image_usericon_bg)
+        UserScreen.usericon1_bg, image=UserScreen.image_usericon_bg)
     button_useraction1.bind("<Enter>", useraction1_onenter)
     button_useraction1.bind("<Leave>", useraction1_onleave)
 
     button_useraction2 = Button(userscreen_canvas, image=image_useradd, bg="#D9D9D9", borderwidth=0,
-                                highlightthickness=0, command=lambda: userscreen_class.create_user(2), relief="flat")
+                                highlightthickness=0, command=lambda: UserScreen.create_user(2), relief="flat")
     button_useraction2.place(x=271.0, y=233.0, width=56.0, height=50.0)
     button_useraction2.config(activebackground="#C3C3C3")
 
     def useraction2_onenter(event): 
         event.widget.config(bg="#C3C3C3"), userscreen_canvas.itemconfigure(
-        userscreen_class.usericon2_bg, image=userscreen_class.image_usericon_bg_selected)
+        UserScreen.usericon2_bg, image=UserScreen.image_usericon_bg_selected)
 
     def useraction2_onleave(event): 
         event.widget.config(bg="#D9D9D9"), userscreen_canvas.itemconfigure(
-        userscreen_class.usericon2_bg, image=userscreen_class.image_usericon_bg)
+        UserScreen.usericon2_bg, image=UserScreen.image_usericon_bg)
     button_useraction2.bind("<Enter>", useraction2_onenter)
     button_useraction2.bind("<Leave>", useraction2_onleave)
 
     button_useraction3 = Button(userscreen_canvas, image=image_useradd, bg="#D9D9D9", borderwidth=0,
-                                highlightthickness=0, command=lambda: userscreen_class.create_user(3), relief="flat")
+                                highlightthickness=0, command=lambda: UserScreen.create_user(3), relief="flat")
     button_useraction3.place(x=271.0, y=312.0, width=56.0, height=50.0)
     button_useraction3.config(activebackground="#C3C3C3")
 
     def useraction3_onenter(event): 
         event.widget.config(bg="#C3C3C3"), userscreen_canvas.itemconfigure(
-        userscreen_class.usericon3_bg, image=userscreen_class.image_usericon_bg_selected)
+        UserScreen.usericon3_bg, image=UserScreen.image_usericon_bg_selected)
 
     def useraction3_onleave(event): 
         event.widget.config(bg="#D9D9D9"), userscreen_canvas.itemconfigure(
-        userscreen_class.usericon3_bg, image=userscreen_class.image_usericon_bg)
+        UserScreen.usericon3_bg, image=UserScreen.image_usericon_bg)
     button_useraction3.bind("<Enter>", useraction3_onenter)
     button_useraction3.bind("<Leave>", useraction3_onleave)
 
     def confirm_remove_user(i):
-        sound_class.sound_buttonpress.play()
+        Sound.sound_buttonpress.play()
         try:
-            username = data_class.user_data[i]['displayname']
+            username = Data.user_data[i]['displayname']
         except:
             return
 
-        userscreen_class.hide_buttons(1000, 1000)
+        UserScreen.hide_buttons(1000, 1000)
         delete_confirm_banner = userscreen_canvas.create_image(
-            400.0, 220.0, image=userscreen_class.image_delete_confirm_banner)
+            400.0, 220.0, image=UserScreen.image_delete_confirm_banner)
         delete_text = userscreen_canvas.create_text(
             401.0, 195.0, anchor="center", text=f"Delete {username}?", fill="#000000", font=("Encode Sans", 25 * -1))
         delete_confirm_bg_yes = userscreen_canvas.create_image(
-            461.0, 236.0, image=userscreen_class.image_delete_confirm_bg)
+            461.0, 236.0, image=UserScreen.image_delete_confirm_bg)
         delete_confirm_bg_no = userscreen_canvas.create_image(
-            341.0, 236.0, image=userscreen_class.image_delete_confirm_bg)
+            341.0, 236.0, image=UserScreen.image_delete_confirm_bg)
 
-        button_delete_yes = Button(userscreen_canvas, image=userscreen_class.image_del_confirm_yes, borderwidth=0,
+        button_delete_yes = Button(userscreen_canvas, image=UserScreen.image_del_confirm_yes, borderwidth=0,
                                    bg="#D9D9D9", highlightthickness=0, command=lambda: confirm_delete_user(i), relief="flat")
         button_delete_yes.place(x=422.0, y=221.0, width=80.0, height=32.0)
         button_delete_yes.config(activebackground="#C3C3C3")
 
         def button_delete_yes_onenter(event): 
             event.widget.config(bg="#C3C3C3"), userscreen_canvas.itemconfigure(
-            delete_confirm_bg_yes, image=userscreen_class.image_delete_confirm_bg_selected)
+            delete_confirm_bg_yes, image=UserScreen.image_delete_confirm_bg_selected)
 
         def button_delete_yes_onleave(event): 
             event.widget.config(bg="#D9D9D9"), userscreen_canvas.itemconfigure(
-            delete_confirm_bg_yes, image=userscreen_class.image_delete_confirm_bg)
+            delete_confirm_bg_yes, image=UserScreen.image_delete_confirm_bg)
         button_delete_yes.bind("<Enter>", button_delete_yes_onenter)
         button_delete_yes.bind("<Leave>", button_delete_yes_onleave)
 
-        button_delete_no = Button(userscreen_canvas, image=userscreen_class.image_del_confirm_no, borderwidth=0,
+        button_delete_no = Button(userscreen_canvas, image=UserScreen.image_del_confirm_no, borderwidth=0,
                                   bg="#D9D9D9", highlightthickness=0, command=lambda: exit_delete_prompt(), relief="flat")
         button_delete_no.place(x=301.0, y=221.0, width=80.0, height=32.0)
         button_delete_no.config(activebackground="#C3C3C3")
 
         def button_delete_no_onenter(event): 
             event.widget.config(bg="#C3C3C3"), userscreen_canvas.itemconfigure(
-            delete_confirm_bg_no, image=userscreen_class.image_delete_confirm_bg_selected)
+            delete_confirm_bg_no, image=UserScreen.image_delete_confirm_bg_selected)
 
         def button_delete_no_onleave(event): 
             event.widget.config(bg="#D9D9D9"), userscreen_canvas.itemconfigure(
-            delete_confirm_bg_no, image=userscreen_class.image_delete_confirm_bg)
+            delete_confirm_bg_no, image=UserScreen.image_delete_confirm_bg)
         button_delete_no.bind("<Enter>", button_delete_no_onenter)
         button_delete_no.bind("<Leave>", button_delete_no_onleave)
 
         def confirm_delete_user(i):
-            sound_class.sound_buttonpress.play()
+            Sound.sound_buttonpress.play()
             exit_delete_prompt()
-            data_class.remove_user(i)
+            Data.remove_user(i)
 
         def exit_delete_prompt():
-            sound_class.sound_buttonpress.play()
-            userscreen_class.remove_user_mode()
+            Sound.sound_buttonpress.play()
+            UserScreen.remove_user_mode()
             userscreen_canvas.delete(delete_confirm_banner)
             userscreen_canvas.delete(delete_text)
             userscreen_canvas.delete(delete_confirm_bg_yes)
@@ -402,106 +402,106 @@ class userscreen_class():
             button_delete_yes.destroy()
             button_delete_no.destroy()
 
-            userscreen_class.hide_buttons(-1000, -1000)
+            UserScreen.hide_buttons(-1000, -1000)
 
     def remove_user_mode():
-        sound_class.sound_buttonpress.play()
-        userscreen_class.remove_mode = not userscreen_class.remove_mode
-        if userscreen_class.remove_mode:
-            for i, element in enumerate(data_class.useraction_buttons):
-                element.config(image=userscreen_class.image_userremove,
-                               command=lambda userlevel=i: userscreen_class.confirm_remove_user(userlevel))
+        Sound.sound_buttonpress.play()
+        UserScreen.remove_mode = not UserScreen.remove_mode
+        if UserScreen.remove_mode:
+            for i, element in enumerate(Data.useraction_buttons):
+                element.config(image=UserScreen.image_userremove,
+                               command=lambda userlevel=i: UserScreen.confirm_remove_user(userlevel))
         else:
-            for i, element in enumerate(data_class.useraction_buttons):
-                element.config(image=userscreen_class.image_useradd,
-                               command=lambda userlevel=i: userscreen_class.create_user(userlevel))
-            data_class.check_for_users()
+            for i, element in enumerate(Data.useraction_buttons):
+                element.config(image=UserScreen.image_useradd,
+                               command=lambda userlevel=i: UserScreen.create_user(userlevel))
+            Data.check_for_users()
 
     def back_button_pressed():
-        sound_class.sound_buttonpress.play()
-        if userscreen_class.remove_mode:
-            userscreen_class.remove_user_mode()
-        if data_class.userlevel == None:
-            userscreen_class.login_error()
+        Sound.sound_buttonpress.play()
+        if UserScreen.remove_mode:
+            UserScreen.remove_user_mode()
+        if Data.userlevel == None:
+            UserScreen.login_error()
         else:
             userscreen_canvas.pack_forget()
             startscreen_canvas.pack()
     button_back = Button(userscreen_canvas, image=image_backbutton, bg="#D9D9D9", borderwidth=0,
-                         highlightthickness=0, command=lambda: userscreen_class.back_button_pressed(), relief="flat")
+                         highlightthickness=0, command=lambda: UserScreen.back_button_pressed(), relief="flat")
     button_back.place(x=216.0, y=441.0, width=65.0, height=23.0)
     button_back.config(activebackground="#C3C3C3")
 
     def buttonback_onenter(event): 
         event.widget.config(bg="#C3C3C3"), userscreen_canvas.itemconfigure(
-        userscreen_class.backbutton_bg, image=userscreen_class.image_actionbutton_bg_selected)
+        UserScreen.backbutton_bg, image=UserScreen.image_actionbutton_bg_selected)
 
     def buttonback_onleave(event): 
         event.widget.config(bg="#D9D9D9"), userscreen_canvas.itemconfigure(
-        userscreen_class.backbutton_bg, image=userscreen_class.image_actionbutton_bg)
+        UserScreen.backbutton_bg, image=UserScreen.image_actionbutton_bg)
     button_back.bind("<Enter>", buttonback_onenter)
     button_back.bind("<Leave>", buttonback_onleave)
 
     remove_mode = False
     button_userremove = Button(userscreen_canvas, image=image_userremove, bg="#D9D9D9", borderwidth=0,
-                               highlightthickness=0, command=lambda: userscreen_class.remove_user_mode(), relief="flat")
+                               highlightthickness=0, command=lambda: UserScreen.remove_user_mode(), relief="flat")
     button_userremove.place(x=520.0, y=441.0, width=65.0, height=23.0)
     button_userremove.config(activebackground="#C3C3C3")
 
     def userremove_onenter(event): 
         event.widget.config(bg="#C3C3C3"), userscreen_canvas.itemconfigure(
-        userscreen_class.userremove_bg, image=userscreen_class.image_actionbutton_bg_selected)
+        UserScreen.userremove_bg, image=UserScreen.image_actionbutton_bg_selected)
 
     def userremove_onleave(event): 
         event.widget.config(bg="#D9D9D9"), userscreen_canvas.itemconfigure(
-        userscreen_class.userremove_bg, image=userscreen_class.image_actionbutton_bg)
+        UserScreen.userremove_bg, image=UserScreen.image_actionbutton_bg)
     button_userremove.bind("<Enter>", userremove_onenter)
     button_userremove.bind("<Leave>", userremove_onleave)
 
     def login_error():
-        userscreen_class.hide_buttons(1000, 1000)
+        UserScreen.hide_buttons(1000, 1000)
         popup_banner = userscreen_canvas.create_image(
-            399.0, 210.0, image=userscreen_class.image_popup_banner)
+            399.0, 210.0, image=UserScreen.image_popup_banner)
         popup_text = userscreen_canvas.create_image(
-            399.0, 187.0, image=userscreen_class.image_popup_text)
+            399.0, 187.0, image=UserScreen.image_popup_text)
         ok_bg = userscreen_canvas.create_image(
-            399.0, 228.0, image=userscreen_class.image_ok_bg)
+            399.0, 228.0, image=UserScreen.image_ok_bg)
 
-        button_ok = Button(userscreen_canvas, image=userscreen_class.image_ok, bg="#D9D9D9", activebackground="#C3C3C3",
+        button_ok = Button(userscreen_canvas, image=UserScreen.image_ok, bg="#D9D9D9", activebackground="#C3C3C3",
                            borderwidth=0, highlightthickness=0, command=lambda: hide_error(), relief="flat")
         button_ok.place(x=358.0, y=213.0, width=82.5, height=31.0)
 
         def buttonback_onenter(event): 
             event.widget.config(bg="#C3C3C3"), userscreen_canvas.itemconfigure(
-            ok_bg, image=userscreen_class.image_ok_bg_selected)
+            ok_bg, image=UserScreen.image_ok_bg_selected)
 
         def buttonback_onleave(event): 
             event.widget.config(
-            bg="#D9D9D9"), userscreen_canvas.itemconfigure(ok_bg, image=userscreen_class.image_ok_bg)
+            bg="#D9D9D9"), userscreen_canvas.itemconfigure(ok_bg, image=UserScreen.image_ok_bg)
         button_ok.bind("<Enter>", buttonback_onenter)
         button_ok.bind("<Leave>", buttonback_onleave)
 
         def hide_error():
-            sound_class.sound_buttonpress.play()
+            Sound.sound_buttonpress.play()
             userscreen_canvas.delete(popup_banner)
             userscreen_canvas.delete(popup_text)
             userscreen_canvas.delete(ok_bg)
             button_ok.destroy()
 
-            userscreen_class.hide_buttons(-1000, -1000)
+            UserScreen.hide_buttons(-1000, -1000)
 
     def hide_buttons(x, y):
         try:
-            for titlebutton in data_class.usertitle_buttons:
+            for titlebutton in Data.usertitle_buttons:
                 titlebutton.place_configure(
                     x=titlebutton.winfo_x() + x, y=titlebutton.winfo_y() + y)
         except:
             pass
-        for actionbutton in data_class.useraction_buttons:
+        for actionbutton in Data.useraction_buttons:
             actionbutton.place_configure(
                 x=actionbutton.winfo_x() + x, y=actionbutton.winfo_y() + y)
 
 
-class profilescreen_class():
+class ProfileScreen():
     current_user = None
     image_profile_banner = PhotoImage(
         file=relative_to_assets("profilescreen/profile_banner.png"))
@@ -521,7 +521,7 @@ class profilescreen_class():
         file=relative_to_assets("profilescreen/history.png"))
 
     bg_image = profilescreen_canvas.create_image(
-        395.0, 255.0, image=userscreen_class.image_bg_image)
+        395.0, 255.0, image=UserScreen.image_bg_image)
     profile_banner = profilescreen_canvas.create_image(
         398.0, 211.0, image=image_profile_banner)
     username_bg = profilescreen_canvas.create_image(
@@ -541,16 +541,16 @@ class profilescreen_class():
         601.0, 451.0, image=image_action_bg)
 
     def personalize_screen(userlevel):
-        profilescreen_class.current_user = userlevel
-        username = data_class.user_data[userlevel]['displayname']
-        gamesplayed = len(data_class.user_data[userlevel]['gamehistory'])
+        ProfileScreen.current_user = userlevel
+        username = Data.user_data[userlevel]['displayname']
+        gamesplayed = len(Data.user_data[userlevel]['gamehistory'])
         grade_to_percentage = {'A+': 97, 'A': 93, 'A-': 90, 'B+': 87, 'B': 83,
                                'B-': 80, 'C+': 77, 'C': 73, 'C-': 70, 'D+': 67, 'D': 63, 'D-': 60, 'F': 0}
         highestscore = 0
         highestscoremode = 'None'
         mostplayed = {'None': 0}
         total_percent = 0
-        for game in data_class.user_data[userlevel]['gamehistory']:
+        for game in Data.user_data[userlevel]['gamehistory']:
             if game['correct'] > highestscore:
                 highestscore = game['correct']
                 highestscoremode = game['mode']
@@ -574,19 +574,19 @@ class profilescreen_class():
                 break
 
         profilescreen_canvas.itemconfig(
-            profilescreen_class.grade_text, text=grade)
+            ProfileScreen.grade_text, text=grade)
         profilescreen_canvas.itemconfig(
-            profilescreen_class.favorite_mode, text=max(mostplayed, key=mostplayed.get))
+            ProfileScreen.favorite_mode, text=max(mostplayed, key=mostplayed.get))
         profilescreen_canvas.itemconfig(
-            profilescreen_class.average_percent, text=f"{round(average_percent * 100, 2)}%")
+            ProfileScreen.average_percent, text=f"{round(average_percent * 100, 2)}%")
         profilescreen_canvas.itemconfig(
-            profilescreen_class.highest_score_mode, text=highestscoremode)
+            ProfileScreen.highest_score_mode, text=highestscoremode)
         profilescreen_canvas.itemconfig(
-            profilescreen_class.highest_score, text=highestscore)
+            ProfileScreen.highest_score, text=highestscore)
         profilescreen_canvas.itemconfig(
-            profilescreen_class.games_played, text=gamesplayed)
+            ProfileScreen.games_played, text=gamesplayed)
         profilescreen_canvas.itemconfig(
-            profilescreen_class.username_text, text=username)
+            ProfileScreen.username_text, text=username)
 
     username_text = profilescreen_canvas.create_text(
         405.0, 81.0, anchor="center", text="Ezra Weaver", fill="#000000", font=("Encode Sans", 28 * -1))
@@ -604,39 +604,39 @@ class profilescreen_class():
         354.0, 302.0, anchor="nw", text="", fill="#000000", font=("Encode Sans", 17 * -1))
 
     def button_back_pressed():
-        sound_class.sound_buttonpress.play()
+        Sound.sound_buttonpress.play()
         profilescreen_canvas.pack_forget()
         userscreen_canvas.pack()
     button_back = Button(profilescreen_canvas, image=image_back, borderwidth=0, bg="#D9D9D9",
-                         highlightthickness=0, command=lambda: profilescreen_class.button_back_pressed(), relief="flat")
+                         highlightthickness=0, command=lambda: ProfileScreen.button_back_pressed(), relief="flat")
     button_back.place(x=164.0, y=437.0, width=66.0, height=28.0)
     button_back.config(activebackground="#C3C3C3")
 
     def button_back_onenter(event): 
         event.widget.config(bg="#C3C3C3"), profilescreen_canvas.itemconfigure(
-        profilescreen_class.back_bg, image=profilescreen_class.image_action_bg_selected),
+        ProfileScreen.back_bg, image=ProfileScreen.image_action_bg_selected),
 
     def button_back_onleave(event): 
         event.widget.config(bg="#D9D9D9"), profilescreen_canvas.itemconfigure(
-        profilescreen_class.back_bg, image=profilescreen_class.image_action_bg)
+        ProfileScreen.back_bg, image=ProfileScreen.image_action_bg)
     button_back.bind("<Enter>", button_back_onenter)
     button_back.bind("<Leave>", button_back_onleave)
 
     def button_edit_pressed():
-        sound_class.sound_buttonpress.play()
-        profilescreen_class.button_back.config(command=lambda: None)
-        profilescreen_class.button_edit.config(command=lambda: None)
-        profilescreen_class.button_history.config(command=lambda: None)
+        Sound.sound_buttonpress.play()
+        ProfileScreen.button_back.config(command=lambda: None)
+        ProfileScreen.button_edit.config(command=lambda: None)
+        ProfileScreen.button_history.config(command=lambda: None)
         newuser_banner = profilescreen_canvas.create_image(
-            400.0, 217.0, image=userscreen_class.image_newuser_banner)
+            400.0, 217.0, image=UserScreen.image_newuser_banner)
         newuser_text = profilescreen_canvas.create_image(
-            401.0, 188.0, image=userscreen_class.image_newuser_text)
+            401.0, 188.0, image=UserScreen.image_newuser_text)
         entry_bg = profilescreen_canvas.create_image(
-            399.0, 239.0, image=userscreen_class.image_entry_bg)
+            399.0, 239.0, image=UserScreen.image_entry_bg)
         cancel_bg = profilescreen_canvas.create_image(
-            274.0, 239.0, image=userscreen_class.image_verify_bg)
+            274.0, 239.0, image=UserScreen.image_verify_bg)
         confirm_bg = profilescreen_canvas.create_image(
-            524.0, 239.0, image=userscreen_class.image_verify_bg)
+            524.0, 239.0, image=UserScreen.image_verify_bg)
 
         def validate_input(current_input):
             if current_input == "":
@@ -647,10 +647,10 @@ class profilescreen_class():
 
         def enter_pressed(event):
             new_username = username_entry.get()
-            data_class.rename_user(
-                profilescreen_class.current_user, new_username)
+            Data.rename_user(
+                ProfileScreen.current_user, new_username)
             profilescreen_canvas.itemconfig(
-                profilescreen_class.username_text, text=new_username)
+                ProfileScreen.username_text, text=new_username)
             exit_rename()
 
         username_entry = Entry(profilescreen_canvas, bd=0, bg="#D9D9D9", fg="#000716", highlightthickness=0, font=(
@@ -658,43 +658,43 @@ class profilescreen_class():
         username_entry.place(x=313.0, y=218.0, width=173.0, height=41.0)
         username_entry.bind('<Return>', enter_pressed)
 
-        button_cancel = Button(profilescreen_canvas, image=userscreen_class.image_cancel, borderwidth=0,
+        button_cancel = Button(profilescreen_canvas, image=UserScreen.image_cancel, borderwidth=0,
                                bg="#D9D9D9", highlightthickness=0, command=lambda: exit_rename(), relief="flat")
         button_cancel.place(x=252.0, y=220.0, width=45, height=39)
         button_cancel.config(activebackground="#C3C3C3")
 
         def button_cancel_onenter(event): 
             event.widget.config(bg="#C3C3C3"), profilescreen_canvas.itemconfigure(
-            cancel_bg, image=userscreen_class.image_verify_bg_selected)
+            cancel_bg, image=UserScreen.image_verify_bg_selected)
 
         def button_cancel_onleave(event): 
             event.widget.config(
-            bg="#D9D9D9"), profilescreen_canvas.itemconfigure(cancel_bg, image=userscreen_class.image_verify_bg)
+            bg="#D9D9D9"), profilescreen_canvas.itemconfigure(cancel_bg, image=UserScreen.image_verify_bg)
         button_cancel.bind("<Enter>", button_cancel_onenter)
         button_cancel.bind("<Leave>", button_cancel_onleave)
 
-        button_confirm = Button(profilescreen_canvas, image=userscreen_class.image_confirm, borderwidth=0,
+        button_confirm = Button(profilescreen_canvas, image=UserScreen.image_confirm, borderwidth=0,
                                 bg="#D9D9D9", highlightthickness=0, command=lambda: enter_pressed(None), relief="flat")
         button_confirm.place(x=502.0, y=220.0, width=45, height=39)
         button_confirm.config(activebackground="#C3C3C3")
 
         def button_confirm_onenter(event): 
             event.widget.config(bg="#C3C3C3"), profilescreen_canvas.itemconfigure(
-            confirm_bg, image=userscreen_class.image_verify_bg_selected)
+            confirm_bg, image=UserScreen.image_verify_bg_selected)
 
         def button_confirm_onleave(event): event.widget.config(
-            bg="#D9D9D9"), profilescreen_canvas.itemconfigure(confirm_bg, image=userscreen_class.image_verify_bg)
+            bg="#D9D9D9"), profilescreen_canvas.itemconfigure(confirm_bg, image=UserScreen.image_verify_bg)
         button_confirm.bind("<Enter>", button_confirm_onenter)
         button_confirm.bind("<Leave>", button_confirm_onleave)
 
         def exit_rename():
-            sound_class.sound_buttonpress.play()
-            profilescreen_class.button_back.config(
-                command=lambda: profilescreen_class.button_back_pressed())
-            profilescreen_class.button_edit.config(
-                command=lambda: profilescreen_class.button_edit_pressed())
-            profilescreen_class.button_history.config(
-                command=lambda: profilescreen_class.button_history_pressed())
+            Sound.sound_buttonpress.play()
+            ProfileScreen.button_back.config(
+                command=lambda: ProfileScreen.button_back_pressed())
+            ProfileScreen.button_edit.config(
+                command=lambda: ProfileScreen.button_edit_pressed())
+            ProfileScreen.button_history.config(
+                command=lambda: ProfileScreen.button_history_pressed())
             profilescreen_canvas.delete(newuser_banner)
             profilescreen_canvas.delete(newuser_text)
             profilescreen_canvas.delete(entry_bg)
@@ -705,64 +705,64 @@ class profilescreen_class():
             username_entry.destroy()
 
     button_edit = Button(profilescreen_canvas, image=image_edit, borderwidth=0, bg="#D9D9D9",
-                         highlightthickness=0, command=lambda: profilescreen_class.button_edit_pressed(), relief="flat")
+                         highlightthickness=0, command=lambda: ProfileScreen.button_edit_pressed(), relief="flat")
     button_edit.place(x=568.0, y=437.0, width=66.0, height=28.0)
     button_edit.config(activebackground="#C3C3C3")
 
     def button_edit_onenter(event): 
         event.widget.config(bg="#C3C3C3"), profilescreen_canvas.itemconfigure(
-        profilescreen_class.edit_bg, image=profilescreen_class.image_action_bg_selected),
+        ProfileScreen.edit_bg, image=ProfileScreen.image_action_bg_selected),
 
     def button_edit_onleave(event): 
         event.widget.config(bg="#D9D9D9"), profilescreen_canvas.itemconfigure(
-        profilescreen_class.edit_bg, image=profilescreen_class.image_action_bg)
+        ProfileScreen.edit_bg, image=ProfileScreen.image_action_bg)
     button_edit.bind("<Enter>", button_edit_onenter)
     button_edit.bind("<Leave>", button_edit_onleave)
 
     def button_history_pressed():
-        sound_class.sound_buttonpress.play()
-        historyscreen_class.display_data(profilescreen_class.current_user)
-        historyscreen_class.back_button.config(
-            command=lambda: profilescreen_class.changed_back_button_pressed())
+        Sound.sound_buttonpress.play()
+        HistoryScreen.display_data(ProfileScreen.current_user)
+        HistoryScreen.back_button.config(
+            command=lambda: ProfileScreen.changed_back_button_pressed())
 
         historyscreen_canvas.coords(
-            historyscreen_class.buttonbanner_2, 1000, 1000)
+            HistoryScreen.buttonbanner_2, 1000, 1000)
         historyscreen_canvas.coords(
-            historyscreen_class.actionbuttonbg_2, 1000, 1000)
-        historyscreen_class.info_button.place_configure(x=1000, y=1000)
+            HistoryScreen.actionbuttonbg_2, 1000, 1000)
+        HistoryScreen.info_button.place_configure(x=1000, y=1000)
 
         profilescreen_canvas.pack_forget()
         historyscreen_canvas.pack()
 
     def changed_back_button_pressed():
-        sound_class.sound_buttonpress.play()
+        Sound.sound_buttonpress.play()
         historyscreen_canvas.pack_forget()
         profilescreen_canvas.pack()
 
         historyscreen_canvas.coords(
-            historyscreen_class.buttonbanner_2, 710.0, 453.0,)
+            HistoryScreen.buttonbanner_2, 710.0, 453.0,)
         historyscreen_canvas.coords(
-            historyscreen_class.actionbuttonbg_2, 710.0, 453.0)
-        historyscreen_class.info_button.place_configure(x=663.0, y=438.0)
+            HistoryScreen.actionbuttonbg_2, 710.0, 453.0)
+        HistoryScreen.info_button.place_configure(x=663.0, y=438.0)
 
-        historyscreen_class.back_button.config(
-            command=lambda: historyscreen_class.back_button_pressed())
+        HistoryScreen.back_button.config(
+            command=lambda: HistoryScreen.back_button_pressed())
     button_history = Button(profilescreen_canvas, image=image_history, borderwidth=0, bg="#D9D9D9",
-                            highlightthickness=0, command=lambda: profilescreen_class.button_history_pressed(), relief="flat")
+                            highlightthickness=0, command=lambda: ProfileScreen.button_history_pressed(), relief="flat")
     button_history.place(x=366.0, y=437.0, width=66.0, height=28.0)
     button_history.config(activebackground="#C3C3C3")
 
     def button_history_onenter(event): 
         event.widget.config(bg="#C3C3C3"), profilescreen_canvas.itemconfigure(
-        profilescreen_class.history_bg, image=profilescreen_class.image_action_bg_selected),
+        ProfileScreen.history_bg, image=ProfileScreen.image_action_bg_selected),
     def button_history_onleave(event): 
         event.widget.config(bg="#D9D9D9"), profilescreen_canvas.itemconfigure(
-        profilescreen_class.history_bg, image=profilescreen_class.image_action_bg)
+        ProfileScreen.history_bg, image=ProfileScreen.image_action_bg)
     button_history.bind("<Enter>", button_history_onenter)
     button_history.bind("<Leave>", button_history_onleave)
 
 
-class startscreen_class():
+class StartScreen():
     muted = False
     image_titlebanner = PhotoImage(
         file=relative_to_assets("startscreen/titlebanner.png"))
@@ -785,7 +785,7 @@ class startscreen_class():
         file=relative_to_assets("startscreen/volumemuted.png"))
 
     bg_image = startscreen_canvas.create_image(
-        395.0, 255.0, image=userscreen_class.image_bg_image)
+        395.0, 255.0, image=UserScreen.image_bg_image)
     title_banner = startscreen_canvas.create_image(
         400.0, 106.0, image=image_titlebanner)
     title = startscreen_canvas.create_image(400.0, 100.0, image=image_title)
@@ -813,64 +813,64 @@ class startscreen_class():
         330.0, 314.0, image=image_buttonbg)
 
     def volume_button_pressed():
-        if startscreen_class.muted == False:
-            startscreen_class.button_volume.configure(
-                image=startscreen_class.image_muted)
-            sound_class.muted_all_sounds(0.0)
+        if StartScreen.muted == False:
+            StartScreen.button_volume.configure(
+                image=StartScreen.image_muted)
+            Sound.muted_all_sounds(0.0)
         else:
-            startscreen_class.button_volume.configure(
-                image=startscreen_class.image_unmuted)
-            sound_class.muted_all_sounds(1.0)
-            sound_class.sound_buttonpress.play()
-        startscreen_class.muted = not startscreen_class.muted
+            StartScreen.button_volume.configure(
+                image=StartScreen.image_unmuted)
+            Sound.muted_all_sounds(1.0)
+            Sound.sound_buttonpress.play()
+        StartScreen.muted = not StartScreen.muted
 
     button_volume = Button(startscreen_canvas, image=image_unmuted, borderwidth=0, activebackground="#C3C3C3",
-                           bg="#D9D9D9", highlightthickness=0, command=lambda: startscreen_class.volume_button_pressed(), relief="flat")
+                           bg="#D9D9D9", highlightthickness=0, command=lambda: StartScreen.volume_button_pressed(), relief="flat")
     button_volume.place(x=366.0, y=373.0, width=70, height=32)
 
     def button_volume_onenter(event): 
         event.widget.config(bg="#C3C3C3"), startscreen_canvas.itemconfigure(
-        startscreen_class.volume_buttonbg, image=startscreen_class.image_buttonbg_selected)
+        StartScreen.volume_buttonbg, image=StartScreen.image_buttonbg_selected)
 
     def button_volume_onleave(event): 
         event.widget.config(bg="#D9D9D9"), startscreen_canvas.itemconfigure(
-        startscreen_class.volume_buttonbg, image=startscreen_class.image_buttonbg)
+        StartScreen.volume_buttonbg, image=StartScreen.image_buttonbg)
     button_volume.bind("<Enter>", button_volume_onenter)
     button_volume.bind("<Leave>", button_volume_onleave)
 
     def user_button_pressed():
-        sound_class.sound_buttonpress.play()
+        Sound.sound_buttonpress.play()
         startscreen_canvas.pack_forget()
         userscreen_canvas.pack()
     button_users = Button(startscreen_canvas, image=image_users, borderwidth=0, activebackground="#C3C3C3",
-                          bg="#D9D9D9", highlightthickness=0, command=lambda: startscreen_class.user_button_pressed(), relief="flat")
+                          bg="#D9D9D9", highlightthickness=0, command=lambda: StartScreen.user_button_pressed(), relief="flat")
     button_users.place(x=440.0, y=299.0, width=70, height=32)
 
     def button_users_onenter(event): 
         event.widget.config(bg="#C3C3C3"), startscreen_canvas.itemconfigure(
-        startscreen_class.users_buttonbg, image=startscreen_class.image_buttonbg_selected)
+        StartScreen.users_buttonbg, image=StartScreen.image_buttonbg_selected)
 
     def button_users_onleave(event): 
         event.widget.config(bg="#D9D9D9"), startscreen_canvas.itemconfigure(
-        startscreen_class.users_buttonbg, image=startscreen_class.image_buttonbg)
+        StartScreen.users_buttonbg, image=StartScreen.image_buttonbg)
     button_users.bind("<Enter>", button_users_onenter)
     button_users.bind("<Leave>", button_users_onleave)
 
     def launch_button_pressed():
-        sound_class.sound_buttonpress.play()
+        Sound.sound_buttonpress.play()
         startscreen_canvas.pack_forget()
         mainscreen_canvas.pack()
     button_play = Button(startscreen_canvas, image=image_play, borderwidth=0, activebackground="#C3C3C3", bg="#D9D9D9",
-                         highlightthickness=0, command=lambda: startscreen_class.launch_button_pressed(), relief="flat")
+                         highlightthickness=0, command=lambda: StartScreen.launch_button_pressed(), relief="flat")
     button_play.place(x=366.0, y=225.0, width=70, height=32)
 
     def button_play_onenter(event): 
         event.widget.config(bg="#C3C3C3"), startscreen_canvas.itemconfigure(
-        startscreen_class.play_buttonbg, image=startscreen_class.image_buttonbg_selected)
+        StartScreen.play_buttonbg, image=StartScreen.image_buttonbg_selected)
 
     def button_play_onleave(event): 
         event.widget.config(bg="#D9D9D9"), startscreen_canvas.itemconfigure(
-        startscreen_class.play_buttonbg, image=startscreen_class.image_buttonbg)
+        StartScreen.play_buttonbg, image=StartScreen.image_buttonbg)
     button_play.bind("<Enter>", button_play_onenter)
     button_play.bind("<Leave>", button_play_onleave)
 
@@ -880,121 +880,119 @@ class startscreen_class():
 
     def button_leaderboard_onenter(event): 
         event.widget.config(bg="#C3C3C3"), startscreen_canvas.itemconfigure(
-        startscreen_class.leaderboard_buttonbg, image=startscreen_class.image_buttonbg_selected)
+        StartScreen.leaderboard_buttonbg, image=StartScreen.image_buttonbg_selected)
     def button_leaderboard_onleave(event): 
         event.widget.config(bg="#D9D9D9"), startscreen_canvas.itemconfigure(
-        startscreen_class.leaderboard_buttonbg, image=startscreen_class.image_buttonbg)
+        StartScreen.leaderboard_buttonbg, image=StartScreen.image_buttonbg)
     button_leaderboard.bind("<Enter>", button_leaderboard_onenter)
     button_leaderboard.bind("<Leave>", button_leaderboard_onleave)
 
 
-class data_class():
+class Data():
     userlevel = None
     key = b"Kcq-tBBR5XbbOyH15njkMwKsO41l4J_diMGNerJQsKU="
     fernet_key = Fernet(key)
     highscore_dict = {'*-classical-twominute': 0}
     directory_path = 'users'
     user_data = []
-    usertitle_buttons = [userscreen_class.button_usertitle0, userscreen_class.button_usertitle1,
-                         userscreen_class.button_usertitle2, userscreen_class.button_usertitle3]
-    useraction_buttons = [userscreen_class.button_useraction0, userscreen_class.button_useraction1,
-                          userscreen_class.button_useraction2, userscreen_class.button_useraction3]
+    usertitle_buttons = [UserScreen.button_usertitle0, UserScreen.button_usertitle1,
+                         UserScreen.button_usertitle2, UserScreen.button_usertitle3]
+    useraction_buttons = [UserScreen.button_useraction0, UserScreen.button_useraction1,
+                          UserScreen.button_useraction2, UserScreen.button_useraction3]
     usertitle_button_positions = [76.5, 155.5, 233.5, 312.5]
     logged_in_users = []
 
     def check_for_users():
-        data_class.user_data = []
+        Data.user_data = []
         user_name_and_level = {}
-        usercount = -1
-        for filename in listdir(data_class.directory_path):
+        for i, filename in enumerate(listdir(Data.directory_path)):
             if filename.endswith('.json'):
-                file_path = path.join(data_class.directory_path, filename)
+                file_path = path.join(Data.directory_path, filename)
                 with open(file_path) as file:
-                    decrypted_data = data_class.fernet_key.decrypt(file.read())
+                    decrypted_data = Data.fernet_key.decrypt(file.read())
                     data = loads(decrypted_data)
-                    usercount += 1
-                    data_class.user_data.append(data)
+                    Data.user_data.append(data)
                     try:
-                        user_name_and_level[data_class.user_data[usercount]
-                                            ['displayname']] = data_class.user_data[usercount]['userlevel']
+                        user_name_and_level[Data.user_data[i]
+                                            ['displayname']] = Data.user_data[i]['userlevel']
                     except:
                         pass
         for name, userlevel in user_name_and_level.items():
             try:
-                data_class.usertitle_buttons[userlevel].config(text=name)
+                Data.usertitle_buttons[userlevel].config(text=name)
             except:
                 pass
-            data_class.useraction_buttons[userlevel].config(
-                image=userscreen_class.image_usericon, command=lambda userlevel=userlevel: userscreen_class.show_user_profile(userlevel))
-        for i, element in enumerate(data_class.usertitle_buttons):
+            Data.useraction_buttons[userlevel].config(
+                image=UserScreen.image_usericon, command=lambda userlevel=userlevel: UserScreen.show_user_profile(userlevel))
+        for i, element in enumerate(Data.usertitle_buttons):
             try:
                 if element.cget("text") == '':
                     element.place(x=2000, y=2000)
                 else:
-                    data_class.logged_in_users.append(i)
+                    Data.logged_in_users.append(i)
                     element.place_configure(
-                        x=352.0, y=data_class.usertitle_button_positions[i], width=170.0, height=47.0)
+                        x=352.0, y=Data.usertitle_button_positions[i], width=170.0, height=47.0)
             except:
                 pass
 
     def clean_users():
-        for element in data_class.usertitle_buttons:
+        for element in Data.usertitle_buttons:
             element.config(text='')
-        for i, element in enumerate(data_class.useraction_buttons):
-            element.config(image=userscreen_class.image_useradd,
-                           command=lambda userlevel=i: userscreen_class.create_user(userlevel))
+        for i, element in enumerate(Data.useraction_buttons):
+            element.config(image=UserScreen.image_useradd,
+                           command=lambda userlevel=i: UserScreen.create_user(userlevel))
 
     def add_user(username, userlevel):
         newuser_dictionary = {"userlevel": userlevel, "displayname": username, "highscore": {
             '*-classical-twominute': 0}, "gamehistory": []}
         userfile = f"users/user{userlevel}.json"
         jsondump = dumps(newuser_dictionary)
-        encrypted_jsondump = data_class.fernet_key.encrypt(jsondump.encode())
+        encrypted_jsondump = Data.fernet_key.encrypt(jsondump.encode())
         with open(userfile, 'w') as file:
             file.write(encrypted_jsondump.decode())
-        data_class.check_for_users()
+        Data.check_for_users()
 
     def rename_user(userlevel, name):
-        data_class.user_data[userlevel]['displayname'] = name
+        Data.user_data[userlevel]['displayname'] = name
         userfile = f"users/user{userlevel}.json"
-        jsondump = dumps(data_class.user_data[userlevel])
-        encrypted_jsondump = data_class.fernet_key.encrypt(jsondump.encode())
+        jsondump = dumps(Data.user_data[userlevel])
+        encrypted_jsondump = Data.fernet_key.encrypt(jsondump.encode())
         with open(userfile, 'w') as file:
             file.write(encrypted_jsondump.decode())
-        data_class.check_for_users()
+        Data.check_for_users()
 
     def remove_user(i):
         empty_dictionary = {}
         userfile = f"users/user{i}.json"
         jsondump = dumps(empty_dictionary)
-        encrypted_jsondump = data_class.fernet_key.encrypt(jsondump.encode())
+        encrypted_jsondump = Data.fernet_key.encrypt(jsondump.encode())
         with open(userfile, 'w') as file:
             file.write(encrypted_jsondump.decode())
-        data_class.userlevel = None
-        data_class.clean_users()
-        data_class.check_for_users()
+        Data.userlevel = None
+        Data.clean_users()
+        Data.check_for_users()
 
     def dump_highscore():
-        data_class.user_data[data_class.userlevel]['highscore'] = data_class.highscore_dict
+        Data.user_data[Data.userlevel]['highscore'] = Data.highscore_dict
         usercount = -1
-        for dictionary in data_class.user_data:
+        for dictionary in Data.user_data:
             usercount += 1
             userfile = f"users/user{usercount}.json"
             jsondump = dumps(dictionary)
-            encrypted_jsondump = data_class.fernet_key.encrypt(
+            encrypted_jsondump = Data.fernet_key.encrypt(
                 jsondump.encode())
             with open(userfile, 'w') as file:
                 file.write(encrypted_jsondump.decode())
 
     def does_score_exist():
-        if data_class.highscore_dict.get(f"{optionsscreen_class.flashcardtype}-{optionsscreen_class.flashcarddifficulty}-{optionsscreen_class.flashcardtime}") is None:
-            data_class.highscore_dict[f"{optionsscreen_class.flashcardtype}-{optionsscreen_class.flashcarddifficulty}-{optionsscreen_class.flashcardtime}"] = '0'
+        if Data.highscore_dict.get(f"{OptionsScreen.flashcardtype}-{OptionsScreen.flashcarddifficulty}-{OptionsScreen.flashcardtime}") is None:
+            Data.highscore_dict[f"{OptionsScreen.flashcardtype}-{OptionsScreen.flashcarddifficulty}-{OptionsScreen.flashcardtime}"] = '0'
 
 
-data_class.check_for_users()
+Data.check_for_users()
 
 
-class mainscreen_class():
+class MainScreen():
     currentscore = 0
     high_score = 0
     flashcard1 = ''
@@ -1074,7 +1072,7 @@ class mainscreen_class():
         file=relative_to_assets("mainscreen/yes_quit_button.png"))
 
     bg_image = mainscreen_canvas.create_image(
-        395.0, 255.0, image=userscreen_class.image_bg_image)
+        395.0, 255.0, image=UserScreen.image_bg_image)
     flashbg = mainscreen_canvas.create_image(408.0, 218.0, image=image_flashbg)
     banner6 = mainscreen_canvas.create_image(640.0, 134.0, image=image_banner6)
     correctanswerbgbox = mainscreen_canvas.create_image(
@@ -1112,83 +1110,83 @@ class mainscreen_class():
         161.0, 381.0, image=image_buttonboxbg)
 
     def back_button_pressed():
-        sound_class.sound_buttonpress.play()
-        if mainscreen_class.game_started == True:
-            mainscreen_class.confirm_quit()
+        Sound.sound_buttonpress.play()
+        if MainScreen.game_started == True:
+            MainScreen.confirm_quit()
         else:
             mainscreen_canvas.pack_forget()
             startscreen_canvas.pack()
     back_button = Button(mainscreen_canvas, image=image_backbutton, bg="#D9D9D9", borderwidth=0,
-                         highlightthickness=0, command=lambda: mainscreen_class.back_button_pressed(), relief="flat")
+                         highlightthickness=0, command=lambda: MainScreen.back_button_pressed(), relief="flat")
     back_button.place(x=34.0, y=23.5, width=59.0, height=22.0)
     back_button.config(activebackground="#C3C3C3")
 
     def backbutton_onenter(event): 
         event.widget.config(bg="#C3C3C3"), mainscreen_canvas.itemconfigure(
-        mainscreen_class.buttonboxbg_1, image=mainscreen_class.image_buttonboxbg_selected),
+        MainScreen.buttonboxbg_1, image=MainScreen.image_buttonboxbg_selected),
 
     def backbutton_onleave(event): 
         event.widget.config(bg="#D9D9D9"), mainscreen_canvas.itemconfigure(
-        mainscreen_class.buttonboxbg_1, image=mainscreen_class.image_buttonboxbg)
+        MainScreen.buttonboxbg_1, image=MainScreen.image_buttonboxbg)
     back_button.bind("<Enter>", backbutton_onenter)
     back_button.bind("<Leave>", backbutton_onleave)
 
     def settings_button_pressed():
-        sound_class.sound_buttonpress.play()
-        optionsscreen_canvas.itemconfig(optionsscreen_class.specific_highscore_text, text=data_class.highscore_dict[
-                                        f"{optionsscreen_class.flashcardtype}-{optionsscreen_class.flashcarddifficulty}-{optionsscreen_class.flashcardtime}"])
+        Sound.sound_buttonpress.play()
+        optionsscreen_canvas.itemconfig(OptionsScreen.specific_highscore_text, text=Data.highscore_dict[
+                                        f"{OptionsScreen.flashcardtype}-{OptionsScreen.flashcarddifficulty}-{OptionsScreen.flashcardtime}"])
         mainscreen_canvas.pack_forget()
         optionsscreen_canvas.pack()
     settings_button = Button(mainscreen_canvas, image=image_settingsbutton, bg="#D9D9D9", borderwidth=0,
-                             highlightthickness=0, command=lambda: mainscreen_class.settings_button_pressed(), relief="flat")
+                             highlightthickness=0, command=lambda: MainScreen.settings_button_pressed(), relief="flat")
     settings_button.place(x=131, y=310, width=59.0, height=22.0)
     settings_button.config(activebackground="#C3C3C3")
 
     def settingsbutton_onenter(event): 
         event.widget.config(bg="#C3C3C3"), mainscreen_canvas.itemconfigure(
-        mainscreen_class.buttonboxbg_2, image=mainscreen_class.image_buttonboxbg_selected),
+        MainScreen.buttonboxbg_2, image=MainScreen.image_buttonboxbg_selected),
 
     def settingsbutton_onleave(event): 
         event.widget.config(bg="#D9D9D9"), mainscreen_canvas.itemconfigure(
-        mainscreen_class.buttonboxbg_2, image=mainscreen_class.image_buttonboxbg)
+        MainScreen.buttonboxbg_2, image=MainScreen.image_buttonboxbg)
     settings_button.bind("<Enter>", settingsbutton_onenter)
     settings_button.bind("<Leave>", settingsbutton_onleave)
 
     def history_button_pressed():
-        sound_class.sound_buttonpress.play()
-        historyscreen_class.display_data(data_class.userlevel)
+        Sound.sound_buttonpress.play()
+        HistoryScreen.display_data(Data.userlevel)
         mainscreen_canvas.pack_forget()
         historyscreen_canvas.pack()
     history_button = Button(mainscreen_canvas, image=image_historybutton, bg="#D9D9D9", borderwidth=0,
-                            highlightthickness=0, command=lambda: mainscreen_class.history_button_pressed(), relief="flat")
+                            highlightthickness=0, command=lambda: MainScreen.history_button_pressed(), relief="flat")
     history_button.place(x=131.0, y=370.5, width=59.0, height=22.0)
     history_button.config(activebackground="#C3C3C3")
 
     def historybutton_onenter(event): 
         event.widget.config(bg="#C3C3C3"), mainscreen_canvas.itemconfigure(
-        mainscreen_class.buttonboxbg_3, image=mainscreen_class.image_buttonboxbg_selected),
+        MainScreen.buttonboxbg_3, image=MainScreen.image_buttonboxbg_selected),
 
     def historybutton_onleave(event): 
         event.widget.config(bg="#D9D9D9"), mainscreen_canvas.itemconfigure(
-        mainscreen_class.buttonboxbg_3, image=mainscreen_class.image_buttonboxbg)
+        MainScreen.buttonboxbg_3, image=MainScreen.image_buttonboxbg)
     history_button.bind("<Enter>", historybutton_onenter)
     history_button.bind("<Leave>", historybutton_onleave)
 
     def start_button_pressed():
-        mainscreen_class.place_countdownscreen()
-        sound_class.sound_buttonpress.play()
+        MainScreen.place_countdownscreen()
+        Sound.sound_buttonpress.play()
     start_button = Button(mainscreen_canvas, image=image_startbutton, borderwidth=0, bg="#D9D9D9",
-                          highlightthickness=0, command=lambda: mainscreen_class.start_button_pressed(), relief="flat")
+                          highlightthickness=0, command=lambda: MainScreen.start_button_pressed(), relief="flat")
     start_button.place(x=604.0, y=290.0, width=72.0, height=25.0)
     start_button.config(activebackground="#C3C3C3")
 
     def startbutton_onenter(event): 
         event.widget.config(bg="#C3C3C3"), mainscreen_canvas.itemconfigure(
-        mainscreen_class.startbuttonbg, image=mainscreen_class.image_startbuttonbg_selected),
+        MainScreen.startbuttonbg, image=MainScreen.image_startbuttonbg_selected),
 
     def startbutton_onleave(event): 
         event.widget.config(bg="#D9D9D9"), mainscreen_canvas.itemconfigure(
-        mainscreen_class.startbuttonbg, image=mainscreen_class.image_startbuttonbg)
+        MainScreen.startbuttonbg, image=MainScreen.image_startbuttonbg)
     start_button.bind("<Enter>", startbutton_onenter)
     start_button.bind("<Leave>", startbutton_onleave)
 
@@ -1213,16 +1211,16 @@ class mainscreen_class():
 
     def place_countdownscreen():
         countdownbox = mainscreen_canvas.create_image(
-            407.0, 211.0, image=mainscreen_class.image_countdownbox)
+            407.0, 211.0, image=MainScreen.image_countdownbox)
         cancel_countdown_bg = mainscreen_canvas.create_image(
-            297.0, 113.0, image=mainscreen_class.image_cancel_countdown_bg)
+            297.0, 113.0, image=MainScreen.image_cancel_countdown_bg)
 
         countdown_title_text = mainscreen_canvas.create_text(
             352.0, 109.0, anchor="nw", text="Starts in...", fill="#000000", font=("Encode Sans", 25 * -1))
         countdown_counter_text = mainscreen_canvas.create_text(
             385.0, 178.0, anchor="nw", text='', fill="#000000", font=("Helvetica", 70 * -1))
 
-        cancel_countdown_button = Button(mainscreen_canvas, image=mainscreen_class.image_cancel_countdown_button,
+        cancel_countdown_button = Button(mainscreen_canvas, image=MainScreen.image_cancel_countdown_button,
                                          borderwidth=0, highlightthickness=0, bg="#D9D9D9", command=lambda: cancel_countdown(), relief="flat")
         cancel_countdown_button.place(
             x=289.4, y=104.5, width=17.5, height=17.0)
@@ -1230,15 +1228,15 @@ class mainscreen_class():
 
         def cancelcountdownbutton_onenter(event): 
             event.widget.config(bg="#C3C3C3"), mainscreen_canvas.itemconfigure(
-            cancel_countdown_bg, image=mainscreen_class.image_cancel_countdown_bg_selected),
+            cancel_countdown_bg, image=MainScreen.image_cancel_countdown_bg_selected),
 
         def cancelcountdownbutton_onleave(event): 
             event.widget.config(bg="#D9D9D9"), mainscreen_canvas.itemconfigure(
-            cancel_countdown_bg, image=mainscreen_class.image_cancel_countdown_bg)
+            cancel_countdown_bg, image=MainScreen.image_cancel_countdown_bg)
         cancel_countdown_button.bind("<Enter>", cancelcountdownbutton_onenter)
         cancel_countdown_button.bind("<Leave>", cancelcountdownbutton_onleave)
-        mainscreen_class.pre_game_cleanup()
-        mainscreen_class.back_button.place(x=34000000.0, y=23.5,)
+        MainScreen.pre_game_cleanup()
+        MainScreen.back_button.place(x=34000000.0, y=23.5,)
 
         def destroy_countdownscreen():
             mainscreen_canvas.delete(countdownbox)
@@ -1246,76 +1244,76 @@ class mainscreen_class():
             mainscreen_canvas.delete(countdown_title_text)
             mainscreen_canvas.delete(cancel_countdown_bg)
             cancel_countdown_button.destroy()
-            mainscreen_class.back_button.place(x=34.0, y=23.5)
+            MainScreen.back_button.place(x=34.0, y=23.5)
 
         def initialize_countdown(seconds, callback):
             if seconds == 0:
                 callback()
-                mainscreen_class.start_game()
+                MainScreen.start_game()
                 return
             mainscreen_canvas.itemconfig(countdown_counter_text, text=seconds)
             seconds -= 1
-            sound_class.sound_countdown_tick.play()
+            Sound.sound_countdown_tick.play()
             mainscreen_canvas.countdownloop = mainscreen_canvas.after(
                 1000, initialize_countdown, seconds, callback)
 
         def cancel_countdown():
-            sound_class.sound_buttonpress.play()
+            Sound.sound_buttonpress.play()
             mainscreen_canvas.after_cancel(mainscreen_canvas.countdownloop)
-            mainscreen_class.post_game_cleanup()
+            MainScreen.post_game_cleanup()
             destroy_countdownscreen()
         initialize_countdown(3, destroy_countdownscreen)
 
     def confirm_quit():
         quit_banner = mainscreen_canvas.create_image(
-            408.0, 215.0, image=mainscreen_class.image_quit_banner)
+            408.0, 215.0, image=MainScreen.image_quit_banner)
         quit_buttonbg_1 = mainscreen_canvas.create_image(
-            348.0, 230.0, image=mainscreen_class.image_quit_buttonbg)
+            348.0, 230.0, image=MainScreen.image_quit_buttonbg)
         quit_buttonbg_2 = mainscreen_canvas.create_image(
-            468.0, 230.0, image=mainscreen_class.image_quit_buttonbg)
+            468.0, 230.0, image=MainScreen.image_quit_buttonbg)
         quit_text = mainscreen_canvas.create_text(
             294.0, 176.0, anchor="nw", text="Do you want to quit?\n", fill="#000000", font=("Encode Sans", 25 * -1))
 
         def yes_quit_button_pressed():
-            sound_class.sound_buttonpress.play()
+            Sound.sound_buttonpress.play()
             destroy_quitbox()
-            mainscreen_class.game_started = False
-            if optionsscreen_class.flashcardtime == "practice":
-                mainscreen_class.post_game_cleanup()
+            MainScreen.game_started = False
+            if OptionsScreen.flashcardtime == "practice":
+                MainScreen.post_game_cleanup()
                 return
             mainscreen_canvas.after_cancel(mainscreen_canvas.maintimerloop)
-            mainscreen_class.post_game_cleanup()
+            MainScreen.post_game_cleanup()
 
-        yes_quit_button = Button(image=mainscreen_class.image_yes_quit_button, borderwidth=0,
+        yes_quit_button = Button(image=MainScreen.image_yes_quit_button, borderwidth=0,
                                  highlightthickness=0, bg="#D9D9D9", command=lambda: yes_quit_button_pressed(), relief="flat")
         yes_quit_button.place(x=429.0, y=217.0, width=80.0, height=26.0)
         yes_quit_button.config(activebackground="#C3C3C3")
 
         def yes_quitbutton_onenter(event): 
             event.widget.config(bg="#C3C3C3"), mainscreen_canvas.itemconfigure(
-            quit_buttonbg_2, image=mainscreen_class.image_quit_buttonbg_selected),
+            quit_buttonbg_2, image=MainScreen.image_quit_buttonbg_selected),
 
         def yes_quitbutton_onleave(event): 
             event.widget.config(bg="#D9D9D9"), mainscreen_canvas.itemconfigure(
-            quit_buttonbg_2, image=mainscreen_class.image_quit_buttonbg)
+            quit_buttonbg_2, image=MainScreen.image_quit_buttonbg)
         yes_quit_button.bind("<Enter>", yes_quitbutton_onenter)
         yes_quit_button.bind("<Leave>", yes_quitbutton_onleave)
 
         def no_quit_button_pressed():
-            sound_class.sound_buttonpress.play()
+            Sound.sound_buttonpress.play()
             destroy_quitbox()
-        no_quit_button = Button(image=mainscreen_class.image_no_quit_button, borderwidth=0,
+        no_quit_button = Button(image=MainScreen.image_no_quit_button, borderwidth=0,
                                 highlightthickness=0, bg="#D9D9D9", command=lambda: no_quit_button_pressed(), relief="flat")
         no_quit_button.place(x=308.0, y=217.0, width=80.0, height=26.0)
         no_quit_button.config(activebackground="#C3C3C3")
 
         def no_quitbutton_onenter(event): 
             event.widget.config(bg="#C3C3C3"), mainscreen_canvas.itemconfigure(
-            quit_buttonbg_1, image=mainscreen_class.image_quit_buttonbg_selected),
+            quit_buttonbg_1, image=MainScreen.image_quit_buttonbg_selected),
 
         def no_quitbutton_onleave(event): 
             event.widget.config(bg="#D9D9D9"), mainscreen_canvas.itemconfigure(
-            quit_buttonbg_1, image=mainscreen_class.image_quit_buttonbg)
+            quit_buttonbg_1, image=MainScreen.image_quit_buttonbg)
         no_quit_button.bind("<Enter>", no_quitbutton_onenter)
         no_quit_button.bind("<Leave>", no_quitbutton_onleave)
 
@@ -1328,74 +1326,74 @@ class mainscreen_class():
             yes_quit_button.destroy()
 
     def start_game():
-        mainscreen_class.game_started = True
+        MainScreen.game_started = True
         mainscreen_canvas.itemconfig(
-            mainscreen_class.currentscore_text, text=mainscreen_class.currentscore)
-        mainscreen_class.entrybox.place(
+            MainScreen.currentscore_text, text=MainScreen.currentscore)
+        MainScreen.entrybox.place(
             x=364.0, y=278.0, width=44.0, height=21.0)
-        mainscreen_class.generate_problem()
-        if optionsscreen_class.flashcardtime == "practice":
+        MainScreen.generate_problem()
+        if OptionsScreen.flashcardtime == "practice":
             mainscreen_canvas.itemconfig(
-                mainscreen_class.highscore_text, text='0')
+                MainScreen.highscore_text, text='0')
             return
-        mainscreen_canvas.itemconfig(mainscreen_class.highscore_text, text=data_class.highscore_dict[
-                                     f"{optionsscreen_class.flashcardtype}-{optionsscreen_class.flashcarddifficulty}-{optionsscreen_class.flashcardtime}"])
-        mainscreen_class.start_timer(
-            optionsscreen_class.minutes, optionsscreen_class.seconds)
+        mainscreen_canvas.itemconfig(MainScreen.highscore_text, text=Data.highscore_dict[
+                                     f"{OptionsScreen.flashcardtype}-{OptionsScreen.flashcarddifficulty}-{OptionsScreen.flashcardtime}"])
+        MainScreen.start_timer(
+            OptionsScreen.minutes, OptionsScreen.seconds)
 
     def generate_problem():
-        mainscreen_class.flashcard1 = randint(
-            optionsscreen_class.difficultyint1, optionsscreen_class.difficultyint2)
-        mainscreen_class.flashcard2 = randint(
-            optionsscreen_class.difficultyint1, optionsscreen_class.difficultyint2)
+        MainScreen.flashcard1 = randint(
+            OptionsScreen.difficultyint1, OptionsScreen.difficultyint2)
+        MainScreen.flashcard2 = randint(
+            OptionsScreen.difficultyint1, OptionsScreen.difficultyint2)
         do_math = {'+': add, '-': sub, '/': floordiv,
-                   '*': mul}[optionsscreen_class.flashcardtype]
-        mainscreen_class.correctanswer = do_math(
-            mainscreen_class.flashcard1, mainscreen_class.flashcard2)
-        mainscreen_class.check_problem()
+                   '*': mul}[OptionsScreen.flashcardtype]
+        MainScreen.correctanswer = do_math(
+            MainScreen.flashcard1, MainScreen.flashcard2)
+        MainScreen.check_problem()
         mainscreen_canvas.itemconfig(
-            mainscreen_class.flashcard2_text, text=mainscreen_class.flashcard2)
+            MainScreen.flashcard2_text, text=MainScreen.flashcard2)
         mainscreen_canvas.itemconfig(
-            mainscreen_class.flashcard1_text, text=mainscreen_class.flashcard1)
+            MainScreen.flashcard1_text, text=MainScreen.flashcard1)
 
     def check_problem():
-        if mainscreen_class.correctanswer < 0:
-            mainscreen_class.generate_problem()
-        if (mainscreen_class.flashcard1 == mainscreen_class.last_flashcard1 and mainscreen_class.flashcard2 == mainscreen_class.last_flashcard2) or \
-                (mainscreen_class.flashcard1 == mainscreen_class.last_flashcard2 and mainscreen_class.flashcard2 == mainscreen_class.last_flashcard1):
-            mainscreen_class.generate_problem()
-        if optionsscreen_class.flashcardtype == "/" and not mainscreen_class.flashcard1 % mainscreen_class.flashcard2 == 0:
-            mainscreen_class.generate_problem()
+        if MainScreen.correctanswer < 0:
+            MainScreen.generate_problem()
+        if (MainScreen.flashcard1 == MainScreen.last_flashcard1 and MainScreen.flashcard2 == MainScreen.last_flashcard2) or \
+                (MainScreen.flashcard1 == MainScreen.last_flashcard2 and MainScreen.flashcard2 == MainScreen.last_flashcard1):
+            MainScreen.generate_problem()
+        if OptionsScreen.flashcardtype == "/" and not MainScreen.flashcard1 % MainScreen.flashcard2 == 0:
+            MainScreen.generate_problem()
 
     def user_pressed_enter(event):
-        user_answer = mainscreen_class.entrybox.get()
+        user_answer = MainScreen.entrybox.get()
         try:
-            if int(user_answer) == mainscreen_class.correctanswer:
-                mainscreen_class.feedback = "Correct!"
-                mainscreen_class.currentscore = mainscreen_class.currentscore + 1
-                sound_class.sound_correct.play()
+            if int(user_answer) == MainScreen.correctanswer:
+                MainScreen.feedback = "Correct!"
+                MainScreen.currentscore = MainScreen.currentscore + 1
+                Sound.sound_correct.play()
             else:
-                mainscreen_class.feedback = "Wrong!"
-                mainscreen_class.incorrect = mainscreen_class.incorrect + 1
-                sound_class.sound_wrong.play()
-                if mainscreen_class.currentscore > 0:
-                    mainscreen_class.currentscore = mainscreen_class.currentscore - 1
+                MainScreen.feedback = "Wrong!"
+                MainScreen.incorrect = MainScreen.incorrect + 1
+                Sound.sound_wrong.play()
+                if MainScreen.currentscore > 0:
+                    MainScreen.currentscore = MainScreen.currentscore - 1
         except:
             return
         mainscreen_canvas.itemconfig(
-            mainscreen_class.currentscore_text, text=mainscreen_class.currentscore)
+            MainScreen.currentscore_text, text=MainScreen.currentscore)
         mainscreen_canvas.itemconfig(
-            mainscreen_class.correctanswer_text, text=mainscreen_class.correctanswer)
+            MainScreen.correctanswer_text, text=MainScreen.correctanswer)
         mainscreen_canvas.itemconfig(
-            mainscreen_class.feedback_text, text=mainscreen_class.feedback)
-        mainscreen_class.last_flashcard1 = mainscreen_class.flashcard1
-        mainscreen_class.last_flashcard2 = mainscreen_class.flashcard2
-        mainscreen_class.generate_problem()
-        mainscreen_class.entrybox.delete(0, 'end')
+            MainScreen.feedback_text, text=MainScreen.feedback)
+        MainScreen.last_flashcard1 = MainScreen.flashcard1
+        MainScreen.last_flashcard2 = MainScreen.flashcard2
+        MainScreen.generate_problem()
+        MainScreen.entrybox.delete(0, 'end')
 
     def start_timer(minutes, seconds):
         if minutes == 00 and seconds == 1:
-            mainscreen_class.end_game()
+            MainScreen.end_game()
             return
 
         if seconds == 00:
@@ -1403,94 +1401,94 @@ class mainscreen_class():
             seconds = 60
 
         seconds -= 1
-        sound_class.sound_timer_tick.play()
+        Sound.sound_timer_tick.play()
         mainscreen_canvas.itemconfig(
-            mainscreen_class.time_text, text=f'{minutes:2}:{seconds:02}')
+            MainScreen.time_text, text=f'{minutes:2}:{seconds:02}')
 
         mainscreen_canvas.maintimerloop = mainscreen_canvas.after(
-            1000, mainscreen_class.start_timer, minutes, seconds)
+            1000, MainScreen.start_timer, minutes, seconds)
 
     def pre_game_cleanup():
-        mainscreen_class.start_button.place(
+        MainScreen.start_button.place(
             x=60400.0, y=290.0, width=72.0, height=25.0)
-        mainscreen_class.history_button.place(
+        MainScreen.history_button.place(
             x=13100.0, y=370.5, width=59.0, height=22.0)
-        mainscreen_class.settings_button.place(
+        MainScreen.settings_button.place(
             x=13100, y=310, width=59.0, height=22.0)
-        mainscreen_canvas.coords(mainscreen_class.buttonbox_1, 16100.0, 320.0,)
-        mainscreen_canvas.coords(mainscreen_class.buttonbox_2, 16100.0, 320.0,)
+        mainscreen_canvas.coords(MainScreen.buttonbox_1, 16100.0, 320.0,)
+        mainscreen_canvas.coords(MainScreen.buttonbox_2, 16100.0, 320.0,)
         mainscreen_canvas.coords(
-            mainscreen_class.buttonboxbg_3, 16100.0, 320.0)
+            MainScreen.buttonboxbg_3, 16100.0, 320.0)
         mainscreen_canvas.coords(
-            mainscreen_class.buttonboxbg_2, 16100.0, 320.0)
+            MainScreen.buttonboxbg_2, 16100.0, 320.0)
         mainscreen_canvas.coords(
-            mainscreen_class.startbuttonbg, 16100.0, 320.0)
+            MainScreen.startbuttonbg, 16100.0, 320.0)
         mainscreen_canvas.coords(
-            mainscreen_class.startbuttonbgbox, 16100.0, 320.0)
+            MainScreen.startbuttonbgbox, 16100.0, 320.0)
 
     def post_game_cleanup():
-        mainscreen_class.start_button.place(
+        MainScreen.start_button.place(
             x=604.0, y=290.0, width=72.0, height=25.0)
-        mainscreen_class.history_button.place(
+        MainScreen.history_button.place(
             x=131.0, y=370.5, width=59.0, height=22.0)
-        mainscreen_class.settings_button.place(
+        MainScreen.settings_button.place(
             x=131, y=310, width=59.0, height=22.0)
-        mainscreen_canvas.coords(mainscreen_class.buttonbox_1, 161.0, 320.0,)
-        mainscreen_canvas.coords(mainscreen_class.buttonbox_2, 161.0, 381.0,)
-        mainscreen_canvas.coords(mainscreen_class.buttonboxbg_3, 161.0, 381.0,)
-        mainscreen_canvas.coords(mainscreen_class.buttonboxbg_2, 161.0, 320.0,)
-        mainscreen_canvas.itemconfig(mainscreen_class.time_text, text='')
-        mainscreen_canvas.itemconfig(mainscreen_class.flashcard2_text, text='')
-        mainscreen_canvas.itemconfig(mainscreen_class.flashcard1_text, text='')
+        mainscreen_canvas.coords(MainScreen.buttonbox_1, 161.0, 320.0,)
+        mainscreen_canvas.coords(MainScreen.buttonbox_2, 161.0, 381.0,)
+        mainscreen_canvas.coords(MainScreen.buttonboxbg_3, 161.0, 381.0,)
+        mainscreen_canvas.coords(MainScreen.buttonboxbg_2, 161.0, 320.0,)
+        mainscreen_canvas.itemconfig(MainScreen.time_text, text='')
+        mainscreen_canvas.itemconfig(MainScreen.flashcard2_text, text='')
+        mainscreen_canvas.itemconfig(MainScreen.flashcard1_text, text='')
         mainscreen_canvas.itemconfig(
-            mainscreen_class.currentscore_text, text='')
-        mainscreen_canvas.itemconfig(mainscreen_class.highscore_text, text='')
+            MainScreen.currentscore_text, text='')
+        mainscreen_canvas.itemconfig(MainScreen.highscore_text, text='')
         mainscreen_canvas.itemconfig(
-            mainscreen_class.correctanswer_text, text='')
-        mainscreen_canvas.itemconfig(mainscreen_class.feedback_text, text='')
-        mainscreen_canvas.coords(mainscreen_class.startbuttonbg, 641.0, 301.5)
-        mainscreen_canvas.coords(mainscreen_class.startbuttonbgbox, 641.0, 302)
-        mainscreen_class.entrybox.place(x=36400.0, y=278.0)
-        mainscreen_class.currentscore = 0
-        mainscreen_class.incorrect = 0
-        mainscreen_class.game_started = False
-        mainscreen_class.entrybox.delete(0, 'end')
+            MainScreen.correctanswer_text, text='')
+        mainscreen_canvas.itemconfig(MainScreen.feedback_text, text='')
+        mainscreen_canvas.coords(MainScreen.startbuttonbg, 641.0, 301.5)
+        mainscreen_canvas.coords(MainScreen.startbuttonbgbox, 641.0, 302)
+        MainScreen.entrybox.place(x=36400.0, y=278.0)
+        MainScreen.currentscore = 0
+        MainScreen.incorrect = 0
+        MainScreen.game_started = False
+        MainScreen.entrybox.delete(0, 'end')
 
     def is_new_highscore():
-        if int(mainscreen_class.currentscore) > int(data_class.highscore_dict[f"{optionsscreen_class.flashcardtype}-{optionsscreen_class.flashcarddifficulty}-{optionsscreen_class.flashcardtime}"]):
-            finalscreen_class.finalscore_feedback_text = 'New Highscore!'
-            sound_class.sound_win.play()
-            data_class.highscore_dict[f"{optionsscreen_class.flashcardtype}-{optionsscreen_class.flashcarddifficulty}-{optionsscreen_class.flashcardtime}"] = mainscreen_class.currentscore
+        if int(MainScreen.currentscore) > int(Data.highscore_dict[f"{OptionsScreen.flashcardtype}-{OptionsScreen.flashcarddifficulty}-{OptionsScreen.flashcardtime}"]):
+            FinalScreen.finalscore_feedback_text = 'New Highscore!'
+            Sound.sound_win.play()
+            Data.highscore_dict[f"{OptionsScreen.flashcardtype}-{OptionsScreen.flashcarddifficulty}-{OptionsScreen.flashcardtime}"] = MainScreen.currentscore
         else:
-            finalscreen_class.finalscore_feedback_text = 'Better Luck Next TIme!'
-            sound_class.sound_times_up.play()
+            FinalScreen.finalscore_feedback_text = 'Better Luck Next TIme!'
+            Sound.sound_times_up.play()
 
     def log_game():
-        if mainscreen_class.currentscore == 0:
+        if MainScreen.currentscore == 0:
             return
         current_datetime = datetime.now()
         current_date = current_datetime.strftime("%m/%d/%Y")
         current_time = current_datetime.strftime("%I:%M %p")
-        log_dictionary = {"date": current_date, "time": current_time, "correct": mainscreen_class.currentscore, "incorrect": mainscreen_class.incorrect,
-                          "mode": f"{optionsscreen_class.flashcardtype}-{optionsscreen_class.flashcarddifficulty}-{optionsscreen_class.flashcardtime}"}
-        data_class.user_data[data_class.userlevel]['gamehistory'].append(
+        log_dictionary = {"date": current_date, "time": current_time, "correct": MainScreen.currentscore, "incorrect": MainScreen.incorrect,
+                          "mode": f"{OptionsScreen.flashcardtype}-{OptionsScreen.flashcarddifficulty}-{OptionsScreen.flashcardtime}"}
+        Data.user_data[Data.userlevel]['gamehistory'].append(
             log_dictionary)
 
     def end_game():
         mainscreen_canvas.pack_forget()
         finalscreen_canvas.pack()
         finalscreen_canvas.itemconfig(
-            finalscreen_class.yourscore_text, text=mainscreen_class.currentscore)
-        finalscreen_canvas.itemconfig(finalscreen_class.highscore_text, text=data_class.highscore_dict[
-                                      f"{optionsscreen_class.flashcardtype}-{optionsscreen_class.flashcarddifficulty}-{optionsscreen_class.flashcardtime}"])
+            FinalScreen.yourscore_text, text=MainScreen.currentscore)
+        finalscreen_canvas.itemconfig(FinalScreen.highscore_text, text=Data.highscore_dict[
+                                      f"{OptionsScreen.flashcardtype}-{OptionsScreen.flashcarddifficulty}-{OptionsScreen.flashcardtime}"])
         finalscreen_canvas.itemconfig(
-            finalscreen_class.incorrect_text, text=mainscreen_class.incorrect)
-        mainscreen_class.is_new_highscore()
+            FinalScreen.incorrect_text, text=MainScreen.incorrect)
+        MainScreen.is_new_highscore()
         finalscreen_canvas.itemconfig(
-            finalscreen_class.feedback_text, text=finalscreen_class.finalscore_feedback_text)
-        mainscreen_class.log_game()
-        data_class.dump_highscore()
-        mainscreen_class.post_game_cleanup()
+            FinalScreen.feedback_text, text=FinalScreen.finalscore_feedback_text)
+        MainScreen.log_game()
+        Data.dump_highscore()
+        MainScreen.post_game_cleanup()
 
     def validate_main_input(current_input):
         if current_input == "":
@@ -1512,7 +1510,7 @@ class mainscreen_class():
     entrybox.bind('<Return>', user_pressed_enter)
 
 
-class optionsscreen_class():
+class OptionsScreen():
     flashcardtype = "*"
     flashcarddifficulty = "classical"
     flashcardtime = "twominute"
@@ -1580,7 +1578,7 @@ class optionsscreen_class():
         file=relative_to_assets("optionsscreen/highscore_bg.png"))
     # Place Elements
     bg_image = optionsscreen_canvas.create_image(
-        395.0, 255.0, image=userscreen_class.image_bg_image)
+        395.0, 255.0, image=UserScreen.image_bg_image)
     banner9_1 = optionsscreen_canvas.create_image(
         132.0, 163.0, image=image_banner9)
     banner9_2 = optionsscreen_canvas.create_image(
@@ -1635,337 +1633,337 @@ class optionsscreen_class():
     optionsscreen_canvas.create_text(
         647.0, 379.0, anchor="nw", text="Highscore:", fill="#000000", font=("Encode Sans", 19 * -1))
     specific_highscore_text = optionsscreen_canvas.create_text(
-        691.0, 428.0, anchor="center", text=data_class.highscore_dict[f"{flashcardtype}-{flashcarddifficulty}-{flashcardtime}"], fill="#000000", font=("Encode Sans", 19 * -1))
+        691.0, 428.0, anchor="center", text=Data.highscore_dict[f"{flashcardtype}-{flashcarddifficulty}-{flashcardtime}"], fill="#000000", font=("Encode Sans", 19 * -1))
 
     def reset_settings():
-        optionsscreen_class.flashcardtype = "*"
-        optionsscreen_class.flashcarddifficulty = "classical"
-        optionsscreen_class.flashcardtime = "twominute"
-        optionsscreen_class.difficultyint1 = 1
-        optionsscreen_class.difficultyint2 = 15
-        optionsscreen_class.explanationtitle = None
-        optionsscreen_class.explanation = None
-        optionsscreen_class.minutes = 2
-        optionsscreen_class.seconds = 1
-        optionsscreen_canvas.itemconfigure(optionsscreen_class.specific_highscore_text, text=data_class.highscore_dict[
-                                           f"{optionsscreen_class.flashcardtype}-{optionsscreen_class.flashcarddifficulty}-{optionsscreen_class.flashcardtime}"])
+        OptionsScreen.flashcardtype = "*"
+        OptionsScreen.flashcarddifficulty = "classical"
+        OptionsScreen.flashcardtime = "twominute"
+        OptionsScreen.difficultyint1 = 1
+        OptionsScreen.difficultyint2 = 15
+        OptionsScreen.explanationtitle = None
+        OptionsScreen.explanation = None
+        OptionsScreen.minutes = 2
+        OptionsScreen.seconds = 1
+        optionsscreen_canvas.itemconfigure(OptionsScreen.specific_highscore_text, text=Data.highscore_dict[
+                                           f"{OptionsScreen.flashcardtype}-{OptionsScreen.flashcarddifficulty}-{OptionsScreen.flashcardtime}"])
         optionsscreen_canvas.itemconfigure(
-            optionsscreen_class.buttonbg_type_multiplication, image=optionsscreen_class.image_buttonbg_outline)
+            OptionsScreen.buttonbg_type_multiplication, image=OptionsScreen.image_buttonbg_outline)
         optionsscreen_canvas.itemconfigure(
-            optionsscreen_class.buttonbg_type_addition, image=optionsscreen_class.image_buttonbg)
+            OptionsScreen.buttonbg_type_addition, image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
-            optionsscreen_class.buttonbg_type_subtraction, image=optionsscreen_class.image_buttonbg)
+            OptionsScreen.buttonbg_type_subtraction, image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
-            optionsscreen_class.buttonbg_type_division, image=optionsscreen_class.image_buttonbg)
+            OptionsScreen.buttonbg_type_division, image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
-            optionsscreen_class.buttonbg_difficulty_classical, image=optionsscreen_class.image_buttonbg_outline)
+            OptionsScreen.buttonbg_difficulty_classical, image=OptionsScreen.image_buttonbg_outline)
         optionsscreen_canvas.itemconfigure(
-            optionsscreen_class.buttonbg_difficulty_hard, image=optionsscreen_class.image_buttonbg)
+            OptionsScreen.buttonbg_difficulty_hard, image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
-            optionsscreen_class.buttonbg_difficulty_medium, image=optionsscreen_class.image_buttonbg)
+            OptionsScreen.buttonbg_difficulty_medium, image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
-            optionsscreen_class.buttonbg_difficulty_easy, image=optionsscreen_class.image_buttonbg)
+            OptionsScreen.buttonbg_difficulty_easy, image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
-            optionsscreen_class.buttonbg_time_thirtysecond, image=optionsscreen_class.image_buttonbg)
+            OptionsScreen.buttonbg_time_thirtysecond, image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
-            optionsscreen_class.buttonbg_time_oneminute, image=optionsscreen_class.image_buttonbg)
+            OptionsScreen.buttonbg_time_oneminute, image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
-            optionsscreen_class.buttonbg_time_practice, image=optionsscreen_class.image_buttonbg)
+            OptionsScreen.buttonbg_time_practice, image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
-            optionsscreen_class.buttonbg_time_twominute, image=optionsscreen_class.image_buttonbg_outline)
+            OptionsScreen.buttonbg_time_twominute, image=OptionsScreen.image_buttonbg_outline)
 
     def multiplication_button_pressed():
-        optionsscreen_class.flashcardtype = "*"
-        optionsscreen_class.explanationtitle, optionsscreen_class.explanation, optionsscreen_class.difficultyint1, optionsscreen_class.difficultyint2 = optionsscreen_class.get_info(
-            optionsscreen_class.flashcardtype, optionsscreen_class.flashcarddifficulty)
-        optionsscreen_class.explanationtitle = "Multiplication -"
-        optionsscreen_class.explanation = "Put your time tables to the test!"
+        OptionsScreen.flashcardtype = "*"
+        OptionsScreen.explanationtitle, OptionsScreen.explanation, OptionsScreen.difficultyint1, OptionsScreen.difficultyint2 = OptionsScreen.get_info(
+            OptionsScreen.flashcardtype, OptionsScreen.flashcarddifficulty)
+        OptionsScreen.explanationtitle = "Multiplication -"
+        OptionsScreen.explanation = "Put your time tables to the test!"
         mainscreen_canvas.itemconfigure(
-            mainscreen_class.mathoperator, image=mainscreen_class.image_mathoperator_multiplication)
-        optionsscreen_class.clear_type_outline()
+            MainScreen.mathoperator, image=MainScreen.image_mathoperator_multiplication)
+        OptionsScreen.clear_type_outline()
         optionsscreen_canvas.itemconfigure(
-            optionsscreen_class.buttonbg_type_multiplication, image=optionsscreen_class.image_buttonbg_outline_selected)
+            OptionsScreen.buttonbg_type_multiplication, image=OptionsScreen.image_buttonbg_outline_selected)
     multiplication_button = Button(optionsscreen_canvas, image=image_multiplication_button, borderwidth=0, highlightthickness=0,
-                                   bg="#D9D9D9", command=lambda: optionsscreen_class.multiplication_button_pressed(), relief="flat")
+                                   bg="#D9D9D9", command=lambda: OptionsScreen.multiplication_button_pressed(), relief="flat")
     multiplication_button.place(x=110.0, y=90.5, width=50.0, height=22.0)
     multiplication_button.config(activebackground="#C3C3C3")
 
     def multiplicationbutton_onenter(event):
         event.widget.config(bg="#C3C3C3")
-        if optionsscreen_class.flashcardtype == "*":
+        if OptionsScreen.flashcardtype == "*":
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_type_multiplication, image=optionsscreen_class.image_buttonbg_outline_selected)
+                OptionsScreen.buttonbg_type_multiplication, image=OptionsScreen.image_buttonbg_outline_selected)
         else:
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_type_multiplication, image=optionsscreen_class.image_buttonbg_selected)
+                OptionsScreen.buttonbg_type_multiplication, image=OptionsScreen.image_buttonbg_selected)
 
     def multiplicationbutton_onleave(event):
         event.widget.config(bg="#D9D9D9")
-        if optionsscreen_class.flashcardtype == "*":
+        if OptionsScreen.flashcardtype == "*":
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_type_multiplication, image=optionsscreen_class.image_buttonbg_outline)
+                OptionsScreen.buttonbg_type_multiplication, image=OptionsScreen.image_buttonbg_outline)
         else:
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_type_multiplication, image=optionsscreen_class.image_buttonbg)
+                OptionsScreen.buttonbg_type_multiplication, image=OptionsScreen.image_buttonbg)
     multiplication_button.bind("<Enter>", multiplicationbutton_onenter)
     multiplication_button.bind("<Leave>", multiplicationbutton_onleave)
 
     def subtraction_button_pressed():
-        optionsscreen_class.flashcardtype = "-"
-        optionsscreen_class.explanationtitle, optionsscreen_class.explanation, optionsscreen_class.difficultyint1, optionsscreen_class.difficultyint2 = optionsscreen_class.get_info(
-            optionsscreen_class.flashcardtype, optionsscreen_class.flashcarddifficulty)
-        optionsscreen_class.explanationtitle = "Subtraction -"
-        optionsscreen_class.explanation = "Put your subtraction skills to the test!"
-        optionsscreen_class.clear_type_outline()
+        OptionsScreen.flashcardtype = "-"
+        OptionsScreen.explanationtitle, OptionsScreen.explanation, OptionsScreen.difficultyint1, OptionsScreen.difficultyint2 = OptionsScreen.get_info(
+            OptionsScreen.flashcardtype, OptionsScreen.flashcarddifficulty)
+        OptionsScreen.explanationtitle = "Subtraction -"
+        OptionsScreen.explanation = "Put your subtraction skills to the test!"
+        OptionsScreen.clear_type_outline()
         optionsscreen_canvas.itemconfigure(
-            optionsscreen_class.buttonbg_type_subtraction, image=optionsscreen_class.image_buttonbg_outline_selected)
+            OptionsScreen.buttonbg_type_subtraction, image=OptionsScreen.image_buttonbg_outline_selected)
         mainscreen_canvas.itemconfigure(
-            mainscreen_class.mathoperator, image=mainscreen_class.image_mathoperator_minus)
+            MainScreen.mathoperator, image=MainScreen.image_mathoperator_minus)
     subtraction_button = Button(optionsscreen_canvas, image=image_subtraction_button, borderwidth=0, highlightthickness=0,
-                                bg="#D9D9D9", command=lambda: optionsscreen_class.subtraction_button_pressed(), relief="flat")
+                                bg="#D9D9D9", command=lambda: OptionsScreen.subtraction_button_pressed(), relief="flat")
     subtraction_button.place(x=110.0, y=139.0, width=50.0, height=22.0)
     subtraction_button.config(activebackground="#C3C3C3")
 
     def subtractionbutton_onenter(event):
         event.widget.config(bg="#C3C3C3")
-        if optionsscreen_class.flashcardtype == "-":
+        if OptionsScreen.flashcardtype == "-":
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_type_subtraction, image=optionsscreen_class.image_buttonbg_outline_selected)
+                OptionsScreen.buttonbg_type_subtraction, image=OptionsScreen.image_buttonbg_outline_selected)
         else:
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_type_subtraction, image=optionsscreen_class.image_buttonbg_selected)
+                OptionsScreen.buttonbg_type_subtraction, image=OptionsScreen.image_buttonbg_selected)
 
     def subtractionbutton_onleave(event):
         event.widget.config(bg="#D9D9D9")
-        if optionsscreen_class.flashcardtype == "-":
+        if OptionsScreen.flashcardtype == "-":
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_type_subtraction, image=optionsscreen_class.image_buttonbg_outline)
+                OptionsScreen.buttonbg_type_subtraction, image=OptionsScreen.image_buttonbg_outline)
         else:
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_type_subtraction, image=optionsscreen_class.image_buttonbg)
+                OptionsScreen.buttonbg_type_subtraction, image=OptionsScreen.image_buttonbg)
     subtraction_button.bind("<Enter>", subtractionbutton_onenter)
     subtraction_button.bind("<Leave>", subtractionbutton_onleave)
 
     def addition_button_pressed():
-        optionsscreen_class.flashcardtype = "+"
-        optionsscreen_class.explanationtitle, optionsscreen_class.explanation, optionsscreen_class.difficultyint1, optionsscreen_class.difficultyint2 = optionsscreen_class.get_info(
-            optionsscreen_class.flashcardtype, optionsscreen_class.flashcarddifficulty)
-        optionsscreen_class.explanationtitle = "Addition -"
-        optionsscreen_class.explanation = "Put your addition skills to the test!"
-        optionsscreen_class.clear_type_outline()
+        OptionsScreen.flashcardtype = "+"
+        OptionsScreen.explanationtitle, OptionsScreen.explanation, OptionsScreen.difficultyint1, OptionsScreen.difficultyint2 = OptionsScreen.get_info(
+            OptionsScreen.flashcardtype, OptionsScreen.flashcarddifficulty)
+        OptionsScreen.explanationtitle = "Addition -"
+        OptionsScreen.explanation = "Put your addition skills to the test!"
+        OptionsScreen.clear_type_outline()
         optionsscreen_canvas.itemconfigure(
-            optionsscreen_class.buttonbg_type_addition, image=optionsscreen_class.image_buttonbg_outline_selected)
+            OptionsScreen.buttonbg_type_addition, image=OptionsScreen.image_buttonbg_outline_selected)
         mainscreen_canvas.itemconfigure(
-            mainscreen_class.mathoperator, image=mainscreen_class.image_mathoperator_plus)
+            MainScreen.mathoperator, image=MainScreen.image_mathoperator_plus)
     addition_button = Button(optionsscreen_canvas, image=image_addition_button, borderwidth=0, highlightthickness=0,
-                             bg="#D9D9D9", command=lambda: optionsscreen_class.addition_button_pressed(), relief="flat")
+                             bg="#D9D9D9", command=lambda: OptionsScreen.addition_button_pressed(), relief="flat")
     addition_button.place(x=110.0, y=187.0, width=50.0, height=22.0)
     addition_button.config(activebackground="#C3C3C3")
 
     def additionbutton_onenter(event):
         event.widget.config(bg="#C3C3C3")
-        if optionsscreen_class.flashcardtype == "+":
+        if OptionsScreen.flashcardtype == "+":
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_type_addition, image=optionsscreen_class.image_buttonbg_outline_selected)
+                OptionsScreen.buttonbg_type_addition, image=OptionsScreen.image_buttonbg_outline_selected)
         else:
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_type_addition, image=optionsscreen_class.image_buttonbg_selected)
+                OptionsScreen.buttonbg_type_addition, image=OptionsScreen.image_buttonbg_selected)
 
     def additionbutton_onleave(event):
         event.widget.config(bg="#D9D9D9"),
-        if optionsscreen_class.flashcardtype == "+":
+        if OptionsScreen.flashcardtype == "+":
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_type_addition, image=optionsscreen_class.image_buttonbg_outline)
+                OptionsScreen.buttonbg_type_addition, image=OptionsScreen.image_buttonbg_outline)
         else:
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_type_addition, image=optionsscreen_class.image_buttonbg)
+                OptionsScreen.buttonbg_type_addition, image=OptionsScreen.image_buttonbg)
     addition_button.bind("<Enter>", additionbutton_onenter)
     addition_button.bind("<Leave>", additionbutton_onleave)
 
     def divison_button_pressed():
-        optionsscreen_class.flashcardtype = "/"
-        optionsscreen_class.explanationtitle, optionsscreen_class.explanation, optionsscreen_class.difficultyint1, optionsscreen_class.difficultyint2 = optionsscreen_class.get_info(
-            optionsscreen_class.flashcardtype, optionsscreen_class.flashcarddifficulty)
-        optionsscreen_class.explanationtitle = "Divison -"
-        optionsscreen_class.explanation = "Put your division skills to the test!"
-        optionsscreen_class.clear_type_outline()
+        OptionsScreen.flashcardtype = "/"
+        OptionsScreen.explanationtitle, OptionsScreen.explanation, OptionsScreen.difficultyint1, OptionsScreen.difficultyint2 = OptionsScreen.get_info(
+            OptionsScreen.flashcardtype, OptionsScreen.flashcarddifficulty)
+        OptionsScreen.explanationtitle = "Divison -"
+        OptionsScreen.explanation = "Put your division skills to the test!"
+        OptionsScreen.clear_type_outline()
         optionsscreen_canvas.itemconfigure(
-            optionsscreen_class.buttonbg_type_division, image=optionsscreen_class.image_buttonbg_outline_selected)
+            OptionsScreen.buttonbg_type_division, image=OptionsScreen.image_buttonbg_outline_selected)
         mainscreen_canvas.itemconfigure(
-            mainscreen_class.mathoperator, image=mainscreen_class.image_mathoperator_divide)
+            MainScreen.mathoperator, image=MainScreen.image_mathoperator_divide)
     division_button = Button(optionsscreen_canvas, image=image_division_button, borderwidth=0, highlightthickness=0,
-                             bg="#D9D9D9", command=lambda: optionsscreen_class.divison_button_pressed(), relief="flat")
+                             bg="#D9D9D9", command=lambda: OptionsScreen.divison_button_pressed(), relief="flat")
     division_button.place(x=110.0, y=235.0, width=50.0, height=22.0)
     division_button.config(activebackground="#C3C3C3")
 
     def divisionbutton_onenter(event):
         event.widget.config(bg="#C3C3C3"),
-        if optionsscreen_class.flashcardtype == "/":
+        if OptionsScreen.flashcardtype == "/":
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_type_division, image=optionsscreen_class.image_buttonbg_outline_selected)
+                OptionsScreen.buttonbg_type_division, image=OptionsScreen.image_buttonbg_outline_selected)
         else:
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_type_division, image=optionsscreen_class.image_buttonbg_selected)
+                OptionsScreen.buttonbg_type_division, image=OptionsScreen.image_buttonbg_selected)
 
     def divisionbutton_onleave(event):
         event.widget.config(bg="#D9D9D9"),
-        if optionsscreen_class.flashcardtype == "/":
+        if OptionsScreen.flashcardtype == "/":
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_type_division, image=optionsscreen_class.image_buttonbg_outline)
+                OptionsScreen.buttonbg_type_division, image=OptionsScreen.image_buttonbg_outline)
         else:
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_type_division, image=optionsscreen_class.image_buttonbg)
+                OptionsScreen.buttonbg_type_division, image=OptionsScreen.image_buttonbg)
     division_button.bind("<Enter>", divisionbutton_onenter)
     division_button.bind("<Leave>", divisionbutton_onleave)
 
     def clear_type_outline():
-        sound_class.sound_buttonpress.play()
+        Sound.sound_buttonpress.play()
         optionsscreen_canvas.itemconfig(
-            optionsscreen_class.description_title, text=optionsscreen_class.explanationtitle)
-        optionsscreen_class.description.config(
-            text=optionsscreen_class.explanation)
+            OptionsScreen.description_title, text=OptionsScreen.explanationtitle)
+        OptionsScreen.description.config(
+            text=OptionsScreen.explanation)
         optionsscreen_canvas.itemconfigure(
-            optionsscreen_class.buttonbg_type_addition, image=optionsscreen_class.image_buttonbg)
+            OptionsScreen.buttonbg_type_addition, image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
-            optionsscreen_class.buttonbg_type_division, image=optionsscreen_class.image_buttonbg)
+            OptionsScreen.buttonbg_type_division, image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
-            optionsscreen_class.buttonbg_type_multiplication, image=optionsscreen_class.image_buttonbg)
+            OptionsScreen.buttonbg_type_multiplication, image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
-            optionsscreen_class.buttonbg_type_subtraction, image=optionsscreen_class.image_buttonbg)
-        data_class.does_score_exist()
-        optionsscreen_canvas.itemconfig(optionsscreen_class.specific_highscore_text, text=data_class.highscore_dict[
-                                        f"{optionsscreen_class.flashcardtype}-{optionsscreen_class.flashcarddifficulty}-{optionsscreen_class.flashcardtime}"])
+            OptionsScreen.buttonbg_type_subtraction, image=OptionsScreen.image_buttonbg)
+        Data.does_score_exist()
+        optionsscreen_canvas.itemconfig(OptionsScreen.specific_highscore_text, text=Data.highscore_dict[
+                                        f"{OptionsScreen.flashcardtype}-{OptionsScreen.flashcarddifficulty}-{OptionsScreen.flashcardtime}"])
 
     # Difficulty Buttons
 
     def classical_button_pressed():
-        optionsscreen_class.flashcarddifficulty = "classical"
-        optionsscreen_class.explanationtitle, optionsscreen_class.explanation, optionsscreen_class.difficultyint1, optionsscreen_class.difficultyint2 = optionsscreen_class.get_info(
-            optionsscreen_class.flashcardtype, optionsscreen_class.flashcarddifficulty)
-        optionsscreen_class.clear_difficulty_outline()
+        OptionsScreen.flashcarddifficulty = "classical"
+        OptionsScreen.explanationtitle, OptionsScreen.explanation, OptionsScreen.difficultyint1, OptionsScreen.difficultyint2 = OptionsScreen.get_info(
+            OptionsScreen.flashcardtype, OptionsScreen.flashcarddifficulty)
+        OptionsScreen.clear_difficulty_outline()
         optionsscreen_canvas.itemconfigure(
-            optionsscreen_class.buttonbg_difficulty_classical, image=optionsscreen_class.image_buttonbg_outline_selected)
+            OptionsScreen.buttonbg_difficulty_classical, image=OptionsScreen.image_buttonbg_outline_selected)
     classical_button = Button(optionsscreen_canvas, image=image_classical_button, borderwidth=0, highlightthickness=0,
-                              bg="#D9D9D9", command=lambda: optionsscreen_class.classical_button_pressed(), relief="flat")
+                              bg="#D9D9D9", command=lambda: OptionsScreen.classical_button_pressed(), relief="flat")
     classical_button.place(x=375.0, y=91.0, width=50.0, height=22.0)
     classical_button.config(activebackground="#C3C3C3")
 
     def classicalbutton_onenter(event):
         event.widget.config(bg="#C3C3C3")
-        if optionsscreen_class.flashcarddifficulty == "classical":
+        if OptionsScreen.flashcarddifficulty == "classical":
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_difficulty_classical, image=optionsscreen_class.image_buttonbg_outline_selected)
+                OptionsScreen.buttonbg_difficulty_classical, image=OptionsScreen.image_buttonbg_outline_selected)
         else:
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_difficulty_classical, image=optionsscreen_class.image_buttonbg_selected)
+                OptionsScreen.buttonbg_difficulty_classical, image=OptionsScreen.image_buttonbg_selected)
 
     def classicalbutton_onleave(event):
         event.widget.config(bg="#D9D9D9"),
-        if optionsscreen_class.flashcarddifficulty == "classical":
+        if OptionsScreen.flashcarddifficulty == "classical":
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_difficulty_classical, image=optionsscreen_class.image_buttonbg_outline)
+                OptionsScreen.buttonbg_difficulty_classical, image=OptionsScreen.image_buttonbg_outline)
         else:
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_difficulty_classical, image=optionsscreen_class.image_buttonbg)
+                OptionsScreen.buttonbg_difficulty_classical, image=OptionsScreen.image_buttonbg)
     classical_button.bind("<Enter>", classicalbutton_onenter)
     classical_button.bind("<Leave>", classicalbutton_onleave)
 
     def easy_button_pressed():
-        optionsscreen_class.flashcarddifficulty = "easy"
-        optionsscreen_class.explanationtitle, optionsscreen_class.explanation, optionsscreen_class.difficultyint1, optionsscreen_class.difficultyint2 = optionsscreen_class.get_info(
-            optionsscreen_class.flashcardtype, optionsscreen_class.flashcarddifficulty)
-        optionsscreen_class.clear_difficulty_outline()
+        OptionsScreen.flashcarddifficulty = "easy"
+        OptionsScreen.explanationtitle, OptionsScreen.explanation, OptionsScreen.difficultyint1, OptionsScreen.difficultyint2 = OptionsScreen.get_info(
+            OptionsScreen.flashcardtype, OptionsScreen.flashcarddifficulty)
+        OptionsScreen.clear_difficulty_outline()
         optionsscreen_canvas.itemconfigure(
-            optionsscreen_class.buttonbg_difficulty_easy, image=optionsscreen_class.image_buttonbg_outline_selected)
-        optionsscreen_class.flashcarddifficulty = "easy"
+            OptionsScreen.buttonbg_difficulty_easy, image=OptionsScreen.image_buttonbg_outline_selected)
+        OptionsScreen.flashcarddifficulty = "easy"
     easy_button = Button(optionsscreen_canvas, image=image_easy_button, borderwidth=0, highlightthickness=0,
-                         bg="#D9D9D9", command=lambda: optionsscreen_class.easy_button_pressed(), relief="flat")
+                         bg="#D9D9D9", command=lambda: OptionsScreen.easy_button_pressed(), relief="flat")
     easy_button.place(x=375.0, y=140.0, width=50.0, height=20.0)
     easy_button.config(activebackground="#C3C3C3")
 
     def easybutton_onenter(event):
         event.widget.config(bg="#C3C3C3")
-        if optionsscreen_class.flashcarddifficulty == "easy":
+        if OptionsScreen.flashcarddifficulty == "easy":
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_difficulty_easy, image=optionsscreen_class.image_buttonbg_outline_selected)
+                OptionsScreen.buttonbg_difficulty_easy, image=OptionsScreen.image_buttonbg_outline_selected)
         else:
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_difficulty_easy, image=optionsscreen_class.image_buttonbg_selected)
+                OptionsScreen.buttonbg_difficulty_easy, image=OptionsScreen.image_buttonbg_selected)
 
     def easybutton_onleave(event):
         event.widget.config(bg="#D9D9D9")
-        if optionsscreen_class.flashcarddifficulty == "easy":
+        if OptionsScreen.flashcarddifficulty == "easy":
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_difficulty_easy, image=optionsscreen_class.image_buttonbg_outline)
+                OptionsScreen.buttonbg_difficulty_easy, image=OptionsScreen.image_buttonbg_outline)
         else:
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_difficulty_easy, image=optionsscreen_class.image_buttonbg)
+                OptionsScreen.buttonbg_difficulty_easy, image=OptionsScreen.image_buttonbg)
     easy_button.bind("<Enter>", easybutton_onenter)
     easy_button.bind("<Leave>", easybutton_onleave)
 
     def medium_button_pressed():
-        optionsscreen_class.flashcarddifficulty = "medium"
-        optionsscreen_class.explanationtitle, optionsscreen_class.explanation, optionsscreen_class.difficultyint1, optionsscreen_class.difficultyint2 = optionsscreen_class.get_info(
-            optionsscreen_class.flashcardtype, optionsscreen_class.flashcarddifficulty)
-        optionsscreen_class.clear_difficulty_outline()
+        OptionsScreen.flashcarddifficulty = "medium"
+        OptionsScreen.explanationtitle, OptionsScreen.explanation, OptionsScreen.difficultyint1, OptionsScreen.difficultyint2 = OptionsScreen.get_info(
+            OptionsScreen.flashcardtype, OptionsScreen.flashcarddifficulty)
+        OptionsScreen.clear_difficulty_outline()
         optionsscreen_canvas.itemconfigure(
-            optionsscreen_class.buttonbg_difficulty_medium, image=optionsscreen_class.image_buttonbg_outline_selected)
-        optionsscreen_class.flashcarddifficulty = "medium"
+            OptionsScreen.buttonbg_difficulty_medium, image=OptionsScreen.image_buttonbg_outline_selected)
+        OptionsScreen.flashcarddifficulty = "medium"
     medium_button = Button(optionsscreen_canvas, image=image_medium_button, borderwidth=0, highlightthickness=0,
-                           bg="#D9D9D9", command=lambda: optionsscreen_class.medium_button_pressed(), relief="flat")
+                           bg="#D9D9D9", command=lambda: OptionsScreen.medium_button_pressed(), relief="flat")
     medium_button.place(x=374.0, y=187.0, width=52.0, height=22.0)
     medium_button.config(activebackground="#C3C3C3")
 
     def mediumbutton_onenter(event):
         event.widget.config(bg="#C3C3C3")
-        if optionsscreen_class.flashcarddifficulty == "medium":
+        if OptionsScreen.flashcarddifficulty == "medium":
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_difficulty_medium, image=optionsscreen_class.image_buttonbg_outline_selected)
+                OptionsScreen.buttonbg_difficulty_medium, image=OptionsScreen.image_buttonbg_outline_selected)
         else:
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_difficulty_medium, image=optionsscreen_class.image_buttonbg_selected)
+                OptionsScreen.buttonbg_difficulty_medium, image=OptionsScreen.image_buttonbg_selected)
 
     def mediumbutton_onleave(event):
         event.widget.config(bg="#D9D9D9")
-        if optionsscreen_class.flashcarddifficulty == "medium":
+        if OptionsScreen.flashcarddifficulty == "medium":
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_difficulty_medium, image=optionsscreen_class.image_buttonbg_outline)
+                OptionsScreen.buttonbg_difficulty_medium, image=OptionsScreen.image_buttonbg_outline)
         else:
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_difficulty_medium, image=optionsscreen_class.image_buttonbg)
+                OptionsScreen.buttonbg_difficulty_medium, image=OptionsScreen.image_buttonbg)
     medium_button.bind("<Enter>", mediumbutton_onenter)
     medium_button.bind("<Leave>", mediumbutton_onleave)
 
     def hard_button_pressed():
-        optionsscreen_class.flashcarddifficulty = "hard"
-        optionsscreen_class.explanationtitle, optionsscreen_class.explanation, optionsscreen_class.difficultyint1, optionsscreen_class.difficultyint2 = optionsscreen_class.get_info(
-            optionsscreen_class.flashcardtype, optionsscreen_class.flashcarddifficulty)
-        optionsscreen_class.clear_difficulty_outline()
+        OptionsScreen.flashcarddifficulty = "hard"
+        OptionsScreen.explanationtitle, OptionsScreen.explanation, OptionsScreen.difficultyint1, OptionsScreen.difficultyint2 = OptionsScreen.get_info(
+            OptionsScreen.flashcardtype, OptionsScreen.flashcarddifficulty)
+        OptionsScreen.clear_difficulty_outline()
         optionsscreen_canvas.itemconfigure(
-            optionsscreen_class.buttonbg_difficulty_hard, image=optionsscreen_class.image_buttonbg_outline_selected)
-        optionsscreen_class.flashcarddifficulty = "hard"
+            OptionsScreen.buttonbg_difficulty_hard, image=OptionsScreen.image_buttonbg_outline_selected)
+        OptionsScreen.flashcarddifficulty = "hard"
     hard_button = Button(optionsscreen_canvas, image=image_hard_button, borderwidth=0, highlightthickness=0,
-                         bg="#D9D9D9", command=lambda: optionsscreen_class.hard_button_pressed(), relief="flat")
+                         bg="#D9D9D9", command=lambda: OptionsScreen.hard_button_pressed(), relief="flat")
     hard_button.place(x=375.0, y=234.5, width=50.0, height=22.0)
     hard_button.config(activebackground="#C3C3C3")
 
     def hardbutton_onenter(event):
         event.widget.config(bg="#C3C3C3"),
-        if optionsscreen_class.flashcarddifficulty == "hard":
+        if OptionsScreen.flashcarddifficulty == "hard":
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_difficulty_hard, image=optionsscreen_class.image_buttonbg_outline_selected)
+                OptionsScreen.buttonbg_difficulty_hard, image=OptionsScreen.image_buttonbg_outline_selected)
         else:
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_difficulty_hard, image=optionsscreen_class.image_buttonbg_selected)
+                OptionsScreen.buttonbg_difficulty_hard, image=OptionsScreen.image_buttonbg_selected)
 
     def hardbutton_onleave(event):
         event.widget.config(bg="#D9D9D9"),
-        if optionsscreen_class.flashcarddifficulty == "hard":
+        if OptionsScreen.flashcarddifficulty == "hard":
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_difficulty_hard, image=optionsscreen_class.image_buttonbg_outline)
+                OptionsScreen.buttonbg_difficulty_hard, image=OptionsScreen.image_buttonbg_outline)
         else:
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_difficulty_hard, image=optionsscreen_class.image_buttonbg)
+                OptionsScreen.buttonbg_difficulty_hard, image=OptionsScreen.image_buttonbg)
     hard_button.bind("<Enter>", hardbutton_onenter)
     hard_button.bind("<Leave>", hardbutton_onleave)
 
@@ -1989,195 +1987,195 @@ class optionsscreen_class():
     }
 
     def get_info(card_type, difficulty):
-        return optionsscreen_class.difficulty_info.get((card_type, difficulty))
+        return OptionsScreen.difficulty_info.get((card_type, difficulty))
 
     def clear_difficulty_outline():
-        sound_class.sound_buttonpress.play()
+        Sound.sound_buttonpress.play()
         optionsscreen_canvas.itemconfig(
-            optionsscreen_class.description_title, text=optionsscreen_class.explanationtitle)
-        optionsscreen_class.description.config(
-            text=optionsscreen_class.explanation)
+            OptionsScreen.description_title, text=OptionsScreen.explanationtitle)
+        OptionsScreen.description.config(
+            text=OptionsScreen.explanation)
         optionsscreen_canvas.itemconfigure(
-            optionsscreen_class.buttonbg_difficulty_hard, image=optionsscreen_class.image_buttonbg)
+            OptionsScreen.buttonbg_difficulty_hard, image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
-            optionsscreen_class.buttonbg_difficulty_medium, image=optionsscreen_class.image_buttonbg)
+            OptionsScreen.buttonbg_difficulty_medium, image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
-            optionsscreen_class.buttonbg_difficulty_easy, image=optionsscreen_class.image_buttonbg)
+            OptionsScreen.buttonbg_difficulty_easy, image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
-            optionsscreen_class.buttonbg_difficulty_classical, image=optionsscreen_class.image_buttonbg)
-        data_class.does_score_exist()
-        optionsscreen_canvas.itemconfig(optionsscreen_class.specific_highscore_text, text=data_class.highscore_dict[
-                                        f"{optionsscreen_class.flashcardtype}-{optionsscreen_class.flashcarddifficulty}-{optionsscreen_class.flashcardtime}"])
+            OptionsScreen.buttonbg_difficulty_classical, image=OptionsScreen.image_buttonbg)
+        Data.does_score_exist()
+        optionsscreen_canvas.itemconfig(OptionsScreen.specific_highscore_text, text=Data.highscore_dict[
+                                        f"{OptionsScreen.flashcardtype}-{OptionsScreen.flashcarddifficulty}-{OptionsScreen.flashcardtime}"])
 
 
     def practice_button_pressed():
-        optionsscreen_class.explanationtitle = "Practice -"
-        optionsscreen_class.flashcardtime = "practice"
-        optionsscreen_class.explanation = "No time limit! Tone your math skills! (No results will be stored)"
-        optionsscreen_class.clear_time_outline()
+        OptionsScreen.explanationtitle = "Practice -"
+        OptionsScreen.flashcardtime = "practice"
+        OptionsScreen.explanation = "No time limit! Tone your math skills! (No results will be stored)"
+        OptionsScreen.clear_time_outline()
         optionsscreen_canvas.itemconfigure(
-            optionsscreen_class.buttonbg_time_practice, image=optionsscreen_class.image_buttonbg_outline_selected)
+            OptionsScreen.buttonbg_time_practice, image=OptionsScreen.image_buttonbg_outline_selected)
     practice_button = Button(optionsscreen_canvas, image=image_practice_button, borderwidth=0, highlightthickness=0,
-                             bg="#D9D9D9", command=lambda: optionsscreen_class.practice_button_pressed(), relief="flat")
+                             bg="#D9D9D9", command=lambda: OptionsScreen.practice_button_pressed(), relief="flat")
     practice_button.place(x=642.0, y=235.0, width=50.0, height=22.0)
     practice_button.config(activebackground="#C3C3C3")
 
     def practicebutton_onenter(event):
         event.widget.config(bg="#C3C3C3")
-        if optionsscreen_class.flashcardtime == "practice":
+        if OptionsScreen.flashcardtime == "practice":
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_time_practice, image=optionsscreen_class.image_buttonbg_outline_selected)
+                OptionsScreen.buttonbg_time_practice, image=OptionsScreen.image_buttonbg_outline_selected)
         else:
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_time_practice, image=optionsscreen_class.image_buttonbg_selected)
+                OptionsScreen.buttonbg_time_practice, image=OptionsScreen.image_buttonbg_selected)
 
     def practicebutton_onleave(event):
         event.widget.config(bg="#D9D9D9")
-        if optionsscreen_class.flashcardtime == "practice":
+        if OptionsScreen.flashcardtime == "practice":
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_time_practice, image=optionsscreen_class.image_buttonbg_outline)
+                OptionsScreen.buttonbg_time_practice, image=OptionsScreen.image_buttonbg_outline)
         else:
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_time_practice, image=optionsscreen_class.image_buttonbg)
+                OptionsScreen.buttonbg_time_practice, image=OptionsScreen.image_buttonbg)
     practice_button.bind("<Enter>", practicebutton_onenter)
     practice_button.bind("<Leave>", practicebutton_onleave)
 
     def twominute_button_pressed():
-        optionsscreen_class.minutes = 2
-        optionsscreen_class.seconds = 1
-        optionsscreen_class.explanationtitle = "2:00 -"
-        optionsscreen_class.explanation = "A good test of math skill and endurance! This is the standard flash card time!"
-        optionsscreen_class.flashcardtime = "twominute"
-        optionsscreen_class.clear_time_outline()
+        OptionsScreen.minutes = 2
+        OptionsScreen.seconds = 1
+        OptionsScreen.explanationtitle = "2:00 -"
+        OptionsScreen.explanation = "A good test of math skill and endurance! This is the standard flash card time!"
+        OptionsScreen.flashcardtime = "twominute"
+        OptionsScreen.clear_time_outline()
         optionsscreen_canvas.itemconfigure(
-            optionsscreen_class.buttonbg_time_twominute, image=optionsscreen_class.image_buttonbg_outline_selected)
+            OptionsScreen.buttonbg_time_twominute, image=OptionsScreen.image_buttonbg_outline_selected)
     twominute_button = Button(optionsscreen_canvas, image=image_twominute_button, borderwidth=0, highlightthickness=0,
-                              bg="#D9D9D9", command=lambda: optionsscreen_class.twominute_button_pressed(), relief="flat")
+                              bg="#D9D9D9", command=lambda: OptionsScreen.twominute_button_pressed(), relief="flat")
     twominute_button.place(x=644.0, y=92.0, width=47.0, height=20.0)
     twominute_button.config(activebackground="#C3C3C3")
 
     def twominutebutton_onenter(event):
         event.widget.config(bg="#C3C3C3")
-        if optionsscreen_class.flashcardtime == "twominute":
+        if OptionsScreen.flashcardtime == "twominute":
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_time_twominute, image=optionsscreen_class.image_buttonbg_outline_selected)
+                OptionsScreen.buttonbg_time_twominute, image=OptionsScreen.image_buttonbg_outline_selected)
         else:
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_time_twominute, image=optionsscreen_class.image_buttonbg_selected)
+                OptionsScreen.buttonbg_time_twominute, image=OptionsScreen.image_buttonbg_selected)
 
     def twominutebutton_onleave(event):
         event.widget.config(bg="#D9D9D9")
-        if optionsscreen_class.flashcardtime == "twominute":
+        if OptionsScreen.flashcardtime == "twominute":
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_time_twominute, image=optionsscreen_class.image_buttonbg_outline)
+                OptionsScreen.buttonbg_time_twominute, image=OptionsScreen.image_buttonbg_outline)
         else:
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_time_twominute, image=optionsscreen_class.image_buttonbg)
+                OptionsScreen.buttonbg_time_twominute, image=OptionsScreen.image_buttonbg)
     twominute_button.bind("<Enter>", twominutebutton_onenter)
     twominute_button.bind("<Leave>", twominutebutton_onleave)
 
     def oneminute_button_pressed():
-        optionsscreen_class.minutes = 1
-        optionsscreen_class.seconds = 1
-        optionsscreen_class.explanationtitle = "1:00 -"
-        optionsscreen_class.explanation = "Low on time? how about a minute of pure math!"
-        optionsscreen_class.flashcardtime = "oneminute"
-        optionsscreen_class.clear_time_outline()
+        OptionsScreen.minutes = 1
+        OptionsScreen.seconds = 1
+        OptionsScreen.explanationtitle = "1:00 -"
+        OptionsScreen.explanation = "Low on time? how about a minute of pure math!"
+        OptionsScreen.flashcardtime = "oneminute"
+        OptionsScreen.clear_time_outline()
         optionsscreen_canvas.itemconfigure(
-            optionsscreen_class.buttonbg_time_oneminute, image=optionsscreen_class.image_buttonbg_outline_selected)
+            OptionsScreen.buttonbg_time_oneminute, image=OptionsScreen.image_buttonbg_outline_selected)
     oneminute_button = Button(optionsscreen_canvas, image=image_oneminute_button, borderwidth=0, highlightthickness=0,
-                              bg="#D9D9D9", command=lambda: optionsscreen_class.oneminute_button_pressed(), relief="flat")
+                              bg="#D9D9D9", command=lambda: OptionsScreen.oneminute_button_pressed(), relief="flat")
     oneminute_button.place(x=642.0, y=139.0, width=50.0, height=22.0)
     oneminute_button.config(activebackground="#C3C3C3")
 
     def oneminutebutton_onenter(event):
         event.widget.config(bg="#C3C3C3")
-        if optionsscreen_class.flashcardtime == "oneminute":
+        if OptionsScreen.flashcardtime == "oneminute":
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_time_oneminute, image=optionsscreen_class.image_buttonbg_outline_selected)
+                OptionsScreen.buttonbg_time_oneminute, image=OptionsScreen.image_buttonbg_outline_selected)
         else:
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_time_oneminute, image=optionsscreen_class.image_buttonbg_selected)
+                OptionsScreen.buttonbg_time_oneminute, image=OptionsScreen.image_buttonbg_selected)
 
     def oneminutebutton_onleave(event):
         event.widget.config(bg="#D9D9D9")
-        if optionsscreen_class.flashcardtime == "oneminute":
+        if OptionsScreen.flashcardtime == "oneminute":
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_time_oneminute, image=optionsscreen_class.image_buttonbg_outline)
+                OptionsScreen.buttonbg_time_oneminute, image=OptionsScreen.image_buttonbg_outline)
         else:
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_time_oneminute, image=optionsscreen_class.image_buttonbg)
+                OptionsScreen.buttonbg_time_oneminute, image=OptionsScreen.image_buttonbg)
     oneminute_button.bind("<Enter>", oneminutebutton_onenter)
     oneminute_button.bind("<Leave>", oneminutebutton_onleave)
 
     def thirtysecond_button_pressed():
-        optionsscreen_class.minutes = 0
-        optionsscreen_class.seconds = 31
-        optionsscreen_class.explanationtitle = "0:30 -"
-        optionsscreen_class.explanation = "Wanna show off? Only thirty seconds to show your true math skills!"
-        optionsscreen_class.flashcardtime = "thirtysecond"
-        optionsscreen_class.clear_time_outline()
+        OptionsScreen.minutes = 0
+        OptionsScreen.seconds = 31
+        OptionsScreen.explanationtitle = "0:30 -"
+        OptionsScreen.explanation = "Wanna show off? Only thirty seconds to show your true math skills!"
+        OptionsScreen.flashcardtime = "thirtysecond"
+        OptionsScreen.clear_time_outline()
         optionsscreen_canvas.itemconfigure(
-            optionsscreen_class.buttonbg_time_thirtysecond, image=optionsscreen_class.image_buttonbg_outline_selected)
+            OptionsScreen.buttonbg_time_thirtysecond, image=OptionsScreen.image_buttonbg_outline_selected)
     thirtysecond_button = Button(optionsscreen_canvas, image=image_thirtysecond_button, borderwidth=0, highlightthickness=0,
-                                 bg="#D9D9D9", command=lambda: optionsscreen_class.thirtysecond_button_pressed(), relief="flat")
+                                 bg="#D9D9D9", command=lambda: OptionsScreen.thirtysecond_button_pressed(), relief="flat")
     thirtysecond_button.place(x=642.0, y=187.0, width=50.0, height=22.0)
     thirtysecond_button.config(activebackground="#C3C3C3")
 
     def thirtysecondbutton_onenter(event):
         event.widget.config(bg="#C3C3C3")
-        if optionsscreen_class.flashcardtime == "thirtysecond":
+        if OptionsScreen.flashcardtime == "thirtysecond":
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_time_thirtysecond, image=optionsscreen_class.image_buttonbg_outline_selected)
+                OptionsScreen.buttonbg_time_thirtysecond, image=OptionsScreen.image_buttonbg_outline_selected)
         else:
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_time_thirtysecond, image=optionsscreen_class.image_buttonbg_selected)
+                OptionsScreen.buttonbg_time_thirtysecond, image=OptionsScreen.image_buttonbg_selected)
 
     def thirtysecondbutton_onleave(event):
         event.widget.config(bg="#D9D9D9")
-        if optionsscreen_class.flashcardtime == "thirtysecond":
+        if OptionsScreen.flashcardtime == "thirtysecond":
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_time_thirtysecond, image=optionsscreen_class.image_buttonbg_outline)
+                OptionsScreen.buttonbg_time_thirtysecond, image=OptionsScreen.image_buttonbg_outline)
         else:
             optionsscreen_canvas.itemconfigure(
-                optionsscreen_class.buttonbg_time_thirtysecond, image=optionsscreen_class.image_buttonbg)
+                OptionsScreen.buttonbg_time_thirtysecond, image=OptionsScreen.image_buttonbg)
     thirtysecond_button.bind("<Enter>", thirtysecondbutton_onenter)
     thirtysecond_button.bind("<Leave>", thirtysecondbutton_onleave)
 
     def clear_time_outline():
-        sound_class.sound_buttonpress.play()
+        Sound.sound_buttonpress.play()
         optionsscreen_canvas.itemconfig(
-            optionsscreen_class.description_title, text=optionsscreen_class.explanationtitle)
-        optionsscreen_class.description.config(
-            text=optionsscreen_class.explanation)
+            OptionsScreen.description_title, text=OptionsScreen.explanationtitle)
+        OptionsScreen.description.config(
+            text=OptionsScreen.explanation)
         optionsscreen_canvas.itemconfigure(
-            optionsscreen_class.buttonbg_time_thirtysecond, image=optionsscreen_class.image_buttonbg)
+            OptionsScreen.buttonbg_time_thirtysecond, image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
-            optionsscreen_class.buttonbg_time_twominute, image=optionsscreen_class.image_buttonbg)
+            OptionsScreen.buttonbg_time_twominute, image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
-            optionsscreen_class.buttonbg_time_oneminute, image=optionsscreen_class.image_buttonbg)
+            OptionsScreen.buttonbg_time_oneminute, image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
-            optionsscreen_class.buttonbg_time_practice, image=optionsscreen_class.image_buttonbg)
-        data_class.does_score_exist()
-        optionsscreen_canvas.itemconfig(optionsscreen_class.specific_highscore_text, text=data_class.highscore_dict[
-                                        f"{optionsscreen_class.flashcardtype}-{optionsscreen_class.flashcarddifficulty}-{optionsscreen_class.flashcardtime}"])
+            OptionsScreen.buttonbg_time_practice, image=OptionsScreen.image_buttonbg)
+        Data.does_score_exist()
+        optionsscreen_canvas.itemconfig(OptionsScreen.specific_highscore_text, text=Data.highscore_dict[
+                                        f"{OptionsScreen.flashcardtype}-{OptionsScreen.flashcarddifficulty}-{OptionsScreen.flashcardtime}"])
 
     # Back Button
     def back_button_pressed():
-        sound_class.sound_buttonpress.play()
+        Sound.sound_buttonpress.play()
         optionsscreen_canvas.pack_forget()
         mainscreen_canvas.pack()
     back_button = Button(optionsscreen_canvas, image=image_back_button, borderwidth=0, highlightthickness=0,
-                         bg="#D9D9D9", command=lambda: optionsscreen_class.back_button_pressed(), relief="flat")
+                         bg="#D9D9D9", command=lambda: OptionsScreen.back_button_pressed(), relief="flat")
     back_button.place(x=60.0, y=440.0, width=94.0, height=30.0)
     back_button.config(activebackground="#C3C3C3")
 
     def backbutton_onenter(event): 
         event.widget.config(bg="#C3C3C3"), optionsscreen_canvas.itemconfigure(
-        optionsscreen_class.back_buttonbg, image=optionsscreen_class.image_back_buttonbg_selected),
+        OptionsScreen.back_buttonbg, image=OptionsScreen.image_back_buttonbg_selected),
     def backbutton_onleave(event): 
         event.widget.config(bg="#D9D9D9"), optionsscreen_canvas.itemconfigure(
-        optionsscreen_class.back_buttonbg, image=optionsscreen_class.image_back_buttonbg)
+        OptionsScreen.back_buttonbg, image=OptionsScreen.image_back_buttonbg)
     back_button.bind("<Enter>", backbutton_onenter)
     back_button.bind("<Leave>", backbutton_onleave)
 
@@ -2190,7 +2188,7 @@ class optionsscreen_class():
     description.place(x=296, y=382)
 
 
-class finalscreen_class():
+class FinalScreen():
     finalscore_feedback_text = ''
 
     image_scorebanner = PhotoImage(
@@ -2211,7 +2209,7 @@ class finalscreen_class():
         file=relative_to_assets("finalscreen/continue_button.png"))
 
     bg_image = finalscreen_canvas.create_image(
-        395.0, 255.0, image=userscreen_class.image_bg_image)
+        395.0, 255.0, image=UserScreen.image_bg_image)
     scorebanner = finalscreen_canvas.create_image(
         391.0, 197.0, image=image_scorebanner)
     scoreseperator_1 = finalscreen_canvas.create_image(
@@ -2249,26 +2247,26 @@ class finalscreen_class():
         325.0, 146.0, anchor="nw", text="Incorrect", fill="#000000", font=("Encode Sans", 35 * -1))
 
     def continue_button_pressed():
-        sound_class.sound_buttonpress.play()
-        mainscreen_class.post_game_cleanup()
+        Sound.sound_buttonpress.play()
+        MainScreen.post_game_cleanup()
         finalscreen_canvas.pack_forget()
         mainscreen_canvas.pack()
     continue_button = Button(finalscreen_canvas, image=image_continue_button, borderwidth=0, highlightthickness=0,
-                             bg="#D9D9D9", command=lambda: finalscreen_class.continue_button_pressed(), relief="flat")
+                             bg="#D9D9D9", command=lambda: FinalScreen.continue_button_pressed(), relief="flat")
     continue_button.place(x=584.0, y=424.0, width=72.0, height=25.0)
     continue_button.config(activebackground="#C3C3C3")
 
     def continuebutton_onenter(event): 
         event.widget.config(bg="#C3C3C3"), finalscreen_canvas.itemconfigure(
-        finalscreen_class.buttonbg, image=finalscreen_class.image_buttonbg_selected),
+        FinalScreen.buttonbg, image=FinalScreen.image_buttonbg_selected),
     def continuebutton_onleave(event): 
         event.widget.config(bg="#D9D9D9"), finalscreen_canvas.itemconfigure(
-        finalscreen_class.buttonbg, image=finalscreen_class.image_buttonbg)
+        FinalScreen.buttonbg, image=FinalScreen.image_buttonbg)
     continue_button.bind("<Enter>", continuebutton_onenter)
     continue_button.bind("<Leave>", continuebutton_onleave)
 
 
-class historyscreen_class():
+class HistoryScreen():
     image_actionbuttonbg = PhotoImage(
         file=relative_to_assets("historyscreen/actionbuttonbg.png"))
     image_actionbuttonbg_selected = PhotoImage(
@@ -2283,7 +2281,7 @@ class historyscreen_class():
         file=relative_to_assets("historyscreen/info_button.png"))
 
     bg_image = historyscreen_canvas.create_image(
-        395.0, 255.0, image=userscreen_class.image_bg_image)
+        395.0, 255.0, image=UserScreen.image_bg_image)
     buttonbanner_1 = historyscreen_canvas.create_image(
         89.0, 454.0, image=image_buttonbanner)
     buttonbanner_2 = historyscreen_canvas.create_image(
@@ -2296,67 +2294,67 @@ class historyscreen_class():
         399.0, 227.0, image=image_datasheet_bg)
 
     def back_button_pressed():
-        sound_class.sound_buttonpress.play()
+        Sound.sound_buttonpress.play()
         historyscreen_canvas.pack_forget()
         mainscreen_canvas.pack()
     back_button = Button(historyscreen_canvas, image=image_back_button, borderwidth=0, highlightthickness=0,
-                         bg="#D9D9D9", command=lambda: historyscreen_class.back_button_pressed(), relief="flat")
+                         bg="#D9D9D9", command=lambda: HistoryScreen.back_button_pressed(), relief="flat")
     back_button.place(x=42.0, y=438.0, width=93.0, height=30.0)
     back_button.config(activebackground="#C3C3C3")
 
     def backbutton_onenter(event): 
         event.widget.config(bg="#C3C3C3"), historyscreen_canvas.itemconfigure(
-        historyscreen_class.actionbuttonbg_1, image=historyscreen_class.image_actionbuttonbg_selected),
+        HistoryScreen.actionbuttonbg_1, image=HistoryScreen.image_actionbuttonbg_selected),
 
     def backbutton_onleave(event): 
         event.widget.config(bg="#D9D9D9"), historyscreen_canvas.itemconfigure(
-        historyscreen_class.actionbuttonbg_1, image=historyscreen_class.image_actionbuttonbg)
+        HistoryScreen.actionbuttonbg_1, image=HistoryScreen.image_actionbuttonbg)
     back_button.bind("<Enter>", backbutton_onenter)
     back_button.bind("<Leave>", backbutton_onleave)
 
     def info_button_pressed():
-        sound_class.sound_buttonpress.play()
+        Sound.sound_buttonpress.play()
         profilescreen_canvas.pack()
         historyscreen_canvas.pack_forget()
-        profilescreen_class.personalize_screen(data_class.userlevel)
-        profilescreen_class.button_back.config(
-            command=lambda: historyscreen_class.changed_back_button_pressed())
-        profilescreen_canvas.coords(profilescreen_class.history_bg, 1000, 1000)
+        ProfileScreen.personalize_screen(Data.userlevel)
+        ProfileScreen.button_back.config(
+            command=lambda: HistoryScreen.changed_back_button_pressed())
+        profilescreen_canvas.coords(ProfileScreen.history_bg, 1000, 1000)
         profilescreen_canvas.coords(
-            profilescreen_class.history_banner, 1000, 1000)
-        profilescreen_canvas.coords(profilescreen_class.edit_bg, 1000, 1000)
+            ProfileScreen.history_banner, 1000, 1000)
+        profilescreen_canvas.coords(ProfileScreen.edit_bg, 1000, 1000)
         profilescreen_canvas.coords(
-            profilescreen_class.edit_banner, 1000, 1000)
-        profilescreen_class.button_history.place_configure(x=1000, y=1000)
-        profilescreen_class.button_edit.place_configure(x=1000, y=1000)
+            ProfileScreen.edit_banner, 1000, 1000)
+        ProfileScreen.button_history.place_configure(x=1000, y=1000)
+        ProfileScreen.button_edit.place_configure(x=1000, y=1000)
 
     def changed_back_button_pressed():
-        sound_class.sound_buttonpress.play()
+        Sound.sound_buttonpress.play()
         historyscreen_canvas.pack()
         profilescreen_canvas.pack_forget()
         profilescreen_canvas.coords(
-            profilescreen_class.history_bg, 399.0, 451.0)
+            ProfileScreen.history_bg, 399.0, 451.0)
         profilescreen_canvas.coords(
-            profilescreen_class.history_banner, 399.0, 452.0)
-        profilescreen_canvas.coords(profilescreen_class.edit_bg, 601.0, 452.0)
+            ProfileScreen.history_banner, 399.0, 452.0)
+        profilescreen_canvas.coords(ProfileScreen.edit_bg, 601.0, 452.0)
         profilescreen_canvas.coords(
-            profilescreen_class.edit_banner, 601.0, 451.0)
-        profilescreen_class.button_history.place_configure(x=366.0, y=437.0)
-        profilescreen_class.button_edit.place_configure(x=568.0, y=437.0)
-        profilescreen_class.button_back.config(
-            command=lambda: profilescreen_class.button_back_pressed())
+            ProfileScreen.edit_banner, 601.0, 451.0)
+        ProfileScreen.button_history.place_configure(x=366.0, y=437.0)
+        ProfileScreen.button_edit.place_configure(x=568.0, y=437.0)
+        ProfileScreen.button_back.config(
+            command=lambda: ProfileScreen.button_back_pressed())
     info_button = Button(historyscreen_canvas, image=image_info_button, borderwidth=0, highlightthickness=0,
-                         bg="#D9D9D9", command=lambda: historyscreen_class.info_button_pressed(), relief="flat")
+                         bg="#D9D9D9", command=lambda: HistoryScreen.info_button_pressed(), relief="flat")
     info_button.place(x=663.0, y=438.0, width=93.0, height=30.0)
     info_button.config(activebackground="#C3C3C3")
 
     def infobutton_onenter(event): 
         event.widget.config(bg="#C3C3C3"), historyscreen_canvas.itemconfigure(
-        historyscreen_class.actionbuttonbg_2, image=historyscreen_class.image_actionbuttonbg_selected),
+        HistoryScreen.actionbuttonbg_2, image=HistoryScreen.image_actionbuttonbg_selected),
 
     def infobutton_onleave(event): 
         event.widget.config(bg="#D9D9D9"), historyscreen_canvas.itemconfigure(
-        historyscreen_class.actionbuttonbg_2, image=historyscreen_class.image_actionbuttonbg)
+        HistoryScreen.actionbuttonbg_2, image=HistoryScreen.image_actionbuttonbg)
     info_button.bind("<Enter>", infobutton_onenter)
     info_button.bind("<Leave>", infobutton_onleave)
 
@@ -2381,15 +2379,15 @@ class historyscreen_class():
         from sv_ttk import use_light_theme
         use_light_theme()
         try:
-            historyscreen_class.tree.delete(
-                *historyscreen_class.tree.get_children())
+            HistoryScreen.tree.delete(
+                *HistoryScreen.tree.get_children())
         except:
             pass
-        for game in data_class.user_data[userlevel]['gamehistory']:
+        for game in Data.user_data[userlevel]['gamehistory']:
             try:
                 game_percentage = game['correct'] / \
                     (game['incorrect'] + game['correct'])
-                historyscreen_class.tree.insert('', 'end', values=(
+                HistoryScreen.tree.insert('', 'end', values=(
                     game['date'], game['time'], game['correct'], game['incorrect'], game['mode'], f"{round(game_percentage * 100, 2)}%"))
             except:
                 pass
