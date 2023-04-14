@@ -1,5 +1,6 @@
 from pygame import mixer
 
+
 class sound_class():
     mixer.init()
     sound_correct = mixer.Sound("assets/sounds/correct.wav")
