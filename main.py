@@ -9,13 +9,10 @@ from datetime import datetime
 from sys import argv
 from sound import *
 
-
-
 system('cls')
 
 exe_dir = path.dirname(argv[0])
 chdir(exe_dir)
-
 
 
 OUTPUT_PATH = exe_dir
@@ -37,8 +34,6 @@ userscreen_canvas = Canvas( window, bg = windowcolor, height = 500, width = 800,
 profilescreen_canvas = Canvas( window, bg = windowcolor, height = 500, width = 800, bd = 0, highlightthickness = 0, relief = "ridge" )
 
 
-
-   
 class userscreen_class():
     #Images
     image_bg_image = PhotoImage( file=relative_to_assets("bg_image.png"))
@@ -86,10 +81,6 @@ class userscreen_class():
     backbutton_bg = userscreen_canvas.create_image( 248.0, 452.0, image=image_actionbutton_bg )
     userremove_banner = userscreen_canvas.create_image( 551.0, 453.0, image=image_actionbutton_banner )
     userremove_bg = userscreen_canvas.create_image( 552.0, 452.0, image=image_actionbutton_bg )
-
-
-
-
 
 
     button_usertitle0 = Button(userscreen_canvas, text='', fg="#000000", bg="#D9D9D9", anchor="w", font=("Encode Sans", 27 * -1), borderwidth=0, highlightthickness=0, command=lambda: userscreen_class.log_into_user(0), relief="flat" )
@@ -361,9 +352,6 @@ class userscreen_class():
             userscreen_class.hide_buttons(-1000, -1000)
 
 
-
-
-
     def hide_buttons(x, y):
         try:
             for titlebutton in data_class.usertitle_buttons:
@@ -576,10 +564,6 @@ class profilescreen_class():
     button_history.bind("<Leave>", button_history_onleave)
 
 
-
-
-
-#----------------------------------------------------------------------------------------------- StartScreen
 class startscreen_class():
     muted = False
     image_titlebanner = PhotoImage( file=relative_to_assets("startscreen/titlebanner.png"))
@@ -594,7 +578,6 @@ class startscreen_class():
     image_unmuted = PhotoImage( file=relative_to_assets("startscreen/unmuted.png"))
     image_muted = PhotoImage(file=relative_to_assets("startscreen/volumemuted.png"))
 
-    #Placed Elements
     bg_image = startscreen_canvas.create_image( 395.0, 255.0, image=userscreen_class.image_bg_image)
     title_banner = startscreen_canvas.create_image( 400.0, 106.0, image=image_titlebanner )
     title = startscreen_canvas.create_image( 400.0, 100.0, image=image_title )
@@ -612,7 +595,6 @@ class startscreen_class():
     leaderboard_buttonbanner = startscreen_canvas.create_image( 329.0, 315.0, image=image_buttonbanner )
     leaderboard_buttonbg = startscreen_canvas.create_image( 330.0, 314.0, image=image_buttonbg )
 
-    #Volume Button
     def volume_button_pressed():
         if startscreen_class.muted == False:
             startscreen_class.button_volume.configure(image=startscreen_class.image_muted)
@@ -664,10 +646,6 @@ class startscreen_class():
     button_leaderboard.bind("<Enter>", button_leaderboard_onenter)
     button_leaderboard.bind("<Leave>", button_leaderboard_onleave)
 
-
-
-
-#-----------------------------------------------------------------
 
 class data_class():
     userlevel = None
@@ -769,9 +747,6 @@ data_class.check_for_users()
 
 
 
-
-
-#----------------------------------------------------------------------------------------------- MainScreen
 class mainscreen_class():
     currentscore = 0
     high_score = 0
@@ -819,7 +794,7 @@ class mainscreen_class():
     image_quit_buttonbg_selected = PhotoImage( file=relative_to_assets("mainscreen/quit_buttonbg_selected.png"))
     image_no_quit_button = PhotoImage( file=relative_to_assets("mainscreen/no_quit_button.png"))
     image_yes_quit_button = PhotoImage( file=relative_to_assets("mainscreen/yes_quit_button.png"))
-    #Placed Elements
+
     bg_image = mainscreen_canvas.create_image( 395.0, 255.0, image=userscreen_class.image_bg_image)
     flashbg = mainscreen_canvas.create_image(408.0, 218.0, image=image_flashbg)
     banner6 = mainscreen_canvas.create_image(640.0, 134.0, image=image_banner6)
@@ -845,7 +820,6 @@ class mainscreen_class():
     
 
 
-    #Back Button
     def back_button_pressed():
         sound_class.sound_buttonpress.play()
         if mainscreen_class.game_started == True:
@@ -862,7 +836,6 @@ class mainscreen_class():
     back_button.bind("<Leave>", backbutton_onleave)
 
 
-    #Settings Button
     def settings_button_pressed():
         sound_class.sound_buttonpress.play()
         optionsscreen_canvas.itemconfig(optionsscreen_class.specific_highscore_text, text=data_class.highscore_dict[f"{optionsscreen_class.flashcardtype}-{optionsscreen_class.flashcarddifficulty}-{optionsscreen_class.flashcardtime}"])
@@ -877,7 +850,6 @@ class mainscreen_class():
     settings_button.bind("<Leave>", settingsbutton_onleave)
 
 
-    #History Button
     def history_button_pressed():
         sound_class.sound_buttonpress.play()
         historyscreen_class.display_data(data_class.userlevel)
@@ -892,7 +864,6 @@ class mainscreen_class():
     history_button.bind("<Leave>", historybutton_onleave)
 
 
-    #Start Button
     def start_button_pressed():
         mainscreen_class.place_countdownscreen()
         sound_class.sound_buttonpress.play()
@@ -904,7 +875,6 @@ class mainscreen_class():
     start_button.bind("<Enter>", startbutton_onenter)
     start_button.bind("<Leave>", startbutton_onleave)
 
-    #Place Text
     flashcard2_text = mainscreen_canvas.create_text(359.0, 184.0, anchor="nw", text=flashcard1, fill="#000000", font=("Helvetica", 70 * -1))
     flashcard1_text = mainscreen_canvas.create_text(359.0, 116.0, anchor="nw", text=flashcard2, fill="#000000", font=("Helvetica", 70 * -1))
     time_text = mainscreen_canvas.create_text(591.0, 113.0, anchor="nw", text='', fill="#000000", font=("Encode Sans", 40 * -1))
@@ -916,13 +886,7 @@ class mainscreen_class():
     mainscreen_canvas.create_text(88.0, 103.0, anchor="nw", text="Current Score", fill="#000000", font=("Encode Sans", 25 * -1))
 
 
-
-
-
-
-
     def place_countdownscreen():
-        #CountDown Elements
         countdownbox = mainscreen_canvas.create_image( 407.0, 211.0, image=mainscreen_class.image_countdownbox )
         cancel_countdown_bg = mainscreen_canvas.create_image( 297.0, 113.0, image=mainscreen_class.image_cancel_countdown_bg )
 
@@ -963,15 +927,6 @@ class mainscreen_class():
             mainscreen_class.post_game_cleanup()
             destroy_countdownscreen()
         initialize_countdown(3, destroy_countdownscreen)
-
-
-
-
-
-
-
-
-
 
 
     def confirm_quit():
@@ -1020,26 +975,7 @@ class mainscreen_class():
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     def start_game():
-        # sound_class.sound_countdown_end.play()
         mainscreen_class.game_started = True
         mainscreen_canvas.itemconfig(mainscreen_class.currentscore_text, text=mainscreen_class.currentscore)
         mainscreen_class.entrybox.place(x=364.0, y=278.0, width=44.0, height=21.0)
@@ -1204,10 +1140,6 @@ class mainscreen_class():
     entrybox.bind('<Return>', user_pressed_enter)
 
 
-#-----------------------------------------------------------------
-
-
-#----------------------------------------------------------------------------------------------- OptionsScreen
 class optionsscreen_class():
     flashcardtype = "*"
     flashcarddifficulty = "classical"
@@ -1309,13 +1241,6 @@ class optionsscreen_class():
         optionsscreen_canvas.itemconfigure(optionsscreen_class.buttonbg_time_twominute, image=optionsscreen_class.image_buttonbg_outline)
 
 
-
-
-
-
-    #Buttons
-
-    #Flash Card Type Buttons
     def multiplication_button_pressed():
         optionsscreen_class.flashcardtype = "*"
         optionsscreen_class.explanationtitle, optionsscreen_class.explanation, optionsscreen_class.difficultyint1, optionsscreen_class.difficultyint2 = optionsscreen_class.get_info(
@@ -1431,10 +1356,6 @@ class optionsscreen_class():
     division_button.bind("<Leave>", divisionbutton_onleave)
 
 
-
-    
-
-
     def clear_type_outline():
         sound_class.sound_buttonpress.play()
         optionsscreen_canvas.itemconfig(optionsscreen_class.description_title, text=optionsscreen_class.explanationtitle)
@@ -1445,11 +1366,6 @@ class optionsscreen_class():
         optionsscreen_canvas.itemconfigure(optionsscreen_class.buttonbg_type_subtraction, image=optionsscreen_class.image_buttonbg)
         data_class.does_score_exist()
         optionsscreen_canvas.itemconfig(optionsscreen_class.specific_highscore_text, text=data_class.highscore_dict[f"{optionsscreen_class.flashcardtype}-{optionsscreen_class.flashcarddifficulty}-{optionsscreen_class.flashcardtime}"])
-
-
-
-
-
 
 
     #Difficulty Buttons
@@ -1733,13 +1649,11 @@ class optionsscreen_class():
                         font=("Encode Sans", 17 * -1), wraplength=211, fg="#000000", bg="#FFFFFF")
     description.place(x= 296, y= 382)
 
-#-----------------------------------------------------------------
 
 
-#----------------------------------------------------------------------------------------------- finalScreen
 class finalscreen_class():
     finalscore_feedback_text = ''
-    #finalScreen Images
+
     image_scorebanner = PhotoImage( file=relative_to_assets("finalscreen/scorebanner.png"))
     image_scoreseperator = PhotoImage( file=relative_to_assets("finalscreen/scoreseperator.png"))
     image_scorebg = PhotoImage( file=relative_to_assets("finalscreen/scorebg.png"))
@@ -1748,7 +1662,7 @@ class finalscreen_class():
     image_buttonbg = PhotoImage( file=relative_to_assets("finalscreen/buttonbg.png"))
     image_buttonbg_selected = PhotoImage( file=relative_to_assets("finalscreen/buttonbg_selected.png"))
     image_continue_button = PhotoImage( file=relative_to_assets("finalscreen/continue_button.png"))
-    #Place Elements
+
     bg_image = finalscreen_canvas.create_image( 395.0, 255.0, image=userscreen_class.image_bg_image)
     scorebanner = finalscreen_canvas.create_image( 391.0, 197.0, image=image_scorebanner )
     scoreseperator_1 = finalscreen_canvas.create_image( 392.0, 90.0, image=image_scoreseperator )
@@ -1761,7 +1675,7 @@ class finalscreen_class():
     feedbackbanner = finalscreen_canvas.create_image( 620.0, 436.0, image=image_feedbackbanner )
     buttonbg = finalscreen_canvas.create_image( 620.0, 436.0, image=image_buttonbg )
 
-    #Text
+
     yourscore_text = finalscreen_canvas.create_text( 390.0, 118.0, anchor="center", text="", fill="#000000", font=("Encode Sans", 33 * -1) )
     incorrect_text = finalscreen_canvas.create_text( 390.0, 222.0, anchor="center", text="", fill="#000000", font=("Encode Sans", 33 * -1) )
     highscore_text = finalscreen_canvas.create_text( 391.0, 332.0, anchor="center", text="", fill="#000000", font=("Encode Sans", 33 * -1) )
@@ -1771,7 +1685,6 @@ class finalscreen_class():
     finalscreen_canvas.create_text( 325.0, 146.0, anchor="nw", text="Incorrect", fill="#000000", font=("Encode Sans", 35 * -1) )
 
 
-    #Continue Button
     def continue_button_pressed():
         sound_class.sound_buttonpress.play()
         mainscreen_class.post_game_cleanup()
@@ -1785,10 +1698,7 @@ class finalscreen_class():
     continue_button.bind("<Enter>", continuebutton_onenter)
     continue_button.bind("<Leave>", continuebutton_onleave)
 
-#-----------------------------------------------------------------
 
-
-#----------------------------------------------------------------------------------------------- historyScreen
 class historyscreen_class():
     image_actionbuttonbg = PhotoImage( file=relative_to_assets("historyscreen/actionbuttonbg.png"))
     image_actionbuttonbg_selected = PhotoImage( file=relative_to_assets("historyscreen/actionbuttonbg_selected.png"))
@@ -1891,17 +1801,6 @@ class historyscreen_class():
 
     tree.place(x=110, y=67, height=317, width=560)
     scrollbar.place(x=673, y=67, height=317)
-
-    
-
-#-----------------------------------------------------------------
-
-
-
-
-
-
-
 
 
 userscreen_canvas.pack()
