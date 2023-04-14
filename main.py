@@ -989,9 +989,6 @@ class Data():
             Data.highscore_dict[f"{OptionsScreen.flashcardtype}-{OptionsScreen.flashcarddifficulty}-{OptionsScreen.flashcardtime}"] = '0'
 
 
-Data.check_for_users()
-
-
 class MainScreen():
     currentscore = 0
     high_score = 0
@@ -2404,7 +2401,7 @@ class HistoryScreen():
     tree.place(x=110, y=67, height=317, width=560)
     scrollbar.place(x=673, y=67, height=317)
 
-
+Data.check_for_users()
 userscreen_canvas.pack()
 
 window.geometry("800x500")
