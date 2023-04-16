@@ -1003,7 +1003,7 @@ class MainScreen():
     countdown_initialized = False
     game_started = False
     # mainScreen Images
-    image_flashbg = PhotoImage(
+    image_flashcard = PhotoImage(
         file=relative_to_assets("mainscreen/flashbg.png"))
     image_banner6 = PhotoImage(
         file=relative_to_assets("mainscreen/banner6.png"))
@@ -1070,7 +1070,7 @@ class MainScreen():
 
     bg_image = mainscreen_canvas.create_image(
         395.0, 255.0, image=UserScreen.image_bg_image)
-    flashbg = mainscreen_canvas.create_image(408.0, 218.0, image=image_flashbg)
+    flashcard = mainscreen_canvas.create_image(408.0, 218.0, image=image_flashcard)
     banner6 = mainscreen_canvas.create_image(640.0, 134.0, image=image_banner6)
     correctanswerbgbox = mainscreen_canvas.create_image(
         641.0, 221.0, image=image_banner7)
@@ -1361,20 +1361,35 @@ class MainScreen():
             MainScreen.generate_problem()
         if OptionsScreen.flashcardtype == "/" and not MainScreen.flashcard1 % MainScreen.flashcard2 == 0:
             MainScreen.generate_problem()
+        if MainScreen.flashcard2 > 10 and MainScreen.flashcard1 < 10:
+            MainScreen.generate_problem()
+
+    def problem_wrong():
+        MainScreen.animation_answer_wrong()
+        MainScreen.feedback = "Wrong!"
+        MainScreen.incorrect = MainScreen.incorrect + 1
+        Sound.sound_wrong.play()
+        if MainScreen.currentscore > 0:
+            MainScreen.currentscore = MainScreen.currentscore - 1
+
+    def problem_correct():
+        MainScreen.feedback = "Correct!"
+        MainScreen.currentscore = MainScreen.currentscore + 1
+        Sound.sound_correct.play()
+
+    def animation_answer_wrong():
+        pass
+
+    def animation_answer_correct():
+        pass
 
     def user_pressed_enter(event):
         user_answer = MainScreen.entrybox.get()
         try:
             if int(user_answer) == MainScreen.correctanswer:
-                MainScreen.feedback = "Correct!"
-                MainScreen.currentscore = MainScreen.currentscore + 1
-                Sound.sound_correct.play()
+                MainScreen.problem_correct()
             else:
-                MainScreen.feedback = "Wrong!"
-                MainScreen.incorrect = MainScreen.incorrect + 1
-                Sound.sound_wrong.play()
-                if MainScreen.currentscore > 0:
-                    MainScreen.currentscore = MainScreen.currentscore - 1
+                MainScreen.problem_wrong()
         except:
             return
         mainscreen_canvas.itemconfig(
