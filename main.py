@@ -312,6 +312,8 @@ class UserScreen:
     temp = None
 
     def create_user(userlevel):
+        UserScreen.button_back.configure(command=lambda: None)
+        UserScreen.button_userremove.configure(command=lambda: None)
         Sound.sound_buttonpress.play()
         UserScreen.temp = userlevel
         UserScreen.hide_buttons(1000, 1000)
@@ -341,6 +343,8 @@ class UserScreen:
 
         def enter_pressed(event):
             newuser_username = username_entry.get()
+            if newuser_username == "":
+                return
             exit_create_user()
             Data.add_user(newuser_username, UserScreen.temp)
 
@@ -410,6 +414,8 @@ class UserScreen:
         button_confirm.bind("<Leave>", button_confirm_onleave)
 
         def exit_create_user():
+            UserScreen.button_back.configure(command=lambda: UserScreen.back_button_pressed())
+            UserScreen.button_userremove.configure(command=lambda: UserScreen.remove_user_mode())
             Sound.sound_buttonpress.play()
             UserScreen.hide_buttons(-1000, -1000)
             userscreen_canvas.delete(newuser_banner)
@@ -528,6 +534,8 @@ class UserScreen:
     button_useraction3.bind("<Leave>", useraction3_onleave)
 
     def confirm_remove_user(i):
+        UserScreen.button_back.configure(command=lambda: None)
+        UserScreen.button_userremove.configure(command=lambda: None)
         Sound.sound_buttonpress.play()
         try:
             username = Data.user_data[i]["displayname"]
@@ -566,14 +574,14 @@ class UserScreen:
         button_delete_yes.config(activebackground="#C3C3C3")
 
         def button_delete_yes_onenter(event):
-            event.widget.config(bg="#C3C3C3"), userscreen_canvas.itemconfigure(
-                delete_confirm_bg_yes, image=UserScreen.image_delete_confirm_bg_selected
-            )
+            event.widget.config(bg="#C3C3C3")
+            userscreen_canvas.itemconfigure(delete_confirm_bg_yes,
+                        image=UserScreen.image_delete_confirm_bg_selected)
 
         def button_delete_yes_onleave(event):
-            event.widget.config(bg="#D9D9D9"), userscreen_canvas.itemconfigure(
-                delete_confirm_bg_yes, image=UserScreen.image_delete_confirm_bg
-            )
+            event.widget.config(bg="#D9D9D9")
+            userscreen_canvas.itemconfigure(delete_confirm_bg_yes,
+                        image=UserScreen.image_delete_confirm_bg)
 
         button_delete_yes.bind("<Enter>", button_delete_yes_onenter)
         button_delete_yes.bind("<Leave>", button_delete_yes_onleave)
@@ -609,6 +617,8 @@ class UserScreen:
             Data.remove_user(i)
 
         def exit_delete_prompt():
+            UserScreen.button_back.configure(command=lambda: UserScreen.back_button_pressed())
+            UserScreen.button_userremove.configure(command=lambda: UserScreen.remove_user_mode())
             Sound.sound_buttonpress.play()
             UserScreen.remove_user_mode()
             userscreen_canvas.delete(delete_confirm_banner)
@@ -701,6 +711,8 @@ class UserScreen:
     button_userremove.bind("<Leave>", userremove_onleave)
 
     def login_error():
+        UserScreen.button_back.configure(command=lambda: None)
+        UserScreen.button_userremove.configure(command=lambda: None)
         UserScreen.hide_buttons(1000, 1000)
         popup_banner = userscreen_canvas.create_image(
             399.0, 210.0, image=UserScreen.image_popup_banner
@@ -738,6 +750,8 @@ class UserScreen:
         button_ok.bind("<Leave>", buttonback_onleave)
 
         def hide_error():
+            UserScreen.button_back.configure(command=lambda: UserScreen.back_button_pressed())
+            UserScreen.button_userremove.configure(command=lambda: UserScreen.remove_user_mode())
             Sound.sound_buttonpress.play()
             userscreen_canvas.delete(popup_banner)
             userscreen_canvas.delete(popup_text)
@@ -1605,14 +1619,14 @@ class MainScreen:
     back_button.config(activebackground="#C3C3C3")
 
     def backbutton_onenter(event):
-        event.widget.config(bg="#C3C3C3"), mainscreen_canvas.itemconfigure(
-            MainScreen.buttonboxbg_1, image=MainScreen.image_buttonboxbg_selected
-        ),
-
+        event.widget.config(bg="#C3C3C3")
+        mainscreen_canvas.itemconfigure(MainScreen.buttonboxbg_1, 
+                image=MainScreen.image_buttonboxbg_selected)
+        
     def backbutton_onleave(event):
-        event.widget.config(bg="#D9D9D9"), mainscreen_canvas.itemconfigure(
-            MainScreen.buttonboxbg_1, image=MainScreen.image_buttonboxbg
-        )
+        event.widget.config(bg="#D9D9D9")
+        mainscreen_canvas.itemconfigure(MainScreen.buttonboxbg_1,
+                image=MainScreen.image_buttonboxbg)
 
     back_button.bind("<Enter>", backbutton_onenter)
     back_button.bind("<Leave>", backbutton_onleave)
@@ -1870,6 +1884,7 @@ class MainScreen:
         initialize_countdown(3, destroy_countdownscreen)
 
     def confirm_quit():
+        MainScreen.back_button.configure(command=lambda: None)
         quit_banner = mainscreen_canvas.create_image(
             408.0, 215.0, image=MainScreen.image_quit_banner
         )
@@ -1910,14 +1925,14 @@ class MainScreen:
         yes_quit_button.config(activebackground="#C3C3C3")
 
         def yes_quitbutton_onenter(event):
-            event.widget.config(bg="#C3C3C3"), mainscreen_canvas.itemconfigure(
-                quit_buttonbg_2, image=MainScreen.image_quit_buttonbg_selected
-            ),
+            event.widget.config(bg="#C3C3C3")
+            mainscreen_canvas.itemconfigure(quit_buttonbg_2,
+                image=MainScreen.image_quit_buttonbg_selected)
 
         def yes_quitbutton_onleave(event):
-            event.widget.config(bg="#D9D9D9"), mainscreen_canvas.itemconfigure(
-                quit_buttonbg_2, image=MainScreen.image_quit_buttonbg
-            )
+            event.widget.config(bg="#D9D9D9")
+            mainscreen_canvas.itemconfigure(quit_buttonbg_2, 
+                image=MainScreen.image_quit_buttonbg)
 
         yes_quit_button.bind("<Enter>", yes_quitbutton_onenter)
         yes_quit_button.bind("<Leave>", yes_quitbutton_onleave)
@@ -1938,19 +1953,20 @@ class MainScreen:
         no_quit_button.config(activebackground="#C3C3C3")
 
         def no_quitbutton_onenter(event):
-            event.widget.config(bg="#C3C3C3"), mainscreen_canvas.itemconfigure(
-                quit_buttonbg_1, image=MainScreen.image_quit_buttonbg_selected
-            ),
+            event.widget.config(bg="#C3C3C3")
+            mainscreen_canvas.itemconfigure(quit_buttonbg_1, 
+                        image=MainScreen.image_quit_buttonbg_selected),
 
         def no_quitbutton_onleave(event):
-            event.widget.config(bg="#D9D9D9"), mainscreen_canvas.itemconfigure(
-                quit_buttonbg_1, image=MainScreen.image_quit_buttonbg
-            )
+            event.widget.config(bg="#D9D9D9")
+            mainscreen_canvas.itemconfigure(quit_buttonbg_1, 
+                        image=MainScreen.image_quit_buttonbg)
 
         no_quit_button.bind("<Enter>", no_quitbutton_onenter)
         no_quit_button.bind("<Leave>", no_quitbutton_onleave)
 
         def destroy_quitbox():
+            MainScreen.back_button.configure(command=lambda: MainScreen.back_button_pressed())
             mainscreen_canvas.delete(quit_banner)
             mainscreen_canvas.delete(quit_buttonbg_1)
             mainscreen_canvas.delete(quit_buttonbg_2)
@@ -2331,7 +2347,6 @@ class OptionsScreen:
     image_highscore_bg = PhotoImage(
         file=relative_to_assets("optionsscreen/highscore_bg.png")
     )
-    # Place Elements
     bg_image = optionsscreen_canvas.create_image(
         395.0, 255.0, image=UserScreen.image_bg_image
     )
