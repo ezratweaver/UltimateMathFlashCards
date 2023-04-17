@@ -231,6 +231,7 @@ class UserScreen():
             "Encode Sans", 20), justify="center", validate='key', validatecommand=(validate_cmd, '%P'))
         username_entry.place(x=313.0, y=218.0, width=173.0, height=41.0)
         username_entry.bind('<Return>', enter_pressed)
+        username_entry.focus_set()
 
         button_cancel = Button(userscreen_canvas, image=UserScreen.image_cancel, borderwidth=0,
                                bg="#D9D9D9", highlightthickness=0, command=lambda: exit_create_user(), relief="flat")
@@ -657,6 +658,7 @@ class ProfileScreen():
             "Encode Sans", 20), justify="center", validate='key', validatecommand=(validate_cmd, '%P'))
         username_entry.place(x=313.0, y=218.0, width=173.0, height=41.0)
         username_entry.bind('<Return>', enter_pressed)
+        username_entry.focus_set()
 
         button_cancel = Button(profilescreen_canvas, image=UserScreen.image_cancel, borderwidth=0,
                                bg="#D9D9D9", highlightthickness=0, command=lambda: exit_rename(), relief="flat")
@@ -1335,6 +1337,7 @@ class MainScreen():
             MainScreen.currentscore_text, text=MainScreen.currentscore)
         MainScreen.entrybox.place(
             x=364.0, y=278.0, width=44.0, height=21.0)
+        MainScreen.entrybox.focus_set()
         MainScreen.generate_problem()
         if OptionsScreen.flashcardtime == "practice":
             mainscreen_canvas.itemconfig(
@@ -1404,7 +1407,7 @@ class MainScreen():
         else:
             font_size = stage_two_size
         animation_count += 1
-        mainscreen_canvas.itemconfigure(MainScreen.currentscore_text, 
+        mainscreen_canvas.itemconfigure(MainScreen.currentscore_text,
                                         font=("Encode Sans", 23 + font_size))
         if animation_count < 3:
             mainscreen_canvas.after(
