@@ -665,13 +665,15 @@ class ProfileScreen():
         button_cancel.place(x=252.0, y=220.0, width=45, height=39)
         button_cancel.config(activebackground="#C3C3C3")
 
-        def button_cancel_onenter(event): 
-            event.widget.config(bg="#C3C3C3"), profilescreen_canvas.itemconfigure(
-            cancel_bg, image=UserScreen.image_verify_bg_selected)
+        def button_cancel_onenter(event):
+            event.widget.config(bg="#C3C3C3")
+            profilescreen_canvas.itemconfigure(
+                                cancel_bg, image=UserScreen.image_verify_bg_selected)
 
         def button_cancel_onleave(event): 
-            event.widget.config(
-            bg="#D9D9D9"), profilescreen_canvas.itemconfigure(cancel_bg, image=UserScreen.image_verify_bg)
+            event.widget.config(bg="#D9D9D9") 
+            profilescreen_canvas.itemconfigure(
+                                cancel_bg, image=UserScreen.image_verify_bg)
         button_cancel.bind("<Enter>", button_cancel_onenter)
         button_cancel.bind("<Leave>", button_cancel_onleave)
 
