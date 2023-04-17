@@ -1070,23 +1070,30 @@ class MainScreen():
 
     bg_image = mainscreen_canvas.create_image(
         395.0, 255.0, image=UserScreen.image_bg_image)
-    flashcard = mainscreen_canvas.create_image(408.0, 218.0, image=image_flashcard)
-    banner6 = mainscreen_canvas.create_image(640.0, 134.0, image=image_banner6)
+    flashcard = mainscreen_canvas.create_image(
+        408.0, 218.0, image=image_flashcard)
+    banner6 = mainscreen_canvas.create_image(
+        640.0, 134.0, image=image_banner6)
     correctanswerbgbox = mainscreen_canvas.create_image(
         641.0, 221.0, image=image_banner7)
     startbuttonbgbox = mainscreen_canvas.create_image(
         641.0, 302.0, image=image_banner7)
-    banner8 = mainscreen_canvas.create_image(410.0, 378.0, image=image_banner8)
-    line1 = mainscreen_canvas.create_image(413.0, 262.0, image=image_line1)
+    banner8 = mainscreen_canvas.create_image(
+        410.0, 378.0, image=image_banner8)
+    line1 = mainscreen_canvas.create_image(
+        413.0, 262.0, image=image_line1)
     mathoperator = mainscreen_canvas.create_image(
         462.0, 236.0, image=image_mathoperator_multiplication)
     entryboxbg = mainscreen_canvas.create_image(
         386.0, 289.0, image=image_entryboxbg)
-    timerbg = mainscreen_canvas.create_image(642.0, 135.0, image=image_timerbg)
+    timerbg = mainscreen_canvas.create_image(
+        642.0, 135.0, image=image_timerbg)
     scoreboxbg = mainscreen_canvas.create_image(
         163.0, 187.0, image=image_scoreboxbg)
-    line2_1 = mainscreen_canvas.create_image(161.0, 137.0, image=image_line2)
-    line2_2 = mainscreen_canvas.create_image(161.0, 222.0, image=image_line2)
+    line2_1 = mainscreen_canvas.create_image(
+        161.0, 137.0, image=image_line2)
+    line2_2 = mainscreen_canvas.create_image(
+        161.0, 222.0, image=image_line2)
     scorebg_1 = mainscreen_canvas.create_image(
         161.0, 249.0, image=image_scorebg)
     scorebg_2 = mainscreen_canvas.create_image(
@@ -1365,7 +1372,8 @@ class MainScreen():
             MainScreen.generate_problem()
 
     def problem_wrong():
-        MainScreen.animation_answer_wrong()
+        MainScreen.animation_shake_flashcard(0)
+        MainScreen.animation_score_change(0, -6, -8)
         MainScreen.feedback = "Wrong!"
         MainScreen.incorrect = MainScreen.incorrect + 1
         Sound.sound_wrong.play()
@@ -1373,15 +1381,41 @@ class MainScreen():
             MainScreen.currentscore = MainScreen.currentscore - 1
 
     def problem_correct():
+        MainScreen.animation_score_change(0, -2, 2)
         MainScreen.feedback = "Correct!"
         MainScreen.currentscore = MainScreen.currentscore + 1
         Sound.sound_correct.play()
 
-    def animation_answer_wrong():
-        pass
+    def animation_shake_flashcard(animation_count):
+        if animation_count % 2 == 0:
+            move_amount = -5
+        else:
+            move_amount = 5
+        animation_count += 1
+        mainscreen_canvas.coords(MainScreen.flashcard, 408.0 + move_amount, 218.0)
+        if animation_count < 4:
+            mainscreen_canvas.after(50, MainScreen.animation_shake_flashcard, animation_count)
+        if animation_count == 4:
+            mainscreen_canvas.coords(MainScreen.flashcard, 408, 218.0)
 
-    def animation_answer_correct():
-        pass
+    def animation_score_change(animation_count, stage_one_size, stage_two_size):
+        if animation_count % 2 == 0:
+            font_size = stage_one_size
+        else:
+            font_size = stage_two_size
+        animation_count += 1
+        mainscreen_canvas.itemconfigure(MainScreen.currentscore_text, 
+                                        font=("Encode Sans", 23 + font_size))
+        if animation_count < 3:
+            mainscreen_canvas.after(
+                    60,
+                    MainScreen.animation_score_change,
+                    animation_count,
+                    stage_one_size,
+                    stage_two_size)
+        if animation_count == 3:
+            mainscreen_canvas.itemconfigure(MainScreen.currentscore_text, 
+                                            font=("Encode Sans", 23 * -1))
 
     def user_pressed_enter(event):
         user_answer = MainScreen.entrybox.get()
