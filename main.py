@@ -1228,15 +1228,13 @@ class StartScreen:
         395.0, 255.0, image=UserScreen.image_bg_image
     )
     title_banner = startscreen_canvas.create_image(
-        400.0, 106.0, image=image_titlebanner
-    )
-    title = startscreen_canvas.create_image(400.0, 100.0, image=image_title)
+        400.0, 106.0, image=image_titlebanner)
+    title = startscreen_canvas.create_image(
+        400.0, 100.0, image=image_title)
     version = startscreen_canvas.create_image(
-        574.0, 141.0, image=image_version)
-
+        571.0, 147.0, image=image_version)
     play_buttonbanner = startscreen_canvas.create_image(
-        400.0, 241.0, image=image_buttonbanner
-    )
+        400.0, 241.0, image=image_buttonbanner)
     play_buttonbg = startscreen_canvas.create_image(
         401.0, 240.0, image=image_buttonbg)
 
