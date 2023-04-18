@@ -1,3 +1,4 @@
+"""Ultimate Math Flash Cards"""
 from pathlib import Path
 from json import loads, dumps
 from cryptography.fernet import Fernet
@@ -93,73 +94,71 @@ profilescreen_canvas = Canvas(
 
 
 class UserScreen:
+    """Everything UserScreen"""
     image_bg_image = PhotoImage(file=relative_to_assets("bg_image.png"))
-    image_mainbanner = PhotoImage(file=relative_to_assets("userscreen/mainbanner.png"))
+    image_mainbanner = PhotoImage(
+        file=relative_to_assets("userscreen/mainbanner.png"))
     image_usertitle_bg = PhotoImage(
-        file=relative_to_assets("userscreen/usertitle_bg.png")
-    )
+        file=relative_to_assets("userscreen/usertitle_bg.png"))
     image_usertitle_bg_selected = PhotoImage(
-        file=relative_to_assets("userscreen/usertitle_bg_selected.png")
-    )
+        file=relative_to_assets("userscreen/usertitle_bg_selected.png"))
     image_usericon_bg = PhotoImage(
-        file=relative_to_assets("userscreen/usericon_bg.png")
-    )
+        file=relative_to_assets("userscreen/usericon_bg.png"))
     image_usericon_bg_selected = PhotoImage(
-        file=relative_to_assets("userscreen/usericon_bg_selected.png")
-    )
+        file=relative_to_assets("userscreen/usericon_bg_selected.png"))
     image_actionbutton_banner = PhotoImage(
-        file=relative_to_assets("userscreen/actionbutton_banner.png")
-    )
+        file=relative_to_assets("userscreen/actionbutton_banner.png"))
     image_actionbutton_bg = PhotoImage(
-        file=relative_to_assets("userscreen/actionbutton_bg.png")
-    )
+        file=relative_to_assets("userscreen/actionbutton_bg.png"))
     image_actionbutton_bg_selected = PhotoImage(
-        file=relative_to_assets("userscreen/actionbutton_bg_selected.png")
-    )
-    image_usericon = PhotoImage(file=relative_to_assets("userscreen/usericon.png"))
-    image_useradd = PhotoImage(file=relative_to_assets("userscreen/useradd.png"))
-    image_backbutton = PhotoImage(file=relative_to_assets("userscreen/backbutton.png"))
-    image_userremove = PhotoImage(file=relative_to_assets("userscreen/userremove.png"))
+        file=relative_to_assets("userscreen/actionbutton_bg_selected.png"))
+    image_usericon = PhotoImage(
+        file=relative_to_assets("userscreen/usericon.png"))
+    image_useradd = PhotoImage(
+        file=relative_to_assets("userscreen/useradd.png"))
+    image_backbutton = PhotoImage(
+        file=relative_to_assets("userscreen/backbutton.png"))
+    image_userremove = PhotoImage(
+        file=relative_to_assets("userscreen/userremove.png"))
     image_popup_banner = PhotoImage(
-        file=relative_to_assets("userscreen/popup_banner.png")
-    )
-    image_popup_text = PhotoImage(file=relative_to_assets("userscreen/popup_text.png"))
-    image_ok_bg = PhotoImage(file=relative_to_assets("userscreen/ok_bg.png"))
+        file=relative_to_assets("userscreen/popup_banner.png"))
+    image_popup_text = PhotoImage(
+        file=relative_to_assets("userscreen/popup_text.png"))
+    image_ok_bg = PhotoImage(
+        file=relative_to_assets("userscreen/ok_bg.png"))
     image_ok_bg_selected = PhotoImage(
-        file=relative_to_assets("userscreen/ok_bg_selected.png")
-    )
-    image_ok = PhotoImage(file=relative_to_assets("userscreen/ok.png"))
+        file=relative_to_assets("userscreen/ok_bg_selected.png"))
+    image_ok = PhotoImage(
+        file=relative_to_assets("userscreen/ok.png"))
     image_newuser_banner = PhotoImage(
-        file=relative_to_assets("userscreen/newuser_banner.png")
-    )
+        file=relative_to_assets("userscreen/newuser_banner.png"))
     image_newuser_text = PhotoImage(
-        file=relative_to_assets("userscreen/newuser_text.png")
-    )
-    image_entry_bg = PhotoImage(file=relative_to_assets("userscreen/entry_bg.png"))
-    image_verify_bg = PhotoImage(file=relative_to_assets("userscreen/verify_bg.png"))
+        file=relative_to_assets("userscreen/newuser_text.png"))
+    image_entry_bg = PhotoImage(
+        file=relative_to_assets("userscreen/entry_bg.png"))
+    image_verify_bg = PhotoImage(
+        file=relative_to_assets("userscreen/verify_bg.png"))
     image_verify_bg_selected = PhotoImage(
-        file=relative_to_assets("userscreen/verify_bg_selected.png")
-    )
-    image_cancel = PhotoImage(file=relative_to_assets("userscreen/cancel.png"))
-    image_confirm = PhotoImage(file=relative_to_assets("userscreen/confirm.png"))
+        file=relative_to_assets("userscreen/verify_bg_selected.png"))
+    image_cancel = PhotoImage(
+        file=relative_to_assets("userscreen/cancel.png"))
+    image_confirm = PhotoImage(
+        file=relative_to_assets("userscreen/confirm.png"))
     image_delete_confirm_banner = PhotoImage(
-        file=relative_to_assets("userscreen/delete_confirm_banner.png")
-    )
+        file=relative_to_assets("userscreen/delete_confirm_banner.png"))
     image_delete_confirm_bg = PhotoImage(
-        file=relative_to_assets("userscreen/delete_confirm_bg.png")
-    )
+        file=relative_to_assets("userscreen/delete_confirm_bg.png"))
     image_delete_confirm_bg_selected = PhotoImage(
-        file=relative_to_assets("userscreen/delete_confirm_bg_selected.png")
-    )
+        file=relative_to_assets("userscreen/delete_confirm_bg_selected.png"))
     image_del_confirm_yes = PhotoImage(
-        file=relative_to_assets("userscreen/del_confirm_yes.png")
-    )
+        file=relative_to_assets("userscreen/del_confirm_yes.png"))
     image_del_confirm_no = PhotoImage(
-        file=relative_to_assets("userscreen/del_confirm_no.png")
-    )
+        file=relative_to_assets("userscreen/del_confirm_no.png"))
 
-    bg_image = userscreen_canvas.create_image(395.0, 255.0, image=image_bg_image)
-    mainbanner = userscreen_canvas.create_image(400.0, 219.0, image=image_mainbanner)
+    bg_image = userscreen_canvas.create_image(
+        395.0, 255.0, image=image_bg_image)
+    mainbanner = userscreen_canvas.create_image(
+        400.0, 219.0, image=image_mainbanner)
     usertitle0_bg = userscreen_canvas.create_image(
         436.0, 99.0, image=image_usertitle_bg
     )
@@ -172,10 +171,14 @@ class UserScreen:
     usertitle3_bg = userscreen_canvas.create_image(
         436.0, 336.0, image=image_usertitle_bg
     )
-    usericon0_bg = userscreen_canvas.create_image(299.0, 99.0, image=image_usericon_bg)
-    usericon1_bg = userscreen_canvas.create_image(299.0, 178.0, image=image_usericon_bg)
-    usericon2_bg = userscreen_canvas.create_image(299.0, 257.0, image=image_usericon_bg)
-    usericon3_bg = userscreen_canvas.create_image(299.0, 336.0, image=image_usericon_bg)
+    usericon0_bg = userscreen_canvas.create_image(
+        299.0, 99.0, image=image_usericon_bg)
+    usericon1_bg = userscreen_canvas.create_image(
+        299.0, 178.0, image=image_usericon_bg)
+    usericon2_bg = userscreen_canvas.create_image(
+        299.0, 257.0, image=image_usericon_bg)
+    usericon3_bg = userscreen_canvas.create_image(
+        299.0, 336.0, image=image_usericon_bg)
     backbutton_banner = userscreen_canvas.create_image(
         248.0, 453.0, image=image_actionbutton_banner
     )
@@ -205,14 +208,14 @@ class UserScreen:
     button_usertitle0.config(activebackground="#C3C3C3")
 
     def user0_button_onenter(event):
-        event.widget.config(bg="#C3C3C3"), userscreen_canvas.itemconfigure(
-            UserScreen.usertitle0_bg, image=UserScreen.image_usertitle_bg_selected
-        )
+        event.widget.config(bg="#C3C3C3")
+        userscreen_canvas.itemconfigure(UserScreen.usertitle0_bg, 
+                    image=UserScreen.image_usertitle_bg_selected)
 
     def user0_button_onleave(event):
-        event.widget.config(bg="#D9D9D9"), userscreen_canvas.itemconfigure(
-            UserScreen.usertitle0_bg, image=UserScreen.image_usertitle_bg
-        )
+        event.widget.config(bg="#D9D9D9")
+        userscreen_canvas.itemconfigure(UserScreen.usertitle0_bg, 
+                    image=UserScreen.image_usertitle_bg)
 
     button_usertitle0.bind("<Enter>", user0_button_onenter)
     button_usertitle0.bind("<Leave>", user0_button_onleave)
@@ -261,14 +264,14 @@ class UserScreen:
     button_usertitle2.config(activebackground="#C3C3C3")
 
     def user2_button_onenter(event):
-        event.widget.config(bg="#C3C3C3"), userscreen_canvas.itemconfigure(
-            UserScreen.usertitle2_bg, image=UserScreen.image_usertitle_bg_selected
-        )
+        event.widget.config(bg="#C3C3C3")
+        userscreen_canvas.itemconfigure(UserScreen.usertitle2_bg, 
+                    image=UserScreen.image_usertitle_bg_selected)
 
     def user2_button_onleave(event):
-        event.widget.config(bg="#D9D9D9"), userscreen_canvas.itemconfigure(
-            UserScreen.usertitle2_bg, image=UserScreen.image_usertitle_bg
-        )
+        event.widget.config(bg="#D9D9D9")
+        userscreen_canvas.itemconfigure(UserScreen.usertitle2_bg, 
+                    image=UserScreen.image_usertitle_bg)
 
     button_usertitle2.bind("<Enter>", user2_button_onenter)
     button_usertitle2.bind("<Leave>", user2_button_onleave)
@@ -289,14 +292,14 @@ class UserScreen:
     button_usertitle3.config(activebackground="#C3C3C3")
 
     def user3_button_onenter(event):
-        event.widget.config(bg="#C3C3C3"), userscreen_canvas.itemconfigure(
-            UserScreen.usertitle3_bg, image=UserScreen.image_usertitle_bg_selected
-        )
+        event.widget.config(bg="#C3C3C3")
+        userscreen_canvas.itemconfigure(UserScreen.usertitle3_bg, 
+                    image=UserScreen.image_usertitle_bg_selected)
 
     def user3_button_onleave(event):
-        event.widget.config(bg="#D9D9D9"), userscreen_canvas.itemconfigure(
-            UserScreen.usertitle3_bg, image=UserScreen.image_usertitle_bg
-        )
+        event.widget.config(bg="#D9D9D9")
+        userscreen_canvas.itemconfigure(UserScreen.usertitle3_bg, 
+                    image=UserScreen.image_usertitle_bg)
 
     button_usertitle3.bind("<Enter>", user3_button_onenter)
     button_usertitle3.bind("<Leave>", user3_button_onleave)
@@ -336,7 +339,6 @@ class UserScreen:
         def validate_input(current_input):
             if current_input == "":
                 return True
-            current_input
             return len(current_input) <= 10
 
         validate_cmd = window.register(validate_input)
@@ -376,14 +378,14 @@ class UserScreen:
         button_cancel.config(activebackground="#C3C3C3")
 
         def button_cancel_onenter(event):
-            event.widget.config(bg="#C3C3C3"), userscreen_canvas.itemconfigure(
-                cancel_bg, image=UserScreen.image_verify_bg_selected
-            )
+            event.widget.config(bg="#C3C3C3")
+            userscreen_canvas.itemconfigure(cancel_bg, 
+                        image=UserScreen.image_verify_bg_selected)
 
         def button_cancel_onleave(event):
-            event.widget.config(bg="#D9D9D9"), userscreen_canvas.itemconfigure(
-                cancel_bg, image=UserScreen.image_verify_bg
-            )
+            event.widget.config(bg="#D9D9D9")
+            userscreen_canvas.itemconfigure(cancel_bg, 
+                        image=UserScreen.image_verify_bg)
 
         button_cancel.bind("<Enter>", button_cancel_onenter)
         button_cancel.bind("<Leave>", button_cancel_onleave)
@@ -401,21 +403,25 @@ class UserScreen:
         button_confirm.config(activebackground="#C3C3C3")
 
         def button_confirm_onenter(event):
-            event.widget.config(bg="#C3C3C3"), userscreen_canvas.itemconfigure(
-                confirm_bg, image=UserScreen.image_verify_bg_selected
-            )
+            event.widget.config(bg="#C3C3C3")
+            userscreen_canvas.itemconfigure(confirm_bg, 
+                        image=UserScreen.image_verify_bg_selected)
 
         def button_confirm_onleave(event):
-            event.widget.config(bg="#D9D9D9"), userscreen_canvas.itemconfigure(
-                confirm_bg, image=UserScreen.image_verify_bg
-            )
+            event.widget.config(bg="#D9D9D9")
+            userscreen_canvas.itemconfigure(confirm_bg, 
+                        image=UserScreen.image_verify_bg)
 
         button_confirm.bind("<Enter>", button_confirm_onenter)
         button_confirm.bind("<Leave>", button_confirm_onleave)
 
         def exit_create_user():
-            UserScreen.button_back.configure(command=lambda: UserScreen.back_button_pressed())
-            UserScreen.button_userremove.configure(command=lambda: UserScreen.remove_user_mode())
+            UserScreen.button_back.configure(
+                command=lambda: UserScreen.back_button_pressed()
+            )
+            UserScreen.button_userremove.configure(
+                command=lambda: UserScreen.remove_user_mode()
+            )
             Sound.sound_buttonpress.play()
             UserScreen.hide_buttons(-1000, -1000)
             userscreen_canvas.delete(newuser_banner)
@@ -446,14 +452,14 @@ class UserScreen:
     button_useraction0.config(activebackground="#C3C3C3")
 
     def useraction0_onenter(event):
-        event.widget.config(bg="#C3C3C3"), userscreen_canvas.itemconfigure(
-            UserScreen.usericon0_bg, image=UserScreen.image_usericon_bg_selected
-        )
+        event.widget.config(bg="#C3C3C3")
+        userscreen_canvas.itemconfigure(UserScreen.usericon0_bg, 
+                    image=UserScreen.image_usericon_bg_selected)
 
     def useraction0_onleave(event):
-        event.widget.config(bg="#D9D9D9"), userscreen_canvas.itemconfigure(
-            UserScreen.usericon0_bg, image=UserScreen.image_usericon_bg
-        )
+        event.widget.config(bg="#D9D9D9")
+        userscreen_canvas.itemconfigure(UserScreen.usericon0_bg, 
+                    image=UserScreen.image_usericon_bg)
 
     button_useraction0.bind("<Enter>", useraction0_onenter)
     button_useraction0.bind("<Leave>", useraction0_onleave)
@@ -471,14 +477,14 @@ class UserScreen:
     button_useraction1.config(activebackground="#C3C3C3")
 
     def useraction1_onenter(event):
-        event.widget.config(bg="#C3C3C3"), userscreen_canvas.itemconfigure(
-            UserScreen.usericon1_bg, image=UserScreen.image_usericon_bg_selected
-        )
+        event.widget.config(bg="#C3C3C3")
+        userscreen_canvas.itemconfigure(UserScreen.usericon1_bg, 
+                    image=UserScreen.image_usericon_bg_selected)
 
     def useraction1_onleave(event):
-        event.widget.config(bg="#D9D9D9"), userscreen_canvas.itemconfigure(
-            UserScreen.usericon1_bg, image=UserScreen.image_usericon_bg
-        )
+        event.widget.config(bg="#D9D9D9")
+        userscreen_canvas.itemconfigure(UserScreen.usericon1_bg, 
+                    image=UserScreen.image_usericon_bg)
 
     button_useraction1.bind("<Enter>", useraction1_onenter)
     button_useraction1.bind("<Leave>", useraction1_onleave)
@@ -496,14 +502,14 @@ class UserScreen:
     button_useraction2.config(activebackground="#C3C3C3")
 
     def useraction2_onenter(event):
-        event.widget.config(bg="#C3C3C3"), userscreen_canvas.itemconfigure(
-            UserScreen.usericon2_bg, image=UserScreen.image_usericon_bg_selected
-        )
+        event.widget.config(bg="#C3C3C3")
+        userscreen_canvas.itemconfigure(UserScreen.usericon2_bg, 
+                    image=UserScreen.image_usericon_bg_selected)
 
     def useraction2_onleave(event):
-        event.widget.config(bg="#D9D9D9"), userscreen_canvas.itemconfigure(
-            UserScreen.usericon2_bg, image=UserScreen.image_usericon_bg
-        )
+        event.widget.config(bg="#D9D9D9")
+        userscreen_canvas.itemconfigure(UserScreen.usericon2_bg, 
+                    image=UserScreen.image_usericon_bg)
 
     button_useraction2.bind("<Enter>", useraction2_onenter)
     button_useraction2.bind("<Leave>", useraction2_onleave)
@@ -575,13 +581,15 @@ class UserScreen:
 
         def button_delete_yes_onenter(event):
             event.widget.config(bg="#C3C3C3")
-            userscreen_canvas.itemconfigure(delete_confirm_bg_yes,
-                        image=UserScreen.image_delete_confirm_bg_selected)
+            userscreen_canvas.itemconfigure(
+                delete_confirm_bg_yes, image=UserScreen.image_delete_confirm_bg_selected
+            )
 
         def button_delete_yes_onleave(event):
             event.widget.config(bg="#D9D9D9")
-            userscreen_canvas.itemconfigure(delete_confirm_bg_yes,
-                        image=UserScreen.image_delete_confirm_bg)
+            userscreen_canvas.itemconfigure(
+                delete_confirm_bg_yes, image=UserScreen.image_delete_confirm_bg
+            )
 
         button_delete_yes.bind("<Enter>", button_delete_yes_onenter)
         button_delete_yes.bind("<Leave>", button_delete_yes_onleave)
@@ -617,8 +625,12 @@ class UserScreen:
             Data.remove_user(i)
 
         def exit_delete_prompt():
-            UserScreen.button_back.configure(command=lambda: UserScreen.back_button_pressed())
-            UserScreen.button_userremove.configure(command=lambda: UserScreen.remove_user_mode())
+            UserScreen.button_back.configure(
+                command=lambda: UserScreen.back_button_pressed()
+            )
+            UserScreen.button_userremove.configure(
+                command=lambda: UserScreen.remove_user_mode()
+            )
             Sound.sound_buttonpress.play()
             UserScreen.remove_user_mode()
             userscreen_canvas.delete(delete_confirm_banner)
@@ -645,7 +657,8 @@ class UserScreen:
             for i, element in enumerate(Data.useraction_buttons):
                 element.config(
                     image=UserScreen.image_useradd,
-                    command=lambda userlevel=i: UserScreen.create_user(userlevel),
+                    command=lambda userlevel=i: UserScreen.create_user(
+                        userlevel),
                 )
             Data.check_for_users()
 
@@ -750,8 +763,12 @@ class UserScreen:
         button_ok.bind("<Leave>", buttonback_onleave)
 
         def hide_error():
-            UserScreen.button_back.configure(command=lambda: UserScreen.back_button_pressed())
-            UserScreen.button_userremove.configure(command=lambda: UserScreen.remove_user_mode())
+            UserScreen.button_back.configure(
+                command=lambda: UserScreen.back_button_pressed()
+            )
+            UserScreen.button_userremove.configure(
+                command=lambda: UserScreen.remove_user_mode()
+            )
             Sound.sound_buttonpress.play()
             userscreen_canvas.delete(popup_banner)
             userscreen_canvas.delete(popup_text)
@@ -782,17 +799,20 @@ class ProfileScreen:
     image_username_bg = PhotoImage(
         file=relative_to_assets("profilescreen/username_bg.png")
     )
-    image_stats = PhotoImage(file=relative_to_assets("profilescreen/stats.png"))
+    image_stats = PhotoImage(
+        file=relative_to_assets("profilescreen/stats.png"))
     image_action_banner = PhotoImage(
         file=relative_to_assets("profilescreen/action_banner.png")
     )
-    image_action_bg = PhotoImage(file=relative_to_assets("profilescreen/action_bg.png"))
+    image_action_bg = PhotoImage(
+        file=relative_to_assets("profilescreen/action_bg.png"))
     image_action_bg_selected = PhotoImage(
         file=relative_to_assets("profilescreen/action_bg_selected.png")
     )
     image_back = PhotoImage(file=relative_to_assets("profilescreen/back.png"))
     image_edit = PhotoImage(file=relative_to_assets("profilescreen/edit.png"))
-    image_history = PhotoImage(file=relative_to_assets("profilescreen/history.png"))
+    image_history = PhotoImage(
+        file=relative_to_assets("profilescreen/history.png"))
 
     bg_image = profilescreen_canvas.create_image(
         395.0, 255.0, image=UserScreen.image_bg_image
@@ -813,9 +833,12 @@ class ProfileScreen:
     edit_banner = profilescreen_canvas.create_image(
         601.0, 452.0, image=image_action_banner
     )
-    back_bg = profilescreen_canvas.create_image(197.0, 451.0, image=image_action_bg)
-    history_bg = profilescreen_canvas.create_image(399.0, 451.0, image=image_action_bg)
-    edit_bg = profilescreen_canvas.create_image(601.0, 451.0, image=image_action_bg)
+    back_bg = profilescreen_canvas.create_image(
+        197.0, 451.0, image=image_action_bg)
+    history_bg = profilescreen_canvas.create_image(
+        399.0, 451.0, image=image_action_bg)
+    edit_bg = profilescreen_canvas.create_image(
+        601.0, 451.0, image=image_action_bg)
 
     def personalize_screen(userlevel):
         ProfileScreen.current_user = userlevel
@@ -848,7 +871,8 @@ class ProfileScreen:
                 mostplayed[game["mode"]] = 1
             else:
                 mostplayed[game["mode"]] += 1
-            gamepercent = game["correct"] / (game["incorrect"] + game["correct"])
+            gamepercent = game["correct"] / \
+                (game["incorrect"] + game["correct"])
             total_percent = total_percent + gamepercent
         try:
             average_percent = total_percent / gamesplayed
@@ -864,7 +888,8 @@ class ProfileScreen:
 
         profilescreen_canvas.itemconfig(ProfileScreen.grade_text, text=grade)
         profilescreen_canvas.itemconfig(
-            ProfileScreen.favorite_mode, text=max(mostplayed, key=mostplayed.get)
+            ProfileScreen.favorite_mode, text=max(
+                mostplayed, key=mostplayed.get)
         )
         profilescreen_canvas.itemconfig(
             ProfileScreen.average_percent, text=f"{round(average_percent * 100, 2)}%"
@@ -872,9 +897,12 @@ class ProfileScreen:
         profilescreen_canvas.itemconfig(
             ProfileScreen.highest_score_mode, text=highestscoremode
         )
-        profilescreen_canvas.itemconfig(ProfileScreen.highest_score, text=highestscore)
-        profilescreen_canvas.itemconfig(ProfileScreen.games_played, text=gamesplayed)
-        profilescreen_canvas.itemconfig(ProfileScreen.username_text, text=username)
+        profilescreen_canvas.itemconfig(
+            ProfileScreen.highest_score, text=highestscore)
+        profilescreen_canvas.itemconfig(
+            ProfileScreen.games_played, text=gamesplayed)
+        profilescreen_canvas.itemconfig(
+            ProfileScreen.username_text, text=username)
 
     username_text = profilescreen_canvas.create_text(
         405.0,
@@ -1136,7 +1164,8 @@ class ProfileScreen:
             710.0,
             453.0,
         )
-        historyscreen_canvas.coords(HistoryScreen.actionbuttonbg_2, 710.0, 453.0)
+        historyscreen_canvas.coords(
+            HistoryScreen.actionbuttonbg_2, 710.0, 453.0)
         HistoryScreen.info_button.place_configure(x=663.0, y=438.0)
 
         HistoryScreen.back_button.config(
@@ -1175,11 +1204,13 @@ class StartScreen:
         file=relative_to_assets("startscreen/titlebanner.png")
     )
     image_title = PhotoImage(file=relative_to_assets("startscreen/title.png"))
-    image_version = PhotoImage(file=relative_to_assets("startscreen/version.png"))
+    image_version = PhotoImage(
+        file=relative_to_assets("startscreen/version.png"))
     image_buttonbanner = PhotoImage(
         file=relative_to_assets("startscreen/buttonbanner.png")
     )
-    image_buttonbg = PhotoImage(file=relative_to_assets("startscreen/buttonbg.png"))
+    image_buttonbg = PhotoImage(
+        file=relative_to_assets("startscreen/buttonbg.png"))
     image_buttonbg_selected = PhotoImage(
         file=relative_to_assets("startscreen/buttonbg_selected.png")
     )
@@ -1188,8 +1219,10 @@ class StartScreen:
         file=relative_to_assets("startscreen/leaderboard.png")
     )
     image_users = PhotoImage(file=relative_to_assets("startscreen/users.png"))
-    image_unmuted = PhotoImage(file=relative_to_assets("startscreen/unmuted.png"))
-    image_muted = PhotoImage(file=relative_to_assets("startscreen/volumemuted.png"))
+    image_unmuted = PhotoImage(
+        file=relative_to_assets("startscreen/unmuted.png"))
+    image_muted = PhotoImage(
+        file=relative_to_assets("startscreen/volumemuted.png"))
 
     bg_image = startscreen_canvas.create_image(
         395.0, 255.0, image=UserScreen.image_bg_image
@@ -1198,12 +1231,14 @@ class StartScreen:
         400.0, 106.0, image=image_titlebanner
     )
     title = startscreen_canvas.create_image(400.0, 100.0, image=image_title)
-    version = startscreen_canvas.create_image(574.0, 141.0, image=image_version)
+    version = startscreen_canvas.create_image(
+        574.0, 141.0, image=image_version)
 
     play_buttonbanner = startscreen_canvas.create_image(
         400.0, 241.0, image=image_buttonbanner
     )
-    play_buttonbg = startscreen_canvas.create_image(401.0, 240.0, image=image_buttonbg)
+    play_buttonbg = startscreen_canvas.create_image(
+        401.0, 240.0, image=image_buttonbg)
 
     volume_buttonbanner = startscreen_canvas.create_image(
         400.0, 389.0, image=image_buttonbanner
@@ -1215,7 +1250,8 @@ class StartScreen:
     users_buttonbanner = startscreen_canvas.create_image(
         474.0, 315.0, image=image_buttonbanner
     )
-    users_buttonbg = startscreen_canvas.create_image(475.0, 314.0, image=image_buttonbg)
+    users_buttonbg = startscreen_canvas.create_image(
+        475.0, 314.0, image=image_buttonbg)
 
     leaderboard_buttonbanner = startscreen_canvas.create_image(
         329.0, 315.0, image=image_buttonbanner
@@ -1229,7 +1265,8 @@ class StartScreen:
             StartScreen.button_volume.configure(image=StartScreen.image_muted)
             Sound.muted_all_sounds(0.0)
         else:
-            StartScreen.button_volume.configure(image=StartScreen.image_unmuted)
+            StartScreen.button_volume.configure(
+                image=StartScreen.image_unmuted)
             Sound.muted_all_sounds(1.0)
             Sound.sound_buttonpress.play()
         StartScreen.muted = not StartScreen.muted
@@ -1489,10 +1526,14 @@ class MainScreen:
     countdown_initialized = False
     game_started = False
     # mainScreen Images
-    image_flashcard = PhotoImage(file=relative_to_assets("mainscreen/flashbg.png"))
-    image_banner6 = PhotoImage(file=relative_to_assets("mainscreen/banner6.png"))
-    image_banner7 = PhotoImage(file=relative_to_assets("mainscreen/banner7.png"))
-    image_banner8 = PhotoImage(file=relative_to_assets("mainscreen/banner8.png"))
+    image_flashcard = PhotoImage(
+        file=relative_to_assets("mainscreen/flashbg.png"))
+    image_banner6 = PhotoImage(
+        file=relative_to_assets("mainscreen/banner6.png"))
+    image_banner7 = PhotoImage(
+        file=relative_to_assets("mainscreen/banner7.png"))
+    image_banner8 = PhotoImage(
+        file=relative_to_assets("mainscreen/banner8.png"))
     image_line1 = PhotoImage(file=relative_to_assets("mainscreen/line1.png"))
     image_mathoperator_multiplication = PhotoImage(
         file=relative_to_assets("mainscreen/mathoperatorX.png")
@@ -1506,11 +1547,15 @@ class MainScreen:
     image_mathoperator_divide = PhotoImage(
         file=relative_to_assets("mainscreen/mathoperatord.png")
     )
-    image_entryboxbg = PhotoImage(file=relative_to_assets("mainscreen/entryboxbg.png"))
-    image_timerbg = PhotoImage(file=relative_to_assets("mainscreen/timerbg.png"))
-    image_scoreboxbg = PhotoImage(file=relative_to_assets("mainscreen/scoreboxbg.png"))
+    image_entryboxbg = PhotoImage(
+        file=relative_to_assets("mainscreen/entryboxbg.png"))
+    image_timerbg = PhotoImage(
+        file=relative_to_assets("mainscreen/timerbg.png"))
+    image_scoreboxbg = PhotoImage(
+        file=relative_to_assets("mainscreen/scoreboxbg.png"))
     image_line2 = PhotoImage(file=relative_to_assets("mainscreen/line2.png"))
-    image_scorebg = PhotoImage(file=relative_to_assets("mainscreen/scorebg.png"))
+    image_scorebg = PhotoImage(
+        file=relative_to_assets("mainscreen/scorebg.png"))
     image_startbuttonbg = PhotoImage(
         file=relative_to_assets("mainscreen/startbuttonbg.png")
     )
@@ -1520,15 +1565,18 @@ class MainScreen:
     image_startbutton = PhotoImage(
         file=relative_to_assets("mainscreen/startbutton.png")
     )
-    image_entrybox = PhotoImage(file=relative_to_assets("mainscreen/entrybox.png"))
-    image_buttonbox = PhotoImage(file=relative_to_assets("mainscreen/buttonbox.png"))
+    image_entrybox = PhotoImage(
+        file=relative_to_assets("mainscreen/entrybox.png"))
+    image_buttonbox = PhotoImage(
+        file=relative_to_assets("mainscreen/buttonbox.png"))
     image_buttonboxbg = PhotoImage(
         file=relative_to_assets("mainscreen/buttonboxbg.png")
     )
     image_buttonboxbg_selected = PhotoImage(
         file=relative_to_assets("mainscreen/buttonboxbg_selected.png")
     )
-    image_backbutton = PhotoImage(file=relative_to_assets("mainscreen/backbutton.png"))
+    image_backbutton = PhotoImage(
+        file=relative_to_assets("mainscreen/backbutton.png"))
     image_settingsbutton = PhotoImage(
         file=relative_to_assets("mainscreen/settingsbutton.png")
     )
@@ -1566,31 +1614,41 @@ class MainScreen:
     bg_image = mainscreen_canvas.create_image(
         395.0, 255.0, image=UserScreen.image_bg_image
     )
-    flashcard = mainscreen_canvas.create_image(408.0, 218.0, image=image_flashcard)
+    flashcard = mainscreen_canvas.create_image(
+        408.0, 218.0, image=image_flashcard)
     banner6 = mainscreen_canvas.create_image(640.0, 134.0, image=image_banner6)
     correctanswerbgbox = mainscreen_canvas.create_image(
         641.0, 221.0, image=image_banner7
     )
-    startbuttonbgbox = mainscreen_canvas.create_image(641.0, 302.0, image=image_banner7)
+    startbuttonbgbox = mainscreen_canvas.create_image(
+        641.0, 302.0, image=image_banner7)
     banner8 = mainscreen_canvas.create_image(410.0, 378.0, image=image_banner8)
     line1 = mainscreen_canvas.create_image(413.0, 262.0, image=image_line1)
     mathoperator = mainscreen_canvas.create_image(
         462.0, 236.0, image=image_mathoperator_multiplication
     )
-    entryboxbg = mainscreen_canvas.create_image(386.0, 289.0, image=image_entryboxbg)
+    entryboxbg = mainscreen_canvas.create_image(
+        386.0, 289.0, image=image_entryboxbg)
     timerbg = mainscreen_canvas.create_image(642.0, 135.0, image=image_timerbg)
-    scoreboxbg = mainscreen_canvas.create_image(163.0, 187.0, image=image_scoreboxbg)
+    scoreboxbg = mainscreen_canvas.create_image(
+        163.0, 187.0, image=image_scoreboxbg)
     line2_1 = mainscreen_canvas.create_image(161.0, 137.0, image=image_line2)
     line2_2 = mainscreen_canvas.create_image(161.0, 222.0, image=image_line2)
-    scorebg_1 = mainscreen_canvas.create_image(161.0, 249.0, image=image_scorebg)
-    scorebg_2 = mainscreen_canvas.create_image(161.0, 163.0, image=image_scorebg)
+    scorebg_1 = mainscreen_canvas.create_image(
+        161.0, 249.0, image=image_scorebg)
+    scorebg_2 = mainscreen_canvas.create_image(
+        161.0, 163.0, image=image_scorebg)
     startbuttonbg = mainscreen_canvas.create_image(
         641.0, 301.5, image=image_startbuttonbg
     )
-    buttonbox_1 = mainscreen_canvas.create_image(161.0, 320.0, image=image_buttonbox)
-    buttonbox_2 = mainscreen_canvas.create_image(161.0, 381.0, image=image_buttonbox)
-    buttonbox_3 = mainscreen_canvas.create_image(64.0, 34.0, image=image_buttonbox)
-    buttonboxbg_1 = mainscreen_canvas.create_image(64.0, 34.0, image=image_buttonboxbg)
+    buttonbox_1 = mainscreen_canvas.create_image(
+        161.0, 320.0, image=image_buttonbox)
+    buttonbox_2 = mainscreen_canvas.create_image(
+        161.0, 381.0, image=image_buttonbox)
+    buttonbox_3 = mainscreen_canvas.create_image(
+        64.0, 34.0, image=image_buttonbox)
+    buttonboxbg_1 = mainscreen_canvas.create_image(
+        64.0, 34.0, image=image_buttonboxbg)
     buttonboxbg_2 = mainscreen_canvas.create_image(
         161.0, 320.0, image=image_buttonboxbg
     )
@@ -1620,13 +1678,15 @@ class MainScreen:
 
     def backbutton_onenter(event):
         event.widget.config(bg="#C3C3C3")
-        mainscreen_canvas.itemconfigure(MainScreen.buttonboxbg_1, 
-                image=MainScreen.image_buttonboxbg_selected)
-        
+        mainscreen_canvas.itemconfigure(
+            MainScreen.buttonboxbg_1, image=MainScreen.image_buttonboxbg_selected
+        )
+
     def backbutton_onleave(event):
         event.widget.config(bg="#D9D9D9")
-        mainscreen_canvas.itemconfigure(MainScreen.buttonboxbg_1,
-                image=MainScreen.image_buttonboxbg)
+        mainscreen_canvas.itemconfigure(
+            MainScreen.buttonboxbg_1, image=MainScreen.image_buttonboxbg
+        )
 
     back_button.bind("<Enter>", backbutton_onenter)
     back_button.bind("<Leave>", backbutton_onleave)
@@ -1834,7 +1894,8 @@ class MainScreen:
             command=lambda: cancel_countdown(),
             relief="flat",
         )
-        cancel_countdown_button.place(x=289.4, y=104.5, width=17.5, height=17.0)
+        cancel_countdown_button.place(
+            x=289.4, y=104.5, width=17.5, height=17.0)
         cancel_countdown_button.config(activebackground="#C3C3C3")
 
         def cancelcountdownbutton_onenter(event):
@@ -1926,13 +1987,15 @@ class MainScreen:
 
         def yes_quitbutton_onenter(event):
             event.widget.config(bg="#C3C3C3")
-            mainscreen_canvas.itemconfigure(quit_buttonbg_2,
-                image=MainScreen.image_quit_buttonbg_selected)
+            mainscreen_canvas.itemconfigure(
+                quit_buttonbg_2, image=MainScreen.image_quit_buttonbg_selected
+            )
 
         def yes_quitbutton_onleave(event):
             event.widget.config(bg="#D9D9D9")
-            mainscreen_canvas.itemconfigure(quit_buttonbg_2, 
-                image=MainScreen.image_quit_buttonbg)
+            mainscreen_canvas.itemconfigure(
+                quit_buttonbg_2, image=MainScreen.image_quit_buttonbg
+            )
 
         yes_quit_button.bind("<Enter>", yes_quitbutton_onenter)
         yes_quit_button.bind("<Leave>", yes_quitbutton_onleave)
@@ -1954,19 +2017,23 @@ class MainScreen:
 
         def no_quitbutton_onenter(event):
             event.widget.config(bg="#C3C3C3")
-            mainscreen_canvas.itemconfigure(quit_buttonbg_1, 
-                        image=MainScreen.image_quit_buttonbg_selected),
+            mainscreen_canvas.itemconfigure(
+                quit_buttonbg_1, image=MainScreen.image_quit_buttonbg_selected
+            ),
 
         def no_quitbutton_onleave(event):
             event.widget.config(bg="#D9D9D9")
-            mainscreen_canvas.itemconfigure(quit_buttonbg_1, 
-                        image=MainScreen.image_quit_buttonbg)
+            mainscreen_canvas.itemconfigure(
+                quit_buttonbg_1, image=MainScreen.image_quit_buttonbg
+            )
 
         no_quit_button.bind("<Enter>", no_quitbutton_onenter)
         no_quit_button.bind("<Leave>", no_quitbutton_onleave)
 
         def destroy_quitbox():
-            MainScreen.back_button.configure(command=lambda: MainScreen.back_button_pressed())
+            MainScreen.back_button.configure(
+                command=lambda: MainScreen.back_button_pressed()
+            )
             mainscreen_canvas.delete(quit_banner)
             mainscreen_canvas.delete(quit_buttonbg_1)
             mainscreen_canvas.delete(quit_buttonbg_2)
@@ -2003,7 +2070,8 @@ class MainScreen:
         do_math = {"+": add, "-": sub, "/": floordiv, "*": mul}[
             OptionsScreen.flashcardtype
         ]
-        MainScreen.correctanswer = do_math(MainScreen.flashcard1, MainScreen.flashcard2)
+        MainScreen.correctanswer = do_math(
+            MainScreen.flashcard1, MainScreen.flashcard2)
         MainScreen.check_problem()
         mainscreen_canvas.itemconfig(
             MainScreen.flashcard2_text, text=MainScreen.flashcard2
@@ -2052,7 +2120,8 @@ class MainScreen:
         else:
             move_amount = 5
         animation_count += 1
-        mainscreen_canvas.coords(MainScreen.flashcard, 408.0 + move_amount, 218.0)
+        mainscreen_canvas.coords(MainScreen.flashcard,
+                                 408.0 + move_amount, 218.0)
         if animation_count < 4:
             mainscreen_canvas.after(
                 50, MainScreen.animation_shake_flashcard, animation_count
@@ -2097,7 +2166,8 @@ class MainScreen:
         mainscreen_canvas.itemconfig(
             MainScreen.correctanswer_text, text=MainScreen.correctanswer
         )
-        mainscreen_canvas.itemconfig(MainScreen.feedback_text, text=MainScreen.feedback)
+        mainscreen_canvas.itemconfig(
+            MainScreen.feedback_text, text=MainScreen.feedback)
         MainScreen.last_flashcard1 = MainScreen.flashcard1
         MainScreen.last_flashcard2 = MainScreen.flashcard2
         MainScreen.generate_problem()
@@ -2123,9 +2193,12 @@ class MainScreen:
         )
 
     def pre_game_cleanup():
-        MainScreen.start_button.place(x=60400.0, y=290.0, width=72.0, height=25.0)
-        MainScreen.history_button.place(x=13100.0, y=370.5, width=59.0, height=22.0)
-        MainScreen.settings_button.place(x=13100, y=310, width=59.0, height=22.0)
+        MainScreen.start_button.place(
+            x=60400.0, y=290.0, width=72.0, height=25.0)
+        MainScreen.history_button.place(
+            x=13100.0, y=370.5, width=59.0, height=22.0)
+        MainScreen.settings_button.place(
+            x=13100, y=310, width=59.0, height=22.0)
         mainscreen_canvas.coords(
             MainScreen.buttonbox_1,
             16100.0,
@@ -2142,8 +2215,10 @@ class MainScreen:
         mainscreen_canvas.coords(MainScreen.startbuttonbgbox, 16100.0, 320.0)
 
     def post_game_cleanup():
-        MainScreen.start_button.place(x=604.0, y=290.0, width=72.0, height=25.0)
-        MainScreen.history_button.place(x=131.0, y=370.5, width=59.0, height=22.0)
+        MainScreen.start_button.place(
+            x=604.0, y=290.0, width=72.0, height=25.0)
+        MainScreen.history_button.place(
+            x=131.0, y=370.5, width=59.0, height=22.0)
         MainScreen.settings_button.place(x=131, y=310, width=59.0, height=22.0)
         mainscreen_canvas.coords(
             MainScreen.buttonbox_1,
@@ -2245,7 +2320,8 @@ class MainScreen:
     mainscreen_validate_cmd = window.register(validate_main_input)
 
     # Entry Box
-    entryboxbg = mainscreen_canvas.create_image(386.0, 289.5, image=image_entrybox)
+    entryboxbg = mainscreen_canvas.create_image(
+        386.0, 289.5, image=image_entrybox)
     entrybox = Entry(
         mainscreen_canvas,
         bd=0,
@@ -2272,8 +2348,10 @@ class OptionsScreen:
     seconds = 1
 
     # optionsscreen Images
-    image_banner9 = PhotoImage(file=relative_to_assets("optionsscreen/banner9.png"))
-    image_banner10 = PhotoImage(file=relative_to_assets("optionsscreen/banner10.png"))
+    image_banner9 = PhotoImage(
+        file=relative_to_assets("optionsscreen/banner9.png"))
+    image_banner10 = PhotoImage(
+        file=relative_to_assets("optionsscreen/banner10.png"))
     image_descriptionbox = PhotoImage(
         file=relative_to_assets("optionsscreen/descriptionbox.png")
     )
@@ -2283,7 +2361,8 @@ class OptionsScreen:
     image_buttonbg_outline_selected = PhotoImage(
         file=relative_to_assets("optionsscreen/buttonbg_outline_selected.png")
     )
-    image_buttonbg = PhotoImage(file=relative_to_assets("optionsscreen/buttonbg.png"))
+    image_buttonbg = PhotoImage(
+        file=relative_to_assets("optionsscreen/buttonbg.png"))
     image_buttonbg_selected = PhotoImage(
         file=relative_to_assets("optionsscreen/buttonbg_selected.png")
     )
@@ -2350,10 +2429,14 @@ class OptionsScreen:
     bg_image = optionsscreen_canvas.create_image(
         395.0, 255.0, image=UserScreen.image_bg_image
     )
-    banner9_1 = optionsscreen_canvas.create_image(132.0, 163.0, image=image_banner9)
-    banner9_2 = optionsscreen_canvas.create_image(399.0, 166.0, image=image_banner9)
-    banner9_3 = optionsscreen_canvas.create_image(666.0, 166.0, image=image_banner9)
-    banner10 = optionsscreen_canvas.create_image(106.0, 455.0, image=image_banner10)
+    banner9_1 = optionsscreen_canvas.create_image(
+        132.0, 163.0, image=image_banner9)
+    banner9_2 = optionsscreen_canvas.create_image(
+        399.0, 166.0, image=image_banner9)
+    banner9_3 = optionsscreen_canvas.create_image(
+        666.0, 166.0, image=image_banner9)
+    banner10 = optionsscreen_canvas.create_image(
+        106.0, 455.0, image=image_banner10)
     descriptionbox = optionsscreen_canvas.create_image(
         391.0, 403.0, image=image_descriptionbox
     )
@@ -2406,7 +2489,8 @@ class OptionsScreen:
     difficulty_title = optionsscreen_canvas.create_image(
         400.0, 63.0, image=image_difficulty_title
     )
-    time_title = optionsscreen_canvas.create_image(666.0, 63.0, image=image_time_title)
+    time_title = optionsscreen_canvas.create_image(
+        666.0, 63.0, image=image_time_title)
 
     highscore_banner = optionsscreen_canvas.create_image(
         691.0, 413.0, image=image_highscore_banner
@@ -2434,6 +2518,7 @@ class OptionsScreen:
     )
 
     def reset_settings():
+        """Resets Settings to the Default"""
         OptionsScreen.flashcardtype = "*"
         OptionsScreen.flashcarddifficulty = "classical"
         OptionsScreen.flashcardtime = "twominute"
@@ -3366,14 +3451,16 @@ class FinalScreen:
     image_scoreseperator = PhotoImage(
         file=relative_to_assets("finalscreen/scoreseperator.png")
     )
-    image_scorebg = PhotoImage(file=relative_to_assets("finalscreen/scorebg.png"))
+    image_scorebg = PhotoImage(
+        file=relative_to_assets("finalscreen/scorebg.png"))
     image_buttonbanner = PhotoImage(
         file=relative_to_assets("finalscreen/buttonbanner.png")
     )
     image_feedbackbanner = PhotoImage(
         file=relative_to_assets("finalscreen/feedbackbanner.png")
     )
-    image_buttonbg = PhotoImage(file=relative_to_assets("finalscreen/buttonbg.png"))
+    image_buttonbg = PhotoImage(
+        file=relative_to_assets("finalscreen/buttonbg.png"))
     image_buttonbg_selected = PhotoImage(
         file=relative_to_assets("finalscreen/buttonbg_selected.png")
     )
@@ -3384,7 +3471,8 @@ class FinalScreen:
     bg_image = finalscreen_canvas.create_image(
         395.0, 255.0, image=UserScreen.image_bg_image
     )
-    scorebanner = finalscreen_canvas.create_image(391.0, 197.0, image=image_scorebanner)
+    scorebanner = finalscreen_canvas.create_image(
+        391.0, 197.0, image=image_scorebanner)
     scoreseperator_1 = finalscreen_canvas.create_image(
         392.0, 90.0, image=image_scoreseperator
     )
@@ -3394,16 +3482,20 @@ class FinalScreen:
     scoreseperator_3 = finalscreen_canvas.create_image(
         392.0, 299.0, image=image_scoreseperator
     )
-    scorebg_1 = finalscreen_canvas.create_image(391.0, 117.0, image=image_scorebg)
-    scorebg_2 = finalscreen_canvas.create_image(391.0, 221.0, image=image_scorebg)
-    scorebg_3 = finalscreen_canvas.create_image(391.0, 332.0, image=image_scorebg)
+    scorebg_1 = finalscreen_canvas.create_image(
+        391.0, 117.0, image=image_scorebg)
+    scorebg_2 = finalscreen_canvas.create_image(
+        391.0, 221.0, image=image_scorebg)
+    scorebg_3 = finalscreen_canvas.create_image(
+        391.0, 332.0, image=image_scorebg)
     buttonbanner = finalscreen_canvas.create_image(
         391.0, 436.0, image=image_buttonbanner
     )
     feedbackbanner = finalscreen_canvas.create_image(
         620.0, 436.0, image=image_feedbackbanner
     )
-    buttonbg = finalscreen_canvas.create_image(620.0, 436.0, image=image_buttonbg)
+    buttonbg = finalscreen_canvas.create_image(
+        620.0, 436.0, image=image_buttonbg)
 
     yourscore_text = finalscreen_canvas.create_text(
         390.0,
