@@ -12,11 +12,11 @@ from sound import Sound
 
 system("cls")
 
-exe_dir = path.dirname(argv[0])
-chdir(exe_dir)
+EXE_DIR = path.dirname(argv[0])
+chdir(EXE_DIR)
 
 
-OUTPUT_PATH = exe_dir
+OUTPUT_PATH = EXE_DIR
 ASSETS_PATH = OUTPUT_PATH / Path("assets")
 
 
@@ -160,17 +160,13 @@ class UserScreen:
     mainbanner = userscreen_canvas.create_image(
         400.0, 219.0, image=image_mainbanner)
     usertitle0_bg = userscreen_canvas.create_image(
-        436.0, 99.0, image=image_usertitle_bg
-    )
+        436.0, 99.0, image=image_usertitle_bg)
     usertitle1_bg = userscreen_canvas.create_image(
-        436.0, 178.0, image=image_usertitle_bg
-    )
+        436.0, 178.0, image=image_usertitle_bg)
     usertitle2_bg = userscreen_canvas.create_image(
-        436.0, 257.0, image=image_usertitle_bg
-    )
+        436.0, 257.0, image=image_usertitle_bg)
     usertitle3_bg = userscreen_canvas.create_image(
-        436.0, 336.0, image=image_usertitle_bg
-    )
+        436.0, 336.0, image=image_usertitle_bg)
     usericon0_bg = userscreen_canvas.create_image(
         299.0, 99.0, image=image_usericon_bg)
     usericon1_bg = userscreen_canvas.create_image(
@@ -180,17 +176,13 @@ class UserScreen:
     usericon3_bg = userscreen_canvas.create_image(
         299.0, 336.0, image=image_usericon_bg)
     backbutton_banner = userscreen_canvas.create_image(
-        248.0, 453.0, image=image_actionbutton_banner
-    )
+        248.0, 453.0, image=image_actionbutton_banner)
     backbutton_bg = userscreen_canvas.create_image(
-        248.0, 452.0, image=image_actionbutton_bg
-    )
+        248.0, 452.0, image=image_actionbutton_bg)
     userremove_banner = userscreen_canvas.create_image(
-        551.0, 453.0, image=image_actionbutton_banner
-    )
+        551.0, 453.0, image=image_actionbutton_banner)
     userremove_bg = userscreen_canvas.create_image(
-        552.0, 452.0, image=image_actionbutton_bg
-    )
+        552.0, 452.0, image=image_actionbutton_bg)
 
     button_usertitle0 = Button(
         userscreen_canvas,
