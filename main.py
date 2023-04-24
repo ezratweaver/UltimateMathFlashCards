@@ -1607,8 +1607,7 @@ class MainScreen:
             OptionsScreen.specific_highscore_text,
             text=Data.highscore_dict[
                 f"{OptionsScreen.flashcardtype}-{OptionsScreen.flashcarddifficulty}-{OptionsScreen.flashcardtime}"
-            ],
-        )
+                ])
         mainscreen_canvas.pack_forget()
         optionsscreen_canvas.pack()
 
@@ -1626,13 +1625,11 @@ class MainScreen:
 
     def settingsbutton_onenter(event):
         event.widget.config(bg="#C3C3C3"), mainscreen_canvas.itemconfigure(
-            MainScreen.buttonboxbg_2, image=MainScreen.image_buttonboxbg_selected
-        ),
+            MainScreen.buttonboxbg_2, image=MainScreen.image_buttonboxbg_selected)
 
     def settingsbutton_onleave(event):
         event.widget.config(bg="#D9D9D9"), mainscreen_canvas.itemconfigure(
-            MainScreen.buttonboxbg_2, image=MainScreen.image_buttonboxbg
-        )
+            MainScreen.buttonboxbg_2, image=MainScreen.image_buttonboxbg)
 
     settings_button.bind("<Enter>", settingsbutton_onenter)
     settings_button.bind("<Leave>", settingsbutton_onleave)
@@ -1657,13 +1654,11 @@ class MainScreen:
 
     def historybutton_onenter(event):
         event.widget.config(bg="#C3C3C3"), mainscreen_canvas.itemconfigure(
-            MainScreen.buttonboxbg_3, image=MainScreen.image_buttonboxbg_selected
-        ),
+            MainScreen.buttonboxbg_3, image=MainScreen.image_buttonboxbg_selected)
 
     def historybutton_onleave(event):
         event.widget.config(bg="#D9D9D9"), mainscreen_canvas.itemconfigure(
-            MainScreen.buttonboxbg_3, image=MainScreen.image_buttonboxbg
-        )
+            MainScreen.buttonboxbg_3, image=MainScreen.image_buttonboxbg)
 
     history_button.bind("<Enter>", historybutton_onenter)
     history_button.bind("<Leave>", historybutton_onleave)
@@ -1686,13 +1681,11 @@ class MainScreen:
 
     def startbutton_onenter(event):
         event.widget.config(bg="#C3C3C3"), mainscreen_canvas.itemconfigure(
-            MainScreen.startbuttonbg, image=MainScreen.image_startbuttonbg_selected
-        ),
+            MainScreen.startbuttonbg, image=MainScreen.image_startbuttonbg_selected)
 
     def startbutton_onleave(event):
         event.widget.config(bg="#D9D9D9"), mainscreen_canvas.itemconfigure(
-            MainScreen.startbuttonbg, image=MainScreen.image_startbuttonbg
-        )
+            MainScreen.startbuttonbg, image=MainScreen.image_startbuttonbg)
 
     start_button.bind("<Enter>", startbutton_onenter)
     start_button.bind("<Leave>", startbutton_onleave)
@@ -1772,11 +1765,9 @@ class MainScreen:
 
     def place_countdownscreen():
         countdownbox = mainscreen_canvas.create_image(
-            407.0, 211.0, image=MainScreen.image_countdownbox
-        )
+            407.0, 211.0, image=MainScreen.image_countdownbox)
         cancel_countdown_bg = mainscreen_canvas.create_image(
-            297.0, 113.0, image=MainScreen.image_cancel_countdown_bg
-        )
+            297.0, 113.0, image=MainScreen.image_cancel_countdown_bg)
 
         countdown_title_text = mainscreen_canvas.create_text(
             352.0,
@@ -1810,13 +1801,11 @@ class MainScreen:
 
         def cancelcountdownbutton_onenter(event):
             event.widget.config(bg="#C3C3C3"), mainscreen_canvas.itemconfigure(
-                cancel_countdown_bg, image=MainScreen.image_cancel_countdown_bg_selected
-            ),
+                cancel_countdown_bg, image=MainScreen.image_cancel_countdown_bg_selected)
 
         def cancelcountdownbutton_onleave(event):
             event.widget.config(bg="#D9D9D9"), mainscreen_canvas.itemconfigure(
-                cancel_countdown_bg, image=MainScreen.image_cancel_countdown_bg
-            )
+                cancel_countdown_bg, image=MainScreen.image_cancel_countdown_bg)
 
         cancel_countdown_button.bind("<Enter>", cancelcountdownbutton_onenter)
         cancel_countdown_button.bind("<Leave>", cancelcountdownbutton_onleave)
@@ -1843,8 +1832,7 @@ class MainScreen:
             seconds -= 1
             Sound.sound_countdown_tick.play()
             mainscreen_canvas.countdownloop = mainscreen_canvas.after(
-                1000, initialize_countdown, seconds, callback
-            )
+                1000, initialize_countdown, seconds, callback)
 
         def cancel_countdown():
             Sound.sound_buttonpress.play()
@@ -1857,14 +1845,11 @@ class MainScreen:
     def confirm_quit():
         MainScreen.back_button.configure(command=lambda: None)
         quit_banner = mainscreen_canvas.create_image(
-            408.0, 215.0, image=MainScreen.image_quit_banner
-        )
+            408.0, 215.0, image=MainScreen.image_quit_banner)
         quit_buttonbg_1 = mainscreen_canvas.create_image(
-            348.0, 230.0, image=MainScreen.image_quit_buttonbg
-        )
+            348.0, 230.0, image=MainScreen.image_quit_buttonbg)
         quit_buttonbg_2 = mainscreen_canvas.create_image(
-            468.0, 230.0, image=MainScreen.image_quit_buttonbg
-        )
+            468.0, 230.0, image=MainScreen.image_quit_buttonbg)
         quit_text = mainscreen_canvas.create_text(
             294.0,
             176.0,
@@ -1898,14 +1883,12 @@ class MainScreen:
         def yes_quitbutton_onenter(event):
             event.widget.config(bg="#C3C3C3")
             mainscreen_canvas.itemconfigure(
-                quit_buttonbg_2, image=MainScreen.image_quit_buttonbg_selected
-            )
+                quit_buttonbg_2, image=MainScreen.image_quit_buttonbg_selected)
 
         def yes_quitbutton_onleave(event):
             event.widget.config(bg="#D9D9D9")
             mainscreen_canvas.itemconfigure(
-                quit_buttonbg_2, image=MainScreen.image_quit_buttonbg
-            )
+                quit_buttonbg_2, image=MainScreen.image_quit_buttonbg)
 
         yes_quit_button.bind("<Enter>", yes_quitbutton_onenter)
         yes_quit_button.bind("<Leave>", yes_quitbutton_onleave)
@@ -1920,30 +1903,26 @@ class MainScreen:
             highlightthickness=0,
             bg="#D9D9D9",
             command=lambda: no_quit_button_pressed(),
-            relief="flat",
-        )
+            relief="flat")
         no_quit_button.place(x=308.0, y=217.0, width=80.0, height=26.0)
         no_quit_button.config(activebackground="#C3C3C3")
 
         def no_quitbutton_onenter(event):
             event.widget.config(bg="#C3C3C3")
             mainscreen_canvas.itemconfigure(
-                quit_buttonbg_1, image=MainScreen.image_quit_buttonbg_selected
-            ),
+                quit_buttonbg_1, image=MainScreen.image_quit_buttonbg_selected)
 
         def no_quitbutton_onleave(event):
             event.widget.config(bg="#D9D9D9")
             mainscreen_canvas.itemconfigure(
-                quit_buttonbg_1, image=MainScreen.image_quit_buttonbg
-            )
+                quit_buttonbg_1, image=MainScreen.image_quit_buttonbg)
 
         no_quit_button.bind("<Enter>", no_quitbutton_onenter)
         no_quit_button.bind("<Leave>", no_quitbutton_onleave)
 
         def destroy_quitbox():
             MainScreen.back_button.configure(
-                command=lambda: MainScreen.back_button_pressed()
-            )
+                command=lambda: MainScreen.back_button_pressed())
             mainscreen_canvas.delete(quit_banner)
             mainscreen_canvas.delete(quit_buttonbg_1)
             mainscreen_canvas.delete(quit_buttonbg_2)
@@ -1954,8 +1933,7 @@ class MainScreen:
     def start_game():
         MainScreen.game_started = True
         mainscreen_canvas.itemconfig(
-            MainScreen.currentscore_text, text=MainScreen.currentscore
-        )
+            MainScreen.currentscore_text, text=MainScreen.currentscore)
         MainScreen.entrybox.place(x=364.0, y=278.0, width=44.0, height=21.0)
         MainScreen.entrybox.focus_set()
         MainScreen.generate_problem()
@@ -1966,37 +1944,30 @@ class MainScreen:
             MainScreen.highscore_text,
             text=Data.highscore_dict[
                 f"{OptionsScreen.flashcardtype}-{OptionsScreen.flashcarddifficulty}-{OptionsScreen.flashcardtime}"
-            ],
-        )
+            ])
         MainScreen.start_timer(OptionsScreen.minutes, OptionsScreen.seconds)
 
     def generate_problem():
         MainScreen.flashcard1 = randint(
-            OptionsScreen.difficultyint1, OptionsScreen.difficultyint2
-        )
+            OptionsScreen.difficultyint1, OptionsScreen.difficultyint2)
         MainScreen.flashcard2 = randint(
-            OptionsScreen.difficultyint1, OptionsScreen.difficultyint2
-        )
+            OptionsScreen.difficultyint1, OptionsScreen.difficultyint2)
         do_math = {"+": add, "-": sub, "/": floordiv, "*": mul}[
-            OptionsScreen.flashcardtype
-        ]
+            OptionsScreen.flashcardtype]
         MainScreen.correctanswer = do_math(
             MainScreen.flashcard1, MainScreen.flashcard2)
         MainScreen.check_problem()
         mainscreen_canvas.itemconfig(
-            MainScreen.flashcard2_text, text=MainScreen.flashcard2
-        )
+            MainScreen.flashcard2_text, text=MainScreen.flashcard2)
         mainscreen_canvas.itemconfig(
-            MainScreen.flashcard1_text, text=MainScreen.flashcard1
-        )
+            MainScreen.flashcard1_text, text=MainScreen.flashcard1)
 
     def check_problem():
         if MainScreen.correctanswer < 0:
             MainScreen.generate_problem()
         if (
             MainScreen.flashcard1 == MainScreen.last_flashcard1
-            and MainScreen.flashcard2 == MainScreen.last_flashcard2
-        ) or (
+            and MainScreen.flashcard2 == MainScreen.last_flashcard2) or (
             MainScreen.flashcard1 == MainScreen.last_flashcard2
             and MainScreen.flashcard2 == MainScreen.last_flashcard1
         ):
@@ -2095,12 +2066,10 @@ class MainScreen:
         seconds -= 1
         Sound.sound_timer_tick.play()
         mainscreen_canvas.itemconfig(
-            MainScreen.time_text, text=f"{minutes:2}:{seconds:02}"
-        )
+            MainScreen.time_text, text=f"{minutes:2}:{seconds:02}")
 
         mainscreen_canvas.maintimerloop = mainscreen_canvas.after(
-            1000, MainScreen.start_timer, minutes, seconds
-        )
+            1000, MainScreen.start_timer, minutes, seconds)
 
     def pre_game_cleanup():
         MainScreen.start_button.place(
