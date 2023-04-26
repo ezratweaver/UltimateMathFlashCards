@@ -2005,8 +2005,7 @@ class MainScreen:
                                  408.0 + move_amount, 218.0)
         if animation_count < 4:
             mainscreen_canvas.after(
-                50, MainScreen.animation_shake_flashcard, animation_count
-            )
+                50, MainScreen.animation_shake_flashcard, animation_count)
         if animation_count == 4:
             mainscreen_canvas.coords(MainScreen.flashcard, 408, 218.0)
 
@@ -2017,20 +2016,18 @@ class MainScreen:
             font_size = stage_two_size
         animation_count += 1
         mainscreen_canvas.itemconfigure(
-            MainScreen.currentscore_text, font=("Encode Sans", 23 + font_size)
-        )
+            MainScreen.currentscore_text, font=("Encode Sans", 23 + font_size))
         if animation_count < 3:
             mainscreen_canvas.after(
                 60,
                 MainScreen.animation_score_change,
                 animation_count,
                 stage_one_size,
-                stage_two_size,
+                stage_two_size
             )
         if animation_count == 3:
             mainscreen_canvas.itemconfigure(
-                MainScreen.currentscore_text, font=("Encode Sans", 23 * -1)
-            )
+                MainScreen.currentscore_text, font=("Encode Sans", 23 * -1))
 
     def user_pressed_enter(event):
         user_answer = MainScreen.entrybox.get()
@@ -2042,11 +2039,9 @@ class MainScreen:
         except:
             return
         mainscreen_canvas.itemconfig(
-            MainScreen.currentscore_text, text=MainScreen.currentscore
-        )
+            MainScreen.currentscore_text, text=MainScreen.currentscore)
         mainscreen_canvas.itemconfig(
-            MainScreen.correctanswer_text, text=MainScreen.correctanswer
-        )
+            MainScreen.correctanswer_text, text=MainScreen.correctanswer)
         mainscreen_canvas.itemconfig(
             MainScreen.feedback_text, text=MainScreen.feedback)
         MainScreen.last_flashcard1 = MainScreen.flashcard1
@@ -2168,21 +2163,17 @@ class MainScreen:
         mainscreen_canvas.pack_forget()
         finalscreen_canvas.pack()
         finalscreen_canvas.itemconfig(
-            FinalScreen.yourscore_text, text=MainScreen.currentscore
-        )
+            FinalScreen.yourscore_text, text=MainScreen.currentscore)
         finalscreen_canvas.itemconfig(
             FinalScreen.highscore_text,
             text=Data.highscore_dict[
                 f"{OptionsScreen.flashcardtype}-{OptionsScreen.flashcarddifficulty}-{OptionsScreen.flashcardtime}"
-            ],
-        )
+            ])
         finalscreen_canvas.itemconfig(
-            FinalScreen.incorrect_text, text=MainScreen.incorrect
-        )
+            FinalScreen.incorrect_text, text=MainScreen.incorrect)
         MainScreen.is_new_highscore()
         finalscreen_canvas.itemconfig(
-            FinalScreen.feedback_text, text=FinalScreen.finalscore_feedback_text
-        )
+            FinalScreen.feedback_text, text=FinalScreen.finalscore_feedback_text)
         MainScreen.log_game()
         Data.dump_highscore()
         MainScreen.post_game_cleanup()
@@ -2232,82 +2223,57 @@ class OptionsScreen:
     image_banner10 = PhotoImage(
         file=relative_to_assets("optionsscreen/banner10.png"))
     image_descriptionbox = PhotoImage(
-        file=relative_to_assets("optionsscreen/descriptionbox.png")
-    )
+        file=relative_to_assets("optionsscreen/descriptionbox.png"))
     image_buttonbg_outline = PhotoImage(
-        file=relative_to_assets("optionsscreen/buttonbg_outline.png")
-    )
+        file=relative_to_assets("optionsscreen/buttonbg_outline.png"))
     image_buttonbg_outline_selected = PhotoImage(
-        file=relative_to_assets("optionsscreen/buttonbg_outline_selected.png")
-    )
+        file=relative_to_assets("optionsscreen/buttonbg_outline_selected.png"))
     image_buttonbg = PhotoImage(
         file=relative_to_assets("optionsscreen/buttonbg.png"))
     image_buttonbg_selected = PhotoImage(
-        file=relative_to_assets("optionsscreen/buttonbg_selected.png")
-    )
+        file=relative_to_assets("optionsscreen/buttonbg_selected.png"))
     image_flashcardtype_title = PhotoImage(
-        file=relative_to_assets("optionsscreen/flashcardtype_title.png")
-    )
+        file=relative_to_assets("optionsscreen/flashcardtype_title.png"))
     image_difficulty_title = PhotoImage(
-        file=relative_to_assets("optionsscreen/difficulty_title.png")
-    )
+        file=relative_to_assets("optionsscreen/difficulty_title.png"))
     image_time_title = PhotoImage(
-        file=relative_to_assets("optionsscreen/time_title.png")
-    )
+        file=relative_to_assets("optionsscreen/time_title.png"))
     image_back_buttonbg = PhotoImage(
-        file=relative_to_assets("optionsscreen/back_buttonbg.png")
-    )
+        file=relative_to_assets("optionsscreen/back_buttonbg.png"))
     image_back_buttonbg_selected = PhotoImage(
-        file=relative_to_assets("optionsscreen/back_buttonbg_selected.png")
-    )
+        file=relative_to_assets("optionsscreen/back_buttonbg_selected.png"))
     image_addition_button = PhotoImage(
-        file=relative_to_assets("optionsscreen/addition_button.png")
-    )
+        file=relative_to_assets("optionsscreen/addition_button.png"))
     image_subtraction_button = PhotoImage(
-        file=relative_to_assets("optionsscreen/subtraction_button.png")
-    )
+        file=relative_to_assets("optionsscreen/subtraction_button.png"))
     image_multiplication_button = PhotoImage(
-        file=relative_to_assets("optionsscreen/multiplication_button.png")
-    )
+        file=relative_to_assets("optionsscreen/multiplication_button.png"))
     image_division_button = PhotoImage(
-        file=relative_to_assets("optionsscreen/division_button.png")
-    )
+        file=relative_to_assets("optionsscreen/division_button.png"))
     image_medium_button = PhotoImage(
-        file=relative_to_assets("optionsscreen/medium_button.png")
-    )
+        file=relative_to_assets("optionsscreen/medium_button.png"))
     image_easy_button = PhotoImage(
-        file=relative_to_assets("optionsscreen/easy_button.png")
-    )
+        file=relative_to_assets("optionsscreen/easy_button.png"))
     image_practice_button = PhotoImage(
-        file=relative_to_assets("optionsscreen/practice_button.png")
-    )
+        file=relative_to_assets("optionsscreen/practice_button.png"))
     image_twominute_button = PhotoImage(
-        file=relative_to_assets("optionsscreen/2minute_button.png")
-    )
+        file=relative_to_assets("optionsscreen/2minute_button.png"))
     image_oneminute_button = PhotoImage(
-        file=relative_to_assets("optionsscreen/1minute_button.png")
-    )
+        file=relative_to_assets("optionsscreen/1minute_button.png"))
     image_thirtysecond_button = PhotoImage(
-        file=relative_to_assets("optionsscreen/30second_button.png")
-    )
+        file=relative_to_assets("optionsscreen/30second_button.png"))
     image_hard_button = PhotoImage(
-        file=relative_to_assets("optionsscreen/hard_button.png")
-    )
+        file=relative_to_assets("optionsscreen/hard_button.png"))
     image_classical_button = PhotoImage(
-        file=relative_to_assets("optionsscreen/classical_button.png")
-    )
+        file=relative_to_assets("optionsscreen/classical_button.png"))
     image_back_button = PhotoImage(
-        file=relative_to_assets("optionsscreen/back_button.png")
-    )
+        file=relative_to_assets("optionsscreen/back_button.png"))
     image_highscore_banner = PhotoImage(
-        file=relative_to_assets("optionsscreen/highscore_banner.png")
-    )
+        file=relative_to_assets("optionsscreen/highscore_banner.png"))
     image_highscore_bg = PhotoImage(
-        file=relative_to_assets("optionsscreen/highscore_bg.png")
-    )
+        file=relative_to_assets("optionsscreen/highscore_bg.png"))
     bg_image = optionsscreen_canvas.create_image(
-        395.0, 255.0, image=UserScreen.image_bg_image
-    )
+        395.0, 255.0, image=UserScreen.image_bg_image)
     banner9_1 = optionsscreen_canvas.create_image(
         132.0, 163.0, image=image_banner9)
     banner9_2 = optionsscreen_canvas.create_image(
@@ -2317,74 +2283,51 @@ class OptionsScreen:
     banner10 = optionsscreen_canvas.create_image(
         106.0, 455.0, image=image_banner10)
     descriptionbox = optionsscreen_canvas.create_image(
-        391.0, 403.0, image=image_descriptionbox
-    )
+        391.0, 403.0, image=image_descriptionbox)
     back_buttonbg = optionsscreen_canvas.create_image(
-        107.0, 454.0, image=image_back_buttonbg
-    )
-
+        107.0, 454.0, image=image_back_buttonbg)
     buttonbg_difficulty_classical = optionsscreen_canvas.create_image(
-        400.0, 102.0, image=image_buttonbg_outline
-    )
+        400.0, 102.0, image=image_buttonbg_outline)
     buttonbg_difficulty_easy = optionsscreen_canvas.create_image(
-        400.0, 150.0, image=image_buttonbg
-    )
+        400.0, 150.0, image=image_buttonbg)
     buttonbg_difficulty_medium = optionsscreen_canvas.create_image(
-        400.0, 198.0, image=image_buttonbg
-    )
+        400.0, 198.0, image=image_buttonbg)
     buttonbg_difficulty_hard = optionsscreen_canvas.create_image(
-        400.0, 246.0, image=image_buttonbg
-    )
-
+        400.0, 246.0, image=image_buttonbg)
     buttonbg_time_twominute = optionsscreen_canvas.create_image(
-        667.0, 102.0, image=image_buttonbg_outline
-    )
+        667.0, 102.0, image=image_buttonbg_outline)
     buttonbg_time_oneminute = optionsscreen_canvas.create_image(
-        667.0, 150.0, image=image_buttonbg
-    )
+        667.0, 150.0, image=image_buttonbg)
     buttonbg_time_thirtysecond = optionsscreen_canvas.create_image(
-        667.0, 198.0, image=image_buttonbg
-    )
+        667.0, 198.0, image=image_buttonbg)
     buttonbg_time_practice = optionsscreen_canvas.create_image(
-        667.0, 246.0, image=image_buttonbg
-    )
-
+        667.0, 246.0, image=image_buttonbg)
     buttonbg_type_multiplication = optionsscreen_canvas.create_image(
-        135.0, 102.0, image=image_buttonbg_outline
-    )
+        135.0, 102.0, image=image_buttonbg_outline)
     buttonbg_type_subtraction = optionsscreen_canvas.create_image(
-        135.0, 150.0, image=image_buttonbg
-    )
+        135.0, 150.0, image=image_buttonbg)
     buttonbg_type_addition = optionsscreen_canvas.create_image(
-        135.0, 198.0, image=image_buttonbg
-    )
+        135.0, 198.0, image=image_buttonbg)
     buttonbg_type_division = optionsscreen_canvas.create_image(
-        135.0, 246.0, image=image_buttonbg
-    )
-
+        135.0, 246.0, image=image_buttonbg)
     flashcardtype_title = optionsscreen_canvas.create_image(
-        134.0, 63.0, image=image_flashcardtype_title
-    )
+        134.0, 63.0, image=image_flashcardtype_title)
     difficulty_title = optionsscreen_canvas.create_image(
-        400.0, 63.0, image=image_difficulty_title
-    )
+        400.0, 63.0, image=image_difficulty_title)
     time_title = optionsscreen_canvas.create_image(
         666.0, 63.0, image=image_time_title)
 
     highscore_banner = optionsscreen_canvas.create_image(
-        691.0, 413.0, image=image_highscore_banner
-    )
+        691.0, 413.0, image=image_highscore_banner)
     highscore_bg = optionsscreen_canvas.create_image(
-        691.0, 428.0, image=image_highscore_bg
-    )
+        691.0, 428.0, image=image_highscore_bg)
     optionsscreen_canvas.create_text(
         647.0,
         379.0,
         anchor="nw",
         text="Highscore:",
         fill="#000000",
-        font=("Encode Sans", 19 * -1),
-    )
+        font=("Encode Sans", 19 * -1))
     specific_highscore_text = optionsscreen_canvas.create_text(
         691.0,
         428.0,
@@ -2411,47 +2354,34 @@ class OptionsScreen:
             OptionsScreen.specific_highscore_text,
             text=Data.highscore_dict[
                 f"{OptionsScreen.flashcardtype}-{OptionsScreen.flashcarddifficulty}-{OptionsScreen.flashcardtime}"
-            ],
-        )
+            ])
         optionsscreen_canvas.itemconfigure(
             OptionsScreen.buttonbg_type_multiplication,
-            image=OptionsScreen.image_buttonbg_outline,
-        )
+            image=OptionsScreen.image_buttonbg_outline,)
         optionsscreen_canvas.itemconfigure(
-            OptionsScreen.buttonbg_type_addition, image=OptionsScreen.image_buttonbg
-        )
+            OptionsScreen.buttonbg_type_addition, image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
-            OptionsScreen.buttonbg_type_subtraction, image=OptionsScreen.image_buttonbg
-        )
+            OptionsScreen.buttonbg_type_subtraction, image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
-            OptionsScreen.buttonbg_type_division, image=OptionsScreen.image_buttonbg
-        )
+            OptionsScreen.buttonbg_type_division, image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
             OptionsScreen.buttonbg_difficulty_classical,
-            image=OptionsScreen.image_buttonbg_outline,
-        )
+            image=OptionsScreen.image_buttonbg_outline,)
         optionsscreen_canvas.itemconfigure(
-            OptionsScreen.buttonbg_difficulty_hard, image=OptionsScreen.image_buttonbg
-        )
+            OptionsScreen.buttonbg_difficulty_hard, image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
-            OptionsScreen.buttonbg_difficulty_medium, image=OptionsScreen.image_buttonbg
-        )
+            OptionsScreen.buttonbg_difficulty_medium, image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
-            OptionsScreen.buttonbg_difficulty_easy, image=OptionsScreen.image_buttonbg
-        )
+            OptionsScreen.buttonbg_difficulty_easy, image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
-            OptionsScreen.buttonbg_time_thirtysecond, image=OptionsScreen.image_buttonbg
-        )
+            OptionsScreen.buttonbg_time_thirtysecond, image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
-            OptionsScreen.buttonbg_time_oneminute, image=OptionsScreen.image_buttonbg
-        )
+            OptionsScreen.buttonbg_time_oneminute, image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
-            OptionsScreen.buttonbg_time_practice, image=OptionsScreen.image_buttonbg
-        )
+            OptionsScreen.buttonbg_time_practice, image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
             OptionsScreen.buttonbg_time_twominute,
-            image=OptionsScreen.image_buttonbg_outline,
-        )
+            image=OptionsScreen.image_buttonbg_outline)
 
     def multiplication_button_pressed():
         OptionsScreen.flashcardtype = "*"
@@ -2461,13 +2391,11 @@ class OptionsScreen:
             OptionsScreen.difficultyint1,
             OptionsScreen.difficultyint2,
         ) = OptionsScreen.get_info(
-            OptionsScreen.flashcardtype, OptionsScreen.flashcarddifficulty
-        )
+            OptionsScreen.flashcardtype, OptionsScreen.flashcarddifficulty)
         OptionsScreen.explanationtitle = "Multiplication -"
         OptionsScreen.explanation = "Put your time tables to the test!"
         mainscreen_canvas.itemconfigure(
-            MainScreen.mathoperator, image=MainScreen.image_mathoperator_multiplication
-        )
+            MainScreen.mathoperator, image=MainScreen.image_mathoperator_multiplication)
         OptionsScreen.clear_type_outline()
         optionsscreen_canvas.itemconfigure(
             OptionsScreen.buttonbg_type_multiplication,
@@ -2491,26 +2419,22 @@ class OptionsScreen:
         if OptionsScreen.flashcardtype == "*":
             optionsscreen_canvas.itemconfigure(
                 OptionsScreen.buttonbg_type_multiplication,
-                image=OptionsScreen.image_buttonbg_outline_selected,
-            )
+                image=OptionsScreen.image_buttonbg_outline_selected)
         else:
             optionsscreen_canvas.itemconfigure(
                 OptionsScreen.buttonbg_type_multiplication,
-                image=OptionsScreen.image_buttonbg_selected,
-            )
+                image=OptionsScreen.image_buttonbg_selected)
 
     def multiplicationbutton_onleave(event):
         event.widget.config(bg="#D9D9D9")
         if OptionsScreen.flashcardtype == "*":
             optionsscreen_canvas.itemconfigure(
                 OptionsScreen.buttonbg_type_multiplication,
-                image=OptionsScreen.image_buttonbg_outline,
-            )
+                image=OptionsScreen.image_buttonbg_outline)
         else:
             optionsscreen_canvas.itemconfigure(
                 OptionsScreen.buttonbg_type_multiplication,
-                image=OptionsScreen.image_buttonbg,
-            )
+                image=OptionsScreen.image_buttonbg)
 
     multiplication_button.bind("<Enter>", multiplicationbutton_onenter)
     multiplication_button.bind("<Leave>", multiplicationbutton_onleave)
@@ -2523,18 +2447,15 @@ class OptionsScreen:
             OptionsScreen.difficultyint1,
             OptionsScreen.difficultyint2,
         ) = OptionsScreen.get_info(
-            OptionsScreen.flashcardtype, OptionsScreen.flashcarddifficulty
-        )
+            OptionsScreen.flashcardtype, OptionsScreen.flashcarddifficulty)
         OptionsScreen.explanationtitle = "Subtraction -"
         OptionsScreen.explanation = "Put your subtraction skills to the test!"
         OptionsScreen.clear_type_outline()
         optionsscreen_canvas.itemconfigure(
             OptionsScreen.buttonbg_type_subtraction,
-            image=OptionsScreen.image_buttonbg_outline_selected,
-        )
+            image=OptionsScreen.image_buttonbg_outline_selected,)
         mainscreen_canvas.itemconfigure(
-            MainScreen.mathoperator, image=MainScreen.image_mathoperator_minus
-        )
+            MainScreen.mathoperator, image=MainScreen.image_mathoperator_minus)
 
     subtraction_button = Button(
         optionsscreen_canvas,
@@ -2553,26 +2474,22 @@ class OptionsScreen:
         if OptionsScreen.flashcardtype == "-":
             optionsscreen_canvas.itemconfigure(
                 OptionsScreen.buttonbg_type_subtraction,
-                image=OptionsScreen.image_buttonbg_outline_selected,
-            )
+                image=OptionsScreen.image_buttonbg_outline_selected)
         else:
             optionsscreen_canvas.itemconfigure(
                 OptionsScreen.buttonbg_type_subtraction,
-                image=OptionsScreen.image_buttonbg_selected,
-            )
+                image=OptionsScreen.image_buttonbg_selected)
 
     def subtractionbutton_onleave(event):
         event.widget.config(bg="#D9D9D9")
         if OptionsScreen.flashcardtype == "-":
             optionsscreen_canvas.itemconfigure(
                 OptionsScreen.buttonbg_type_subtraction,
-                image=OptionsScreen.image_buttonbg_outline,
-            )
+                image=OptionsScreen.image_buttonbg_outline)
         else:
             optionsscreen_canvas.itemconfigure(
                 OptionsScreen.buttonbg_type_subtraction,
-                image=OptionsScreen.image_buttonbg,
-            )
+                image=OptionsScreen.image_buttonbg)
 
     subtraction_button.bind("<Enter>", subtractionbutton_onenter)
     subtraction_button.bind("<Leave>", subtractionbutton_onleave)
@@ -2585,18 +2502,15 @@ class OptionsScreen:
             OptionsScreen.difficultyint1,
             OptionsScreen.difficultyint2,
         ) = OptionsScreen.get_info(
-            OptionsScreen.flashcardtype, OptionsScreen.flashcarddifficulty
-        )
+            OptionsScreen.flashcardtype, OptionsScreen.flashcarddifficulty)
         OptionsScreen.explanationtitle = "Addition -"
         OptionsScreen.explanation = "Put your addition skills to the test!"
         OptionsScreen.clear_type_outline()
         optionsscreen_canvas.itemconfigure(
             OptionsScreen.buttonbg_type_addition,
-            image=OptionsScreen.image_buttonbg_outline_selected,
-        )
+            image=OptionsScreen.image_buttonbg_outline_selected,)
         mainscreen_canvas.itemconfigure(
-            MainScreen.mathoperator, image=MainScreen.image_mathoperator_plus
-        )
+            MainScreen.mathoperator, image=MainScreen.image_mathoperator_plus)
 
     addition_button = Button(
         optionsscreen_canvas,
@@ -2615,25 +2529,21 @@ class OptionsScreen:
         if OptionsScreen.flashcardtype == "+":
             optionsscreen_canvas.itemconfigure(
                 OptionsScreen.buttonbg_type_addition,
-                image=OptionsScreen.image_buttonbg_outline_selected,
-            )
+                image=OptionsScreen.image_buttonbg_outline_selected,)
         else:
             optionsscreen_canvas.itemconfigure(
                 OptionsScreen.buttonbg_type_addition,
-                image=OptionsScreen.image_buttonbg_selected,
-            )
+                image=OptionsScreen.image_buttonbg_selected,)
 
     def additionbutton_onleave(event):
         event.widget.config(bg="#D9D9D9"),
         if OptionsScreen.flashcardtype == "+":
             optionsscreen_canvas.itemconfigure(
                 OptionsScreen.buttonbg_type_addition,
-                image=OptionsScreen.image_buttonbg_outline,
-            )
+                image=OptionsScreen.image_buttonbg_outline,)
         else:
             optionsscreen_canvas.itemconfigure(
-                OptionsScreen.buttonbg_type_addition, image=OptionsScreen.image_buttonbg
-            )
+                OptionsScreen.buttonbg_type_addition, image=OptionsScreen.image_buttonbg)
 
     addition_button.bind("<Enter>", additionbutton_onenter)
     addition_button.bind("<Leave>", additionbutton_onleave)
@@ -2646,18 +2556,15 @@ class OptionsScreen:
             OptionsScreen.difficultyint1,
             OptionsScreen.difficultyint2,
         ) = OptionsScreen.get_info(
-            OptionsScreen.flashcardtype, OptionsScreen.flashcarddifficulty
-        )
+            OptionsScreen.flashcardtype, OptionsScreen.flashcarddifficulty)
         OptionsScreen.explanationtitle = "Divison -"
         OptionsScreen.explanation = "Put your division skills to the test!"
         OptionsScreen.clear_type_outline()
         optionsscreen_canvas.itemconfigure(
             OptionsScreen.buttonbg_type_division,
-            image=OptionsScreen.image_buttonbg_outline_selected,
-        )
+            image=OptionsScreen.image_buttonbg_outline_selected,)
         mainscreen_canvas.itemconfigure(
-            MainScreen.mathoperator, image=MainScreen.image_mathoperator_divide
-        )
+            MainScreen.mathoperator, image=MainScreen.image_mathoperator_divide)
 
     division_button = Button(
         optionsscreen_canvas,
@@ -2676,25 +2583,21 @@ class OptionsScreen:
         if OptionsScreen.flashcardtype == "/":
             optionsscreen_canvas.itemconfigure(
                 OptionsScreen.buttonbg_type_division,
-                image=OptionsScreen.image_buttonbg_outline_selected,
-            )
+                image=OptionsScreen.image_buttonbg_outline_selected,)
         else:
             optionsscreen_canvas.itemconfigure(
                 OptionsScreen.buttonbg_type_division,
-                image=OptionsScreen.image_buttonbg_selected,
-            )
+                image=OptionsScreen.image_buttonbg_selected,)
 
     def divisionbutton_onleave(event):
         event.widget.config(bg="#D9D9D9"),
         if OptionsScreen.flashcardtype == "/":
             optionsscreen_canvas.itemconfigure(
                 OptionsScreen.buttonbg_type_division,
-                image=OptionsScreen.image_buttonbg_outline,
-            )
+                image=OptionsScreen.image_buttonbg_outline,)
         else:
             optionsscreen_canvas.itemconfigure(
-                OptionsScreen.buttonbg_type_division, image=OptionsScreen.image_buttonbg
-            )
+                OptionsScreen.buttonbg_type_division, image=OptionsScreen.image_buttonbg)
 
     division_button.bind("<Enter>", divisionbutton_onenter)
     division_button.bind("<Leave>", divisionbutton_onleave)
@@ -2702,29 +2605,23 @@ class OptionsScreen:
     def clear_type_outline():
         Sound.sound_buttonpress.play()
         optionsscreen_canvas.itemconfig(
-            OptionsScreen.description_title, text=OptionsScreen.explanationtitle
-        )
+            OptionsScreen.description_title, text=OptionsScreen.explanationtitle)
         OptionsScreen.description.config(text=OptionsScreen.explanation)
         optionsscreen_canvas.itemconfigure(
-            OptionsScreen.buttonbg_type_addition, image=OptionsScreen.image_buttonbg
-        )
+            OptionsScreen.buttonbg_type_addition, image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
-            OptionsScreen.buttonbg_type_division, image=OptionsScreen.image_buttonbg
-        )
+            OptionsScreen.buttonbg_type_division, image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
             OptionsScreen.buttonbg_type_multiplication,
-            image=OptionsScreen.image_buttonbg,
-        )
+            image=OptionsScreen.image_buttonbg,)
         optionsscreen_canvas.itemconfigure(
-            OptionsScreen.buttonbg_type_subtraction, image=OptionsScreen.image_buttonbg
-        )
+            OptionsScreen.buttonbg_type_subtraction, image=OptionsScreen.image_buttonbg)
         Data.does_score_exist()
         optionsscreen_canvas.itemconfig(
             OptionsScreen.specific_highscore_text,
             text=Data.highscore_dict[
                 f"{OptionsScreen.flashcardtype}-{OptionsScreen.flashcarddifficulty}-{OptionsScreen.flashcardtime}"
-            ],
-        )
+            ])
 
     # Difficulty Buttons
 
@@ -2736,13 +2633,11 @@ class OptionsScreen:
             OptionsScreen.difficultyint1,
             OptionsScreen.difficultyint2,
         ) = OptionsScreen.get_info(
-            OptionsScreen.flashcardtype, OptionsScreen.flashcarddifficulty
-        )
+            OptionsScreen.flashcardtype, OptionsScreen.flashcarddifficulty)
         OptionsScreen.clear_difficulty_outline()
         optionsscreen_canvas.itemconfigure(
             OptionsScreen.buttonbg_difficulty_classical,
-            image=OptionsScreen.image_buttonbg_outline_selected,
-        )
+            image=OptionsScreen.image_buttonbg_outline_selected,)
 
     classical_button = Button(
         optionsscreen_canvas,
@@ -2761,26 +2656,22 @@ class OptionsScreen:
         if OptionsScreen.flashcarddifficulty == "classical":
             optionsscreen_canvas.itemconfigure(
                 OptionsScreen.buttonbg_difficulty_classical,
-                image=OptionsScreen.image_buttonbg_outline_selected,
-            )
+                image=OptionsScreen.image_buttonbg_outline_selected)
         else:
             optionsscreen_canvas.itemconfigure(
                 OptionsScreen.buttonbg_difficulty_classical,
-                image=OptionsScreen.image_buttonbg_selected,
-            )
+                image=OptionsScreen.image_buttonbg_selected)
 
     def classicalbutton_onleave(event):
         event.widget.config(bg="#D9D9D9"),
         if OptionsScreen.flashcarddifficulty == "classical":
             optionsscreen_canvas.itemconfigure(
                 OptionsScreen.buttonbg_difficulty_classical,
-                image=OptionsScreen.image_buttonbg_outline,
-            )
+                image=OptionsScreen.image_buttonbg_outline,)
         else:
             optionsscreen_canvas.itemconfigure(
                 OptionsScreen.buttonbg_difficulty_classical,
-                image=OptionsScreen.image_buttonbg,
-            )
+                image=OptionsScreen.image_buttonbg)
 
     classical_button.bind("<Enter>", classicalbutton_onenter)
     classical_button.bind("<Leave>", classicalbutton_onleave)
@@ -2798,8 +2689,7 @@ class OptionsScreen:
         OptionsScreen.clear_difficulty_outline()
         optionsscreen_canvas.itemconfigure(
             OptionsScreen.buttonbg_difficulty_easy,
-            image=OptionsScreen.image_buttonbg_outline_selected,
-        )
+            image=OptionsScreen.image_buttonbg_outline_selected)
         OptionsScreen.flashcarddifficulty = "easy"
 
     easy_button = Button(
@@ -2819,26 +2709,22 @@ class OptionsScreen:
         if OptionsScreen.flashcarddifficulty == "easy":
             optionsscreen_canvas.itemconfigure(
                 OptionsScreen.buttonbg_difficulty_easy,
-                image=OptionsScreen.image_buttonbg_outline_selected,
-            )
+                image=OptionsScreen.image_buttonbg_outline_selected)
         else:
             optionsscreen_canvas.itemconfigure(
                 OptionsScreen.buttonbg_difficulty_easy,
-                image=OptionsScreen.image_buttonbg_selected,
-            )
+                image=OptionsScreen.image_buttonbg_selected)
 
     def easybutton_onleave(event):
         event.widget.config(bg="#D9D9D9")
         if OptionsScreen.flashcarddifficulty == "easy":
             optionsscreen_canvas.itemconfigure(
                 OptionsScreen.buttonbg_difficulty_easy,
-                image=OptionsScreen.image_buttonbg_outline,
-            )
+                image=OptionsScreen.image_buttonbg_outline)
         else:
             optionsscreen_canvas.itemconfigure(
                 OptionsScreen.buttonbg_difficulty_easy,
-                image=OptionsScreen.image_buttonbg,
-            )
+                image=OptionsScreen.image_buttonbg)
 
     easy_button.bind("<Enter>", easybutton_onenter)
     easy_button.bind("<Leave>", easybutton_onleave)
@@ -2851,13 +2737,11 @@ class OptionsScreen:
             OptionsScreen.difficultyint1,
             OptionsScreen.difficultyint2,
         ) = OptionsScreen.get_info(
-            OptionsScreen.flashcardtype, OptionsScreen.flashcarddifficulty
-        )
+            OptionsScreen.flashcardtype, OptionsScreen.flashcarddifficulty)
         OptionsScreen.clear_difficulty_outline()
         optionsscreen_canvas.itemconfigure(
             OptionsScreen.buttonbg_difficulty_medium,
-            image=OptionsScreen.image_buttonbg_outline_selected,
-        )
+            image=OptionsScreen.image_buttonbg_outline_selected)
         OptionsScreen.flashcarddifficulty = "medium"
 
     medium_button = Button(
@@ -2877,26 +2761,22 @@ class OptionsScreen:
         if OptionsScreen.flashcarddifficulty == "medium":
             optionsscreen_canvas.itemconfigure(
                 OptionsScreen.buttonbg_difficulty_medium,
-                image=OptionsScreen.image_buttonbg_outline_selected,
-            )
+                image=OptionsScreen.image_buttonbg_outline_selected)
         else:
             optionsscreen_canvas.itemconfigure(
                 OptionsScreen.buttonbg_difficulty_medium,
-                image=OptionsScreen.image_buttonbg_selected,
-            )
+                image=OptionsScreen.image_buttonbg_selected)
 
     def mediumbutton_onleave(event):
         event.widget.config(bg="#D9D9D9")
         if OptionsScreen.flashcarddifficulty == "medium":
             optionsscreen_canvas.itemconfigure(
                 OptionsScreen.buttonbg_difficulty_medium,
-                image=OptionsScreen.image_buttonbg_outline,
-            )
+                image=OptionsScreen.image_buttonbg_outline)
         else:
             optionsscreen_canvas.itemconfigure(
                 OptionsScreen.buttonbg_difficulty_medium,
-                image=OptionsScreen.image_buttonbg,
-            )
+                image=OptionsScreen.image_buttonbg)
 
     medium_button.bind("<Enter>", mediumbutton_onenter)
     medium_button.bind("<Leave>", mediumbutton_onleave)
@@ -2909,13 +2789,11 @@ class OptionsScreen:
             OptionsScreen.difficultyint1,
             OptionsScreen.difficultyint2,
         ) = OptionsScreen.get_info(
-            OptionsScreen.flashcardtype, OptionsScreen.flashcarddifficulty
-        )
+            OptionsScreen.flashcardtype, OptionsScreen.flashcarddifficulty)
         OptionsScreen.clear_difficulty_outline()
         optionsscreen_canvas.itemconfigure(
             OptionsScreen.buttonbg_difficulty_hard,
-            image=OptionsScreen.image_buttonbg_outline_selected,
-        )
+            image=OptionsScreen.image_buttonbg_outline_selected)
         OptionsScreen.flashcarddifficulty = "hard"
 
     hard_button = Button(
@@ -2935,26 +2813,22 @@ class OptionsScreen:
         if OptionsScreen.flashcarddifficulty == "hard":
             optionsscreen_canvas.itemconfigure(
                 OptionsScreen.buttonbg_difficulty_hard,
-                image=OptionsScreen.image_buttonbg_outline_selected,
-            )
+                image=OptionsScreen.image_buttonbg_outline_selected)
         else:
             optionsscreen_canvas.itemconfigure(
                 OptionsScreen.buttonbg_difficulty_hard,
-                image=OptionsScreen.image_buttonbg_selected,
-            )
+                image=OptionsScreen.image_buttonbg_selected)
 
     def hardbutton_onleave(event):
         event.widget.config(bg="#D9D9D9"),
         if OptionsScreen.flashcarddifficulty == "hard":
             optionsscreen_canvas.itemconfigure(
                 OptionsScreen.buttonbg_difficulty_hard,
-                image=OptionsScreen.image_buttonbg_outline,
-            )
+                image=OptionsScreen.image_buttonbg_outline)
         else:
             optionsscreen_canvas.itemconfigure(
                 OptionsScreen.buttonbg_difficulty_hard,
-                image=OptionsScreen.image_buttonbg,
-            )
+                image=OptionsScreen.image_buttonbg)
 
     hard_button.bind("<Enter>", hardbutton_onenter)
     hard_button.bind("<Leave>", hardbutton_onleave)
@@ -3004,41 +2878,33 @@ class OptionsScreen:
     def clear_difficulty_outline():
         Sound.sound_buttonpress.play()
         optionsscreen_canvas.itemconfig(
-            OptionsScreen.description_title, text=OptionsScreen.explanationtitle
-        )
+            OptionsScreen.description_title, text=OptionsScreen.explanationtitle)
         OptionsScreen.description.config(text=OptionsScreen.explanation)
         optionsscreen_canvas.itemconfigure(
-            OptionsScreen.buttonbg_difficulty_hard, image=OptionsScreen.image_buttonbg
-        )
+            OptionsScreen.buttonbg_difficulty_hard, image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
-            OptionsScreen.buttonbg_difficulty_medium, image=OptionsScreen.image_buttonbg
-        )
+            OptionsScreen.buttonbg_difficulty_medium, image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
-            OptionsScreen.buttonbg_difficulty_easy, image=OptionsScreen.image_buttonbg
-        )
+            OptionsScreen.buttonbg_difficulty_easy, image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
             OptionsScreen.buttonbg_difficulty_classical,
-            image=OptionsScreen.image_buttonbg,
-        )
+            image=OptionsScreen.image_buttonbg)
         Data.does_score_exist()
         optionsscreen_canvas.itemconfig(
             OptionsScreen.specific_highscore_text,
             text=Data.highscore_dict[
                 f"{OptionsScreen.flashcardtype}-{OptionsScreen.flashcarddifficulty}-{OptionsScreen.flashcardtime}"
-            ],
-        )
+            ])
 
     def practice_button_pressed():
         OptionsScreen.explanationtitle = "Practice -"
         OptionsScreen.flashcardtime = "practice"
         OptionsScreen.explanation = (
-            "No time limit! Tone your math skills! (No results will be stored)"
-        )
+            "No time limit! Tone your math skills! (No results will be stored)")
         OptionsScreen.clear_time_outline()
         optionsscreen_canvas.itemconfigure(
             OptionsScreen.buttonbg_time_practice,
-            image=OptionsScreen.image_buttonbg_outline_selected,
-        )
+            image=OptionsScreen.image_buttonbg_outline_selected,)
 
     practice_button = Button(
         optionsscreen_canvas,
@@ -3057,25 +2923,21 @@ class OptionsScreen:
         if OptionsScreen.flashcardtime == "practice":
             optionsscreen_canvas.itemconfigure(
                 OptionsScreen.buttonbg_time_practice,
-                image=OptionsScreen.image_buttonbg_outline_selected,
-            )
+                image=OptionsScreen.image_buttonbg_outline_selected)
         else:
             optionsscreen_canvas.itemconfigure(
                 OptionsScreen.buttonbg_time_practice,
-                image=OptionsScreen.image_buttonbg_selected,
-            )
+                image=OptionsScreen.image_buttonbg_selected)
 
     def practicebutton_onleave(event):
         event.widget.config(bg="#D9D9D9")
         if OptionsScreen.flashcardtime == "practice":
             optionsscreen_canvas.itemconfigure(
                 OptionsScreen.buttonbg_time_practice,
-                image=OptionsScreen.image_buttonbg_outline,
-            )
+                image=OptionsScreen.image_buttonbg_outline)
         else:
             optionsscreen_canvas.itemconfigure(
-                OptionsScreen.buttonbg_time_practice, image=OptionsScreen.image_buttonbg
-            )
+                OptionsScreen.buttonbg_time_practice, image=OptionsScreen.image_buttonbg)
 
     practice_button.bind("<Enter>", practicebutton_onenter)
     practice_button.bind("<Leave>", practicebutton_onleave)
@@ -3089,8 +2951,7 @@ class OptionsScreen:
         OptionsScreen.clear_time_outline()
         optionsscreen_canvas.itemconfigure(
             OptionsScreen.buttonbg_time_twominute,
-            image=OptionsScreen.image_buttonbg_outline_selected,
-        )
+            image=OptionsScreen.image_buttonbg_outline_selected)
 
     twominute_button = Button(
         optionsscreen_canvas,
@@ -3109,26 +2970,22 @@ class OptionsScreen:
         if OptionsScreen.flashcardtime == "twominute":
             optionsscreen_canvas.itemconfigure(
                 OptionsScreen.buttonbg_time_twominute,
-                image=OptionsScreen.image_buttonbg_outline_selected,
-            )
+                image=OptionsScreen.image_buttonbg_outline_selected)
         else:
             optionsscreen_canvas.itemconfigure(
                 OptionsScreen.buttonbg_time_twominute,
-                image=OptionsScreen.image_buttonbg_selected,
-            )
+                image=OptionsScreen.image_buttonbg_selected)
 
     def twominutebutton_onleave(event):
         event.widget.config(bg="#D9D9D9")
         if OptionsScreen.flashcardtime == "twominute":
             optionsscreen_canvas.itemconfigure(
                 OptionsScreen.buttonbg_time_twominute,
-                image=OptionsScreen.image_buttonbg_outline,
-            )
+                image=OptionsScreen.image_buttonbg_outline)
         else:
             optionsscreen_canvas.itemconfigure(
                 OptionsScreen.buttonbg_time_twominute,
-                image=OptionsScreen.image_buttonbg,
-            )
+                image=OptionsScreen.image_buttonbg)
 
     twominute_button.bind("<Enter>", twominutebutton_onenter)
     twominute_button.bind("<Leave>", twominutebutton_onleave)
@@ -3142,8 +2999,7 @@ class OptionsScreen:
         OptionsScreen.clear_time_outline()
         optionsscreen_canvas.itemconfigure(
             OptionsScreen.buttonbg_time_oneminute,
-            image=OptionsScreen.image_buttonbg_outline_selected,
-        )
+            image=OptionsScreen.image_buttonbg_outline_selected)
 
     oneminute_button = Button(
         optionsscreen_canvas,
@@ -3162,26 +3018,22 @@ class OptionsScreen:
         if OptionsScreen.flashcardtime == "oneminute":
             optionsscreen_canvas.itemconfigure(
                 OptionsScreen.buttonbg_time_oneminute,
-                image=OptionsScreen.image_buttonbg_outline_selected,
-            )
+                image=OptionsScreen.image_buttonbg_outline_selected)
         else:
             optionsscreen_canvas.itemconfigure(
                 OptionsScreen.buttonbg_time_oneminute,
-                image=OptionsScreen.image_buttonbg_selected,
-            )
+                image=OptionsScreen.image_buttonbg_selected)
 
     def oneminutebutton_onleave(event):
         event.widget.config(bg="#D9D9D9")
         if OptionsScreen.flashcardtime == "oneminute":
             optionsscreen_canvas.itemconfigure(
                 OptionsScreen.buttonbg_time_oneminute,
-                image=OptionsScreen.image_buttonbg_outline,
-            )
+                image=OptionsScreen.image_buttonbg_outline)
         else:
             optionsscreen_canvas.itemconfigure(
                 OptionsScreen.buttonbg_time_oneminute,
-                image=OptionsScreen.image_buttonbg,
-            )
+                image=OptionsScreen.image_buttonbg)
 
     oneminute_button.bind("<Enter>", oneminutebutton_onenter)
     oneminute_button.bind("<Leave>", oneminutebutton_onleave)
@@ -3191,14 +3043,12 @@ class OptionsScreen:
         OptionsScreen.seconds = 31
         OptionsScreen.explanationtitle = "0:30 -"
         OptionsScreen.explanation = (
-            "Wanna show off? Only thirty seconds to show your true math skills!"
-        )
+            "Wanna show off? Only thirty seconds to show your true math skills!")
         OptionsScreen.flashcardtime = "thirtysecond"
         OptionsScreen.clear_time_outline()
         optionsscreen_canvas.itemconfigure(
             OptionsScreen.buttonbg_time_thirtysecond,
-            image=OptionsScreen.image_buttonbg_outline_selected,
-        )
+            image=OptionsScreen.image_buttonbg_outline_selected)
 
     thirtysecond_button = Button(
         optionsscreen_canvas,
@@ -3217,26 +3067,22 @@ class OptionsScreen:
         if OptionsScreen.flashcardtime == "thirtysecond":
             optionsscreen_canvas.itemconfigure(
                 OptionsScreen.buttonbg_time_thirtysecond,
-                image=OptionsScreen.image_buttonbg_outline_selected,
-            )
+                image=OptionsScreen.image_buttonbg_outline_selected)
         else:
             optionsscreen_canvas.itemconfigure(
                 OptionsScreen.buttonbg_time_thirtysecond,
-                image=OptionsScreen.image_buttonbg_selected,
-            )
+                image=OptionsScreen.image_buttonbg_selected)
 
     def thirtysecondbutton_onleave(event):
         event.widget.config(bg="#D9D9D9")
         if OptionsScreen.flashcardtime == "thirtysecond":
             optionsscreen_canvas.itemconfigure(
                 OptionsScreen.buttonbg_time_thirtysecond,
-                image=OptionsScreen.image_buttonbg_outline,
-            )
+                image=OptionsScreen.image_buttonbg_outline)
         else:
             optionsscreen_canvas.itemconfigure(
                 OptionsScreen.buttonbg_time_thirtysecond,
-                image=OptionsScreen.image_buttonbg,
-            )
+                image=OptionsScreen.image_buttonbg)
 
     thirtysecond_button.bind("<Enter>", thirtysecondbutton_onenter)
     thirtysecond_button.bind("<Leave>", thirtysecondbutton_onleave)
@@ -3244,28 +3090,22 @@ class OptionsScreen:
     def clear_time_outline():
         Sound.sound_buttonpress.play()
         optionsscreen_canvas.itemconfig(
-            OptionsScreen.description_title, text=OptionsScreen.explanationtitle
-        )
-        OptionsScreen.description.config(text=OptionsScreen.explanation)
+            OptionsScreen.description_title, text=OptionsScreen.explanationtitle)
+        OptionsScreen.description.config(
+            text=OptionsScreen.explanation)
         optionsscreen_canvas.itemconfigure(
-            OptionsScreen.buttonbg_time_thirtysecond, image=OptionsScreen.image_buttonbg
-        )
+            OptionsScreen.buttonbg_time_thirtysecond, image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
-            OptionsScreen.buttonbg_time_twominute, image=OptionsScreen.image_buttonbg
-        )
+            OptionsScreen.buttonbg_time_twominute, image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
-            OptionsScreen.buttonbg_time_oneminute, image=OptionsScreen.image_buttonbg
-        )
+            OptionsScreen.buttonbg_time_oneminute, image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
-            OptionsScreen.buttonbg_time_practice, image=OptionsScreen.image_buttonbg
-        )
+            OptionsScreen.buttonbg_time_practice, image=OptionsScreen.image_buttonbg)
         Data.does_score_exist()
         optionsscreen_canvas.itemconfig(
             OptionsScreen.specific_highscore_text,
             text=Data.highscore_dict[
-                f"{OptionsScreen.flashcardtype}-{OptionsScreen.flashcarddifficulty}-{OptionsScreen.flashcardtime}"
-            ],
-        )
+                f"{OptionsScreen.flashcardtype}-{OptionsScreen.flashcarddifficulty}-{OptionsScreen.flashcardtime}"])
 
     # Back Button
     def back_button_pressed():
@@ -3288,13 +3128,11 @@ class OptionsScreen:
     def backbutton_onenter(event):
         event.widget.config(bg="#C3C3C3"), optionsscreen_canvas.itemconfigure(
             OptionsScreen.back_buttonbg,
-            image=OptionsScreen.image_back_buttonbg_selected,
-        ),
+            image=OptionsScreen.image_back_buttonbg_selected)
 
     def backbutton_onleave(event):
         event.widget.config(bg="#D9D9D9"), optionsscreen_canvas.itemconfigure(
-            OptionsScreen.back_buttonbg, image=OptionsScreen.image_back_buttonbg
-        )
+            OptionsScreen.back_buttonbg, image=OptionsScreen.image_back_buttonbg)
 
     back_button.bind("<Enter>", backbutton_onenter)
     back_button.bind("<Leave>", backbutton_onleave)
@@ -3325,42 +3163,32 @@ class FinalScreen:
     finalscore_feedback_text = ""
 
     image_scorebanner = PhotoImage(
-        file=relative_to_assets("finalscreen/scorebanner.png")
-    )
+        file=relative_to_assets("finalscreen/scorebanner.png"))
     image_scoreseperator = PhotoImage(
-        file=relative_to_assets("finalscreen/scoreseperator.png")
-    )
+        file=relative_to_assets("finalscreen/scoreseperator.png"))
     image_scorebg = PhotoImage(
         file=relative_to_assets("finalscreen/scorebg.png"))
     image_buttonbanner = PhotoImage(
-        file=relative_to_assets("finalscreen/buttonbanner.png")
-    )
+        file=relative_to_assets("finalscreen/buttonbanner.png"))
     image_feedbackbanner = PhotoImage(
-        file=relative_to_assets("finalscreen/feedbackbanner.png")
-    )
+        file=relative_to_assets("finalscreen/feedbackbanner.png"))
     image_buttonbg = PhotoImage(
         file=relative_to_assets("finalscreen/buttonbg.png"))
     image_buttonbg_selected = PhotoImage(
-        file=relative_to_assets("finalscreen/buttonbg_selected.png")
-    )
+        file=relative_to_assets("finalscreen/buttonbg_selected.png"))
     image_continue_button = PhotoImage(
-        file=relative_to_assets("finalscreen/continue_button.png")
-    )
+        file=relative_to_assets("finalscreen/continue_button.png"))
 
     bg_image = finalscreen_canvas.create_image(
-        395.0, 255.0, image=UserScreen.image_bg_image
-    )
+        395.0, 255.0, image=UserScreen.image_bg_image)
     scorebanner = finalscreen_canvas.create_image(
         391.0, 197.0, image=image_scorebanner)
     scoreseperator_1 = finalscreen_canvas.create_image(
-        392.0, 90.0, image=image_scoreseperator
-    )
+        392.0, 90.0, image=image_scoreseperator)
     scoreseperator_2 = finalscreen_canvas.create_image(
-        392.0, 194.0, image=image_scoreseperator
-    )
+        392.0, 194.0, image=image_scoreseperator)
     scoreseperator_3 = finalscreen_canvas.create_image(
-        392.0, 299.0, image=image_scoreseperator
-    )
+        392.0, 299.0, image=image_scoreseperator)
     scorebg_1 = finalscreen_canvas.create_image(
         391.0, 117.0, image=image_scorebg)
     scorebg_2 = finalscreen_canvas.create_image(
@@ -3368,11 +3196,9 @@ class FinalScreen:
     scorebg_3 = finalscreen_canvas.create_image(
         391.0, 332.0, image=image_scorebg)
     buttonbanner = finalscreen_canvas.create_image(
-        391.0, 436.0, image=image_buttonbanner
-    )
+        391.0, 436.0, image=image_buttonbanner)
     feedbackbanner = finalscreen_canvas.create_image(
-        620.0, 436.0, image=image_feedbackbanner
-    )
+        620.0, 436.0, image=image_feedbackbanner)
     buttonbg = finalscreen_canvas.create_image(
         620.0, 436.0, image=image_buttonbg)
 
@@ -3409,8 +3235,7 @@ class FinalScreen:
         font=(
             "Encode Sans",
             19 * -1,
-            "bold",
-        ),
+            "bold")
     )
     finalscreen_canvas.create_text(
         308.0,
@@ -3418,7 +3243,7 @@ class FinalScreen:
         anchor="nw",
         text="You Scored",
         fill="#000000",
-        font=("Encode Sans", 35 * -1),
+        font=("Encode Sans", 35 * -1)
     )
     finalscreen_canvas.create_text(
         310.0,
@@ -3426,7 +3251,7 @@ class FinalScreen:
         anchor="nw",
         text="High Score",
         fill="#000000",
-        font=("Encode Sans", 35 * -1),
+        font=("Encode Sans", 35 * -1)
     )
     finalscreen_canvas.create_text(
         325.0,
@@ -3434,7 +3259,7 @@ class FinalScreen:
         anchor="nw",
         text="Incorrect",
         fill="#000000",
-        font=("Encode Sans", 35 * -1),
+        font=("Encode Sans", 35 * -1)
     )
 
     def continue_button_pressed():
@@ -3457,13 +3282,11 @@ class FinalScreen:
 
     def continuebutton_onenter(event):
         event.widget.config(bg="#C3C3C3"), finalscreen_canvas.itemconfigure(
-            FinalScreen.buttonbg, image=FinalScreen.image_buttonbg_selected
-        ),
+            FinalScreen.buttonbg, image=FinalScreen.image_buttonbg_selected)
 
     def continuebutton_onleave(event):
         event.widget.config(bg="#D9D9D9"), finalscreen_canvas.itemconfigure(
-            FinalScreen.buttonbg, image=FinalScreen.image_buttonbg
-        )
+            FinalScreen.buttonbg, image=FinalScreen.image_buttonbg)
 
     continue_button.bind("<Enter>", continuebutton_onenter)
     continue_button.bind("<Leave>", continuebutton_onleave)
@@ -3471,42 +3294,30 @@ class FinalScreen:
 
 class HistoryScreen:
     image_actionbuttonbg = PhotoImage(
-        file=relative_to_assets("historyscreen/actionbuttonbg.png")
-    )
+        file=relative_to_assets("historyscreen/actionbuttonbg.png"))
     image_actionbuttonbg_selected = PhotoImage(
-        file=relative_to_assets("historyscreen/actionbuttonbg_selected.png")
-    )
+        file=relative_to_assets("historyscreen/actionbuttonbg_selected.png"))
     image_buttonbanner = PhotoImage(
-        file=relative_to_assets("historyscreen/buttonbanner.png")
-    )
+        file=relative_to_assets("historyscreen/buttonbanner.png"))
     image_back_button = PhotoImage(
-        file=relative_to_assets("historyscreen/back_button.png")
-    )
+        file=relative_to_assets("historyscreen/back_button.png"))
     image_datasheet_bg = PhotoImage(
-        file=relative_to_assets("historyscreen/datasheet_bg.png")
-    )
+        file=relative_to_assets("historyscreen/datasheet_bg.png"))
     image_info_button = PhotoImage(
-        file=relative_to_assets("historyscreen/info_button.png")
-    )
+        file=relative_to_assets("historyscreen/info_button.png"))
 
     bg_image = historyscreen_canvas.create_image(
-        395.0, 255.0, image=UserScreen.image_bg_image
-    )
+        395.0, 255.0, image=UserScreen.image_bg_image)
     buttonbanner_1 = historyscreen_canvas.create_image(
-        89.0, 454.0, image=image_buttonbanner
-    )
+        89.0, 454.0, image=image_buttonbanner)
     buttonbanner_2 = historyscreen_canvas.create_image(
-        709.0, 454.0, image=image_buttonbanner
-    )
+        709.0, 454.0, image=image_buttonbanner)
     actionbuttonbg_1 = historyscreen_canvas.create_image(
-        89.0, 453.0, image=image_actionbuttonbg
-    )
+        89.0, 453.0, image=image_actionbuttonbg)
     actionbuttonbg_2 = historyscreen_canvas.create_image(
-        710.0, 453.0, image=image_actionbuttonbg
-    )
+        710.0, 453.0, image=image_actionbuttonbg)
     datasheet_bg = historyscreen_canvas.create_image(
-        399.0, 227.0, image=image_datasheet_bg
-    )
+        399.0, 227.0, image=image_datasheet_bg)
 
     def back_button_pressed():
         Sound.sound_buttonpress.play()
@@ -3528,13 +3339,11 @@ class HistoryScreen:
     def backbutton_onenter(event):
         event.widget.config(bg="#C3C3C3"), historyscreen_canvas.itemconfigure(
             HistoryScreen.actionbuttonbg_1,
-            image=HistoryScreen.image_actionbuttonbg_selected,
-        ),
+            image=HistoryScreen.image_actionbuttonbg_selected)
 
     def backbutton_onleave(event):
         event.widget.config(bg="#D9D9D9"), historyscreen_canvas.itemconfigure(
-            HistoryScreen.actionbuttonbg_1, image=HistoryScreen.image_actionbuttonbg
-        )
+            HistoryScreen.actionbuttonbg_1, image=HistoryScreen.image_actionbuttonbg)
 
     back_button.bind("<Enter>", backbutton_onenter)
     back_button.bind("<Leave>", backbutton_onleave)
@@ -3545,8 +3354,7 @@ class HistoryScreen:
         historyscreen_canvas.pack_forget()
         ProfileScreen.personalize_screen(Data.userlevel)
         ProfileScreen.button_back.config(
-            command=lambda: HistoryScreen.changed_back_button_pressed()
-        )
+            command=lambda: HistoryScreen.changed_back_button_pressed())
         profilescreen_canvas.coords(ProfileScreen.history_bg, 1000, 1000)
         profilescreen_canvas.coords(ProfileScreen.history_banner, 1000, 1000)
         profilescreen_canvas.coords(ProfileScreen.edit_bg, 1000, 1000)
@@ -3565,8 +3373,7 @@ class HistoryScreen:
         ProfileScreen.button_history.place_configure(x=366.0, y=437.0)
         ProfileScreen.button_edit.place_configure(x=568.0, y=437.0)
         ProfileScreen.button_back.config(
-            command=lambda: ProfileScreen.button_back_pressed()
-        )
+            command=lambda: ProfileScreen.button_back_pressed())
 
     info_button = Button(
         historyscreen_canvas,
@@ -3583,13 +3390,11 @@ class HistoryScreen:
     def infobutton_onenter(event):
         event.widget.config(bg="#C3C3C3"), historyscreen_canvas.itemconfigure(
             HistoryScreen.actionbuttonbg_2,
-            image=HistoryScreen.image_actionbuttonbg_selected,
-        ),
+            image=HistoryScreen.image_actionbuttonbg_selected)
 
     def infobutton_onleave(event):
         event.widget.config(bg="#D9D9D9"), historyscreen_canvas.itemconfigure(
-            HistoryScreen.actionbuttonbg_2, image=HistoryScreen.image_actionbuttonbg
-        )
+            HistoryScreen.actionbuttonbg_2, image=HistoryScreen.image_actionbuttonbg)
 
     info_button.bind("<Enter>", infobutton_onenter)
     info_button.bind("<Leave>", infobutton_onleave)
@@ -3636,15 +3441,12 @@ class HistoryScreen:
                         game["correct"],
                         game["incorrect"],
                         game["mode"],
-                        f"{round(game_percentage * 100, 2)}%",
-                    ),
-                )
+                        f"{round(game_percentage * 100, 2)}%"))
             except:
                 pass
 
     scrollbar = ttk.Scrollbar(
-        historyscreen_canvas, orient="vertical", command=tree.yview
-    )
+        historyscreen_canvas, orient="vertical", command=tree.yview)
     tree.configure(yscrollcommand=scrollbar.set)
 
     def disableEvent(event):
