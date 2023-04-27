@@ -9,6 +9,7 @@ from operator import add, sub, floordiv, mul
 from datetime import datetime
 from sys import argv
 from sound import Sound
+from utilities import Utility
 
 system("cls")
 
@@ -199,18 +200,12 @@ class UserScreen:
     button_usertitle0.place(x=352.0, y=76.5, width=170.0, height=47.0)
     button_usertitle0.config(activebackground="#C3C3C3")
 
-    def user0_button_onenter(event):
-        event.widget.config(bg="#C3C3C3")
-        userscreen_canvas.itemconfigure(UserScreen.usertitle0_bg, 
-                    image=UserScreen.image_usertitle_bg_selected)
-
-    def user0_button_onleave(event):
-        event.widget.config(bg="#D9D9D9")
-        userscreen_canvas.itemconfigure(UserScreen.usertitle0_bg, 
-                    image=UserScreen.image_usertitle_bg)
-
-    button_usertitle0.bind("<Enter>", user0_button_onenter)
-    button_usertitle0.bind("<Leave>", user0_button_onleave)
+    button_usertitle0.bind("<Enter>", lambda event: Utility.button_bg_modify(
+        event, "#C3C3C3", userscreen_canvas, 
+        UserScreen.usertitle0_bg, UserScreen.image_usertitle_bg_selected))
+    button_usertitle0.bind("<Leave>", lambda event: Utility.button_bg_modify(
+        event, "#D9D9D9", userscreen_canvas, 
+        UserScreen.usertitle0_bg, UserScreen.image_usertitle_bg))
 
     button_usertitle1 = Button(
         userscreen_canvas,
@@ -227,18 +222,12 @@ class UserScreen:
     button_usertitle1.place(x=352.0, y=155.5, width=170.0, height=47.0)
     button_usertitle1.config(activebackground="#C3C3C3")
 
-    def user1_button_onenter(event):
-        event.widget.config(bg="#C3C3C3"), userscreen_canvas.itemconfigure(
-            UserScreen.usertitle1_bg, image=UserScreen.image_usertitle_bg_selected
-        )
-
-    def user1_button_onleave(event):
-        event.widget.config(bg="#D9D9D9"), userscreen_canvas.itemconfigure(
-            UserScreen.usertitle1_bg, image=UserScreen.image_usertitle_bg
-        )
-
-    button_usertitle1.bind("<Enter>", user1_button_onenter)
-    button_usertitle1.bind("<Leave>", user1_button_onleave)
+    button_usertitle1.bind("<Enter>", lambda event: Utility.button_bg_modify(
+        event, "#C3C3C3", userscreen_canvas, 
+        UserScreen.usertitle1_bg, UserScreen.image_usertitle_bg_selected))
+    button_usertitle1.bind("<Leave>", lambda event: Utility.button_bg_modify(
+        event, "#D9D9D9", userscreen_canvas, 
+        UserScreen.usertitle1_bg, UserScreen.image_usertitle_bg))
 
     button_usertitle2 = Button(
         userscreen_canvas,
@@ -255,18 +244,12 @@ class UserScreen:
     button_usertitle2.place(x=352.0, y=233.5, width=170.0, height=47.0)
     button_usertitle2.config(activebackground="#C3C3C3")
 
-    def user2_button_onenter(event):
-        event.widget.config(bg="#C3C3C3")
-        userscreen_canvas.itemconfigure(UserScreen.usertitle2_bg, 
-                    image=UserScreen.image_usertitle_bg_selected)
-
-    def user2_button_onleave(event):
-        event.widget.config(bg="#D9D9D9")
-        userscreen_canvas.itemconfigure(UserScreen.usertitle2_bg, 
-                    image=UserScreen.image_usertitle_bg)
-
-    button_usertitle2.bind("<Enter>", user2_button_onenter)
-    button_usertitle2.bind("<Leave>", user2_button_onleave)
+    button_usertitle2.bind("<Enter>", lambda event: Utility.button_bg_modify(
+        event, "#C3C3C3", userscreen_canvas, 
+        UserScreen.usertitle2_bg, UserScreen.image_usertitle_bg_selected))
+    button_usertitle2.bind("<Leave>", lambda event: Utility.button_bg_modify(
+        event, "#D9D9D9", userscreen_canvas, 
+        UserScreen.usertitle2_bg, UserScreen.image_usertitle_bg))
 
     button_usertitle3 = Button(
         userscreen_canvas,
@@ -283,18 +266,12 @@ class UserScreen:
     button_usertitle3.place(x=352.0, y=312.5, width=170.0, height=47.0)
     button_usertitle3.config(activebackground="#C3C3C3")
 
-    def user3_button_onenter(event):
-        event.widget.config(bg="#C3C3C3")
-        userscreen_canvas.itemconfigure(UserScreen.usertitle3_bg, 
-                    image=UserScreen.image_usertitle_bg_selected)
-
-    def user3_button_onleave(event):
-        event.widget.config(bg="#D9D9D9")
-        userscreen_canvas.itemconfigure(UserScreen.usertitle3_bg, 
-                    image=UserScreen.image_usertitle_bg)
-
-    button_usertitle3.bind("<Enter>", user3_button_onenter)
-    button_usertitle3.bind("<Leave>", user3_button_onleave)
+    button_usertitle3.bind("<Enter>", lambda event: Utility.button_bg_modify(
+        event, "#C3C3C3", userscreen_canvas, 
+        UserScreen.usertitle3_bg, UserScreen.image_usertitle_bg_selected))
+    button_usertitle3.bind("<Leave>", lambda event: Utility.button_bg_modify(
+        event, "#D9D9D9", userscreen_canvas, 
+        UserScreen.usertitle3_bg, UserScreen.image_usertitle_bg))
 
     def log_into_user(userlevel):
         Sound.sound_buttonpress.play()
@@ -369,18 +346,12 @@ class UserScreen:
         button_cancel.place(x=252.0, y=220.0, width=45, height=39)
         button_cancel.config(activebackground="#C3C3C3")
 
-        def button_cancel_onenter(event):
-            event.widget.config(bg="#C3C3C3")
-            userscreen_canvas.itemconfigure(cancel_bg, 
-                        image=UserScreen.image_verify_bg_selected)
-
-        def button_cancel_onleave(event):
-            event.widget.config(bg="#D9D9D9")
-            userscreen_canvas.itemconfigure(cancel_bg, 
-                        image=UserScreen.image_verify_bg)
-
-        button_cancel.bind("<Enter>", button_cancel_onenter)
-        button_cancel.bind("<Leave>", button_cancel_onleave)
+        button_cancel.bind("<Enter>", lambda event: Utility.button_bg_modify(
+            event, "#C3C3C3", userscreen_canvas, 
+            cancel_bg, UserScreen.image_verify_bg_selected))
+        button_cancel.bind("<Leave>", lambda event: Utility.button_bg_modify(
+            event, "#D9D9D9", 
+            userscreen_canvas, cancel_bg, UserScreen.image_verify_bg))
 
         button_confirm = Button(
             userscreen_canvas,
@@ -394,18 +365,12 @@ class UserScreen:
         button_confirm.place(x=502.0, y=220.0, width=45, height=39)
         button_confirm.config(activebackground="#C3C3C3")
 
-        def button_confirm_onenter(event):
-            event.widget.config(bg="#C3C3C3")
-            userscreen_canvas.itemconfigure(confirm_bg, 
-                        image=UserScreen.image_verify_bg_selected)
-
-        def button_confirm_onleave(event):
-            event.widget.config(bg="#D9D9D9")
-            userscreen_canvas.itemconfigure(confirm_bg, 
-                        image=UserScreen.image_verify_bg)
-
-        button_confirm.bind("<Enter>", button_confirm_onenter)
-        button_confirm.bind("<Leave>", button_confirm_onleave)
+        button_confirm.bind("<Enter>", lambda event: Utility.button_bg_modify(
+            event, "#C3C3C3", userscreen_canvas, 
+            confirm_bg, UserScreen.image_verify_bg_selected))
+        button_confirm.bind("<Leave>", lambda event: Utility.button_bg_modify(
+            event, "#D9D9D9", userscreen_canvas, 
+            confirm_bg, UserScreen.image_verify_bg))
 
         def exit_create_user():
             UserScreen.button_back.configure(
@@ -443,18 +408,12 @@ class UserScreen:
     button_useraction0.place(x=271.0, y=75.0, width=56.0, height=50.0)
     button_useraction0.config(activebackground="#C3C3C3")
 
-    def useraction0_onenter(event):
-        event.widget.config(bg="#C3C3C3")
-        userscreen_canvas.itemconfigure(UserScreen.usericon0_bg, 
-                    image=UserScreen.image_usericon_bg_selected)
-
-    def useraction0_onleave(event):
-        event.widget.config(bg="#D9D9D9")
-        userscreen_canvas.itemconfigure(UserScreen.usericon0_bg, 
-                    image=UserScreen.image_usericon_bg)
-
-    button_useraction0.bind("<Enter>", useraction0_onenter)
-    button_useraction0.bind("<Leave>", useraction0_onleave)
+    button_useraction0.bind("<Enter>", lambda event: Utility.button_bg_modify(
+        event, "#C3C3C3", userscreen_canvas, 
+        UserScreen.usericon0_bg, UserScreen.image_usericon_bg_selected))
+    button_useraction0.bind("<Leave>", lambda event: Utility.button_bg_modify(
+        event, "#D9D9D9", userscreen_canvas, 
+        UserScreen.usericon0_bg, UserScreen.image_usericon_bg))
 
     button_useraction1 = Button(
         userscreen_canvas,
@@ -468,18 +427,12 @@ class UserScreen:
     button_useraction1.place(x=271.0, y=154.0, width=56.0, height=50.0)
     button_useraction1.config(activebackground="#C3C3C3")
 
-    def useraction1_onenter(event):
-        event.widget.config(bg="#C3C3C3")
-        userscreen_canvas.itemconfigure(UserScreen.usericon1_bg, 
-                    image=UserScreen.image_usericon_bg_selected)
-
-    def useraction1_onleave(event):
-        event.widget.config(bg="#D9D9D9")
-        userscreen_canvas.itemconfigure(UserScreen.usericon1_bg, 
-                    image=UserScreen.image_usericon_bg)
-
-    button_useraction1.bind("<Enter>", useraction1_onenter)
-    button_useraction1.bind("<Leave>", useraction1_onleave)
+    button_useraction1.bind("<Enter>", lambda event: Utility.button_bg_modify(
+        event, "#C3C3C3", userscreen_canvas, 
+        UserScreen.usericon1_bg, UserScreen.image_usericon_bg_selected))
+    button_useraction1.bind("<Leave>", lambda event: Utility.button_bg_modify(
+        event, "#D9D9D9", userscreen_canvas, 
+        UserScreen.usericon1_bg, UserScreen.image_usericon_bg))
 
     button_useraction2 = Button(
         userscreen_canvas,
@@ -493,18 +446,12 @@ class UserScreen:
     button_useraction2.place(x=271.0, y=233.0, width=56.0, height=50.0)
     button_useraction2.config(activebackground="#C3C3C3")
 
-    def useraction2_onenter(event):
-        event.widget.config(bg="#C3C3C3")
-        userscreen_canvas.itemconfigure(UserScreen.usericon2_bg, 
-                    image=UserScreen.image_usericon_bg_selected)
-
-    def useraction2_onleave(event):
-        event.widget.config(bg="#D9D9D9")
-        userscreen_canvas.itemconfigure(UserScreen.usericon2_bg, 
-                    image=UserScreen.image_usericon_bg)
-
-    button_useraction2.bind("<Enter>", useraction2_onenter)
-    button_useraction2.bind("<Leave>", useraction2_onleave)
+    button_useraction2.bind("<Enter>", lambda event: Utility.button_bg_modify(
+        event, "#C3C3C3", userscreen_canvas, 
+        UserScreen.usericon2_bg, UserScreen.image_usericon_bg_selected))
+    button_useraction2.bind("<Leave>", lambda event: Utility.button_bg_modify(
+        event, "#D9D9D9", userscreen_canvas, 
+        UserScreen.usericon2_bg, UserScreen.image_usericon_bg))
 
     button_useraction3 = Button(
         userscreen_canvas,
@@ -518,18 +465,12 @@ class UserScreen:
     button_useraction3.place(x=271.0, y=312.0, width=56.0, height=50.0)
     button_useraction3.config(activebackground="#C3C3C3")
 
-    def useraction3_onenter(event):
-        event.widget.config(bg="#C3C3C3"), userscreen_canvas.itemconfigure(
-            UserScreen.usericon3_bg, image=UserScreen.image_usericon_bg_selected
-        )
-
-    def useraction3_onleave(event):
-        event.widget.config(bg="#D9D9D9"), userscreen_canvas.itemconfigure(
-            UserScreen.usericon3_bg, image=UserScreen.image_usericon_bg
-        )
-
-    button_useraction3.bind("<Enter>", useraction3_onenter)
-    button_useraction3.bind("<Leave>", useraction3_onleave)
+    button_useraction3.bind("<Enter>", lambda event: Utility.button_bg_modify(
+        event, "#C3C3C3", userscreen_canvas, 
+        UserScreen.usericon3_bg, UserScreen.image_usericon_bg_selected))
+    button_useraction3.bind("<Leave>", lambda event: Utility.button_bg_modify(
+        event, "#D9D9D9", userscreen_canvas, 
+        UserScreen.usericon3_bg, UserScreen.image_usericon_bg))
 
     def confirm_remove_user(i):
         UserScreen.button_back.configure(command=lambda: None)
@@ -571,20 +512,12 @@ class UserScreen:
         button_delete_yes.place(x=422.0, y=221.0, width=80.0, height=32.0)
         button_delete_yes.config(activebackground="#C3C3C3")
 
-        def button_delete_yes_onenter(event):
-            event.widget.config(bg="#C3C3C3")
-            userscreen_canvas.itemconfigure(
-                delete_confirm_bg_yes, image=UserScreen.image_delete_confirm_bg_selected
-            )
-
-        def button_delete_yes_onleave(event):
-            event.widget.config(bg="#D9D9D9")
-            userscreen_canvas.itemconfigure(
-                delete_confirm_bg_yes, image=UserScreen.image_delete_confirm_bg
-            )
-
-        button_delete_yes.bind("<Enter>", button_delete_yes_onenter)
-        button_delete_yes.bind("<Leave>", button_delete_yes_onleave)
+        button_delete_yes.bind("<Enter>", lambda event: Utility.button_bg_modify(
+            event, "#C3C3C3", userscreen_canvas, 
+            delete_confirm_bg_yes, UserScreen.image_delete_confirm_bg_selected))
+        button_delete_yes.bind("<Leave>", lambda event: Utility.button_bg_modify(
+            event, "#D9D9D9", userscreen_canvas, 
+            delete_confirm_bg_yes, UserScreen.image_delete_confirm_bg))
 
         button_delete_no = Button(
             userscreen_canvas,
@@ -598,18 +531,12 @@ class UserScreen:
         button_delete_no.place(x=301.0, y=221.0, width=80.0, height=32.0)
         button_delete_no.config(activebackground="#C3C3C3")
 
-        def button_delete_no_onenter(event):
-            event.widget.config(bg="#C3C3C3"), userscreen_canvas.itemconfigure(
-                delete_confirm_bg_no, image=UserScreen.image_delete_confirm_bg_selected
-            )
-
-        def button_delete_no_onleave(event):
-            event.widget.config(bg="#D9D9D9"), userscreen_canvas.itemconfigure(
-                delete_confirm_bg_no, image=UserScreen.image_delete_confirm_bg
-            )
-
-        button_delete_no.bind("<Enter>", button_delete_no_onenter)
-        button_delete_no.bind("<Leave>", button_delete_no_onleave)
+        button_delete_no.bind("<Enter>", lambda event: Utility.button_bg_modify(
+            event, "#C3C3C3", userscreen_canvas, 
+            delete_confirm_bg_no, UserScreen.image_delete_confirm_bg_selected))
+        button_delete_no.bind("<Leave>", lambda event: Utility.button_bg_modify(
+            event, "#D9D9D9", userscreen_canvas, 
+            delete_confirm_bg_no, UserScreen.image_delete_confirm_bg))
 
         def confirm_delete_user(i):
             Sound.sound_buttonpress.play()
@@ -676,18 +603,12 @@ class UserScreen:
     button_back.place(x=216.0, y=441.0, width=65.0, height=23.0)
     button_back.config(activebackground="#C3C3C3")
 
-    def buttonback_onenter(event):
-        event.widget.config(bg="#C3C3C3"), userscreen_canvas.itemconfigure(
-            UserScreen.backbutton_bg, image=UserScreen.image_actionbutton_bg_selected
-        )
-
-    def buttonback_onleave(event):
-        event.widget.config(bg="#D9D9D9"), userscreen_canvas.itemconfigure(
-            UserScreen.backbutton_bg, image=UserScreen.image_actionbutton_bg
-        )
-
-    button_back.bind("<Enter>", buttonback_onenter)
-    button_back.bind("<Leave>", buttonback_onleave)
+    button_back.bind("<Enter>", lambda event: Utility.button_bg_modify(
+        event, "#C3C3C3", userscreen_canvas, 
+        UserScreen.backbutton_bg, UserScreen.image_actionbutton_bg_selected))
+    button_back.bind("<Leave>", lambda event: Utility.button_bg_modify(
+        event, "#D9D9D9", userscreen_canvas, 
+        UserScreen.backbutton_bg, UserScreen.image_actionbutton_bg))
 
     remove_mode = False
     button_userremove = Button(
@@ -702,18 +623,12 @@ class UserScreen:
     button_userremove.place(x=520.0, y=441.0, width=65.0, height=23.0)
     button_userremove.config(activebackground="#C3C3C3")
 
-    def userremove_onenter(event):
-        event.widget.config(bg="#C3C3C3"), userscreen_canvas.itemconfigure(
-            UserScreen.userremove_bg, image=UserScreen.image_actionbutton_bg_selected
-        )
-
-    def userremove_onleave(event):
-        event.widget.config(bg="#D9D9D9"), userscreen_canvas.itemconfigure(
-            UserScreen.userremove_bg, image=UserScreen.image_actionbutton_bg
-        )
-
-    button_userremove.bind("<Enter>", userremove_onenter)
-    button_userremove.bind("<Leave>", userremove_onleave)
+    button_userremove.bind("<Enter>", lambda event: Utility.button_bg_modify(
+        event, "#C3C3C3", userscreen_canvas, 
+        UserScreen.userremove_bg, UserScreen.image_actionbutton_bg_selected))
+    button_userremove.bind("<Leave>", lambda event: Utility.button_bg_modify(
+        event, "#D9D9D9", userscreen_canvas, 
+        UserScreen.userremove_bg, UserScreen.image_actionbutton_bg))
 
     def login_error():
         UserScreen.button_back.configure(command=lambda: None)
@@ -738,16 +653,12 @@ class UserScreen:
         )
         button_ok.place(x=358.0, y=213.0, width=82.5, height=31.0)
 
-        def buttonback_onenter(event):
-            event.widget.config(bg="#C3C3C3"), userscreen_canvas.itemconfigure(
-                ok_bg, image=UserScreen.image_ok_bg_selected)
-
-        def buttonback_onleave(event):
-            event.widget.config(bg="#D9D9D9"), userscreen_canvas.itemconfigure(
-                ok_bg, image=UserScreen.image_ok_bg)
-
-        button_ok.bind("<Enter>", buttonback_onenter)
-        button_ok.bind("<Leave>", buttonback_onleave)
+        button_ok.bind("<Enter>", lambda event: Utility.button_bg_modify(
+            event, "#C3C3C3", userscreen_canvas, 
+            ok_bg, UserScreen.image_ok_bg_selected))
+        button_ok.bind("<Leave>", lambda event: Utility.button_bg_modify(
+            event, "#D9D9D9", userscreen_canvas, 
+            ok_bg, UserScreen.image_ok_bg)) #START FROM HERE ________________________________________________________________________________________________________________
 
         def hide_error():
             UserScreen.button_back.configure(
