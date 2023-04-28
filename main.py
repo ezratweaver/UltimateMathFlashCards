@@ -658,7 +658,7 @@ class UserScreen:
             ok_bg, UserScreen.image_ok_bg_selected))
         button_ok.bind("<Leave>", lambda event: Utility.button_bg_modify(
             event, "#D9D9D9", userscreen_canvas, 
-            ok_bg, UserScreen.image_ok_bg)) #START FROM HERE ________________________________________________________________________________________________________________
+            ok_bg, UserScreen.image_ok_bg)) 
 
         def hide_error():
             UserScreen.button_back.configure(
@@ -862,16 +862,12 @@ class ProfileScreen:
     button_back.place(x=164.0, y=437.0, width=66.0, height=28.0)
     button_back.config(activebackground="#C3C3C3")
 
-    def button_back_onenter(event):
-        event.widget.config(bg="#C3C3C3"), profilescreen_canvas.itemconfigure(
-            ProfileScreen.back_bg, image=ProfileScreen.image_action_bg_selected)
-
-    def button_back_onleave(event):
-        event.widget.config(bg="#D9D9D9"), profilescreen_canvas.itemconfigure(
-            ProfileScreen.back_bg, image=ProfileScreen.image_action_bg)
-
-    button_back.bind("<Enter>", button_back_onenter)
-    button_back.bind("<Leave>", button_back_onleave)
+    button_back.bind("<Enter>", lambda event: Utility.button_bg_modify(
+        event, "#C3C3C3", profilescreen_canvas, 
+        ProfileScreen.back_bg, ProfileScreen.image_action_bg_selected))
+    button_back.bind("<Leave>", lambda event: Utility.button_bg_modify(
+        event, "#D9D9D9", profilescreen_canvas, 
+        ProfileScreen.back_bg, ProfileScreen.image_action_bg))
 
     def button_edit_pressed():
         Sound.sound_buttonpress.play()
@@ -931,18 +927,12 @@ class ProfileScreen:
         button_cancel.place(x=252.0, y=220.0, width=45, height=39)
         button_cancel.config(activebackground="#C3C3C3")
 
-        def button_cancel_onenter(event):
-            event.widget.config(bg="#C3C3C3")
-            profilescreen_canvas.itemconfigure(
-                cancel_bg, image=UserScreen.image_verify_bg_selected)
-
-        def button_cancel_onleave(event):
-            event.widget.config(bg="#D9D9D9")
-            profilescreen_canvas.itemconfigure(
-                cancel_bg, image=UserScreen.image_verify_bg)
-
-        button_cancel.bind("<Enter>", button_cancel_onenter)
-        button_cancel.bind("<Leave>", button_cancel_onleave)
+        button_cancel.bind("<Enter>", lambda event: Utility.button_bg_modify(
+            event, "#C3C3C3", profilescreen_canvas, 
+            cancel_bg, UserScreen.image_verify_bg_selected))
+        button_cancel.bind("<Leave>", lambda event: Utility.button_bg_modify(
+            event, "#D9D9D9", profilescreen_canvas, 
+            cancel_bg, UserScreen.image_verify_bg))
 
         button_confirm = Button(
             profilescreen_canvas,
@@ -956,16 +946,12 @@ class ProfileScreen:
         button_confirm.place(x=502.0, y=220.0, width=45, height=39)
         button_confirm.config(activebackground="#C3C3C3")
 
-        def button_confirm_onenter(event):
-            event.widget.config(bg="#C3C3C3"), profilescreen_canvas.itemconfigure(
-                confirm_bg, image=UserScreen.image_verify_bg_selected)
-
-        def button_confirm_onleave(event):
-            event.widget.config(bg="#D9D9D9"), profilescreen_canvas.itemconfigure(
-                confirm_bg, image=UserScreen.image_verify_bg)
-
-        button_confirm.bind("<Enter>", button_confirm_onenter)
-        button_confirm.bind("<Leave>", button_confirm_onleave)
+        button_confirm.bind("<Enter>", lambda event: Utility.button_bg_modify(
+            event, "#C3C3C3", profilescreen_canvas, 
+            confirm_bg, UserScreen.image_verify_bg_selected))
+        button_confirm.bind("<Leave>", lambda event: Utility.button_bg_modify(
+            event, "#D9D9D9", profilescreen_canvas, 
+            confirm_bg, UserScreen.image_verify_bg))
 
         def exit_rename():
             Sound.sound_buttonpress.play()
@@ -996,16 +982,12 @@ class ProfileScreen:
     button_edit.place(x=568.0, y=437.0, width=66.0, height=28.0)
     button_edit.config(activebackground="#C3C3C3")
 
-    def button_edit_onenter(event):
-        event.widget.config(bg="#C3C3C3"), profilescreen_canvas.itemconfigure(
-            ProfileScreen.edit_bg, image=ProfileScreen.image_action_bg_selected)
-
-    def button_edit_onleave(event):
-        event.widget.config(bg="#D9D9D9"), profilescreen_canvas.itemconfigure(
-            ProfileScreen.edit_bg, image=ProfileScreen.image_action_bg)
-
-    button_edit.bind("<Enter>", button_edit_onenter)
-    button_edit.bind("<Leave>", button_edit_onleave)
+    button_edit.bind("<Enter>", lambda event: Utility.button_bg_modify(
+        event, "#C3C3C3", profilescreen_canvas, 
+        ProfileScreen.edit_bg, ProfileScreen.image_action_bg_selected))
+    button_edit.bind("<Leave>", lambda event: Utility.button_bg_modify(
+        event, "#D9D9D9", profilescreen_canvas, 
+        ProfileScreen.edit_bg, ProfileScreen.image_action_bg))
 
     def button_history_pressed():
         Sound.sound_buttonpress.play()
@@ -1049,16 +1031,10 @@ class ProfileScreen:
     button_history.place(x=366.0, y=437.0, width=66.0, height=28.0)
     button_history.config(activebackground="#C3C3C3")
 
-    def button_history_onenter(event):
-        event.widget.config(bg="#C3C3C3"), profilescreen_canvas.itemconfigure(
-            ProfileScreen.history_bg, image=ProfileScreen.image_action_bg_selected)
-
-    def button_history_onleave(event):
-        event.widget.config(bg="#D9D9D9"), profilescreen_canvas.itemconfigure(
-            ProfileScreen.history_bg, image=ProfileScreen.image_action_bg)
-
-    button_history.bind("<Enter>", button_history_onenter)
-    button_history.bind("<Leave>", button_history_onleave)
+    button_history.bind("<Enter>", lambda event: Utility.button_bg_modify(
+        event, "#C3C3C3", profilescreen_canvas, 
+        ProfileScreen.history_bg, ProfileScreen.image_action_bg_selected))
+    button_history.bind("<Leave>", lambda event: Utility.button_bg_modify(event, "#D9D9D9", profilescreen_canvas, ProfileScreen.history_bg, ProfileScreen.image_action_bg)) #START HERE!!!!
 
 
 class StartScreen:
