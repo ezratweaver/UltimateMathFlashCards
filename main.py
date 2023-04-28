@@ -201,10 +201,10 @@ class UserScreen:
     button_usertitle0.config(activebackground="#C3C3C3")
 
     button_usertitle0.bind("<Enter>", lambda event: Utility.button_bg_modify(
-        event, "#C3C3C3", userscreen_canvas, 
+        event, "#C3C3C3", userscreen_canvas,
         UserScreen.usertitle0_bg, UserScreen.image_usertitle_bg_selected))
     button_usertitle0.bind("<Leave>", lambda event: Utility.button_bg_modify(
-        event, "#D9D9D9", userscreen_canvas, 
+        event, "#D9D9D9", userscreen_canvas,
         UserScreen.usertitle0_bg, UserScreen.image_usertitle_bg))
 
     button_usertitle1 = Button(
@@ -223,10 +223,10 @@ class UserScreen:
     button_usertitle1.config(activebackground="#C3C3C3")
 
     button_usertitle1.bind("<Enter>", lambda event: Utility.button_bg_modify(
-        event, "#C3C3C3", userscreen_canvas, 
+        event, "#C3C3C3", userscreen_canvas,
         UserScreen.usertitle1_bg, UserScreen.image_usertitle_bg_selected))
     button_usertitle1.bind("<Leave>", lambda event: Utility.button_bg_modify(
-        event, "#D9D9D9", userscreen_canvas, 
+        event, "#D9D9D9", userscreen_canvas,
         UserScreen.usertitle1_bg, UserScreen.image_usertitle_bg))
 
     button_usertitle2 = Button(
@@ -245,10 +245,10 @@ class UserScreen:
     button_usertitle2.config(activebackground="#C3C3C3")
 
     button_usertitle2.bind("<Enter>", lambda event: Utility.button_bg_modify(
-        event, "#C3C3C3", userscreen_canvas, 
+        event, "#C3C3C3", userscreen_canvas,
         UserScreen.usertitle2_bg, UserScreen.image_usertitle_bg_selected))
     button_usertitle2.bind("<Leave>", lambda event: Utility.button_bg_modify(
-        event, "#D9D9D9", userscreen_canvas, 
+        event, "#D9D9D9", userscreen_canvas,
         UserScreen.usertitle2_bg, UserScreen.image_usertitle_bg))
 
     button_usertitle3 = Button(
@@ -267,10 +267,10 @@ class UserScreen:
     button_usertitle3.config(activebackground="#C3C3C3")
 
     button_usertitle3.bind("<Enter>", lambda event: Utility.button_bg_modify(
-        event, "#C3C3C3", userscreen_canvas, 
+        event, "#C3C3C3", userscreen_canvas,
         UserScreen.usertitle3_bg, UserScreen.image_usertitle_bg_selected))
     button_usertitle3.bind("<Leave>", lambda event: Utility.button_bg_modify(
-        event, "#D9D9D9", userscreen_canvas, 
+        event, "#D9D9D9", userscreen_canvas,
         UserScreen.usertitle3_bg, UserScreen.image_usertitle_bg))
 
     def log_into_user(userlevel):
@@ -347,11 +347,11 @@ class UserScreen:
         button_cancel.config(activebackground="#C3C3C3")
 
         button_cancel.bind("<Enter>", lambda event: Utility.button_bg_modify(
-            event, "#C3C3C3", userscreen_canvas, 
+            event, "#C3C3C3", userscreen_canvas,
             cancel_bg, UserScreen.image_verify_bg_selected))
         button_cancel.bind("<Leave>", lambda event: Utility.button_bg_modify(
-            event, "#D9D9D9", 
-            userscreen_canvas, cancel_bg, UserScreen.image_verify_bg))
+            event, "#D9D9D9", userscreen_canvas,
+            cancel_bg, UserScreen.image_verify_bg))
 
         button_confirm = Button(
             userscreen_canvas,
@@ -366,10 +366,10 @@ class UserScreen:
         button_confirm.config(activebackground="#C3C3C3")
 
         button_confirm.bind("<Enter>", lambda event: Utility.button_bg_modify(
-            event, "#C3C3C3", userscreen_canvas, 
+            event, "#C3C3C3", userscreen_canvas,
             confirm_bg, UserScreen.image_verify_bg_selected))
         button_confirm.bind("<Leave>", lambda event: Utility.button_bg_modify(
-            event, "#D9D9D9", userscreen_canvas, 
+            event, "#D9D9D9", userscreen_canvas,
             confirm_bg, UserScreen.image_verify_bg))
 
         def exit_create_user():
@@ -409,10 +409,10 @@ class UserScreen:
     button_useraction0.config(activebackground="#C3C3C3")
 
     button_useraction0.bind("<Enter>", lambda event: Utility.button_bg_modify(
-        event, "#C3C3C3", userscreen_canvas, 
+        event, "#C3C3C3", userscreen_canvas,
         UserScreen.usericon0_bg, UserScreen.image_usericon_bg_selected))
     button_useraction0.bind("<Leave>", lambda event: Utility.button_bg_modify(
-        event, "#D9D9D9", userscreen_canvas, 
+        event, "#D9D9D9", userscreen_canvas,
         UserScreen.usericon0_bg, UserScreen.image_usericon_bg))
 
     button_useraction1 = Button(
@@ -428,10 +428,10 @@ class UserScreen:
     button_useraction1.config(activebackground="#C3C3C3")
 
     button_useraction1.bind("<Enter>", lambda event: Utility.button_bg_modify(
-        event, "#C3C3C3", userscreen_canvas, 
+        event, "#C3C3C3", userscreen_canvas,
         UserScreen.usericon1_bg, UserScreen.image_usericon_bg_selected))
     button_useraction1.bind("<Leave>", lambda event: Utility.button_bg_modify(
-        event, "#D9D9D9", userscreen_canvas, 
+        event, "#D9D9D9", userscreen_canvas,
         UserScreen.usericon1_bg, UserScreen.image_usericon_bg))
 
     button_useraction2 = Button(
@@ -447,10 +447,10 @@ class UserScreen:
     button_useraction2.config(activebackground="#C3C3C3")
 
     button_useraction2.bind("<Enter>", lambda event: Utility.button_bg_modify(
-        event, "#C3C3C3", userscreen_canvas, 
+        event, "#C3C3C3", userscreen_canvas,
         UserScreen.usericon2_bg, UserScreen.image_usericon_bg_selected))
     button_useraction2.bind("<Leave>", lambda event: Utility.button_bg_modify(
-        event, "#D9D9D9", userscreen_canvas, 
+        event, "#D9D9D9", userscreen_canvas,
         UserScreen.usericon2_bg, UserScreen.image_usericon_bg))
 
     button_useraction3 = Button(
@@ -466,10 +466,10 @@ class UserScreen:
     button_useraction3.config(activebackground="#C3C3C3")
 
     button_useraction3.bind("<Enter>", lambda event: Utility.button_bg_modify(
-        event, "#C3C3C3", userscreen_canvas, 
+        event, "#C3C3C3", userscreen_canvas,
         UserScreen.usericon3_bg, UserScreen.image_usericon_bg_selected))
     button_useraction3.bind("<Leave>", lambda event: Utility.button_bg_modify(
-        event, "#D9D9D9", userscreen_canvas, 
+        event, "#D9D9D9", userscreen_canvas,
         UserScreen.usericon3_bg, UserScreen.image_usericon_bg))
 
     def confirm_remove_user(i):
@@ -513,10 +513,10 @@ class UserScreen:
         button_delete_yes.config(activebackground="#C3C3C3")
 
         button_delete_yes.bind("<Enter>", lambda event: Utility.button_bg_modify(
-            event, "#C3C3C3", userscreen_canvas, 
+            event, "#C3C3C3", userscreen_canvas,
             delete_confirm_bg_yes, UserScreen.image_delete_confirm_bg_selected))
         button_delete_yes.bind("<Leave>", lambda event: Utility.button_bg_modify(
-            event, "#D9D9D9", userscreen_canvas, 
+            event, "#D9D9D9", userscreen_canvas,
             delete_confirm_bg_yes, UserScreen.image_delete_confirm_bg))
 
         button_delete_no = Button(
@@ -532,10 +532,10 @@ class UserScreen:
         button_delete_no.config(activebackground="#C3C3C3")
 
         button_delete_no.bind("<Enter>", lambda event: Utility.button_bg_modify(
-            event, "#C3C3C3", userscreen_canvas, 
+            event, "#C3C3C3", userscreen_canvas,
             delete_confirm_bg_no, UserScreen.image_delete_confirm_bg_selected))
         button_delete_no.bind("<Leave>", lambda event: Utility.button_bg_modify(
-            event, "#D9D9D9", userscreen_canvas, 
+            event, "#D9D9D9", userscreen_canvas,
             delete_confirm_bg_no, UserScreen.image_delete_confirm_bg))
 
         def confirm_delete_user(i):
@@ -604,10 +604,10 @@ class UserScreen:
     button_back.config(activebackground="#C3C3C3")
 
     button_back.bind("<Enter>", lambda event: Utility.button_bg_modify(
-        event, "#C3C3C3", userscreen_canvas, 
+        event, "#C3C3C3", userscreen_canvas,
         UserScreen.backbutton_bg, UserScreen.image_actionbutton_bg_selected))
     button_back.bind("<Leave>", lambda event: Utility.button_bg_modify(
-        event, "#D9D9D9", userscreen_canvas, 
+        event, "#D9D9D9", userscreen_canvas,
         UserScreen.backbutton_bg, UserScreen.image_actionbutton_bg))
 
     remove_mode = False
@@ -624,10 +624,10 @@ class UserScreen:
     button_userremove.config(activebackground="#C3C3C3")
 
     button_userremove.bind("<Enter>", lambda event: Utility.button_bg_modify(
-        event, "#C3C3C3", userscreen_canvas, 
+        event, "#C3C3C3", userscreen_canvas,
         UserScreen.userremove_bg, UserScreen.image_actionbutton_bg_selected))
     button_userremove.bind("<Leave>", lambda event: Utility.button_bg_modify(
-        event, "#D9D9D9", userscreen_canvas, 
+        event, "#D9D9D9", userscreen_canvas,
         UserScreen.userremove_bg, UserScreen.image_actionbutton_bg))
 
     def login_error():
@@ -654,10 +654,10 @@ class UserScreen:
         button_ok.place(x=358.0, y=213.0, width=82.5, height=31.0)
 
         button_ok.bind("<Enter>", lambda event: Utility.button_bg_modify(
-            event, "#C3C3C3", userscreen_canvas, 
+            event, "#C3C3C3", userscreen_canvas,
             ok_bg, UserScreen.image_ok_bg_selected))
         button_ok.bind("<Leave>", lambda event: Utility.button_bg_modify(
-            event, "#D9D9D9", userscreen_canvas, 
+            event, "#D9D9D9", userscreen_canvas,
             ok_bg, UserScreen.image_ok_bg)) 
 
         def hide_error():
@@ -863,10 +863,10 @@ class ProfileScreen:
     button_back.config(activebackground="#C3C3C3")
 
     button_back.bind("<Enter>", lambda event: Utility.button_bg_modify(
-        event, "#C3C3C3", profilescreen_canvas, 
+        event, "#C3C3C3", profilescreen_canvas,
         ProfileScreen.back_bg, ProfileScreen.image_action_bg_selected))
     button_back.bind("<Leave>", lambda event: Utility.button_bg_modify(
-        event, "#D9D9D9", profilescreen_canvas, 
+        event, "#D9D9D9", profilescreen_canvas,
         ProfileScreen.back_bg, ProfileScreen.image_action_bg))
 
     def button_edit_pressed():
@@ -928,10 +928,10 @@ class ProfileScreen:
         button_cancel.config(activebackground="#C3C3C3")
 
         button_cancel.bind("<Enter>", lambda event: Utility.button_bg_modify(
-            event, "#C3C3C3", profilescreen_canvas, 
+            event, "#C3C3C3", profilescreen_canvas,
             cancel_bg, UserScreen.image_verify_bg_selected))
         button_cancel.bind("<Leave>", lambda event: Utility.button_bg_modify(
-            event, "#D9D9D9", profilescreen_canvas, 
+            event, "#D9D9D9", profilescreen_canvas,
             cancel_bg, UserScreen.image_verify_bg))
 
         button_confirm = Button(
@@ -947,10 +947,10 @@ class ProfileScreen:
         button_confirm.config(activebackground="#C3C3C3")
 
         button_confirm.bind("<Enter>", lambda event: Utility.button_bg_modify(
-            event, "#C3C3C3", profilescreen_canvas, 
+            event, "#C3C3C3", profilescreen_canvas,
             confirm_bg, UserScreen.image_verify_bg_selected))
         button_confirm.bind("<Leave>", lambda event: Utility.button_bg_modify(
-            event, "#D9D9D9", profilescreen_canvas, 
+            event, "#D9D9D9", profilescreen_canvas,
             confirm_bg, UserScreen.image_verify_bg))
 
         def exit_rename():
@@ -983,10 +983,10 @@ class ProfileScreen:
     button_edit.config(activebackground="#C3C3C3")
 
     button_edit.bind("<Enter>", lambda event: Utility.button_bg_modify(
-        event, "#C3C3C3", profilescreen_canvas, 
+        event, "#C3C3C3", profilescreen_canvas,
         ProfileScreen.edit_bg, ProfileScreen.image_action_bg_selected))
     button_edit.bind("<Leave>", lambda event: Utility.button_bg_modify(
-        event, "#D9D9D9", profilescreen_canvas, 
+        event, "#D9D9D9", profilescreen_canvas,
         ProfileScreen.edit_bg, ProfileScreen.image_action_bg))
 
     def button_history_pressed():
@@ -1032,7 +1032,7 @@ class ProfileScreen:
     button_history.config(activebackground="#C3C3C3")
 
     button_history.bind("<Enter>", lambda event: Utility.button_bg_modify(
-        event, "#C3C3C3", profilescreen_canvas, 
+        event, "#C3C3C3", profilescreen_canvas,
         ProfileScreen.history_bg, ProfileScreen.image_action_bg_selected))
     button_history.bind("<Leave>", lambda event: Utility.button_bg_modify(event, "#D9D9D9", profilescreen_canvas, ProfileScreen.history_bg, ProfileScreen.image_action_bg)) #START HERE!!!!
 
