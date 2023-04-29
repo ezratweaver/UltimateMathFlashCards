@@ -1034,7 +1034,9 @@ class ProfileScreen:
     button_history.bind("<Enter>", lambda event: Utility.button_bg_modify(
         event, "#C3C3C3", profilescreen_canvas,
         ProfileScreen.history_bg, ProfileScreen.image_action_bg_selected))
-    button_history.bind("<Leave>", lambda event: Utility.button_bg_modify(event, "#D9D9D9", profilescreen_canvas, ProfileScreen.history_bg, ProfileScreen.image_action_bg)) #START HERE!!!!
+    button_history.bind("<Leave>", lambda event: Utility.button_bg_modify(
+        event, "#D9D9D9", profilescreen_canvas,
+        ProfileScreen.history_bg, ProfileScreen.image_action_bg))
 
 
 class StartScreen:
@@ -1110,16 +1112,12 @@ class StartScreen:
     )
     button_volume.place(x=366.0, y=373.0, width=70, height=32)
 
-    def button_volume_onenter(event):
-        event.widget.config(bg="#C3C3C3"), startscreen_canvas.itemconfigure(
-            StartScreen.volume_buttonbg, image=StartScreen.image_buttonbg_selected)
-
-    def button_volume_onleave(event):
-        event.widget.config(bg="#D9D9D9"), startscreen_canvas.itemconfigure(
-            StartScreen.volume_buttonbg, image=StartScreen.image_buttonbg)
-
-    button_volume.bind("<Enter>", button_volume_onenter)
-    button_volume.bind("<Leave>", button_volume_onleave)
+    button_volume.bind("<Enter>", lambda event: Utility.button_bg_modify(
+        event, "#C3C3C3", startscreen_canvas,
+        StartScreen.volume_buttonbg, StartScreen.image_buttonbg_selected))
+    button_volume.bind("<Leave>", lambda event: Utility.button_bg_modify(
+        event, "#D9D9D9", startscreen_canvas,
+        StartScreen.volume_buttonbg, StartScreen.image_buttonbg))
 
     def user_button_pressed():
         Sound.sound_buttonpress.play()
@@ -1138,16 +1136,12 @@ class StartScreen:
     )
     button_users.place(x=440.0, y=299.0, width=70, height=32)
 
-    def button_users_onenter(event):
-        event.widget.config(bg="#C3C3C3"), startscreen_canvas.itemconfigure(
-            StartScreen.users_buttonbg, image=StartScreen.image_buttonbg_selected)
-
-    def button_users_onleave(event):
-        event.widget.config(bg="#D9D9D9"), startscreen_canvas.itemconfigure(
-            StartScreen.users_buttonbg, image=StartScreen.image_buttonbg)
-
-    button_users.bind("<Enter>", button_users_onenter)
-    button_users.bind("<Leave>", button_users_onleave)
+    button_users.bind("<Enter>", lambda event: Utility.button_bg_modify(
+        event, "#C3C3C3", startscreen_canvas,
+        StartScreen.users_buttonbg, StartScreen.image_buttonbg_selected))
+    button_users.bind("<Leave>", lambda event: Utility.button_bg_modify(
+        event, "#D9D9D9", startscreen_canvas,
+        StartScreen.users_buttonbg, StartScreen.image_buttonbg))
 
     def launch_button_pressed():
         Sound.sound_buttonpress.play()
@@ -1166,16 +1160,12 @@ class StartScreen:
     )
     button_play.place(x=366.0, y=225.0, width=70, height=32)
 
-    def button_play_onenter(event):
-        event.widget.config(bg="#C3C3C3"), startscreen_canvas.itemconfigure(
-            StartScreen.play_buttonbg, image=StartScreen.image_buttonbg_selected)
-
-    def button_play_onleave(event):
-        event.widget.config(bg="#D9D9D9"), startscreen_canvas.itemconfigure(
-            StartScreen.play_buttonbg, image=StartScreen.image_buttonbg)
-
-    button_play.bind("<Enter>", button_play_onenter)
-    button_play.bind("<Leave>", button_play_onleave)
+    button_play.bind("<Enter>", lambda event: Utility.button_bg_modify(
+        event, "#C3C3C3", startscreen_canvas,
+        StartScreen.play_buttonbg, StartScreen.image_buttonbg_selected))
+    button_play.bind("<Leave>", lambda event: Utility.button_bg_modify(
+        event, "#D9D9D9", startscreen_canvas,
+        StartScreen.play_buttonbg, StartScreen.image_buttonbg))
 
     button_leaderboard = Button(
         startscreen_canvas,
@@ -1189,16 +1179,10 @@ class StartScreen:
     )
     button_leaderboard.place(x=295.0, y=299.0, width=70, height=32)
 
-    def button_leaderboard_onenter(event):
-        event.widget.config(bg="#C3C3C3"), startscreen_canvas.itemconfigure(
-            StartScreen.leaderboard_buttonbg, image=StartScreen.image_buttonbg_selected)
-
-    def button_leaderboard_onleave(event):
-        event.widget.config(bg="#D9D9D9"), startscreen_canvas.itemconfigure(
-            StartScreen.leaderboard_buttonbg, image=StartScreen.image_buttonbg)
-
-    button_leaderboard.bind("<Enter>", button_leaderboard_onenter)
-    button_leaderboard.bind("<Leave>", button_leaderboard_onleave)
+    button_leaderboard.bind("<Enter>", lambda event: Utility.button_bg_modify(
+        event, "#C3C3C3", startscreen_canvas,
+        StartScreen.leaderboard_buttonbg, StartScreen.image_buttonbg_selected))
+    button_leaderboard.bind("<Leave>", lambda event: Utility.button_bg_modify(event, "#D9D9D9", startscreen_canvas, StartScreen.leaderboard_buttonbg, StartScreen.image_buttonbg)) #START HERE ____________________________________________________________________________________________________________________________________
 
 
 class Data:
