@@ -1182,7 +1182,9 @@ class StartScreen:
     button_leaderboard.bind("<Enter>", lambda event: Utility.button_bg_modify(
         event, "#C3C3C3", startscreen_canvas,
         StartScreen.leaderboard_buttonbg, StartScreen.image_buttonbg_selected))
-    button_leaderboard.bind("<Leave>", lambda event: Utility.button_bg_modify(event, "#D9D9D9", startscreen_canvas, StartScreen.leaderboard_buttonbg, StartScreen.image_buttonbg)) #START HERE ____________________________________________________________________________________________________________________________________
+    button_leaderboard.bind("<Leave>", lambda event: Utility.button_bg_modify(
+        event, "#D9D9D9", startscreen_canvas,
+        StartScreen.leaderboard_buttonbg, StartScreen.image_buttonbg))
 
 
 class Data:
@@ -1352,7 +1354,8 @@ class MainScreen:
         file=relative_to_assets("mainscreen/timerbg.png"))
     image_scoreboxbg = PhotoImage(
         file=relative_to_assets("mainscreen/scoreboxbg.png"))
-    image_line2 = PhotoImage(file=relative_to_assets("mainscreen/line2.png"))
+    image_line2 = PhotoImage(
+        file=relative_to_assets("mainscreen/line2.png"))
     image_scorebg = PhotoImage(
         file=relative_to_assets("mainscreen/scorebg.png"))
     image_startbuttonbg = PhotoImage(
@@ -1459,18 +1462,12 @@ class MainScreen:
     back_button.place(x=34.0, y=23.5, width=59.0, height=22.0)
     back_button.config(activebackground="#C3C3C3")
 
-    def backbutton_onenter(event):
-        event.widget.config(bg="#C3C3C3")
-        mainscreen_canvas.itemconfigure(
-            MainScreen.buttonboxbg_1, image=MainScreen.image_buttonboxbg_selected)
-
-    def backbutton_onleave(event):
-        event.widget.config(bg="#D9D9D9")
-        mainscreen_canvas.itemconfigure(
-            MainScreen.buttonboxbg_1, image=MainScreen.image_buttonboxbg)
-
-    back_button.bind("<Enter>", backbutton_onenter)
-    back_button.bind("<Leave>", backbutton_onleave)
+    back_button.bind("<Enter>", lambda event: Utility.button_bg_modify(
+        event, "#C3C3C3", mainscreen_canvas, 
+        MainScreen.buttonboxbg_1, MainScreen.image_buttonboxbg_selected))
+    back_button.bind("<Leave>", lambda event: Utility.button_bg_modify(
+        event, "#D9D9D9", mainscreen_canvas, 
+        MainScreen.buttonboxbg_1, MainScreen.image_buttonboxbg))
 
     def settings_button_pressed():
         Sound.sound_buttonpress.play()
@@ -1494,16 +1491,12 @@ class MainScreen:
     settings_button.place(x=131, y=310, width=59.0, height=22.0)
     settings_button.config(activebackground="#C3C3C3")
 
-    def settingsbutton_onenter(event):
-        event.widget.config(bg="#C3C3C3"), mainscreen_canvas.itemconfigure(
-            MainScreen.buttonboxbg_2, image=MainScreen.image_buttonboxbg_selected)
-
-    def settingsbutton_onleave(event):
-        event.widget.config(bg="#D9D9D9"), mainscreen_canvas.itemconfigure(
-            MainScreen.buttonboxbg_2, image=MainScreen.image_buttonboxbg)
-
-    settings_button.bind("<Enter>", settingsbutton_onenter)
-    settings_button.bind("<Leave>", settingsbutton_onleave)
+    settings_button.bind("<Enter>", lambda event: Utility.button_bg_modify(
+        event, "#C3C3C3", mainscreen_canvas,
+        MainScreen.buttonboxbg_2, MainScreen.image_buttonboxbg_selected))
+    settings_button.bind("<Leave>", lambda event: Utility.button_bg_modify(
+        event, "#D9D9D9", mainscreen_canvas,
+        MainScreen.buttonboxbg_2, MainScreen.image_buttonboxbg))
 
     def history_button_pressed():
         Sound.sound_buttonpress.play()
@@ -1523,16 +1516,12 @@ class MainScreen:
     history_button.place(x=131.0, y=370.5, width=59.0, height=22.0)
     history_button.config(activebackground="#C3C3C3")
 
-    def historybutton_onenter(event):
-        event.widget.config(bg="#C3C3C3"), mainscreen_canvas.itemconfigure(
-            MainScreen.buttonboxbg_3, image=MainScreen.image_buttonboxbg_selected)
-
-    def historybutton_onleave(event):
-        event.widget.config(bg="#D9D9D9"), mainscreen_canvas.itemconfigure(
-            MainScreen.buttonboxbg_3, image=MainScreen.image_buttonboxbg)
-
-    history_button.bind("<Enter>", historybutton_onenter)
-    history_button.bind("<Leave>", historybutton_onleave)
+    history_button.bind("<Enter>", lambda event: Utility.button_bg_modify(
+        event, "#C3C3C3", mainscreen_canvas,
+        MainScreen.buttonboxbg_3, MainScreen.image_buttonboxbg_selected))
+    history_button.bind("<Leave>", lambda event: Utility.button_bg_modify(
+        event, "#D9D9D9", mainscreen_canvas,
+        MainScreen.buttonboxbg_3, MainScreen.image_buttonboxbg))
 
     def start_button_pressed():
         MainScreen.place_countdownscreen()
@@ -1550,16 +1539,12 @@ class MainScreen:
     start_button.place(x=604.0, y=290.0, width=72.0, height=25.0)
     start_button.config(activebackground="#C3C3C3")
 
-    def startbutton_onenter(event):
-        event.widget.config(bg="#C3C3C3"), mainscreen_canvas.itemconfigure(
-            MainScreen.startbuttonbg, image=MainScreen.image_startbuttonbg_selected)
-
-    def startbutton_onleave(event):
-        event.widget.config(bg="#D9D9D9"), mainscreen_canvas.itemconfigure(
-            MainScreen.startbuttonbg, image=MainScreen.image_startbuttonbg)
-
-    start_button.bind("<Enter>", startbutton_onenter)
-    start_button.bind("<Leave>", startbutton_onleave)
+    start_button.bind("<Enter>", lambda event: Utility.button_bg_modify(
+        event, "#C3C3C3", mainscreen_canvas,
+        MainScreen.startbuttonbg, MainScreen.image_startbuttonbg_selected))
+    start_button.bind("<Leave>", lambda event: Utility.button_bg_modify(
+        event, "#D9D9D9", mainscreen_canvas,
+        MainScreen.startbuttonbg, MainScreen.image_startbuttonbg))
 
     flashcard2_text = mainscreen_canvas.create_text(
         359.0,
@@ -1670,16 +1655,13 @@ class MainScreen:
             x=289.4, y=104.5, width=17.5, height=17.0)
         cancel_countdown_button.config(activebackground="#C3C3C3")
 
-        def cancelcountdownbutton_onenter(event):
-            event.widget.config(bg="#C3C3C3"), mainscreen_canvas.itemconfigure(
-                cancel_countdown_bg, image=MainScreen.image_cancel_countdown_bg_selected)
-
-        def cancelcountdownbutton_onleave(event):
-            event.widget.config(bg="#D9D9D9"), mainscreen_canvas.itemconfigure(
-                cancel_countdown_bg, image=MainScreen.image_cancel_countdown_bg)
-
-        cancel_countdown_button.bind("<Enter>", cancelcountdownbutton_onenter)
-        cancel_countdown_button.bind("<Leave>", cancelcountdownbutton_onleave)
+        cancel_countdown_button.bind("<Enter>", lambda event: Utility.button_bg_modify(
+            event, "#C3C3C3", mainscreen_canvas,
+            cancel_countdown_bg, MainScreen.image_cancel_countdown_bg_selected))
+        cancel_countdown_button.bind("<Leave>", lambda event: Utility.button_bg_modify(
+            event, "#D9D9D9", mainscreen_canvas,
+            cancel_countdown_bg, MainScreen.image_cancel_countdown_bg))
+        
         MainScreen.pre_game_cleanup()
         MainScreen.back_button.place(
             x=34000000.0,
@@ -1751,18 +1733,12 @@ class MainScreen:
         yes_quit_button.place(x=429.0, y=217.0, width=80.0, height=26.0)
         yes_quit_button.config(activebackground="#C3C3C3")
 
-        def yes_quitbutton_onenter(event):
-            event.widget.config(bg="#C3C3C3")
-            mainscreen_canvas.itemconfigure(
-                quit_buttonbg_2, image=MainScreen.image_quit_buttonbg_selected)
-
-        def yes_quitbutton_onleave(event):
-            event.widget.config(bg="#D9D9D9")
-            mainscreen_canvas.itemconfigure(
-                quit_buttonbg_2, image=MainScreen.image_quit_buttonbg)
-
-        yes_quit_button.bind("<Enter>", yes_quitbutton_onenter)
-        yes_quit_button.bind("<Leave>", yes_quitbutton_onleave)
+        yes_quit_button.bind("<Enter>", lambda event: Utility.button_bg_modify(
+            event, "#C3C3C3", mainscreen_canvas,
+            quit_buttonbg_2, MainScreen.image_quit_buttonbg_selected))
+        yes_quit_button.bind("<Leave>", lambda event: Utility.button_bg_modify(
+            event, "#D9D9D9", mainscreen_canvas,
+            quit_buttonbg_2, MainScreen.image_quit_buttonbg))
 
         def no_quit_button_pressed():
             Sound.sound_buttonpress.play()
@@ -1778,18 +1754,10 @@ class MainScreen:
         no_quit_button.place(x=308.0, y=217.0, width=80.0, height=26.0)
         no_quit_button.config(activebackground="#C3C3C3")
 
-        def no_quitbutton_onenter(event):
-            event.widget.config(bg="#C3C3C3")
-            mainscreen_canvas.itemconfigure(
-                quit_buttonbg_1, image=MainScreen.image_quit_buttonbg_selected)
-
-        def no_quitbutton_onleave(event):
-            event.widget.config(bg="#D9D9D9")
-            mainscreen_canvas.itemconfigure(
-                quit_buttonbg_1, image=MainScreen.image_quit_buttonbg)
-
-        no_quit_button.bind("<Enter>", no_quitbutton_onenter)
-        no_quit_button.bind("<Leave>", no_quitbutton_onleave)
+        no_quit_button.bind("<Enter>", lambda event: Utility.button_bg_modify(
+            event, "#C3C3C3", mainscreen_canvas,
+            quit_buttonbg_1, MainScreen.image_quit_buttonbg_selected))
+        no_quit_button.bind("<Leave>", lambda event: Utility.button_bg_modify(event, "#D9D9D9", mainscreen_canvas, quit_buttonbg_1, MainScreen.image_quit_buttonbg)) #___START HERE_______________________________________________
 
         def destroy_quitbox():
             MainScreen.back_button.configure(
@@ -2060,7 +2028,6 @@ class MainScreen:
 
     mainscreen_validate_cmd = window.register(validate_main_input)
 
-    # Entry Box
     entryboxbg = mainscreen_canvas.create_image(
         386.0, 289.5, image=image_entrybox)
     entrybox = Entry(
