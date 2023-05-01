@@ -1757,7 +1757,9 @@ class MainScreen:
         no_quit_button.bind("<Enter>", lambda event: Utility.button_bg_modify(
             event, "#C3C3C3", mainscreen_canvas,
             quit_buttonbg_1, MainScreen.image_quit_buttonbg_selected))
-        no_quit_button.bind("<Leave>", lambda event: Utility.button_bg_modify(event, "#D9D9D9", mainscreen_canvas, quit_buttonbg_1, MainScreen.image_quit_buttonbg)) #___START HERE_______________________________________________
+        no_quit_button.bind("<Leave>", lambda event: Utility.button_bg_modify(
+            event, "#D9D9D9", mainscreen_canvas,
+            quit_buttonbg_1, MainScreen.image_quit_buttonbg))
 
         def destroy_quitbox():
             MainScreen.back_button.configure(
@@ -2153,11 +2155,11 @@ class OptionsScreen:
         400.0, 63.0, image=image_difficulty_title)
     time_title = optionsscreen_canvas.create_image(
         666.0, 63.0, image=image_time_title)
-
     highscore_banner = optionsscreen_canvas.create_image(
         691.0, 413.0, image=image_highscore_banner)
     highscore_bg = optionsscreen_canvas.create_image(
         691.0, 428.0, image=image_highscore_bg)
+
     optionsscreen_canvas.create_text(
         647.0,
         379.0,
@@ -2469,7 +2471,6 @@ class OptionsScreen:
                 f"{OptionsScreen.flashcardtype}-{OptionsScreen.flashcarddifficulty}-{OptionsScreen.flashcardtime}"
             ])
 
-    # Difficulty Buttons
 
     def classical_button_pressed():
         OptionsScreen.flashcarddifficulty = "classical"
@@ -2953,7 +2954,6 @@ class OptionsScreen:
             text=Data.highscore_dict[
                 f"{OptionsScreen.flashcardtype}-{OptionsScreen.flashcarddifficulty}-{OptionsScreen.flashcardtime}"])
 
-    # Back Button
     def back_button_pressed():
         Sound.sound_buttonpress.play()
         optionsscreen_canvas.pack_forget()
@@ -2971,19 +2971,13 @@ class OptionsScreen:
     back_button.place(x=60.0, y=440.0, width=94.0, height=30.0)
     back_button.config(activebackground="#C3C3C3")
 
-    def backbutton_onenter(event):
-        event.widget.config(bg="#C3C3C3"), optionsscreen_canvas.itemconfigure(
-            OptionsScreen.back_buttonbg,
-            image=OptionsScreen.image_back_buttonbg_selected)
+    back_button.bind("<Enter>", lambda event: Utility.button_bg_modify(
+        event, "#C3C3C3", optionsscreen_canvas,
+        OptionsScreen.back_buttonbg, OptionsScreen.image_back_buttonbg_selected))
+    back_button.bind("<Leave>", lambda event: Utility.button_bg_modify(
+        event, "#D9D9D9", optionsscreen_canvas,
+        OptionsScreen.back_buttonbg, OptionsScreen.image_back_buttonbg))
 
-    def backbutton_onleave(event):
-        event.widget.config(bg="#D9D9D9"), optionsscreen_canvas.itemconfigure(
-            OptionsScreen.back_buttonbg, image=OptionsScreen.image_back_buttonbg)
-
-    back_button.bind("<Enter>", backbutton_onenter)
-    back_button.bind("<Leave>", backbutton_onleave)
-
-    # Placed Text
     description_title = optionsscreen_canvas.create_text(
         215.0,
         330.0,
@@ -3126,16 +3120,12 @@ class FinalScreen:
     continue_button.place(x=584.0, y=424.0, width=72.0, height=25.0)
     continue_button.config(activebackground="#C3C3C3")
 
-    def continuebutton_onenter(event):
-        event.widget.config(bg="#C3C3C3"), finalscreen_canvas.itemconfigure(
-            FinalScreen.buttonbg, image=FinalScreen.image_buttonbg_selected)
-
-    def continuebutton_onleave(event):
-        event.widget.config(bg="#D9D9D9"), finalscreen_canvas.itemconfigure(
-            FinalScreen.buttonbg, image=FinalScreen.image_buttonbg)
-
-    continue_button.bind("<Enter>", continuebutton_onenter)
-    continue_button.bind("<Leave>", continuebutton_onleave)
+    continue_button.bind("<Enter>", lambda event: Utility.button_bg_modify(
+        event, "#C3C3C3", finalscreen_canvas,
+        FinalScreen.buttonbg, FinalScreen.image_buttonbg_selected))
+    continue_button.bind("<Leave>", lambda event: Utility.button_bg_modify(
+        event, "#D9D9D9", finalscreen_canvas,
+        FinalScreen.buttonbg, FinalScreen.image_buttonbg))
 
 
 class HistoryScreen:
@@ -3182,17 +3172,12 @@ class HistoryScreen:
     back_button.place(x=42.0, y=438.0, width=93.0, height=30.0)
     back_button.config(activebackground="#C3C3C3")
 
-    def backbutton_onenter(event):
-        event.widget.config(bg="#C3C3C3"), historyscreen_canvas.itemconfigure(
-            HistoryScreen.actionbuttonbg_1,
-            image=HistoryScreen.image_actionbuttonbg_selected)
-
-    def backbutton_onleave(event):
-        event.widget.config(bg="#D9D9D9"), historyscreen_canvas.itemconfigure(
-            HistoryScreen.actionbuttonbg_1, image=HistoryScreen.image_actionbuttonbg)
-
-    back_button.bind("<Enter>", backbutton_onenter)
-    back_button.bind("<Leave>", backbutton_onleave)
+    back_button.bind("<Enter>", lambda event: Utility.button_bg_modify(
+        event, "#C3C3C3", historyscreen_canvas,
+        HistoryScreen.actionbuttonbg_1, HistoryScreen.image_actionbuttonbg_selected))
+    back_button.bind("<Leave>", lambda event: Utility.button_bg_modify(
+        event, "#D9D9D9", historyscreen_canvas,
+        HistoryScreen.actionbuttonbg_1, HistoryScreen.image_actionbuttonbg))
 
     def info_button_pressed():
         Sound.sound_buttonpress.play()
@@ -3233,17 +3218,12 @@ class HistoryScreen:
     info_button.place(x=663.0, y=438.0, width=93.0, height=30.0)
     info_button.config(activebackground="#C3C3C3")
 
-    def infobutton_onenter(event):
-        event.widget.config(bg="#C3C3C3"), historyscreen_canvas.itemconfigure(
-            HistoryScreen.actionbuttonbg_2,
-            image=HistoryScreen.image_actionbuttonbg_selected)
-
-    def infobutton_onleave(event):
-        event.widget.config(bg="#D9D9D9"), historyscreen_canvas.itemconfigure(
-            HistoryScreen.actionbuttonbg_2, image=HistoryScreen.image_actionbuttonbg)
-
-    info_button.bind("<Enter>", infobutton_onenter)
-    info_button.bind("<Leave>", infobutton_onleave)
+    info_button.bind("<Enter>", lambda event: Utility.button_bg_modify(
+        event, "#C3C3C3", historyscreen_canvas,
+        HistoryScreen.actionbuttonbg_2, HistoryScreen.image_actionbuttonbg))
+    info_button.bind("<Leave>", lambda event: Utility.button_bg_modify(
+        event, "#D9D9D9", historyscreen_canvas,
+        HistoryScreen.actionbuttonbg_2, HistoryScreen.image_actionbuttonbg_selected))
 
     tree = ttk.Treeview(
         historyscreen_canvas,
