@@ -1329,7 +1329,7 @@ class MainScreen:
     incorrect = 0
     countdown_initialized = False
     game_started = False
-    # mainScreen Images
+
     image_flashcard = PhotoImage(
         file=relative_to_assets("mainscreen/flashbg.png"))
     image_banner6 = PhotoImage(
@@ -2055,7 +2055,6 @@ class OptionsScreen:
     minutes = 2
     seconds = 1
 
-    # optionsscreen Images
     image_banner9 = PhotoImage(
         file=relative_to_assets("optionsscreen/banner9.png"))
     image_banner10 = PhotoImage(
@@ -2195,45 +2194,54 @@ class OptionsScreen:
             ])
         optionsscreen_canvas.itemconfigure(
             OptionsScreen.buttonbg_type_multiplication,
-            image=OptionsScreen.image_buttonbg_outline,)
+            image=OptionsScreen.image_buttonbg_outline)
         optionsscreen_canvas.itemconfigure(
-            OptionsScreen.buttonbg_type_addition, image=OptionsScreen.image_buttonbg)
+            OptionsScreen.buttonbg_type_addition,
+            image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
-            OptionsScreen.buttonbg_type_subtraction, image=OptionsScreen.image_buttonbg)
+            OptionsScreen.buttonbg_type_subtraction,
+            image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
-            OptionsScreen.buttonbg_type_division, image=OptionsScreen.image_buttonbg)
+            OptionsScreen.buttonbg_type_division,
+            image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
             OptionsScreen.buttonbg_difficulty_classical,
-            image=OptionsScreen.image_buttonbg_outline,)
+            image=OptionsScreen.image_buttonbg_outline)
         optionsscreen_canvas.itemconfigure(
-            OptionsScreen.buttonbg_difficulty_hard, image=OptionsScreen.image_buttonbg)
+            OptionsScreen.buttonbg_difficulty_hard,
+            image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
-            OptionsScreen.buttonbg_difficulty_medium, image=OptionsScreen.image_buttonbg)
+            OptionsScreen.buttonbg_difficulty_medium,
+            image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
-            OptionsScreen.buttonbg_difficulty_easy, image=OptionsScreen.image_buttonbg)
+            OptionsScreen.buttonbg_difficulty_easy,
+            image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
-            OptionsScreen.buttonbg_time_thirtysecond, image=OptionsScreen.image_buttonbg)
+            OptionsScreen.buttonbg_time_thirtysecond,
+            image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
-            OptionsScreen.buttonbg_time_oneminute, image=OptionsScreen.image_buttonbg)
+            OptionsScreen.buttonbg_time_oneminute,
+            image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
-            OptionsScreen.buttonbg_time_practice, image=OptionsScreen.image_buttonbg)
+            OptionsScreen.buttonbg_time_practice,
+            image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
             OptionsScreen.buttonbg_time_twominute,
             image=OptionsScreen.image_buttonbg_outline)
 
     def multiplication_button_pressed():
         OptionsScreen.flashcardtype = "*"
-        (
-            OptionsScreen.explanationtitle,
+        (OptionsScreen.explanationtitle,
             OptionsScreen.explanation,
             OptionsScreen.difficultyint1,
             OptionsScreen.difficultyint2,
         ) = OptionsScreen.get_info(
-            OptionsScreen.flashcardtype, OptionsScreen.flashcarddifficulty)
+        OptionsScreen.flashcardtype, OptionsScreen.flashcarddifficulty)
         OptionsScreen.explanationtitle = "Multiplication -"
         OptionsScreen.explanation = "Put your time tables to the test!"
         mainscreen_canvas.itemconfigure(
-            MainScreen.mathoperator, image=MainScreen.image_mathoperator_multiplication)
+            MainScreen.mathoperator,
+            image=MainScreen.image_mathoperator_multiplication)
         OptionsScreen.clear_type_outline()
         optionsscreen_canvas.itemconfigure(
             OptionsScreen.buttonbg_type_multiplication,
