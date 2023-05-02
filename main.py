@@ -8,6 +8,7 @@ from random import randint
 from operator import add, sub, floordiv, mul
 from datetime import datetime
 from sys import argv
+from sv_ttk import use_light_theme
 from sound import Sound
 from utilities import Utility
 
@@ -478,7 +479,7 @@ class UserScreen:
         Sound.sound_buttonpress.play()
         try:
             username = Data.user_data[i]["displayname"]
-        except:
+        except KeyError:
             return
 
         UserScreen.hide_buttons(1000, 1000)
@@ -585,7 +586,7 @@ class UserScreen:
         Sound.sound_buttonpress.play()
         if UserScreen.remove_mode:
             UserScreen.remove_user_mode()
-        if Data.userlevel == None:
+        if Data.userlevel is None:
             UserScreen.login_error()
         else:
             userscreen_canvas.pack_forget()
@@ -674,12 +675,9 @@ class UserScreen:
             UserScreen.hide_buttons(-1000, -1000)
 
     def hide_buttons(x, y):
-        try:
-            for titlebutton in Data.usertitle_buttons:
-                titlebutton.place_configure(
-                    x=titlebutton.winfo_x() + x, y=titlebutton.winfo_y() + y)
-        except:
-            pass
+        for titlebutton in Data.usertitle_buttons:
+            titlebutton.place_configure(
+                x=titlebutton.winfo_x() + x, y=titlebutton.winfo_y() + y)
         for actionbutton in Data.useraction_buttons:
             actionbutton.place_configure(
                 x=actionbutton.winfo_x() + x, y=actionbutton.winfo_y() + y)
@@ -763,7 +761,7 @@ class ProfileScreen:
             total_percent = total_percent + gamepercent
         try:
             average_percent = total_percent / gamesplayed
-        except:
+        except ZeroDivisionError:
             average_percent = 0
 
         for grade in sorted(grade_to_percentage.keys()):
@@ -1090,7 +1088,7 @@ class StartScreen:
         330.0, 314.0, image=image_buttonbg)
 
     def volume_button_pressed():
-        if StartScreen.muted == False:
+        if StartScreen.muted is False:
             StartScreen.button_volume.configure(image=StartScreen.image_muted)
             Sound.muted_all_sounds(0.0)
         else:
@@ -1223,13 +1221,10 @@ class Data:
                         user_name_and_level[
                             Data.user_data[i]["displayname"]
                         ] = Data.user_data[i]["userlevel"]
-                    except:
+                    except KeyError:
                         pass
         for name, userlevel in user_name_and_level.items():
-            try:
-                Data.usertitle_buttons[userlevel].config(text=name)
-            except:
-                pass
+            Data.usertitle_buttons[userlevel].config(text=name)
             Data.useraction_buttons[userlevel].config(
                 image=UserScreen.image_usericon,
                 command=lambda userlevel=userlevel: UserScreen.show_user_profile(
@@ -1237,19 +1232,16 @@ class Data:
                 ),
             )
         for i, element in enumerate(Data.usertitle_buttons):
-            try:
-                if element.cget("text") == "":
-                    element.place(x=2000, y=2000)
-                else:
-                    Data.logged_in_users.append(i)
-                    element.place_configure(
-                        x=352.0,
-                        y=Data.usertitle_button_positions[i],
-                        width=170.0,
-                        height=47.0,
-                    )
-            except:
-                pass
+            if element.cget("text") == "":
+                element.place(x=2000, y=2000)
+            else:
+                Data.logged_in_users.append(i)
+                element.place_configure(
+                    x=352.0,
+                    y=Data.usertitle_button_positions[i],
+                    width=170.0,
+                    height=47.0,
+                )
 
     def clean_users():
         for element in Data.usertitle_buttons:
@@ -1444,7 +1436,7 @@ class MainScreen:
 
     def back_button_pressed():
         Sound.sound_buttonpress.play()
-        if MainScreen.game_started == True:
+        if MainScreen.game_started is True:
             MainScreen.confirm_quit()
         else:
             mainscreen_canvas.pack_forget()
@@ -1877,7 +1869,7 @@ class MainScreen:
                 MainScreen.problem_correct()
             else:
                 MainScreen.problem_wrong()
-        except:
+        except ValueError:
             return
         mainscreen_canvas.itemconfig(
             MainScreen.currentscore_text, text=MainScreen.currentscore)
@@ -1996,7 +1988,7 @@ class MainScreen:
             "time": current_time,
             "correct": MainScreen.currentscore,
             "incorrect": MainScreen.incorrect,
-            "mode": f"{OptionsScreen.flashcardtype}-{OptionsScreen.flashcarddifficulty}-{OptionsScreen.flashcardtime}",
+            "mode": f"{OptionsScreen.flashcardtype}-{OptionsScreen.flashcarddifficulty}-{OptionsScreen.flashcardtime}"
         }
         Data.user_data[Data.userlevel]["gamehistory"].append(log_dictionary)
 
@@ -2391,7 +2383,8 @@ class OptionsScreen:
                 image=OptionsScreen.image_buttonbg_outline,)
         else:
             optionsscreen_canvas.itemconfigure(
-                OptionsScreen.buttonbg_type_addition, image=OptionsScreen.image_buttonbg)
+                OptionsScreen.buttonbg_type_addition,
+                image=OptionsScreen.image_buttonbg)
 
     addition_button.bind("<Enter>", additionbutton_onenter)
     addition_button.bind("<Leave>", additionbutton_onleave)
@@ -2445,7 +2438,8 @@ class OptionsScreen:
                 image=OptionsScreen.image_buttonbg_outline,)
         else:
             optionsscreen_canvas.itemconfigure(
-                OptionsScreen.buttonbg_type_division, image=OptionsScreen.image_buttonbg)
+                OptionsScreen.buttonbg_type_division,
+                image=OptionsScreen.image_buttonbg)
 
     division_button.bind("<Enter>", divisionbutton_onenter)
     division_button.bind("<Leave>", divisionbutton_onleave)
@@ -2725,14 +2719,19 @@ class OptionsScreen:
     def clear_difficulty_outline():
         Sound.sound_buttonpress.play()
         optionsscreen_canvas.itemconfig(
-            OptionsScreen.description_title, text=OptionsScreen.explanationtitle)
-        OptionsScreen.description.config(text=OptionsScreen.explanation)
+            OptionsScreen.description_title,
+            text=OptionsScreen.explanationtitle)
+        OptionsScreen.description.config(
+            text=OptionsScreen.explanation)
         optionsscreen_canvas.itemconfigure(
-            OptionsScreen.buttonbg_difficulty_hard, image=OptionsScreen.image_buttonbg)
+            OptionsScreen.buttonbg_difficulty_hard,
+            image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
-            OptionsScreen.buttonbg_difficulty_medium, image=OptionsScreen.image_buttonbg)
+            OptionsScreen.buttonbg_difficulty_medium,
+            image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
-            OptionsScreen.buttonbg_difficulty_easy, image=OptionsScreen.image_buttonbg)
+            OptionsScreen.buttonbg_difficulty_easy,
+            image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
             OptionsScreen.buttonbg_difficulty_classical,
             image=OptionsScreen.image_buttonbg)
@@ -2784,7 +2783,8 @@ class OptionsScreen:
                 image=OptionsScreen.image_buttonbg_outline)
         else:
             optionsscreen_canvas.itemconfigure(
-                OptionsScreen.buttonbg_time_practice, image=OptionsScreen.image_buttonbg)
+                OptionsScreen.buttonbg_time_practice,
+                image=OptionsScreen.image_buttonbg)
 
     practice_button.bind("<Enter>", practicebutton_onenter)
     practice_button.bind("<Leave>", practicebutton_onleave)
@@ -2937,17 +2937,22 @@ class OptionsScreen:
     def clear_time_outline():
         Sound.sound_buttonpress.play()
         optionsscreen_canvas.itemconfig(
-            OptionsScreen.description_title, text=OptionsScreen.explanationtitle)
+            OptionsScreen.description_title,
+            text=OptionsScreen.explanationtitle)
         OptionsScreen.description.config(
             text=OptionsScreen.explanation)
         optionsscreen_canvas.itemconfigure(
-            OptionsScreen.buttonbg_time_thirtysecond, image=OptionsScreen.image_buttonbg)
+            OptionsScreen.buttonbg_time_thirtysecond,
+            image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
-            OptionsScreen.buttonbg_time_twominute, image=OptionsScreen.image_buttonbg)
+            OptionsScreen.buttonbg_time_twominute,
+            image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
-            OptionsScreen.buttonbg_time_oneminute, image=OptionsScreen.image_buttonbg)
+            OptionsScreen.buttonbg_time_oneminute,
+            image=OptionsScreen.image_buttonbg)
         optionsscreen_canvas.itemconfigure(
-            OptionsScreen.buttonbg_time_practice, image=OptionsScreen.image_buttonbg)
+            OptionsScreen.buttonbg_time_practice,
+            image=OptionsScreen.image_buttonbg)
         Data.does_score_exist()
         optionsscreen_canvas.itemconfig(
             OptionsScreen.specific_highscore_text,
@@ -3246,30 +3251,22 @@ class HistoryScreen:
     tree.column("%", width=70, stretch="no", anchor="center")
 
     def display_data(userlevel):
-        from sv_ttk import use_light_theme
-
         use_light_theme()
-        try:
-            HistoryScreen.tree.delete(*HistoryScreen.tree.get_children())
-        except:
-            pass
+        HistoryScreen.tree.delete(*HistoryScreen.tree.get_children())
         for game in Data.user_data[userlevel]["gamehistory"]:
-            try:
-                game_percentage = game["correct"] / (
-                    game["incorrect"] + game["correct"]
-                )
-                HistoryScreen.tree.insert(
-                    "",
-                    "end",
-                    values=(
-                        game["date"],
-                        game["time"],
-                        game["correct"],
-                        game["incorrect"],
-                        game["mode"],
-                        f"{round(game_percentage * 100, 2)}%"))
-            except:
-                pass
+            game_percentage = game["correct"] / (
+                game["incorrect"] + game["correct"]
+            )
+            HistoryScreen.tree.insert(
+                "",
+                "end",
+                values=(
+                    game["date"],
+                    game["time"],
+                    game["correct"],
+                    game["incorrect"],
+                    game["mode"],
+                    f"{round(game_percentage * 100, 2)}%"))
 
     scrollbar = ttk.Scrollbar(
         historyscreen_canvas, orient="vertical", command=tree.yview)
