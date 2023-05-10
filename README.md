@@ -1,4 +1,4 @@
-# Py-Tkinter Math Flash Cards
+# Tkinter Math Flash Cards
 
 A Python program, using tkinter GUI libraries to create a math flash card game.
 
