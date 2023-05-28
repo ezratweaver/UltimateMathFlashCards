@@ -1,0 +1,13 @@
+{
+    "userlevel": 0,
+    "displayname": "Ezra",
+
+    "highscore": {
+            "*-classical-twominute": 46, "*-easy-twominute": "0", "*-easy-thirtysecond": 19}, 
+
+    "gamehistory": [
+            {"date": "05/18/2023", "time": "11:20 AM", "correct": 19, "incorrect": 1, "mode": "*-easy-thirtysecond"}, 
+            {"date": "05/28/2023", "time": "04:31 PM", "correct": 46, "incorrect": 6, "mode": "*-classical-twominute"}, 
+            {"date": "05/28/2023", "time": "04:32 PM", "correct": 15, "incorrect": 2, "mode": "*-easy-thirtysecond"}, 
+            {"date": "05/28/2023", "time": "04:32 PM", "correct": 12, "incorrect": 2, "mode": "*-easy-thirtysecond"}]
+}
