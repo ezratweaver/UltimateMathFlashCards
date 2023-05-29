@@ -1,6 +1,7 @@
 from tkinter import Canvas
 from assets import window, WINDOW_COLOR
 
+
 class UserScreenGUI:
 
     def __init__(self) -> None:
@@ -11,13 +12,6 @@ class UserScreenGUI:
             relief="ridge")
         
         self.userscreen_canv.pack()
-
-class User:
-
-    def __init__(self, displayname) -> None:
-        self.username = displayname
-        
-
 
 userscreen = UserScreenGUI()
 window.geometry("800x500")
