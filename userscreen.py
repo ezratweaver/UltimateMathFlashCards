@@ -14,8 +14,8 @@ class UserScreenGUI:
 
 class User:
 
-    def __init__(self, username) -> None:
-        self.username = username
+    def __init__(self, displayname) -> None:
+        self.username = displayname
         
 
 
