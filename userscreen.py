@@ -1,9 +1,9 @@
 from tkinter import Canvas
 from assets import window, WINDOW_COLOR
 
-class UserScreen:
+class UserScreenGUI:
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.userscreen_canv = Canvas(
             window, bg=WINDOW_COLOR,
             height=500, width = 800,
@@ -12,11 +12,14 @@ class UserScreen:
         
         self.userscreen_canv.pack()
 
+class User:
+
+    def __init__(self, username) -> None:
+        self.username = username
+        
 
 
-
-
-userscreeen = UserScreen()
+userscreen = UserScreenGUI()
 window.geometry("800x500")
 window.title("")
 window.resizable(False, False)
