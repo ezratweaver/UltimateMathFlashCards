@@ -1,5 +1,6 @@
 from os import listdir, path, getenv, mkdir
 from json import loads, dumps
+from assets import userlist_banners
 
 USERDATA_PATH = path.join(getenv('APPDATA'), "ultimate-mfc")
 
@@ -19,4 +20,15 @@ def check_for_users():
         check_for_users()
     return all_users
 
-all_users = check_for_users()
+def get_user_count():
+    return len(check_for_users())
+
+def get_userlist_banner():
+    user_count = get_user_count()
+    if user_count >= 6:
+        return userlist_banners.get(6)
+    else:
+        return userlist_banners.get(user_count + 1)
+
+def find_user(creationlevel):
+    pass
