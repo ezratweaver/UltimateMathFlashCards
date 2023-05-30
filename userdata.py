@@ -30,5 +30,6 @@ def get_userlist_banner():
     else:
         return userlist_banners.get(user_count + 1)
 
-def find_user(creationlevel):
-    pass
+def get_highest_creationlevel():
+    return check_for_users()[::-1][0]["creationlevel"]
+
