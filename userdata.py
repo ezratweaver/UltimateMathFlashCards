@@ -18,7 +18,7 @@ def check_for_users():
     except FileNotFoundError:
         create_data_directory()
         check_for_users()
-    return all_users
+    return sorted(all_users, key=lambda x: x['creationlevel'])
 
 def get_user_count():
     return len(check_for_users())
