@@ -4,7 +4,6 @@ from assets import userlist_banners
 
 USERDATA_PATH = path.join(getenv('APPDATA'), "ultimate-mfc")
 
-
 def create_user_directory():
     mkdir(USERDATA_PATH)
     return True
@@ -47,7 +46,7 @@ def create_user(displayname):
                      "displayname": displayname, "highscore": {},
                      "gamehistory": []}
     with open(create_json_directory(new_id), "w") as file:
-        dump(user_template, file)
+        dump(user_template, file, indent=4)
         return True
 
 def delete_user(id):
@@ -57,3 +56,14 @@ def delete_user(id):
         return True
     return False
 
+def rename_user(user_dictionary, displayname):
+    user_dictionary["displayname"] = displayname
+    return user_dictionary
+
+def dump_user_file(user_dictionary):
+    file = create_json_directory(user_dictionary["id"])
+    if path.exists(file):
+        with open(file,"w") as json:
+            dump(user_dictionary, json, indent=4)
+            return True
+    return False
