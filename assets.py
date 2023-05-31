@@ -2,8 +2,8 @@ from tkinter import Tk, PhotoImage
 from os import path, chdir
 from sys import argv
 
-EXE_DIR = path.dirname(argv[0])
-chdir(EXE_DIR)
+exe_dir = path.dirname(path.abspath(argv[0]))
+chdir(exe_dir)
 
 WINDOW_COLOR = "#3556FB"
 
