@@ -18,7 +18,7 @@ def check_for_users():
                     all_users.append(loads(file.read()))
     except FileNotFoundError:
         create_user_directory()
-        check_for_users()
+        return all_users
     return sorted(all_users, key=lambda x: int(x['id']))
 
 def get_user_count():
