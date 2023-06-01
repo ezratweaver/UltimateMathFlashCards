@@ -1,9 +1,10 @@
 from tkinter import Canvas, Button
-from userdata import get_userlist_banner, get_user_count
+from typing import List
+from userdata import get_userlist_banner, check_for_users
 from assets import window, WINDOW_COLOR
 import assets
 
-user_y_start_pos = {
+Y_START_POS_DICT = {
     0 : 250,
     1 : 218,
     2 : 186,
@@ -12,6 +13,10 @@ user_y_start_pos = {
     5 : 88,
     6 : 88,
 }
+ALL_USERS = check_for_users()
+USERCOUNT = len(ALL_USERS)
+
+current_user = None
 
 class UserScreenGUI:
 
@@ -27,30 +32,28 @@ class UserScreenGUI:
         self.userlist_banner = self.userscreen_canv.create_image(
             400,
             250,
-            image=get_userlist_banner()
+            image=get_userlist_banner(USERCOUNT)
         )
 
-    def print_button_bg(self) -> None:
-        usercount = get_user_count()
+    def print_buttons(self, usercount) -> List[object]:
         if usercount >= 6:
             usercount = 5
-        y_start_pos = user_y_start_pos.get(usercount)
+        y_start_pos = Y_START_POS_DICT.get(usercount)
         title_buttons = []
         action_buttons = []
         for x in range(usercount + 1):
             self.userscreen_canv.create_image(
                 434,
                 y_start_pos,
-                image=assets.usertitlebg
+                image=assets.image_usertitlebg
             )
             self.userscreen_canv.create_image(
                 314,
                 y_start_pos,
-                image=assets.useractionbg
+                image=assets.image_useractionbg
             )
             title_buttons.append(Button(
                 self.userscreen_canv,
-                text="",
                 fg="#000000",
                 bg="#D9D9D9",
                 anchor="w",
@@ -63,10 +66,10 @@ class UserScreenGUI:
                                  width=160.0, height=43.0)
             action_buttons.append(Button(
                 self.userscreen_canv,
-                text="",
                 fg="#000000",
                 bg="#D9D9D9",
-                anchor="w",
+                image=assets.image_useradd,
+                anchor="center",
                 font=("Encode Sans", 27 * -1),
                 borderwidth=0,
                 highlightthickness=0,
@@ -75,11 +78,13 @@ class UserScreenGUI:
             action_buttons[x].place(x = 289, y = y_start_pos - 21, 
                                     width=50.0, height=43.0)
             y_start_pos = y_start_pos + 65
+        for x, user in enumerate(ALL_USERS):
+            title_buttons[x].config(text=f" {user['displayname']}")
+            action_buttons[x].config(image=assets.image_userprofile)  
 
     def run_gui(self) -> None:
         self.print_banner()
-        self.print_button_bg()
-
+        self.print_buttons(USERCOUNT)
 
 userscreen = UserScreenGUI()
 userscreen.run_gui()
