@@ -35,7 +35,8 @@ class UserScreenGUI:
         if usercount >= 6:
             usercount = 5
         y_start_pos = user_y_start_pos.get(usercount)
-        userbuttons = []
+        title_buttons = []
+        action_buttons = []
         for x in range(usercount + 1):
             self.userscreen_canv.create_image(
                 434,
@@ -47,8 +48,32 @@ class UserScreenGUI:
                 y_start_pos,
                 image=assets.useractionbg
             )
-            userbuttons.append(Button(self.userscreen_canv))
-            print(userbuttons[x - 1].place(x = 434, y = y_start_pos - 13))
+            title_buttons.append(Button(
+                self.userscreen_canv,
+                text="",
+                fg="#000000",
+                bg="#D9D9D9",
+                anchor="w",
+                font=("Encode Sans", 27 * -1),
+                borderwidth=0,
+                highlightthickness=0,
+                command=lambda: print("HI"),
+                relief="flat"))
+            title_buttons[x].place(x = 354, y = y_start_pos - 21, 
+                                 width=160.0, height=43.0)
+            action_buttons.append(Button(
+                self.userscreen_canv,
+                text="",
+                fg="#000000",
+                bg="#D9D9D9",
+                anchor="w",
+                font=("Encode Sans", 27 * -1),
+                borderwidth=0,
+                highlightthickness=0,
+                command=lambda: print("HI"),
+                relief="flat"))
+            action_buttons[x].place(x = 289, y = y_start_pos - 21, 
+                                    width=50.0, height=43.0)
             y_start_pos = y_start_pos + 65
 
     def run_gui(self) -> None:
