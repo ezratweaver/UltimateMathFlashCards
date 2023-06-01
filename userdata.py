@@ -54,19 +54,22 @@ def get_user_count() -> int:
     """
     return len(check_for_users())
 
-def get_userlist_banner() -> object:
+def get_userlist_banner(usercount) -> object:
     """
     Retrieves the appropriate user list banner based on the count of users.
+
+    Args:
+        usercount (int): The total amount of users needed to provide the proper
+        banner.
 
     Returns:
         object[PhotoImage]: Tkinter Image with proper banner size
 
     """
-    user_count = get_user_count()
-    if user_count >= 6:
+    if usercount >= 6:
         return userlist_banners.get(6)
     else:
-        return userlist_banners.get(user_count + 1)
+        return userlist_banners.get(usercount + 1)
 
 def get_highest_id() -> int:
     """
@@ -84,7 +87,7 @@ def get_highest_id() -> int:
     except IndexError:
         return 0
 
-def create_json_directory(id: int) -> str:
+def mk_json_directory_string(id: int) -> str:
     """
     Creates the JSON file directory path for a given ID.
 
@@ -112,7 +115,7 @@ def create_user(displayname: str) -> bool:
     user_template = {"id": new_id, 
                      "displayname": displayname, "highscore": {},
                      "gamehistory": []}
-    with open(create_json_directory(new_id), "w") as file:
+    with open(mk_json_directory_string(new_id), "w") as file:
         dump(user_template, file, indent=4)
         return True
 
@@ -127,7 +130,7 @@ def delete_user(id: int) -> bool:
         bool: True if the user is successfully deleted, False otherwise.
 
     """
-    file = create_json_directory(id)
+    file = mk_json_directory_string(id)
     if path.exists(file):
         remove(file)
         return True
@@ -160,9 +163,13 @@ def dump_user_file(user_dictionary: dict) -> bool:
         False otherwise.
 
     """
-    file = create_json_directory(user_dictionary["id"])
+    file = mk_json_directory_string(user_dictionary["id"])
     if path.exists(file):
         with open(file,"w") as json:
             dump(user_dictionary, json, indent=4)
             return True
     return False
+
+if __name__ == "__main__":
+    create_user("Bob")
+    print(f"User {get_user_count()} Created")
