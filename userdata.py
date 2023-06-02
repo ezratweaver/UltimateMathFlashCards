@@ -7,18 +7,18 @@ USERDATA_PATH = path.join(getenv('APPDATA'), "ultimate-mfc")
 
 def create_user_directory() -> Optional[bool]:
     """
-    Creates the user directory for storing userdata.
+    Creates the directory for storing userdata.
 
     Returns:
         Optional[bool]: Returns True if the directory is created successfully. 
-        Otherwise, returns None.
+        Otherwise, returns False if file exists.
 
     """
     try:
         mkdir(USERDATA_PATH)
         return True
     except FileExistsError:
-        return None
+        return False
 
 def check_for_users() -> List[dict]:
     """
@@ -98,7 +98,7 @@ def mk_json_directory_string(id: int) -> str:
         str: The JSON file directory path.
 
     """
-    return path.join(USERDATA_PATH, f"{id}.json")
+    return path.join(USERDATA_PATH, f"{int(id)}.json")
 
 def create_user(displayname: str) -> bool:
     """
@@ -111,7 +111,7 @@ def create_user(displayname: str) -> bool:
         bool: True if the user is successfully created.
 
     """
-    new_id = get_highest_id() + 1
+    new_id = (get_highest_id() + 1)
     user_template = {"id": new_id, 
                      "displayname": displayname, "highscore": {},
                      "gamehistory": []}
@@ -119,7 +119,7 @@ def create_user(displayname: str) -> bool:
         dump(user_template, file, indent=4)
         return True
 
-def delete_user(id: int) -> bool:
+def remove_user(id: int) -> bool:
     """
     Deletes the user with the specified ID.
 
@@ -171,5 +171,4 @@ def dump_user_file(user_dictionary: dict) -> bool:
     return False
 
 if __name__ == "__main__":
-    create_user("Bob")
-    print(f"User {get_user_count()} Created")
+    print(create_user("[poi/;;9uyydytfy]"))
