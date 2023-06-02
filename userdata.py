@@ -86,6 +86,25 @@ def get_highest_id() -> int:
         return int(check_for_users()[::-1][0]["id"])
     except IndexError:
         return 0
+    
+def grab_font_size(username: str, font_dict: dict) -> int:
+    """
+    Retrieve the font size from the given font dictionary based on the 
+    length of the username.
+
+    Args:
+        username (str): The username used to determine the font size.
+        font_dict (dict): A dictionary mapping font size keys to their 
+                            corresponding values.
+
+    Returns:
+        int: The font size to be used based on the length of the username. 
+             If no matching font size is found, it returns None.
+    """
+    for key in font_dict.keys():
+        if key <= len(username):
+            fontsize = font_dict[key]
+    return fontsize
 
 def mk_json_directory_string(id: int) -> str:
     """
