@@ -1,18 +1,22 @@
 from tkinter import Canvas, Button
 from typing import List
-from userdata import get_userlist_banner, check_for_users
+from userdata import get_userlist_banner, check_for_users, grab_font_size
 from assets import window, WINDOW_COLOR
 import assets
 
-Y_START_POS_DICT = {
+START_POSITIONS = {
     0 : 250,
-    1 : 218,
-    2 : 186,
-    3 : 154,
-    4 : 121,
-    5 : 88,
-    6 : 88,
+    1 : 218, 2 : 186,
+    3 : 154, 4 : 121,
+    5 : 88, 6 : 88
 }
+
+FONT_SIZES = {
+    1 : 27, 8 : 25,
+    10 : 22, 12 : 18,
+    14: 16, 15: 15
+}
+
 ALL_USERS = check_for_users()
 USERCOUNT = len(ALL_USERS)
 
@@ -38,29 +42,26 @@ class UserScreenGUI:
     def print_buttons(self, usercount) -> List[object]:
         if usercount >= 6:
             usercount = 5
-        y_start_pos = Y_START_POS_DICT.get(usercount)
+        y_start_pos = START_POSITIONS.get(usercount)
         title_buttons = []
         action_buttons = []
         for x in range(usercount + 1):
             self.userscreen_canv.create_image(
                 434,
                 y_start_pos,
-                image=assets.image_usertitlebg
-            )
+                image=assets.image_usertitlebg)
             self.userscreen_canv.create_image(
                 314,
                 y_start_pos,
-                image=assets.image_useractionbg
-            )
+                image=assets.image_useractionbg)
             title_buttons.append(Button(
                 self.userscreen_canv,
                 fg="#000000",
                 bg="#D9D9D9",
                 anchor="w",
-                font=("Encode Sans", 27 * -1),
+                font=("Encode Sans", 25 * -1),
                 borderwidth=0,
                 highlightthickness=0,
-                command=lambda: print("HI"),
                 relief="flat"))
             title_buttons[x].place(x = 354, y = y_start_pos - 21, 
                                  width=160.0, height=43.0)
@@ -70,7 +71,6 @@ class UserScreenGUI:
                 bg="#D9D9D9",
                 image=assets.image_useradd,
                 anchor="center",
-                font=("Encode Sans", 27 * -1),
                 borderwidth=0,
                 highlightthickness=0,
                 command=lambda: print("HI"),
@@ -79,8 +79,16 @@ class UserScreenGUI:
                                     width=50.0, height=43.0)
             y_start_pos = y_start_pos + 65
         for x, user in enumerate(ALL_USERS):
-            title_buttons[x].config(text=f" {user['displayname']}")
-            action_buttons[x].config(image=assets.image_userprofile)  
+            fontsize = grab_font_size(user["displayname"], FONT_SIZES)
+            print(f"Username Size: {len(user['displayname'])} Font Size: {fontsize}")
+            title_buttons[x].config(text=f" {user['displayname']}", 
+                                    command=lambda x=x: setattr(self, "current_user", 
+                                    self.log_into_user(x)),
+                                    font=("Encode Sans", fontsize * -1))
+            action_buttons[x].config(image=assets.image_userprofile)
+
+    def log_into_user(self, user_position) -> None:
+        return ALL_USERS[user_position]
 
     def run_gui(self) -> None:
         self.print_banner()
