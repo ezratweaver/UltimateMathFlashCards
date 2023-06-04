@@ -4,18 +4,20 @@ from userdata import get_userlist_banner, check_for_users, grab_font_size
 from assets import window, WINDOW_COLOR
 import assets
 
+MAX_USERS = 6
 START_POSITIONS = {
     0 : 250,
     1 : 218, 2 : 186,
     3 : 154, 4 : 121,
     5 : 88, 6 : 88
 }
-
 FONT_SIZES = {
     1 : 27, 8 : 25,
     10 : 22, 12 : 18,
     14: 16, 15: 15
 }
+USER_BUTTON_HEIGHT = 43
+USER_BUTTON_WIDTH = 160
 
 ALL_USERS = check_for_users()
 USERCOUNT = len(ALL_USERS)
@@ -40,11 +42,11 @@ class UserScreenGUI:
         )
 
     def print_buttons(self, usercount) -> List[object]:
-        if usercount >= 6:
-            usercount = 5
         y_start_pos = START_POSITIONS.get(usercount)
         title_buttons = []
         action_buttons = []
+        if usercount >= MAX_USERS: #Add an extra button if MAX_USERS has not been
+            usercount = MAX_USERS - 1                     #reached, otherwise dont.
         for x in range(usercount + 1):
             self.userscreen_canv.create_image(
                 434,
@@ -73,14 +75,12 @@ class UserScreenGUI:
                 anchor="center",
                 borderwidth=0,
                 highlightthickness=0,
-                command=lambda: print("HI"),
                 relief="flat"))
             action_buttons[x].place(x = 289, y = y_start_pos - 21, 
                                     width=50.0, height=43.0)
             y_start_pos = y_start_pos + 65
         for x, user in enumerate(ALL_USERS):
             fontsize = grab_font_size(user["displayname"], FONT_SIZES)
-            print(f"Username Size: {len(user['displayname'])} Font Size: {fontsize}")
             title_buttons[x].config(text=f" {user['displayname']}", 
                                     command=lambda x=x: setattr(self, "current_user", 
                                     self.log_into_user(x)),
