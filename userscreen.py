@@ -21,6 +21,7 @@ USER_BUTTON_WIDTH = 160
 
 ALL_USERS = check_for_users()
 USERCOUNT = len(ALL_USERS)
+USER_TITLE_FONT = ("Encode Sans", 25 * -1)
 
 current_user = None
 
@@ -41,7 +42,7 @@ class UserScreenGUI:
             image=get_userlist_banner(USERCOUNT)
         )
 
-    def print_buttons(self, usercount) -> List[object]:
+    def print_user_buttons(self, usercount) -> List[object]:
         y_start_pos = START_POSITIONS.get(usercount)
         title_buttons = []
         action_buttons = []
@@ -61,7 +62,6 @@ class UserScreenGUI:
                 fg="#000000",
                 bg="#D9D9D9",
                 anchor="w",
-                font=("Encode Sans", 25 * -1),
                 borderwidth=0,
                 highlightthickness=0,
                 relief="flat"))
@@ -84,7 +84,7 @@ class UserScreenGUI:
             title_buttons[x].config(text=f" {user['displayname']}", 
                                     command=lambda x=x: setattr(self, "current_user", 
                                     self.log_into_user(x)),
-                                    font=("Encode Sans", fontsize * -1))
+                                    font=USER_TITLE_FONT)
             action_buttons[x].config(image=assets.image_userprofile)
 
     def log_into_user(self, user_position) -> None:
@@ -92,7 +92,7 @@ class UserScreenGUI:
 
     def run_gui(self) -> None:
         self.print_banner()
-        self.print_buttons(USERCOUNT)
+        self.print_user_buttons(USERCOUNT)
 
 userscreen = UserScreenGUI()
 userscreen.run_gui()
