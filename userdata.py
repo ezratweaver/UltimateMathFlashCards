@@ -87,24 +87,31 @@ def get_highest_id() -> int:
     except IndexError:
         return 0
     
-def grab_font_size(username: str, font_dict: dict) -> int:
+def grab_font_size(username: str, user_button_height: int,
+                   user_button_width: int, font: object) -> int:
     """
-    Retrieve the font size from the given font dictionary based on the 
-    length of the username.
+    Determines the font size that fits within the specified button
+    dimensions for the given username.
 
     Args:
-        username (str): The username used to determine the font size.
-        font_dict (dict): A dictionary mapping font size keys to their 
-                            corresponding values.
+        username (str): The username to be displayed.
+        user_button_height (int): The desired height of the button.
+        user_button_width (int): The desired width of the button.
+        font (object): The tkinter Font object used for the button's text.
 
     Returns:
-        int: The font size to be used based on the length of the username. 
-             If no matching font size is found, it returns None.
+        int: The font size that fits within the button dimensions.
+
     """
-    for key in font_dict.keys():
-        if key <= len(username):
-            fontsize = font_dict[key]
-    return fontsize
+    font_height = font.metrics("linespace")
+    font_width = font.measure(username)
+    font_size = int(font.cget("size"))
+    while font_height > user_button_height or font_width > user_button_width:
+        font_height = font.metrics("linespace")
+        font_width = font.measure(username)
+        font_size = font_size + 1
+        font.configure(size=font_size)
+    return font_size
 
 def mk_json_directory_string(id: int) -> str:
     """
