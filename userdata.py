@@ -103,15 +103,16 @@ def grab_font_size(text: str, button: object, font: object, root: object) -> int
 
     """
     root.update()
-    button_height = button.winfo_height() # BUG WHY ARE THE FONT CHANGES SO BIG 
-    button_width = button.winfo_width() - 6 # BUG CHANGE THIS BETWEEN 8 AND 6 AND FIX
+    button_height = button.winfo_height() 
+    button_width = button.winfo_width() - 5
     font_height = font.metrics("linespace")
     font_width = font.measure(text) 
     font_size = int(font.cget("size"))
     while font_height > button_height or font_width > button_width:
         font_height = font.metrics("linespace")
         font_width = font.measure(text)
-        font_size = font_size + 1
+        font_size = font_size - 1
+        print(f"font height: {font_height} | font width: {font_width} | font size: {font_size} | button height: {button_height} | button width: {button_width}")
         font.configure(size=font_size)
     return font_size
 
