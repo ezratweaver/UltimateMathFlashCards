@@ -23,7 +23,7 @@ def create_user_directory() -> Optional[bool]:
 def check_for_users() -> List[dict]:
     """
     Checks USERDATA_PATH for JSON files and returns all JSON files
-    as a list of dictionaries.
+        as a list of dictionaries.
 
     Returns:
         List[Dict]: List of dictionaries representing the JSON files found
@@ -88,6 +88,20 @@ def get_highest_id() -> int:
         return 0
     
 def grab_font_size(text: str, button: object, font: object, root: object) -> int:
+    """
+    Calculate the optimal font size for a given text to fit within 
+        the dimensions of a button.
+    
+    Args:
+        text (str): The text content.
+        button (object): The tkinter button object.
+        font (object): The tkinter font object.
+        root (object): The tkinter root object.
+
+    Returns:
+        int: The optimal font size.
+
+    """
     root.update()
     button_height = button.winfo_height() # BUG WHY ARE THE FONT CHANGES SO BIG 
     button_width = button.winfo_width() - 6 # BUG CHANGE THIS BETWEEN 8 AND 6 AND FIX
