@@ -87,28 +87,16 @@ def get_highest_id() -> int:
     except IndexError:
         return 0
     
-def grab_font_size(username: str, user_button_height: int,
-                   user_button_width: int, font: object) -> int:
-    """
-    Determines the font size that fits within the specified button
-    dimensions for the given username.
-
-    Args:
-        username (str): The username to be displayed.
-        user_button_height (int): The desired height of the button.
-        user_button_width (int): The desired width of the button.
-        font (object): The tkinter Font object used for the button's text.
-
-    Returns:
-        int: The font size that fits within the button dimensions.
-
-    """
+def grab_font_size(text: str, button: object, font: object, root: object) -> int:
+    root.update()
+    button_height = button.winfo_height() # BUG WHY ARE THE FONT CHANGES SO BIG 
+    button_width = button.winfo_width() - 6 # BUG CHANGE THIS BETWEEN 8 AND 6 AND FIX
     font_height = font.metrics("linespace")
-    font_width = font.measure(username)
+    font_width = font.measure(text) 
     font_size = int(font.cget("size"))
-    while font_height > user_button_height or font_width > user_button_width:
+    while font_height > button_height or font_width > button_width:
         font_height = font.metrics("linespace")
-        font_width = font.measure(username)
+        font_width = font.measure(text)
         font_size = font_size + 1
         font.configure(size=font_size)
     return font_size
