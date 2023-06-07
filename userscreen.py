@@ -22,7 +22,7 @@ USER_BUTTON_DIMENSIONS = (43, 160)
 all_users = check_for_users()
 usercount = len(all_users)
 
-user_title_font = font.Font(family="Encode Sans", size=25 * -1)
+user_title_font = font.Font(family="Encode Sans", size=20)
 
 current_user = None
 
@@ -62,7 +62,7 @@ class UserScreenGUI:
                 self.userscreen_canv,
                 fg="#000000",
                 bg="#D9D9D9",
-                anchor="w",
+                anchor="center",
                 borderwidth=0,
                 highlightthickness=0,
                 relief="flat"))
@@ -84,7 +84,7 @@ class UserScreenGUI:
             font_size = grab_font_size(user["displayname"], title_buttons[x],
                                        user_title_font, root)
             print(f"username: {user['displayname']} | fontsize: {font_size} | character length: {len(user['displayname'])}")
-            title_buttons[x].config(text=f" {user['displayname']}", 
+            title_buttons[x].config(text=f"{user['displayname']}", 
                                     command=lambda x=x: setattr(self, "current_user", 
                                     self.log_into_user(x)),
                                     font=("Encode Sans", font_size))
