@@ -1,4 +1,5 @@
 from os import listdir, path, getenv, mkdir, remove
+from tkinter import font
 from typing import List, Optional
 from json import loads, dump
 from assets import userlist_banners
@@ -87,7 +88,7 @@ def get_highest_id() -> int:
     except IndexError:
         return 0
     
-def grab_font_size(text: str, button: object, font: object, root: object) -> int:
+def grab_font_size(text: str, button: object, inputfont: object, root: object) -> int:
     """
     Calculate the optimal font size for a given text to fit within 
         the dimensions of a button.
@@ -95,25 +96,26 @@ def grab_font_size(text: str, button: object, font: object, root: object) -> int
     Args:
         text (str): The text content.
         button (object): The tkinter button object.
-        font (object): The tkinter font object.
+        inputfont (object): The tkinter font object.
         root (object): The tkinter root object.
 
     Returns:
         int: The optimal font size.
 
     """
+    instance_font = font.Font(font=inputfont)
     root.update()
     button_height = button.winfo_height() 
     button_width = button.winfo_width() - 5
-    font_height = font.metrics("linespace")
-    font_width = font.measure(text) 
-    font_size = int(font.cget("size"))
+    font_height = instance_font.metrics("linespace")
+    font_width = instance_font.measure(text) 
+    font_size = int(instance_font.cget("size"))
     while font_height > button_height or font_width > button_width:
-        font_height = font.metrics("linespace")
-        font_width = font.measure(text)
+        font_height = instance_font.metrics("linespace")
+        font_width = instance_font.measure(text)
         font_size = font_size - 1
         print(f"font height: {font_height} | font width: {font_width} | font size: {font_size} | button height: {button_height} | button width: {button_width}")
-        font.configure(size=font_size)
+        instance_font.configure(size=font_size)
     return font_size
 
 def mk_json_directory_string(id: int) -> str:
