@@ -1,4 +1,4 @@
-from tkinter import Canvas, Button
+from tkinter import Canvas, Button, font
 from typing import List
 from userdata import get_userlist_banner, check_for_users, grab_font_size
 from assets import window, WINDOW_COLOR
@@ -16,12 +16,13 @@ FONT_SIZES = {
     10 : 22, 12 : 18,
     14: 16, 15: 15
 }
-USER_BUTTON_HEIGHT = 43
-USER_BUTTON_WIDTH = 160
 
-ALL_USERS = check_for_users()
-USERCOUNT = len(ALL_USERS)
-USER_TITLE_FONT = ("Encode Sans", 25 * -1)
+USER_BUTTON_DIMENSIONS = (43, 160)
+
+all_users = check_for_users()
+usercount = len(all_users)
+
+user_title_font = font.Font(family="Encode Sans", size=25 * -1)
 
 current_user = None
 
@@ -39,7 +40,7 @@ class UserScreenGUI:
         self.userlist_banner = self.userscreen_canv.create_image(
             400,
             250,
-            image=get_userlist_banner(USERCOUNT)
+            image=get_userlist_banner(usercount)
         )
 
     def print_user_buttons(self, usercount) -> List[object]:
@@ -79,20 +80,22 @@ class UserScreenGUI:
             action_buttons[x].place(x = 289, y = y_start_pos - 21, 
                                     width=50.0, height=43.0)
             y_start_pos = y_start_pos + 65
-        for x, user in enumerate(ALL_USERS):
-            fontsize = grab_font_size(user["displayname"], FONT_SIZES)
+        for x, user in enumerate(all_users):
+            font_size = grab_font_size(user["displayname"], 
+                    *USER_BUTTON_DIMENSIONS, user_title_font)
+            print(f"username: {user['displayname']} | fontsize: {font_size}")
             title_buttons[x].config(text=f" {user['displayname']}", 
                                     command=lambda x=x: setattr(self, "current_user", 
                                     self.log_into_user(x)),
-                                    font=USER_TITLE_FONT)
+                                    font=("Encode Sans", font_size))
             action_buttons[x].config(image=assets.image_userprofile)
 
     def log_into_user(self, user_position) -> None:
-        return ALL_USERS[user_position]
+        return all_users[user_position]
 
     def run_gui(self) -> None:
         self.print_banner()
-        self.print_user_buttons(USERCOUNT)
+        self.print_user_buttons(usercount)
 
 userscreen = UserScreenGUI()
 userscreen.run_gui()
