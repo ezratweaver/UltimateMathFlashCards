@@ -1,7 +1,7 @@
 from tkinter import Canvas, Button, font
 from typing import List
 from userdata import get_userlist_banner, check_for_users, grab_font_size
-from assets import window, WINDOW_COLOR
+from assets import root, WINDOW_COLOR
 import assets
 
 MAX_USERS = 6
@@ -30,7 +30,7 @@ class UserScreenGUI:
 
     def __init__(self) -> None:
         self.userscreen_canv = Canvas(
-            window, bg=WINDOW_COLOR,
+            root, bg=WINDOW_COLOR,
             height=500, width = 800,
             bd=0, highlightthickness=0,
             relief="ridge")
@@ -82,7 +82,7 @@ class UserScreenGUI:
             y_start_pos = y_start_pos + 65
         for x, user in enumerate(all_users):
             font_size = grab_font_size(user["displayname"], title_buttons[x],
-                                       user_title_font, window)
+                                       user_title_font, root)
             print(f"username: {user['displayname']} | fontsize: {font_size} | character length: {len(user['displayname'])}")
             title_buttons[x].config(text=f" {user['displayname']}", 
                                     command=lambda x=x: setattr(self, "current_user", 
@@ -99,7 +99,7 @@ class UserScreenGUI:
 
 userscreen = UserScreenGUI()
 userscreen.run_gui()
-window.geometry("800x500")
-window.title("")
-window.resizable(False, False)
-window.mainloop()
+root.geometry("800x500")
+root.title("")
+root.resizable(False, False)
+root.mainloop()

@@ -7,7 +7,7 @@ chdir(exe_dir)
 
 WINDOW_COLOR = "#3556FB"
 
-window = Tk()
+root = Tk()
 
 
 userlist_banners = {
