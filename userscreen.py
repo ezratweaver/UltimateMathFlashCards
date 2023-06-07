@@ -81,9 +81,9 @@ class UserScreenGUI:
                                     width=50.0, height=43.0)
             y_start_pos = y_start_pos + 65
         for x, user in enumerate(all_users):
-            font_size = grab_font_size(user["displayname"], 
-                    *USER_BUTTON_DIMENSIONS, user_title_font)
-            print(f"username: {user['displayname']} | fontsize: {font_size}")
+            font_size = grab_font_size(user["displayname"], title_buttons[x],
+                                       user_title_font, window)
+            print(f"username: {user['displayname']} | fontsize: {font_size} | character length: {len(user['displayname'])}")
             title_buttons[x].config(text=f" {user['displayname']}", 
                                     command=lambda x=x: setattr(self, "current_user", 
                                     self.log_into_user(x)),
