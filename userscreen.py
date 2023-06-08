@@ -62,6 +62,7 @@ class UserScreenGUI:
                 self.userscreen_canv,
                 fg="#000000",
                 bg="#D9D9D9",
+                activebackground="#D9D9D9",
                 anchor="center",
                 borderwidth=0,
                 highlightthickness=0,
@@ -72,6 +73,7 @@ class UserScreenGUI:
                 self.userscreen_canv,
                 fg="#000000",
                 bg="#D9D9D9",
+                activebackground="#D9D9D9",
                 image=assets.image_useradd,
                 anchor="center",
                 borderwidth=0,
@@ -81,7 +83,9 @@ class UserScreenGUI:
                                     width=50.0, height=43.0)
             y_start_pos = y_start_pos + 65
         for x, user in enumerate(all_users):
-            print(f"username: {user['displayname']} | character length: {len(user['displayname'])}")
+            print(
+f"username: {user['displayname']} | character length: {len(user['displayname'])}"
+                )
             font_size = grab_font_size(user["displayname"], title_buttons[x],
                                        user_title_font, root)
             title_buttons[x].config(text=f"{user['displayname']}", 
