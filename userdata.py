@@ -114,7 +114,6 @@ def grab_font_size(text: str, button: object, inputfont: object, root: object) -
         font_height = instance_font.metrics("linespace")
         font_width = instance_font.measure(text)
         font_size = font_size - 1
-        print(f"font height: {font_height} | font width: {font_width} | font size: {font_size} | button height: {button_height} | button width: {button_width}")
         instance_font.configure(size=font_size)
     return font_size
 
@@ -142,6 +141,8 @@ def create_user(displayname: str) -> bool:
         bool: True if the user is successfully created.
 
     """
+    if len(displayname) > 14:
+        raise NameError("Display Name Must Be Under 14 Characters")
     new_id = (get_highest_id() + 1)
     user_template = {"id": new_id, 
                      "displayname": displayname, "highscore": {},
@@ -202,4 +203,4 @@ def dump_user_file(user_dictionary: dict) -> bool:
     return False
 
 if __name__ == "__main__":
-    print(create_user("[poi/;;9uyydytfy]"))
+    print(create_user("AAAAAAAAAAAAAA"))
