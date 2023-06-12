@@ -1,7 +1,8 @@
 from os import listdir, path, getenv, mkdir, remove
 from tkinter import font
-from typing import List, Optional
+from typing import List
 from json import loads, dump, JSONDecodeError
+from encryption import fernet_instnace
 
 USERDATA_PATH = path.join(getenv('APPDATA'), "ultimate-mfc")
 
@@ -23,7 +24,7 @@ def check_username(displayname: str):
         raise ValueError("Expected length of display name to be <= 14, "
                         f"actual display length: {len(displayname)}")
 
-def check_for_users() -> List[dict]:
+def check_for_users(encryption=True) -> List[dict]:
     """
     Checks USERDATA_PATH for JSON files and returns all JSON files
         as a list of dictionaries.
@@ -46,9 +47,12 @@ def check_for_users() -> List[dict]:
                 file_path = path.join(USERDATA_PATH, file)
                 with open(file_path) as file:
                     try:
-                        all_users.append(loads(file.read()))
+                        dictionary = loads(file.read())
                     except JSONDecodeError:
                         pass
+                    if encryption:
+                        dictionary = fernet_instnace.decrypt(dictionary)
+                    all_users.append(dictionary)
     except FileNotFoundError:
         mkdir(USERDATA_PATH)
         return all_users
@@ -241,4 +245,4 @@ def dump_user_file(user_dictionary: dict) -> bool:
         return True
 
 if __name__ == "__main__":
-    create_user_directory()
+    print(check_for_users(encryption=False))
