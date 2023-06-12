@@ -22,23 +22,6 @@ def check_username(displayname: str):
     if len(displayname) > 14:
         raise ValueError("Expected length of display name to be <= 14, "
                         f"actual display length: {len(displayname)}")
-    
-def create_user_directory() -> Optional[bool]:
-    """
-    Creates the directory for storing userdata.
-
-    Returns:
-        Optional[bool]: Returns True if the directory is created successfully.
-
-    Raises:
-        FileExistsError: If the directory already exists, an exception is raised 
-                            with an error message.
-    """
-    try:
-        mkdir(USERDATA_PATH)
-        return True
-    except FileExistsError:
-        raise FileExistsError(f'Directory "{USERDATA_PATH}" already exists')
 
 def check_for_users() -> List[dict]:
     """
@@ -67,7 +50,7 @@ def check_for_users() -> List[dict]:
                     except JSONDecodeError:
                         pass
     except FileNotFoundError:
-        create_user_directory()
+        mkdir(USERDATA_PATH)
         return all_users
     return sorted(all_users, key=lambda x: int(x['id']))
 
