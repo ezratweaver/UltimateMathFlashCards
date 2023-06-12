@@ -32,6 +32,10 @@ def check_for_users() -> List[dict]:
     Raises:
         FileNotFoundError: If USERDATA_PATH does not exist
 
+    Calls:
+        create_user_directory: to create new application directory if
+                                    such directory does not exist
+
     """
     all_users = []
     try:
@@ -52,25 +56,30 @@ def get_user_count() -> int:
     Returns:
         int: The count of users.
 
+    Calls:
+        check_for_users: to grab the length of the total users found
+
     """
     return len(check_for_users())
 
-def get_userlist_banner(usercount) -> object:
+def get_userlist_banner(usercount, banner_dictionary) -> object:
     """
     Retrieves the appropriate user list banner based on the count of users.
 
     Args:
-        usercount (int): The total amount of users needed to provide the proper
-        banner.
+        usercount (int): Total number of users for which the proper banner is needed.
+        banner_dictionary (dict): A dictionary mapping the number of users to the
+                                    corresponding banner image.
 
     Returns:
-        object[PhotoImage]: Tkinter Image with proper banner size
+        object: A Tkinter PhotoImage object representing the banner 
+                                    image with the proper size.
 
     """
     if usercount >= 6:
-        return userlist_banners.get(6)
+        return banner_dictionary.get(6)
     else:
-        return userlist_banners.get(usercount + 1)
+        return banner_dictionary.get(usercount + 1)
 
 def get_highest_id() -> int:
     """
@@ -82,6 +91,8 @@ def get_highest_id() -> int:
     Raises:
         IndexError: Handles the case when no users are found. Returns integer 0
 
+    Calls:
+        check_for_users: to sift through the users to find highest id
     """
     try:
         return int(check_for_users()[::-1][0]["id"])
@@ -90,17 +101,24 @@ def get_highest_id() -> int:
     
 def grab_font_size(text: str, button: object, inputfont: object, root: object) -> int:
     """
-    Calculate the optimal font size for a given text to fit within 
-        the dimensions of a button.
-    
+    Calculate the optimal font size for a given text to fit within the 
+        dimensions of a button.
+
+    This function determines the appropriate font size that allows the specified `text` 
+    to fit comfortably within the dimensions of the `button` widget. It takes into 
+    account the current font settings specified by the `inputfont` object.
+
     Args:
-        text (str): The text content.
-        button (object): The tkinter button object.
-        inputfont (object): The tkinter font object.
+        text (str): The content of the text.
+        button (object): The tkinter button object for which the font size 
+                            needs to be calculated.
+        inputfont (object): The tkinter font object representing the initial
+                            font settings.
         root (object): The tkinter root object.
 
     Returns:
-        int: The optimal font size.
+        int: The optimal font size that ensures the `text` fits within the 
+                dimensions of the `button`.
 
     """
     instance_font = font.Font(font=inputfont)
@@ -140,6 +158,14 @@ def create_user(displayname: str) -> bool:
     Returns:
         bool: True if the user is successfully created.
 
+    Calls:
+        - get_highest_id: Retrieves the highest ID among existing users.
+        - mk_json_directory_string: Constructs the directory path for the 
+                                        user's JSON file.
+
+    Raises:
+        NameError: If the provided display name exceeds 14 characters.
+
     """
     if len(displayname) > 14:
         raise NameError("Display Name Must Be Under 14 Characters")
@@ -160,6 +186,10 @@ def remove_user(id: int) -> bool:
 
     Returns:
         bool: True if the user is successfully deleted, False otherwise.
+
+    Calls:
+        - mk_json_directory_string: Constructs the directory path for the 
+                                        user's JSON file.
 
     """
     file = mk_json_directory_string(id)
@@ -187,12 +217,20 @@ def dump_user_file(user_dictionary: dict) -> bool:
     """
     Dumps the user dictionary to a JSON file.
 
+    This function takes a dictionary representing a user and writes it to a JSON
+    file. The user dictionary should contain the necessary information for the user,
+    such as their ID, display name, high scores, and game history.
+
     Args:
         user_dictionary (dict): The dictionary representing the user.
 
     Returns:
-        bool: True if the user dictionary is successfully dumped to the JSON file, 
-        False otherwise.
+        bool: True if the user dictionary is successfully dumped to the JSON file,
+                False otherwise.
+
+    Calls:
+        - mk_json_directory_string: Constructs the directory path for the user's
+                                        JSON file.
 
     """
     file = mk_json_directory_string(user_dictionary["id"])
