@@ -6,26 +6,39 @@ from json import loads, dump, JSONDecodeError
 USERDATA_PATH = path.join(getenv('APPDATA'), "ultimate-mfc")
 
 def check_username(displayname: str):
+    """
+    Checks the validity of a display name.
+
+    Args:
+        displayname (str): The display name to be checked.
+
+    Raises:
+        TypeError: If the display name is not a string.
+        ValueError: If the display name length exceeds 14 characters.
+    """
     if not isinstance(displayname, str):
         raise TypeError("Expected string type for display name, "
                         f"but received {type(displayname).__name__} instead")
     if len(displayname) > 14:
-        raise NameError("Display Name Must Be Under 14 Characters")
+        raise ValueError("Expected length of display name to be <= 14, "
+                        f"actual display length: {len(displayname)}")
     
 def create_user_directory() -> Optional[bool]:
     """
     Creates the directory for storing userdata.
 
     Returns:
-        Optional[bool]: Returns True if the directory is created successfully. 
-        Otherwise, returns False if file exists.
+        Optional[bool]: Returns True if the directory is created successfully.
 
+    Raises:
+        FileExistsError: If the directory already exists, an exception is raised 
+                            with an error message.
     """
     try:
         mkdir(USERDATA_PATH)
         return True
     except FileExistsError:
-        return False
+        raise FileExistsError(f'Directory "{USERDATA_PATH}" already exists')
 
 def check_for_users() -> List[dict]:
     """
@@ -168,13 +181,10 @@ def create_user(displayname: str) -> bool:
         bool: True if the user is successfully created.
 
     Calls:
-        - get_highest_id: Retrieves the highest ID among existing users.
-        - mk_json_directory_string: Constructs the directory path for the 
-                                        user's JSON file.
-
-    Raises:
-        NameError: If the provided display name exceeds 14 characters.
-
+        check_username: checks validity of name used.
+        get_highest_id: Retrieves the highest ID among existing users.
+        mk_json_directory_string: Constructs the directory path for the 
+                                    user's JSON file.
     """
     check_username(displayname)
     new_id = (get_highest_id() + 1)
@@ -248,6 +258,4 @@ def dump_user_file(user_dictionary: dict) -> bool:
         return True
 
 if __name__ == "__main__":
-    print(check_for_users())
-    create_user("Ezra")
-    print(check_for_users())
+    create_user_directory()
