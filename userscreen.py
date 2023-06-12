@@ -1,7 +1,7 @@
 from tkinter import Canvas, Button, font
 from typing import List
 from userdata import get_userlist_banner, check_for_users, grab_font_size
-from assets import root, WINDOW_COLOR
+from assets import root, WINDOW_COLOR, userlist_banners
 import assets
 
 MAX_USERS = 6
@@ -40,7 +40,7 @@ class UserScreenGUI:
         self.userlist_banner = self.userscreen_canv.create_image(
             400,
             250,
-            image=get_userlist_banner(usercount)
+            image=get_userlist_banner(usercount, userlist_banners)
         )
 
     def print_user_buttons(self, usercount) -> List[object]:
