@@ -1,11 +1,17 @@
 from os import listdir, path, getenv, mkdir, remove
 from tkinter import font
 from typing import List, Optional
-from json import loads, dump
-from assets import userlist_banners
+from json import loads, dump, JSONDecodeError
 
 USERDATA_PATH = path.join(getenv('APPDATA'), "ultimate-mfc")
 
+def check_username(displayname: str):
+    if not isinstance(displayname, str):
+        raise TypeError("Expected string type for display name, "
+                        f"but received {type(displayname).__name__} instead")
+    if len(displayname) > 14:
+        raise NameError("Display Name Must Be Under 14 Characters")
+    
 def create_user_directory() -> Optional[bool]:
     """
     Creates the directory for storing userdata.
@@ -43,7 +49,10 @@ def check_for_users() -> List[dict]:
             if file.endswith(".json"):
                 file_path = path.join(USERDATA_PATH, file)
                 with open(file_path) as file:
-                    all_users.append(loads(file.read()))
+                    try:
+                        all_users.append(loads(file.read()))
+                    except JSONDecodeError:
+                        pass
     except FileNotFoundError:
         create_user_directory()
         return all_users
@@ -167,8 +176,7 @@ def create_user(displayname: str) -> bool:
         NameError: If the provided display name exceeds 14 characters.
 
     """
-    if len(displayname) > 14:
-        raise NameError("Display Name Must Be Under 14 Characters")
+    check_username(displayname)
     new_id = (get_highest_id() + 1)
     user_template = {"id": new_id, 
                      "displayname": displayname, "highscore": {},
@@ -210,6 +218,7 @@ def rename_user(user_dictionary: dict, displayname: str) -> dict:
         dict: The updated user dictionary with the new display name.
 
     """
+    check_username(displayname)
     user_dictionary["displayname"] = displayname
     return user_dictionary
 
@@ -234,11 +243,11 @@ def dump_user_file(user_dictionary: dict) -> bool:
 
     """
     file = mk_json_directory_string(user_dictionary["id"])
-    if path.exists(file):
-        with open(file,"w") as json:
-            dump(user_dictionary, json, indent=4)
-            return True
-    return False
+    with open(file, "w") as json:
+        dump(user_dictionary, json, indent=4)
+        return True
 
 if __name__ == "__main__":
-    print(create_user("AAAAAAAAAAAAAA"))
+    print(check_for_users())
+    create_user("Ezra")
+    print(check_for_users())
