@@ -1,5 +1,5 @@
-from cryptography.fernet import Fernet
+from cryptography.fernet import Fernet, InvalidToken
 
 encryption_key = b'ncp8-C_CMnbIGbPc6Tp8IorVNHuRojhPggWg-l0-ltI='
 
-fernet_instnace = Fernet(encryption_key)
+fernet_instance = Fernet(encryption_key)
