@@ -5,6 +5,7 @@ from json import loads, dump, JSONDecodeError
 from encryption import fernet_instnace
 
 USERDATA_PATH = path.join(getenv('APPDATA'), "ultimate-mfc")
+ENCRYPTION_STATE = True
 
 def check_username(displayname: str):
     """
@@ -24,16 +25,19 @@ def check_username(displayname: str):
         raise ValueError("Expected length of display name to be <= 14, "
                         f"actual display length: {len(displayname)}")
 
-def check_for_users(encryption=True) -> List[dict]:
+def check_for_users(encryption=ENCRYPTION_STATE) -> List[dict]:
     """
     Checks USERDATA_PATH for JSON files and returns all JSON files
         as a list of dictionaries.
+
+    Args:
+        encryption (bool): Flag indicating whether data is encrypted.
 
     Returns:
         List[Dict]: List of dictionaries representing the JSON files found
 
     Raises:
-        FileNotFoundError: If USERDATA_PATH does not exist
+        TypeError: If the JSON data is encrypted but not decrypted.
 
     Calls:
         create_user_directory: to create new application directory if
@@ -46,12 +50,12 @@ def check_for_users(encryption=True) -> List[dict]:
             if file.endswith(".json"):
                 file_path = path.join(USERDATA_PATH, file)
                 with open(file_path) as file:
-                    try:
-                        dictionary = loads(file.read())
-                    except JSONDecodeError:
-                        pass
+                    file = file.read()
                     if encryption:
-                        dictionary = fernet_instnace.decrypt(dictionary)
+                        file = fernet_instnace.decrypt(file)
+                    dictionary = loads(file)
+                    if isinstance(file, str):
+                        raise TypeError("JSON is encrypted, but was never decrypted")
                     all_users.append(dictionary)
     except FileNotFoundError:
         mkdir(USERDATA_PATH)
@@ -245,4 +249,4 @@ def dump_user_file(user_dictionary: dict) -> bool:
         return True
 
 if __name__ == "__main__":
-    print(check_for_users(encryption=False))
+    print(check_for_users())
