@@ -93,6 +93,31 @@ def dump_user_file(user_dictionary: dict, encryption=ENCRYPTION_STATE) -> bool:
         else:
             dump(user_dictionary, file, indent=4)
         return True
+    
+def create_user(displayname: str) -> bool:
+    """
+    Creates a new user with the provided display name.
+
+    Args:
+        displayname (str): The display name of the user.
+
+    Returns:
+        bool: True if the user is successfully created.
+
+    Calls:
+        check_username: checks validity of name used.
+        get_highest_id: Retrieves the highest ID among existing users.
+        mk_json_directory_string: Constructs the directory path for the 
+                                    user's JSON file.
+    """
+    check_username(displayname)
+    new_id = (get_highest_id() + 1)
+    user_template = {"id": new_id, 
+                     "displayname": displayname, "highscore": {},
+                     "gamehistory": []}
+    with open(mk_json_directory_string(new_id), "w") as file:
+        dump(user_template, file, indent=4)
+        return True
 
 def get_user_count() -> int:
     """
@@ -192,31 +217,6 @@ def mk_json_directory_string(id: int) -> str:
 
     """
     return path.join(USERDATA_PATH, f"{int(id)}.json")
-
-def create_user(displayname: str) -> bool:
-    """
-    Creates a new user with the provided display name.
-
-    Args:
-        displayname (str): The display name of the user.
-
-    Returns:
-        bool: True if the user is successfully created.
-
-    Calls:
-        check_username: checks validity of name used.
-        get_highest_id: Retrieves the highest ID among existing users.
-        mk_json_directory_string: Constructs the directory path for the 
-                                    user's JSON file.
-    """
-    check_username(displayname)
-    new_id = (get_highest_id() + 1)
-    user_template = {"id": new_id, 
-                     "displayname": displayname, "highscore": {},
-                     "gamehistory": []}
-    with open(mk_json_directory_string(new_id), "w") as file:
-        dump(user_template, file, indent=4)
-        return True
 
 def remove_user(id: int) -> bool:
     """
