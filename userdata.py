@@ -1,7 +1,7 @@
 from os import listdir, path, getenv, mkdir, remove
 from tkinter import font
 from typing import List
-from json import loads, dump, JSONDecodeError
+from json import loads, dump, JSONDecodeError, dumps
 from encryption import fernet_instnace
 
 USERDATA_PATH = path.join(getenv('APPDATA'), "ultimate-mfc")
@@ -62,7 +62,7 @@ def check_for_users(encryption=ENCRYPTION_STATE) -> List[dict]:
         return all_users
     return sorted(all_users, key=lambda x: int(x['id']))
 
-def dump_user_file(user_dictionary: dict) -> bool:
+def dump_user_file(user_dictionary: dict, encryption=ENCRYPTION_STATE) -> bool:
     """
     Dumps the user dictionary to a JSON file.
 
@@ -82,9 +82,14 @@ def dump_user_file(user_dictionary: dict) -> bool:
                                         JSON file.
 
     """
-    file = mk_json_directory_string(user_dictionary["id"])
-    with open(file, "w") as json:
-        dump(user_dictionary, json, indent=4)
+    dir = mk_json_directory_string(user_dictionary["id"])
+    with open(dir, "w") as file:
+        if encryption:
+            user_json = dumps(user_dictionary)
+            encrypted_data = fernet_instnace.encrypt(user_json.encode()).decode()
+            file.write(encrypted_data)
+        else:
+            dump(user_dictionary, file, indent=4)
         return True
 
 def get_user_count() -> int:
@@ -249,4 +254,7 @@ def rename_user(user_dictionary: dict, displayname: str) -> dict:
     return user_dictionary
 
 if __name__ == "__main__":
+    print(check_for_users())
+    create_user("Ezra")
+    print(dump_user_file())
     print(check_for_users())
