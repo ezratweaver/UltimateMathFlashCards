@@ -4,6 +4,9 @@ from typing import List
 from json import loads, dump, JSONDecodeError, dumps
 from encryption import fernet_instance, InvalidToken
 
+USERDATA_TEMPLATE = {"id": "", 
+                     "displayname": "", "highscore": {},
+                     "gamehistory": []}
 USERDATA_PATH = path.join(getenv('APPDATA'), "ultimate-mfc")
 ENCRYPTION_STATE = False
 
@@ -48,9 +51,8 @@ def check_for_users(encryption=ENCRYPTION_STATE) -> List[dict]:
         List[Dict]: List of dictionaries representing the JSON files found
 
     Raises:
-        TypeError: If the user file is decrypted/tampered if encryption is turned on, 
-                    or if encryption is present while encryption is turned off, 
-                    or has invalid syntax.
+        EncryptionError: if encryption state does not match encryption of user files
+        TamperError: if files have been tampered or are syntaxically incorrect
 
     """ 
     all_users = []
@@ -78,7 +80,7 @@ def check_for_users(encryption=ENCRYPTION_STATE) -> List[dict]:
                             dictionary = loads(file)
                         except JSONDecodeError:
                                 raise TamperError(f"JSON file {file_path} "
-                                                "has been tampered")
+                                "has been tampered or are sytaxically incorrect")
                     else:
                         try:
                             file = fernet_instance.decrypt(file)
@@ -90,7 +92,11 @@ def check_for_users(encryption=ENCRYPTION_STATE) -> List[dict]:
                                 dictionary = loads(file)
                             except JSONDecodeError:
                                 raise TamperError(f"JSON file {file_path} "
-                                                "has been tampered")
+                                "has been tampered or are sytaxically incorrect")
+                    for key, value in USERDATA_TEMPLATE.items():
+                        if key not in dictionary:
+                            raise TamperError(f"JSON file {file_path} "
+                            "has been tampered or are sytaxically incorrect")
                     all_users.append(dictionary)
     except FileNotFoundError:
         mkdir(USERDATA_PATH)
@@ -145,9 +151,9 @@ def create_user(displayname: str, encryption=ENCRYPTION_STATE) -> bool:
     """
     check_username(displayname)
     new_id = (get_highest_id() + 1)
-    user_template = {"id": new_id, 
-                     "displayname": displayname, "highscore": {},
-                     "gamehistory": []}
+    user_template = USERDATA_TEMPLATE.copy()
+    user_template["id"] = new_id
+    user_template["displayname"] = displayname
     with open(mk_json_directory_string(new_id), "w") as file:
         if encryption:
             user_json = dumps(user_template)
