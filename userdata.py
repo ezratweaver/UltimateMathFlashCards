@@ -2,10 +2,10 @@ from os import listdir, path, getenv, mkdir, remove
 from tkinter import font
 from typing import List
 from json import loads, dump, JSONDecodeError, dumps
-from encryption import fernet_instnace
+from encryption import fernet_instance, InvalidToken
 
 USERDATA_PATH = path.join(getenv('APPDATA'), "ultimate-mfc")
-ENCRYPTION_STATE = True
+ENCRYPTION_STATE = False
 
 def check_username(displayname: str):
     """
@@ -54,10 +54,21 @@ def check_for_users(encryption=ENCRYPTION_STATE) -> List[dict]:
                     if file == "":
                         continue
                     if encryption:
-                        file = fernet_instnace.decrypt(file)
-                    dictionary = loads(file)
-                    if isinstance(file, str):
-                        raise TypeError("JSON is encrypted, but was never decrypted")
+                        try:
+                            file = fernet_instance.decrypt(file)
+                        except InvalidToken:
+                            raise TypeError("userfile(s) are decrypted or tampered; "
+                                        f"ENCRYPTION_STATE = {ENCRYPTION_STATE}; "
+                                        "Expected: ENCRYPTION_STATE = False")
+                        dictionary = loads(file)
+                    else:
+                        try:
+                            file = fernet_instance.decrypt(file)
+                            raise TypeError("userfile(s) are encrypted; "
+                                            f"ENCRYPTION_STATE = {ENCRYPTION_STATE}; "
+                                            "Expected: ENCRYPTION_STATE = True")
+                        except InvalidToken:
+                            dictionary = loads(file)
                     all_users.append(dictionary)
     except FileNotFoundError:
         mkdir(USERDATA_PATH)
@@ -88,13 +99,13 @@ def dump_user_file(user_dictionary: dict, encryption=ENCRYPTION_STATE) -> bool:
     with open(dir, "w") as file:
         if encryption:
             user_json = dumps(user_dictionary)
-            encrypted_data = fernet_instnace.encrypt(user_json.encode()).decode()
+            encrypted_data = fernet_instance.encrypt(user_json.encode()).decode()
             file.write(encrypted_data)
         else:
             dump(user_dictionary, file, indent=4)
         return True
     
-def create_user(displayname: str) -> bool:
+def create_user(displayname: str, encryption=ENCRYPTION_STATE) -> bool:
     """
     Creates a new user with the provided display name.
 
@@ -108,7 +119,7 @@ def create_user(displayname: str) -> bool:
         check_username: checks validity of name used.
         get_highest_id: Retrieves the highest ID among existing users.
         mk_json_directory_string: Constructs the directory path for the 
-                                    user's JSON file.
+                                user's JSON file.
     """
     check_username(displayname)
     new_id = (get_highest_id() + 1)
@@ -116,7 +127,12 @@ def create_user(displayname: str) -> bool:
                      "displayname": displayname, "highscore": {},
                      "gamehistory": []}
     with open(mk_json_directory_string(new_id), "w") as file:
-        dump(user_template, file, indent=4)
+        if encryption:
+            user_json = dumps(user_template)
+            encrypted_data = fernet_instance.encrypt(user_json.encode()).decode()
+            file.write(encrypted_data)
+        else:
+            dump(user_template, file, indent=4)
         return True
 
 def get_user_count() -> int:
@@ -257,3 +273,5 @@ def rename_user(user_dictionary: dict, displayname: str) -> dict:
 
 if __name__ == "__main__":
     print(check_for_users())
+    # print(create_user("Bob"))
+    # print(check_for_users())
