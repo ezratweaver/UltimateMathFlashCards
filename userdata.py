@@ -5,7 +5,18 @@ from json import loads, dump, JSONDecodeError, dumps
 from encryption import fernet_instance, InvalidToken
 
 USERDATA_PATH = path.join(getenv('APPDATA'), "ultimate-mfc")
-ENCRYPTION_STATE = True
+ENCRYPTION_STATE = False
+
+class TamperError(Exception):
+
+    def __init__(self, *args: object) -> None:
+        super().__init__(*args)
+
+class EncryptionError(Exception):
+
+    def __init__(self, *args: object) -> None:
+        super().__init__(*args)
+
 
 def check_username(displayname: str):
     """
@@ -58,28 +69,28 @@ def check_for_users(encryption=ENCRYPTION_STATE) -> List[dict]:
                             try:
                                 dictionary = loads(file)
                             except JSONDecodeError:
-                                raise TypeError(
-                                    f"{file_path} is syntaxically incorrect")
-                            raise TypeError(f"userfile {file_path} is decrypted; "
-                                    f"ENCRYPTION_STATE = {ENCRYPTION_STATE}; "
-                                    "Expected: ENCRYPTION_STATE = False")
+                                raise TamperError(
+                                    f"{file_path} is has been tampered")
+                            raise EncryptionError(f"userfile {file_path} is decrypted; "
+                        f"\n                 ENCRYPTION_STATE = {ENCRYPTION_STATE}; "
+                        "Expected: ENCRYPTION_STATE = False")
                         try:
                             dictionary = loads(file)
                         except JSONDecodeError:
-                                raise TypeError(f"JSON file {file_path} "
-                                                "has invalid syntax")
+                                raise TamperError(f"JSON file {file_path} "
+                                                "has been tampered")
                     else:
                         try:
                             file = fernet_instance.decrypt(file)
-                            raise TypeError(f"userfile {file_path} is encrypted; "
-                                            f"ENCRYPTION_STATE = {ENCRYPTION_STATE}; "
-                                            "Expected: ENCRYPTION_STATE = True")
+                            raise EncryptionError(f"userfile {file_path} is encrypted; "
+                        f"\n                 ENCRYPTION_STATE = {ENCRYPTION_STATE}; "
+                        "Expected: ENCRYPTION_STATE = True")
                         except InvalidToken:
                             try:
                                 dictionary = loads(file)
                             except JSONDecodeError:
-                                raise TypeError(f"JSON file {file_path} "
-                                                "has invalid syntax")
+                                raise TamperError(f"JSON file {file_path} "
+                                                "has been tampered")
                     all_users.append(dictionary)
     except FileNotFoundError:
         mkdir(USERDATA_PATH)
