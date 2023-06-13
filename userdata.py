@@ -62,6 +62,31 @@ def check_for_users(encryption=ENCRYPTION_STATE) -> List[dict]:
         return all_users
     return sorted(all_users, key=lambda x: int(x['id']))
 
+def dump_user_file(user_dictionary: dict) -> bool:
+    """
+    Dumps the user dictionary to a JSON file.
+
+    This function takes a dictionary representing a user and writes it to a JSON
+    file. The user dictionary should contain the necessary information for the user,
+    such as their ID, display name, high scores, and game history.
+
+    Args:
+        user_dictionary (dict): The dictionary representing the user.
+
+    Returns:
+        bool: True if the user dictionary is successfully dumped to the JSON file,
+                False otherwise.
+
+    Calls:
+        - mk_json_directory_string: Constructs the directory path for the user's
+                                        JSON file.
+
+    """
+    file = mk_json_directory_string(user_dictionary["id"])
+    with open(file, "w") as json:
+        dump(user_dictionary, json, indent=4)
+        return True
+
 def get_user_count() -> int:
     """
     Returns the count of users by retrieving the length of the list of users.
@@ -222,31 +247,6 @@ def rename_user(user_dictionary: dict, displayname: str) -> dict:
     check_username(displayname)
     user_dictionary["displayname"] = displayname
     return user_dictionary
-
-def dump_user_file(user_dictionary: dict) -> bool:
-    """
-    Dumps the user dictionary to a JSON file.
-
-    This function takes a dictionary representing a user and writes it to a JSON
-    file. The user dictionary should contain the necessary information for the user,
-    such as their ID, display name, high scores, and game history.
-
-    Args:
-        user_dictionary (dict): The dictionary representing the user.
-
-    Returns:
-        bool: True if the user dictionary is successfully dumped to the JSON file,
-                False otherwise.
-
-    Calls:
-        - mk_json_directory_string: Constructs the directory path for the user's
-                                        JSON file.
-
-    """
-    file = mk_json_directory_string(user_dictionary["id"])
-    with open(file, "w") as json:
-        dump(user_dictionary, json, indent=4)
-        return True
 
 if __name__ == "__main__":
     print(check_for_users())
