@@ -51,6 +51,8 @@ def check_for_users(encryption=ENCRYPTION_STATE) -> List[dict]:
                 file_path = path.join(USERDATA_PATH, file)
                 with open(file_path) as file:
                     file = file.read()
+                    if file == "":
+                        continue
                     if encryption:
                         file = fernet_instnace.decrypt(file)
                     dictionary = loads(file)
@@ -254,7 +256,4 @@ def rename_user(user_dictionary: dict, displayname: str) -> dict:
     return user_dictionary
 
 if __name__ == "__main__":
-    print(check_for_users())
-    create_user("Ezra")
-    print(dump_user_file())
     print(check_for_users())
