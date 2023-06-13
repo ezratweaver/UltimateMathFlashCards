@@ -37,13 +37,11 @@ def check_for_users(encryption=ENCRYPTION_STATE) -> List[dict]:
         List[Dict]: List of dictionaries representing the JSON files found
 
     Raises:
-        TypeError: If the JSON data is encrypted but not decrypted.
+        TypeError: If the user file is decrypted/tampered if encryption is turned on, 
+                    or if encryption is present while encryption is turned off, 
+                    or has invalid syntax.
 
-    Calls:
-        create_user_directory: to create new application directory if
-                                    such directory does not exist
-
-    """
+    """ 
     all_users = []
     try:
         for file in listdir(USERDATA_PATH):
