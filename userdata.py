@@ -5,7 +5,7 @@ from json import loads, dump, JSONDecodeError, dumps
 from encryption import fernet_instance, InvalidToken
 
 USERDATA_PATH = path.join(getenv('APPDATA'), "ultimate-mfc")
-ENCRYPTION_STATE = False
+ENCRYPTION_STATE = True
 
 def check_username(displayname: str):
     """
@@ -55,8 +55,13 @@ def check_for_users(encryption=ENCRYPTION_STATE) -> List[dict]:
                         try:
                             file = fernet_instance.decrypt(file)
                         except InvalidToken:
-                            raise TypeError(f"userfile {file_path} is decrypted or "
-                                    f"tampered; ENCRYPTION_STATE = {ENCRYPTION_STATE}; "
+                            try:
+                                dictionary = loads(file)
+                            except JSONDecodeError:
+                                raise TypeError(
+                                    f"{file_path} is syntaxically incorrect")
+                            raise TypeError(f"userfile {file_path} is decrypted; "
+                                    f"ENCRYPTION_STATE = {ENCRYPTION_STATE}; "
                                     "Expected: ENCRYPTION_STATE = False")
                         try:
                             dictionary = loads(file)
@@ -279,5 +284,3 @@ def rename_user(user_dictionary: dict, displayname: str) -> dict:
 
 if __name__ == "__main__":
     print(check_for_users())
-    # print(create_user("Bob"))
-    # print(check_for_users())
