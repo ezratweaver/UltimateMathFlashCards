@@ -57,18 +57,26 @@ def check_for_users(encryption=ENCRYPTION_STATE) -> List[dict]:
                         try:
                             file = fernet_instance.decrypt(file)
                         except InvalidToken:
-                            raise TypeError("userfile(s) are decrypted or tampered; "
-                                        f"ENCRYPTION_STATE = {ENCRYPTION_STATE}; "
-                                        "Expected: ENCRYPTION_STATE = False")
-                        dictionary = loads(file)
+                            raise TypeError(f"userfile {file_path} is decrypted or "
+                                    f"tampered; ENCRYPTION_STATE = {ENCRYPTION_STATE}; "
+                                    "Expected: ENCRYPTION_STATE = False")
+                        try:
+                            dictionary = loads(file)
+                        except JSONDecodeError:
+                                raise TypeError(f"JSON file {file_path} "
+                                                "has invalid syntax")
                     else:
                         try:
                             file = fernet_instance.decrypt(file)
-                            raise TypeError("userfile(s) are encrypted; "
+                            raise TypeError(f"userfile {file_path} is encrypted; "
                                             f"ENCRYPTION_STATE = {ENCRYPTION_STATE}; "
                                             "Expected: ENCRYPTION_STATE = True")
                         except InvalidToken:
-                            dictionary = loads(file)
+                            try:
+                                dictionary = loads(file)
+                            except JSONDecodeError:
+                                raise TypeError(f"JSON file {file_path} "
+                                                "has invalid syntax")
                     all_users.append(dictionary)
     except FileNotFoundError:
         mkdir(USERDATA_PATH)
