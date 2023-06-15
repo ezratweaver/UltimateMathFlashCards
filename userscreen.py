@@ -43,6 +43,11 @@ class UserScreenGUI:
             image=get_userlist_banner(usercount, userlist_banners)
         )
 
+    def button_bg_modify(event, color, canvas,
+                        image_id, new_image):
+        event.widget.config(bg=color)
+        canvas.itemconfigure(image_id, image=new_image)
+
     def print_user_buttons(self, usercount) -> List[object]:
         y_start_pos = START_POSITIONS.get(usercount)
         title_buttons = []
@@ -93,6 +98,10 @@ f"username: {user['displayname']} | character length: {len(user['displayname'])}
                                     self.log_into_user(x)),
                                     font=("Encode Sans", font_size))
             action_buttons[x].config(image=assets.image_userprofile)
+        for title_button in title_buttons:
+            title_button.bind("<Enter>", lambda event: UserScreenGUI.button_bg_modify(
+            event, "#D9D9D9", self.userscreen_canv))
+            title_button.bind("<Leave>")
 
     def log_into_user(self, user_position) -> None:
         return all_users[user_position]
