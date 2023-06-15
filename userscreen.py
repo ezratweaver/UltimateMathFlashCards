@@ -1,6 +1,6 @@
 from tkinter import Canvas, Button, font
 from typing import List
-from userdata import get_userlist_banner, check_for_users, grab_font_size
+from userdata import get_userlist_banner, check_for_users, get_font_size
 from assets import root, WINDOW_COLOR, userlist_banners
 import assets
 
@@ -90,7 +90,7 @@ class UserScreenGUI:
                                     width=50.0, height=43.0)
             y_start_pos = y_start_pos + 65
         for x, user in enumerate(all_users):
-            font_size = grab_font_size(user["displayname"], title_buttons[x],
+            font_size = get_font_size(user["displayname"], title_buttons[x],
                                        user_title_font, root)
             title_buttons[x].config(text=f"{user['displayname']}", 
                                     command=lambda x=x: setattr(self, "current_user", 

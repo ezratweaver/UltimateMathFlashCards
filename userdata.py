@@ -237,7 +237,7 @@ def get_highest_id() -> int:
     except IndexError:
         return 0
     
-def grab_font_size(text: str, button: object, inputfont: object, root: object) -> int:
+def get_font_size(text: str, button: object, inputfont: object, root: object) -> int:
     """
     Calculate the optimal font size for a given text to fit within the 
         dimensions of a button.
