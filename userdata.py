@@ -37,7 +37,7 @@ def check_username(displayname: str):
                         f"but received {type(displayname).__name__} instead")
     if len(displayname) > 14:
         raise ValueError("Expected length of display name to be <= 14, "
-                        f"actual display length: {len(displayname)}")
+                        f"actual name length: {len(displayname)}")
 
 def check_for_users(encryption=ENCRYPTION_STATE) -> List[dict]:
     """
