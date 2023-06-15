@@ -106,14 +106,14 @@ def dump_user(user_dictionary: dict, encryption=ENCRYPTION_STATE) -> bool:
     Calls:
         - mk_json_directory_string: Constructs the directory path for the user's
                                         JSON file.
-
+        - check_dictionary: Checks if dictionary conforms to dictionary template
     """
     if not isinstance(user_dictionary, dict):
         raise TypeError(
-            f"expected dictionary type, but received {type(user_dictionary).__name__}")
+            f"Expected dictionary type, but received {type(user_dictionary).__name__}")
     if not check_dictionary(user_dictionary):
-        raise TypeError(
-            "received dictionary is not syntaxically correct")
+        raise SyntaxError(
+            "Recieved dictionary does not conform the set template")
     dir = mk_json_directory_string(user_dictionary["id"])
     with open(dir, "w") as file:
         if encryption:
@@ -313,4 +313,4 @@ def check_username(displayname: str):
                         f"actual name length: {len(displayname)}")
 
 if __name__ == "__main__":
-    print('hi')
+    check_username()
