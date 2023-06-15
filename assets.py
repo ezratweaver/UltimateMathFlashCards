@@ -19,7 +19,15 @@ userlist_banners = {
     6: PhotoImage(file="assets/userscreen/userlist_6.png"),
 }
 
-image_usertitlebg = PhotoImage(file="assets/userscreen/usertitlebg.png")
-image_useractionbg = PhotoImage(file="assets/userscreen/useractionbg.png")
-image_useradd = PhotoImage(file="assets/userscreen/useradd.png")
-image_userprofile = PhotoImage(file="assets/userscreen/userprofile.png")
+image_usertitlebg = PhotoImage(
+    file="assets/userscreen/usertitlebg.png")
+image_useractionbg = PhotoImage(
+    file="assets/userscreen/useractionbg.png")
+image_usertitlebg_selected = PhotoImage(
+    file="assets/userscreen/usertitlebg_selected.png")
+image_useractionbg_selected = PhotoImage(
+    file="assets/userscreen/useractionbg_selected.png")
+image_useradd = PhotoImage(
+    file="assets/userscreen/useradd.png")
+image_userprofile = PhotoImage(
+    file="assets/userscreen/userprofile.png")
