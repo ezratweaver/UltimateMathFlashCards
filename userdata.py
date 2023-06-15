@@ -93,10 +93,9 @@ def check_for_users(encryption=ENCRYPTION_STATE) -> List[dict]:
                             except JSONDecodeError:
                                 raise TamperError(f"JSON file {file_path} "
                                 "has been tampered or are sytaxically incorrect")
-                    for key, _ in USERDATA_TEMPLATE.items():
-                        if key not in dictionary:
-                            raise TamperError(f"JSON file {file_path} "
-                            "has been tampered")
+                    if check_dictionary(dictionary) is False:
+                        raise TamperError(f"JSON file {file_path} "
+                                            "has been tampered")
                     all_users.append(dictionary)
     except FileNotFoundError:
         mkdir(USERDATA_PATH)
@@ -296,6 +295,12 @@ def rename_user(user_dictionary: dict, displayname: str) -> dict:
     check_username(displayname)
     user_dictionary["displayname"] = displayname
     return user_dictionary
+
+def check_dictionary(dictionary: dict) -> bool:
+    for key, _ in USERDATA_TEMPLATE.items():
+        if key not in dictionary:
+            return False
+    return True
 
 if __name__ == "__main__":
     remove_user(check_for_users()[1])
