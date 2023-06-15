@@ -122,10 +122,10 @@ def dump_user(user_dictionary: dict, encryption=ENCRYPTION_STATE) -> bool:
                                         JSON file.
 
     """
-    if isinstance(user_dictionary, dict) is False:
+    if not isinstance(user_dictionary, dict):
         raise TypeError(
-            f"expected dictionary, received {type(user_dictionary.__name__)}")
-    if check_dictionary(user_dictionary) is False:
+            f"expected dictionary type, but received {type(user_dictionary).__name__}")
+    if not check_dictionary(user_dictionary):
         raise TypeError(
             "received dictionary is not syntaxically correct")
     dir = mk_json_directory_string(user_dictionary["id"])
@@ -309,4 +309,4 @@ def check_dictionary(dictionary: dict) -> bool:
     return True
 
 if __name__ == "__main__":
-    remove_user(check_for_users()[1])
+    print('hi')
