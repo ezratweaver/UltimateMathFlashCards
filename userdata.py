@@ -103,7 +103,7 @@ def check_for_users(encryption=ENCRYPTION_STATE) -> List[dict]:
         return all_users
     return sorted(all_users, key=lambda x: int(x['id']))
 
-def dump_user_file(user_dictionary: dict, encryption=ENCRYPTION_STATE) -> bool:
+def dump_user(user_dictionary: dict, encryption=ENCRYPTION_STATE) -> bool:
     """
     Dumps the user dictionary to a JSON file.
 
