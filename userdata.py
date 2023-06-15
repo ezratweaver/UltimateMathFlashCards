@@ -162,6 +162,27 @@ def create_user(displayname: str, encryption=ENCRYPTION_STATE) -> bool:
         else:
             dump(user_template, file, indent=4)
         return True
+    
+def remove_user(id: int) -> bool:
+    """
+    Deletes the user with the specified ID.
+
+    Args:
+        id (int): The ID of the user to delete.
+
+    Returns:
+        bool: True if the user is successfully deleted, False otherwise.
+
+    Calls:
+        - mk_json_directory_string: Constructs the directory path for the 
+                                        user's JSON file.
+
+    """
+    file = mk_json_directory_string(id)
+    if path.exists(file):
+        remove(file)
+        return True
+    return False
 
 def get_user_count() -> int:
     """
@@ -262,27 +283,6 @@ def mk_json_directory_string(id: int) -> str:
     """
     return path.join(USERDATA_PATH, f"{int(id)}.json")
 
-def remove_user(id: int) -> bool:
-    """
-    Deletes the user with the specified ID.
-
-    Args:
-        id (int): The ID of the user to delete.
-
-    Returns:
-        bool: True if the user is successfully deleted, False otherwise.
-
-    Calls:
-        - mk_json_directory_string: Constructs the directory path for the 
-                                        user's JSON file.
-
-    """
-    file = mk_json_directory_string(id)
-    if path.exists(file):
-        remove(file)
-        return True
-    return False
-
 def rename_user(user_dictionary: dict, displayname: str) -> dict:
     """
     Renames the display name of a user within the provided user dictionary.
@@ -300,4 +300,4 @@ def rename_user(user_dictionary: dict, displayname: str) -> dict:
     return user_dictionary
 
 if __name__ == "__main__":
-    print(check_for_users())
+    create_user("Peee")
