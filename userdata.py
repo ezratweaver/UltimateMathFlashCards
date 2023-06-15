@@ -96,7 +96,7 @@ def check_for_users(encryption=ENCRYPTION_STATE) -> List[dict]:
                     for key, value in USERDATA_TEMPLATE.items():
                         if key not in dictionary:
                             raise TamperError(f"JSON file {file_path} "
-                            "has been tampered or are sytaxically incorrect")
+                            "has been tampered")
                     all_users.append(dictionary)
     except FileNotFoundError:
         mkdir(USERDATA_PATH)
