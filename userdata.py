@@ -165,18 +165,16 @@ def create_user(displayname: str, encryption=ENCRYPTION_STATE) -> bool:
     
 def remove_user(user_dictionary: dict) -> bool:
     """
-    Deletes the user with the specified ID.
+    Remove user from the system.
 
     Args:
-        id (int): The ID of the user to delete.
+        user_dictionary (dict): Dictionary containing user information.
 
     Returns:
-        bool: True if the user is successfully deleted, False otherwise.
+        bool: True if the user was successfully removed, False otherwise.
 
     Calls:
-        - mk_json_directory_string: Constructs the directory path for the 
-                                        user's JSON file.
-
+        mk_json_directory_string: To create a directory of the user file.
     """
     file = mk_json_directory_string(user_dictionary["id"])
     if path.exists(file):
