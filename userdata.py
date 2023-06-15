@@ -303,7 +303,7 @@ def check_username(displayname: str):
 
     Raises:
         TypeError: If the display name is not a string.
-        ValueError: If the display name length exceeds 14 characters.
+        LengthError: If the display name length exceeds 14 characters.
     """
     if not isinstance(displayname, str):
         raise TypeError("Expected string type for display name, "
