@@ -119,9 +119,10 @@ class UserScreenGUI:
         self.print_banner()
         self.print_user_buttons(usercount)
 
-userscreen = UserScreenGUI()
-userscreen.run_gui()
-root.geometry("800x500")
-root.title("")
-root.resizable(False, False)
-root.mainloop()
+if __name__ == "__main__":
+    userscreen = UserScreenGUI()
+    userscreen.run_gui()
+    root.geometry("800x500")
+    root.title("")
+    root.resizable(False, False)
+    root.mainloop()
