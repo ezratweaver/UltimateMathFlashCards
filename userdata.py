@@ -93,7 +93,7 @@ def check_for_users(encryption=ENCRYPTION_STATE) -> List[dict]:
                             except JSONDecodeError:
                                 raise TamperError(f"JSON file {file_path} "
                                 "has been tampered or are sytaxically incorrect")
-                    for key, value in USERDATA_TEMPLATE.items():
+                    for key, _ in USERDATA_TEMPLATE.items():
                         if key not in dictionary:
                             raise TamperError(f"JSON file {file_path} "
                             "has been tampered")
