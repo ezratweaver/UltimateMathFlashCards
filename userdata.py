@@ -163,7 +163,7 @@ def create_user(displayname: str, encryption=ENCRYPTION_STATE) -> bool:
             dump(user_template, file, indent=4)
         return True
     
-def remove_user(id: int) -> bool:
+def remove_user(user_dictionary: dict) -> bool:
     """
     Deletes the user with the specified ID.
 
@@ -178,7 +178,7 @@ def remove_user(id: int) -> bool:
                                         user's JSON file.
 
     """
-    file = mk_json_directory_string(id)
+    file = mk_json_directory_string(user_dictionary["id"])
     if path.exists(file):
         remove(file)
         return True
@@ -300,4 +300,4 @@ def rename_user(user_dictionary: dict, displayname: str) -> dict:
     return user_dictionary
 
 if __name__ == "__main__":
-    create_user("Peee")
+    remove_user(check_for_users()[1])
