@@ -45,24 +45,26 @@ class UserScreenGUI:
 
     def button_bg_modify(event, color, canvas,
                         image_id, new_image):
-        event.widget.config(bg=color)
+        event.widget.config(bg=color, activebackground=color)
         canvas.itemconfigure(image_id, image=new_image)
 
     def print_user_buttons(self, usercount) -> List[object]:
         y_start_pos = START_POSITIONS.get(usercount)
         title_buttons = []
+        title_buttons_bg = []
         action_buttons = []
+        action_buttons_bg = []
         if usercount >= MAX_USERS: #Add an extra button if MAX_USERS has not been
             usercount = MAX_USERS - 1                     #reached, otherwise dont.
         for x in range(usercount + 1):
-            self.userscreen_canv.create_image(
+            title_buttons_bg.append(self.userscreen_canv.create_image(
                 434,
                 y_start_pos,
-                image=assets.image_usertitlebg)
-            self.userscreen_canv.create_image(
+                image=assets.image_usertitlebg))
+            action_buttons_bg.append(self.userscreen_canv.create_image(
                 314,
                 y_start_pos,
-                image=assets.image_useractionbg)
+                image=assets.image_useractionbg))
             title_buttons.append(Button(
                 self.userscreen_canv,
                 fg="#000000",
@@ -88,9 +90,6 @@ class UserScreenGUI:
                                     width=50.0, height=43.0)
             y_start_pos = y_start_pos + 65
         for x, user in enumerate(all_users):
-            print(
-f"username: {user['displayname']} | character length: {len(user['displayname'])}"
-                )
             font_size = grab_font_size(user["displayname"], title_buttons[x],
                                        user_title_font, root)
             title_buttons[x].config(text=f"{user['displayname']}", 
@@ -98,13 +97,20 @@ f"username: {user['displayname']} | character length: {len(user['displayname'])}
                                     self.log_into_user(x)),
                                     font=("Encode Sans", font_size))
             action_buttons[x].config(image=assets.image_userprofile)
-        for title_button in title_buttons:
-            title_button.bind("<Enter>", lambda event: UserScreenGUI.button_bg_modify(
-                event, "#C3C3C3", self.userscreen_canv,
-                title_button, assets.image_usertitlebg_selected))
-            title_button.bind("<Leave>" , lambda event: UserScreenGUI.button_bg_modify(
-                event, "#D9D9D9", self.userscreen_canv,
-                title_button, assets.image_usertitlebg))
+        for x, title_button in enumerate(title_buttons):
+            title_button.bind("<Enter>", lambda event, x=x: 
+                UserScreenGUI.button_bg_modify(event, "#C3C3C3", self.userscreen_canv,
+                            title_buttons_bg[x], assets.image_usertitlebg_selected))
+            title_button.bind("<Leave>" , lambda event, x=x: 
+                UserScreenGUI.button_bg_modify(event, "#D9D9D9", self.userscreen_canv,
+                            title_buttons_bg[x], assets.image_usertitlebg))
+        for x, action_button in enumerate(action_buttons):
+            action_button.bind("<Enter>", lambda event, x=x: 
+                UserScreenGUI.button_bg_modify(event, "#C3C3C3", self.userscreen_canv,
+                            action_buttons_bg[x], assets.image_useractionbg_selected))
+            action_button.bind("<Leave>" , lambda event, x=x: 
+                UserScreenGUI.button_bg_modify(event, "#D9D9D9", self.userscreen_canv,
+                            action_buttons_bg[x], assets.image_useractionbg))
 
     def log_into_user(self, user_position) -> None:
         return all_users[user_position]
