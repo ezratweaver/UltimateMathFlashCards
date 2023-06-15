@@ -100,8 +100,11 @@ f"username: {user['displayname']} | character length: {len(user['displayname'])}
             action_buttons[x].config(image=assets.image_userprofile)
         for title_button in title_buttons:
             title_button.bind("<Enter>", lambda event: UserScreenGUI.button_bg_modify(
-            event, "#D9D9D9", self.userscreen_canv))
-            title_button.bind("<Leave>")
+                event, "#C3C3C3", self.userscreen_canv,
+                title_button, assets.image_usertitlebg_selected))
+            title_button.bind("<Leave>" , lambda event: UserScreenGUI.button_bg_modify(
+                event, "#D9D9D9", self.userscreen_canv,
+                title_button, assets.image_usertitlebg))
 
     def log_into_user(self, user_position) -> None:
         return all_users[user_position]
