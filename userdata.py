@@ -122,6 +122,12 @@ def dump_user(user_dictionary: dict, encryption=ENCRYPTION_STATE) -> bool:
                                         JSON file.
 
     """
+    if isinstance(user_dictionary, dict) is False:
+        raise TypeError(
+            f"expected dictionary, received {type(user_dictionary.__name__)}")
+    if check_dictionary(user_dictionary) is False:
+        raise TypeError(
+            "received dictionary is not syntaxically correct")
     dir = mk_json_directory_string(user_dictionary["id"])
     with open(dir, "w") as file:
         if encryption:
