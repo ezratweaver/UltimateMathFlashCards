@@ -29,12 +29,14 @@ current_user = None
 class UserScreenGUI:
 
     def __init__(self) -> None:
+        self.main_screen = False
+        self.profile_screen = False
+
         self.userscreen_canv = Canvas(
             root, bg=WINDOW_COLOR,
             height=500, width = 800,
             bd=0, highlightthickness=0,
             relief="ridge")
-        self.userscreen_canv.pack()
 
     def print_banner(self) -> None:
         self.userlist_banner = self.userscreen_canv.create_image(
@@ -113,15 +115,23 @@ class UserScreenGUI:
                             action_buttons_bg[x], assets.image_useractionbg))
 
     def log_into_user(self, user_position) -> None:
+        self.main_screen = True
         return all_users[user_position]
 
     def run_gui(self) -> None:
         self.print_banner()
         self.print_user_buttons(usercount)
 
+    def show_canvas(self) -> None:
+        self.userscreen_canv.pack()
+
+    def hide_canvas(self) -> None:
+        self.userscreen_canv.pack_forget()
+
 if __name__ == "__main__":
     userscreen = UserScreenGUI()
     userscreen.run_gui()
+    userscreen.show_canvas()
     root.geometry("800x500")
     root.title("")
     root.resizable(False, False)
