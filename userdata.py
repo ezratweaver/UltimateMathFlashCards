@@ -283,6 +283,9 @@ def rename_user(user_dictionary: dict, displayname: str) -> dict:
     Returns:
         dict: The updated user dictionary with the new display name.
 
+    Calls:
+        check_username: checks if username falls under set standards
+
     """
     check_username(displayname)
     user_dictionary["displayname"] = displayname
