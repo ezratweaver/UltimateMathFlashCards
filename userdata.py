@@ -289,6 +289,15 @@ def rename_user(user_dictionary: dict, displayname: str) -> dict:
     return user_dictionary
 
 def check_dictionary(dictionary: dict) -> bool:
+    """
+    Check if all keys from USERDATA_TEMPLATE are present in the given dictionary.
+    
+    Args:
+        dictionary (dict): The dictionary to be checked.
+        
+    Returns:
+        bool: True if all keys are present, False otherwise.
+    """
     for key, _ in USERDATA_TEMPLATE.items():
         if key not in dictionary:
             return False
