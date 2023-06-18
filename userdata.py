@@ -2,7 +2,8 @@ from os import listdir, path, getenv, mkdir, remove
 from tkinter import font
 from typing import List
 from json import loads, dump, JSONDecodeError, dumps
-from encryption import fernet_instance, InvalidToken
+from cryptography.fernet import InvalidToken
+from encryption import fernet_instance
 
 USERDATA_TEMPLATE = {"id": "", 
                      "displayname": "", "highscore": {},
