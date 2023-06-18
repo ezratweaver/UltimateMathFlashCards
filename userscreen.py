@@ -76,7 +76,7 @@ class UserScreenGUI:
                 borderwidth=0,
                 highlightthickness=0,
                 relief="flat"))
-            title_buttons[x].place(x = 354, y = y_start_pos - 21, 
+            title_buttons[x].place(x = 354, y = y_start_pos - 21,
                                  width=160.0, height=43.0)
             action_buttons.append(Button(
                 self.userscreen_canv,
@@ -88,7 +88,7 @@ class UserScreenGUI:
                 borderwidth=0,
                 highlightthickness=0,
                 relief="flat"))
-            action_buttons[x].place(x = 289, y = y_start_pos - 21, 
+            action_buttons[x].place(x = 289, y = y_start_pos - 21,
                                     width=50.0, height=43.0)
             y_start_pos = y_start_pos + 65
         for x, user in enumerate(all_users):
