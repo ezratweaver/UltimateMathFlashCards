@@ -8,7 +8,9 @@ chdir(exe_dir)
 WINDOW_COLOR = "#3556FB"
 
 root = Tk()
-
+root.geometry("800x500")
+root.title("")
+root.resizable(False, False)
 
 userlist_banners = {
     1: PhotoImage(file="assets/userscreen/userlist_1.png"),
