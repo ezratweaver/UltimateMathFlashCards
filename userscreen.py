@@ -98,7 +98,9 @@ class UserScreenGUI:
                                     command=lambda x=x: setattr(self, "current_user", 
                                     self.log_into_user(x)),
                                     font=("Encode Sans", font_size))
-            action_buttons[x].config(image=assets.image_userprofile)
+            action_buttons[x].config(image=assets.image_userprofile, 
+                        command=lambda x=x: setattr(self, "current_user", 
+                        self.view_user(x)))
         for x, title_button in enumerate(title_buttons):
             title_button.bind("<Enter>", lambda event, x=x: 
                 UserScreenGUI.button_bg_modify(event, "#C3C3C3", self.userscreen_canv,
@@ -114,8 +116,12 @@ class UserScreenGUI:
                 UserScreenGUI.button_bg_modify(event, "#D9D9D9", self.userscreen_canv,
                             action_buttons_bg[x], assets.image_useractionbg))
 
-    def log_into_user(self, user_position) -> None:
+    def log_into_user(self, user_position) -> dict:
         self.main_screen = True
+        return all_users[user_position]
+    
+    def view_user(self, user_position) -> dict:
+        self.profile_screen = True
         return all_users[user_position]
 
     def run_gui(self) -> None:
@@ -132,7 +138,5 @@ if __name__ == "__main__":
     userscreen = UserScreenGUI()
     userscreen.run_gui()
     userscreen.show_canvas()
-    root.geometry("800x500")
-    root.title("")
-    root.resizable(False, False)
+    root.title("Userscreen Individual Screen")
     root.mainloop()
