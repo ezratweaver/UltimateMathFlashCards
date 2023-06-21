@@ -20,7 +20,6 @@ userlist_banners = {
     5: PhotoImage(file="assets/userscreen/userlist_5.png"),
     6: PhotoImage(file="assets/userscreen/userlist_6.png"),
 }
-
 image_usertitlebg = PhotoImage(
     file="assets/userscreen/usertitlebg.png")
 image_useractionbg = PhotoImage(
