@@ -1,4 +1,4 @@
-from userscreen import UserScreenGUI, root
+from user_screen import UserScreenGUI, root
 
 userscreen = UserScreenGUI()
 
