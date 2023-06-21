@@ -12,7 +12,7 @@ root.geometry("800x500")
 root.title("")
 root.resizable(False, False)
 
-def add_asset(string):
+def add_asset(subfolder, filename):
     """
     Loads an image asset from the 'assets' directory and returns a PhotoImage object.
 
@@ -24,7 +24,7 @@ def add_asset(string):
         PhotoImage: A PhotoImage object representing the loaded image asset.
 
     """
-    return PhotoImage(file=f"assets/{string}")
+    return PhotoImage(file=f"assets/{subfolder}/{filename}.png")
 
 #BUTTON BACKGROUNDS
 button_long = PhotoImage(
@@ -44,9 +44,6 @@ userscreen_banners = {
     5: PhotoImage(file="assets/userscreen/userlist_5.png"),
     6: PhotoImage(file="assets/userscreen/userlist_6.png"),
 }
-userscreen_useradd = PhotoImage(
-    file="assets/userscreen/useradd.png")
-userscreen_userprofile = add_asset(
-    "userscreen/userprofile.png")
-userscreen_confirm = add_asset(
-    "userscreen/confirm.png")
+userscreen_useradd = add_asset("userscreen", "useradd")
+userscreen_userprofile = add_asset("userscreen", "userprofile")
+userscreen_confirm = add_asset("userscreen", "confirm")
