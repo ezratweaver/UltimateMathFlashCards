@@ -1,6 +1,6 @@
-from controller import userscreen, root
+from controller import screens, root
 
 if __name__ == "__main__":
-    userscreen.show_canvas()
-    userscreen.run_gui()
+    screens["userscreen"].show_canvas()
+    screens["userscreen"].run_gui()
     root.mainloop()
