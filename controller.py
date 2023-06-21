@@ -1,7 +1,7 @@
-from user_screen import UserScreenGUI, root
+from user_screen import UserGUI, root
 import controller_variables
 
-screens = {"userscreen" : UserScreenGUI(),}
+screens = {"userscreen" : UserGUI(),}
 
 class Controller:
 

@@ -2,7 +2,7 @@ from tkinter import Canvas
 from assets import root, WINDOW_COLOR
 import assets
 
-class MainScreenGUI:
+class EnterTextGUI:
 
     def __init__(self) -> None:
         self.canvas = Canvas(

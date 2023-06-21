@@ -27,7 +27,7 @@ user_title_font = font.Font(family="Encode Sans", size=20)
 
 current_user = None
 
-class UserScreenGUI:
+class UserGUI:
 
     def __init__(self) -> None:
         self.canvas = Canvas(
@@ -45,7 +45,7 @@ class UserScreenGUI:
             image=get_userlist_banner(usercount, userscreen_banners)
         )
 
-    def button_bg_modify(event, color, canvas,
+    def image_modify(event, color, canvas,
                         image_id, new_image):
         event.widget.config(bg=color, activebackground=color)
         canvas.itemconfigure(image_id, image=new_image)
@@ -111,17 +111,17 @@ class UserScreenGUI:
                         self.view_user(x)))
         for x, title_button in enumerate(title_buttons):
             title_button.bind("<Enter>", lambda event, x=x: 
-                UserScreenGUI.button_bg_modify(event, "#C3C3C3", self.canvas,
+                UserGUI.image_modify(event, "#C3C3C3", self.canvas,
                             title_buttons_bg[x], assets.button_long_selected))
             title_button.bind("<Leave>" , lambda event, x=x: 
-                UserScreenGUI.button_bg_modify(event, "#D9D9D9", self.canvas,
+                UserGUI.image_modify(event, "#D9D9D9", self.canvas,
                             title_buttons_bg[x], assets.button_long))
         for x, action_button in enumerate(action_buttons):
             action_button.bind("<Enter>", lambda event, x=x: 
-                UserScreenGUI.button_bg_modify(event, "#C3C3C3", self.canvas,
+                UserGUI.image_modify(event, "#C3C3C3", self.canvas,
                             action_buttons_bg[x], assets.button_square_selected))
             action_button.bind("<Leave>" , lambda event, x=x: 
-                UserScreenGUI.button_bg_modify(event, "#D9D9D9", self.canvas,
+                UserGUI.image_modify(event, "#D9D9D9", self.canvas,
                             action_buttons_bg[x], assets.button_square))
 
     def log_into_user(self, user_position) -> dict:
@@ -139,7 +139,8 @@ class UserScreenGUI:
         self.canvas.pack_forget()
 
 if __name__ == "__main__":
-    userscreen = UserScreenGUI()
+    userscreen = UserGUI()
     userscreen.show_canvas()
+    userscreen.add_user()
     root.title("Userscreen Individual Screen")
     root.mainloop()
