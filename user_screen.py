@@ -30,14 +30,14 @@ current_user = None
 class UserScreenGUI:
 
     def __init__(self) -> None:
-        self.userscreen_canv = Canvas(
+        self.canvas = Canvas(
             root, bg=WINDOW_COLOR,
             height=500, width = 800,
             bd=0, highlightthickness=0,
             relief="ridge")
 
     def print_banner(self) -> None:
-        self.userlist_banner = self.userscreen_canv.create_image(
+        self.userlist_banner = self.canvas.create_image(
             400,
             250,
             image=get_userlist_banner(usercount, userlist_banners)
@@ -57,16 +57,16 @@ class UserScreenGUI:
         if usercount >= MAX_USERS: #Add an extra button if MAX_USERS has not been
             usercount = MAX_USERS - 1                     #reached, otherwise dont.
         for x in range(usercount + 1):
-            title_buttons_bg.append(self.userscreen_canv.create_image(
+            title_buttons_bg.append(self.canvas.create_image(
                 434,
                 y_start_pos,
                 image=assets.image_usertitlebg))
-            action_buttons_bg.append(self.userscreen_canv.create_image(
+            action_buttons_bg.append(self.canvas.create_image(
                 314,
                 y_start_pos,
                 image=assets.image_useractionbg))
             title_buttons.append(Button(
-                self.userscreen_canv,
+                self.canvas,
                 fg="#000000",
                 bg="#D9D9D9",
                 activebackground="#D9D9D9",
@@ -77,7 +77,7 @@ class UserScreenGUI:
             title_buttons[x].place(x = 354, y = y_start_pos - 21,
                                  width=160.0, height=43.0)
             action_buttons.append(Button(
-                self.userscreen_canv,
+                self.canvas,
                 fg="#000000",
                 bg="#D9D9D9",
                 activebackground="#D9D9D9",
@@ -101,17 +101,17 @@ class UserScreenGUI:
                         self.view_user(x)))
         for x, title_button in enumerate(title_buttons):
             title_button.bind("<Enter>", lambda event, x=x: 
-                UserScreenGUI.button_bg_modify(event, "#C3C3C3", self.userscreen_canv,
+                UserScreenGUI.button_bg_modify(event, "#C3C3C3", self.canvas,
                             title_buttons_bg[x], assets.image_usertitlebg_selected))
             title_button.bind("<Leave>" , lambda event, x=x: 
-                UserScreenGUI.button_bg_modify(event, "#D9D9D9", self.userscreen_canv,
+                UserScreenGUI.button_bg_modify(event, "#D9D9D9", self.canvas,
                             title_buttons_bg[x], assets.image_usertitlebg))
         for x, action_button in enumerate(action_buttons):
             action_button.bind("<Enter>", lambda event, x=x: 
-                UserScreenGUI.button_bg_modify(event, "#C3C3C3", self.userscreen_canv,
+                UserScreenGUI.button_bg_modify(event, "#C3C3C3", self.canvas,
                             action_buttons_bg[x], assets.image_useractionbg_selected))
             action_button.bind("<Leave>" , lambda event, x=x: 
-                UserScreenGUI.button_bg_modify(event, "#D9D9D9", self.userscreen_canv,
+                UserScreenGUI.button_bg_modify(event, "#D9D9D9", self.canvas,
                             action_buttons_bg[x], assets.image_useractionbg))
 
     def log_into_user(self, user_position) -> dict:
@@ -127,10 +127,10 @@ class UserScreenGUI:
         self.print_user_buttons(usercount)
 
     def show_canvas(self) -> None:
-        self.userscreen_canv.pack()
+        self.canvas.pack()
 
     def hide_canvas(self) -> None:
-        self.userscreen_canv.pack_forget()
+        self.canvas.pack_forget()
 
 if __name__ == "__main__":
     userscreen = UserScreenGUI()
