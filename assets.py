@@ -14,14 +14,14 @@ root.resizable(False, False)
 
 def add_asset(subfolder, filename):
     """
-    Loads an image asset from the 'assets' directory and returns a PhotoImage object.
+    Load image asset from 'assets/subfolder/filename.png' and return PhotoImage obj.
 
     Parameters:
-        string (str): The name or path of the image file to load. 
-                      It should be relative to the 'assets' directory.
+        subfolder (str): Subfolder name inside 'assets' directory.
+        filename (str): Name of the image file to load (extension must be .png).
 
     Returns:
-        PhotoImage: A PhotoImage object representing the loaded image asset.
+        PhotoImage: Loaded image asset as a PhotoImage object.
 
     """
     return PhotoImage(file=f"assets/{subfolder}/{filename}.png")
