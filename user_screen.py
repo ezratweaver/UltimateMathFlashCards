@@ -52,7 +52,7 @@ class UserScreenGUI:
         """
         Create and configure user buttons in the graphical user interface.
 
-        Parameters:
+        Args:
             self: The instance of the class.
             usercount: An integer representing the number of users for whom buttons 
                         need to be created.
