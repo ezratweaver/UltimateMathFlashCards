@@ -3,6 +3,7 @@ from typing import List
 from user_data import get_userlist_banner, check_for_users, get_font_size
 from assets import root, WINDOW_COLOR, userlist_banners
 import assets
+import controller_variables
 
 MAX_USERS = 6
 START_POSITIONS = {
@@ -29,9 +30,6 @@ current_user = None
 class UserScreenGUI:
 
     def __init__(self) -> None:
-        self.main_screen = False
-        self.profile_screen = False
-
         self.userscreen_canv = Canvas(
             root, bg=WINDOW_COLOR,
             height=500, width = 800,
@@ -117,11 +115,11 @@ class UserScreenGUI:
                             action_buttons_bg[x], assets.image_useractionbg))
 
     def log_into_user(self, user_position) -> dict:
-        self.main_screen = True
+        controller_variables.main_screen = True
         return all_users[user_position]
     
     def view_user(self, user_position) -> dict:
-        self.profile_screen = True
+        controller_variables.profile_screen = True
         return all_users[user_position]
 
     def run_gui(self) -> None:
