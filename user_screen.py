@@ -1,7 +1,7 @@
 from tkinter import Canvas, Button, font
 from typing import List
 from user_data import get_userlist_banner, check_for_users, get_font_size
-from assets import root, WINDOW_COLOR, userlist_banners
+from assets import root, WINDOW_COLOR, userscreen_banners
 import assets
 import controller_variables
 
@@ -40,7 +40,7 @@ class UserScreenGUI:
         self.userlist_banner = self.canvas.create_image(
             400,
             250,
-            image=get_userlist_banner(usercount, userlist_banners)
+            image=get_userlist_banner(usercount, userscreen_banners)
         )
 
     def button_bg_modify(event, color, canvas,
@@ -60,11 +60,11 @@ class UserScreenGUI:
             title_buttons_bg.append(self.canvas.create_image(
                 434,
                 y_start_pos,
-                image=assets.image_usertitlebg))
+                image=assets.buttonbg_long))
             action_buttons_bg.append(self.canvas.create_image(
                 314,
                 y_start_pos,
-                image=assets.image_useractionbg))
+                image=assets.buttonbg_square))
             title_buttons.append(Button(
                 self.canvas,
                 fg="#000000",
@@ -81,7 +81,7 @@ class UserScreenGUI:
                 fg="#000000",
                 bg="#D9D9D9",
                 activebackground="#D9D9D9",
-                image=assets.image_useradd,
+                image=assets.userscreen_useradd,
                 anchor="center",
                 borderwidth=0,
                 highlightthickness=0,
@@ -96,23 +96,23 @@ class UserScreenGUI:
                                     command=lambda x=x: setattr(self, "current_user", 
                                     self.log_into_user(x)),
                                     font=("Encode Sans", font_size))
-            action_buttons[x].config(image=assets.image_userprofile, 
+            action_buttons[x].config(image=assets.userscreen_userprofile, 
                         command=lambda x=x: setattr(self, "current_user", 
                         self.view_user(x)))
         for x, title_button in enumerate(title_buttons):
             title_button.bind("<Enter>", lambda event, x=x: 
                 UserScreenGUI.button_bg_modify(event, "#C3C3C3", self.canvas,
-                            title_buttons_bg[x], assets.image_usertitlebg_selected))
+                            title_buttons_bg[x], assets.userscreen_usertitlebg_selected))
             title_button.bind("<Leave>" , lambda event, x=x: 
                 UserScreenGUI.button_bg_modify(event, "#D9D9D9", self.canvas,
-                            title_buttons_bg[x], assets.image_usertitlebg))
+                            title_buttons_bg[x], assets.buttonbg_long))
         for x, action_button in enumerate(action_buttons):
             action_button.bind("<Enter>", lambda event, x=x: 
                 UserScreenGUI.button_bg_modify(event, "#C3C3C3", self.canvas,
-                            action_buttons_bg[x], assets.image_useractionbg_selected))
+                            action_buttons_bg[x], assets.userscreen_useractionbg_selected))
             action_button.bind("<Leave>" , lambda event, x=x: 
                 UserScreenGUI.button_bg_modify(event, "#D9D9D9", self.canvas,
-                            action_buttons_bg[x], assets.image_useractionbg))
+                            action_buttons_bg[x], assets.buttonbg_square))
 
     def log_into_user(self, user_position) -> dict:
         controller_variables.main_screen = True
