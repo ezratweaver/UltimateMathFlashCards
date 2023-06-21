@@ -10,3 +10,4 @@ class EnterTextGUI:
             height=500, width = 800,
             bd=0, highlightthickness=0,
             relief="ridge")
+        

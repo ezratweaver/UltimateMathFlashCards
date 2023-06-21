@@ -8,6 +8,7 @@ chdir(exe_dir)
 WINDOW_COLOR = "#3556FB"
 
 USERSCREEN_FOLDER = "userscreen"
+TEXTSCREEN_FOLDER = "textscreen"
 
 root = Tk()
 root.geometry("800x500")
@@ -37,7 +38,7 @@ button_square = add_asset(
     "buttons", "button_square")
 button_square_selected = add_asset(
     "buttons", "button_square_selected")
-#USERSCREEN ASSETS
+#USER SCREEN ASSETS
 userscreen_banners = {
     1: PhotoImage(file="assets/userscreen/userlist_1.png"),
     2: PhotoImage(file="assets/userscreen/userlist_2.png"),
@@ -50,11 +51,12 @@ userscreen_useradd = add_asset(
     USERSCREEN_FOLDER, "useradd")
 userscreen_userprofile = add_asset(
     USERSCREEN_FOLDER, "userprofile")
-userscreen_confirm = add_asset(
-    USERSCREEN_FOLDER, "confirm")
-userscreen_cancel = add_asset(
-    USERSCREEN_FOLDER, "cancel")
-userscreen_please_enter_name = add_asset(
-    USERSCREEN_FOLDER, "please_enter_name")
-userscreen_username_enter_banner = add_asset(
-    USERSCREEN_FOLDER, "username_enter_banner")
+#ENTER TEXT SCREEN ASSETS
+textscreen_confirm = add_asset(
+    TEXTSCREEN_FOLDER, "confirm")
+textscreen_cancel = add_asset(
+    TEXTSCREEN_FOLDER, "cancel")
+textscreen_please_enter_name = add_asset(
+    TEXTSCREEN_FOLDER, "please_enter_name")
+textscreen_username_enter_banner = add_asset(
+    TEXTSCREEN_FOLDER, "username_enter_banner")
