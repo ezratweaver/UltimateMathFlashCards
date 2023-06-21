@@ -35,6 +35,8 @@ class UserScreenGUI:
             height=500, width = 800,
             bd=0, highlightthickness=0,
             relief="ridge")
+        self.print_banner()
+        self.print_user_buttons(usercount)
 
     def print_banner(self) -> None:
         self.userlist_banner = self.canvas.create_image(
@@ -130,10 +132,6 @@ class UserScreenGUI:
         controller_variables.profile_screen = True
         return all_users[user_position]
 
-    def run_gui(self) -> None:
-        self.print_banner()
-        self.print_user_buttons(usercount)
-
     def show_canvas(self) -> None:
         self.canvas.pack()
 
@@ -142,7 +140,6 @@ class UserScreenGUI:
 
 if __name__ == "__main__":
     userscreen = UserScreenGUI()
-    userscreen.run_gui()
     userscreen.show_canvas()
     root.title("Userscreen Individual Screen")
     root.mainloop()
