@@ -48,7 +48,15 @@ class UserScreenGUI:
         event.widget.config(bg=color, activebackground=color)
         canvas.itemconfigure(image_id, image=new_image)
 
-    def print_user_buttons(self, usercount) -> List[object]:
+    def print_user_buttons(self, usercount: int) -> List[object]:
+        """
+        Create and configure user buttons in the graphical user interface.
+
+        Parameters:
+            self: The instance of the class.
+            usercount: An integer representing the number of users for whom buttons 
+                        need to be created.
+        """
         y_start_pos = START_POSITIONS.get(usercount)
         title_buttons = []
         title_buttons_bg = []
