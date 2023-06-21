@@ -12,6 +12,9 @@ root.geometry("800x500")
 root.title("")
 root.resizable(False, False)
 
+def add_asset(string):
+    return PhotoImage(file=f"assets/{string}")
+
 
 #BUTTON BACKGROUNDS
 button_long = PhotoImage(
@@ -35,4 +38,5 @@ userscreen_useradd = PhotoImage(
     file="assets/userscreen/useradd.png")
 userscreen_userprofile = PhotoImage(
     file="assets/userscreen/userprofile.png")
-
+userscreen_confirm = add_asset(
+    "userscreen/confirm.png")
