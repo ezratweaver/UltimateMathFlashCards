@@ -60,3 +60,5 @@ textscreen_please_enter_name = add_asset(
     TEXTSCREEN_FOLDER, "please_enter_name")
 textscreen_username_enter_banner = add_asset(
     TEXTSCREEN_FOLDER, "username_enter_banner")
+textscreen_enterbox = add_asset(
+    TEXTSCREEN_FOLDER, "enter_box")
