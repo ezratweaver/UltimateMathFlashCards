@@ -1,7 +1,8 @@
 from user_screen import UserGUI, root
+from text_screen import EnterTextGUI
 import controller_variables
 
-screens = {"userscreen" : UserGUI(),}
+screens = {"userscreen" : UserGUI(), "textscreen" : EnterTextGUI}
 
 class Controller:
 
@@ -22,5 +23,13 @@ class Controller:
             Controller.hide_viewable_canvas()
         root.after(70, Controller.go_to_profilescreen_check)
 
-Controller.go_to_mainscreen_check()
-Controller.go_to_profilescreen_check()
+    def go_to_textscreen_check():
+        if controller_variables.text_screen:
+            controller_variables.text_screen = False
+            Controller.hide_viewable_canvas()
+            screens["textscreen"].show_canvas()
+        root.after(70, Controller.go_to_textscreen_check)
+
+
+functions = [getattr(Controller, attr) for attr in dir(Controller) if callable(getattr(Controller, attr))]
+print(functions)
