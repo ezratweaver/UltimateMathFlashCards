@@ -2,7 +2,7 @@ from user_screen import UserGUI, root
 from text_screen import EnterTextGUI
 import controller_variables
 
-screens = {"userscreen" : UserGUI(), "textscreen" : EnterTextGUI}
+screens = {"userscreen" : UserGUI(), "textscreen" : EnterTextGUI()}
 
 class Controller:
 
