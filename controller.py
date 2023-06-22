@@ -31,5 +31,10 @@ class Controller:
         root.after(70, Controller.go_to_textscreen_check)
 
 
-functions = [getattr(Controller, attr) for attr in dir(Controller) if callable(getattr(Controller, attr))]
-print(functions)
+functions = [
+    getattr(Controller, attr) for attr in dir(
+        Controller) if callable(
+            getattr(Controller, attr)) and attr.startswith('go')
+            ]
+for function in functions:
+    function()
