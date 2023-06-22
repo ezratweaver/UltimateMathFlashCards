@@ -11,3 +11,21 @@ class EnterTextGUI:
             bd=0, highlightthickness=0,
             relief="ridge")
         
+        self.canvas.create_image(
+            400,
+            250,
+            image=assets.textscreen_username_enter_banner
+        )
+        
+    def show_canvas(self) -> None:
+        self.canvas.pack()
+
+    def hide_canvas(self) -> None:
+        self.canvas.pack_forget()
+
+
+
+if __name__ == "__main__":
+    text = EnterTextGUI()
+    text.show_canvas()
+    root.mainloop()
