@@ -91,6 +91,7 @@ class UserGUI:
                 fg="#000000",
                 bg="#D9D9D9",
                 activebackground="#D9D9D9",
+                command=lambda: setattr(controller_variables, "text_screen", True),
                 image=assets.userscreen_useradd,
                 anchor="center",
                 borderwidth=0,
