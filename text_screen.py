@@ -10,11 +10,20 @@ class EnterTextGUI:
             height=500, width = 800,
             bd=0, highlightthickness=0,
             relief="ridge")
-        
         self.canvas.create_image(
             400,
             250,
             image=assets.textscreen_username_enter_banner
+        )
+        self.canvas.create_image(
+            400,
+            220,
+            image=assets.textscreen_please_enter_name
+        )
+        self.canvas.create_image(
+            400,
+            273,
+            image=assets.textscreen_enterbox
         )
         
     def show_canvas(self) -> None:
