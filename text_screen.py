@@ -46,7 +46,19 @@ class EnterTextGUI:
             highlightthickness=0,
             relief="flat"
         )
-        cancel_button.place(x=275, y=273)
+        cancel_button.place(x=253, y=254, width=45, height=40)
+        confirm_button = Button(
+            self.canvas, 
+            fg="#000000",
+            # bg="#D9D9D9",
+            activebackground="#D9D9D9",
+            image=assets.textscreen_confirm,
+            anchor="center",
+            borderwidth=0,
+            highlightthickness=0,
+            relief="flat"
+        )
+        confirm_button.place(x=516, y=265, width=20, height=20)
 
 
     def show_canvas(self) -> None:
