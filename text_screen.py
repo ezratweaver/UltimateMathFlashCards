@@ -1,4 +1,4 @@
-from tkinter import Canvas
+from tkinter import Canvas, Button
 from assets import root, WINDOW_COLOR
 import assets
 
@@ -11,7 +11,7 @@ class EnterTextGUI:
             bd=0, highlightthickness=0,
             relief="ridge")
         self.canvas.create_image(
-            400,
+            398,
             250,
             image=assets.textscreen_username_enter_banner
         )
@@ -25,7 +25,30 @@ class EnterTextGUI:
             273,
             image=assets.textscreen_enterbox
         )
-        
+        cancel_button_bg = self.canvas.create_image(
+            275,
+            273,
+            image=assets.button_square
+        )
+        confirm_button_bg = self.canvas.create_image(
+            525,
+            273,
+            image=assets.button_square
+        )
+        cancel_button = Button(
+            self.canvas, 
+            fg="#000000",
+            # bg="#D9D9D9",
+            activebackground="#D9D9D9",
+            image=assets.textscreen_cancel,
+            anchor="center",
+            borderwidth=0,
+            highlightthickness=0,
+            relief="flat"
+        )
+        cancel_button.place(x=275, y=273)
+
+
     def show_canvas(self) -> None:
         self.canvas.pack()
 
