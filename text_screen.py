@@ -5,6 +5,9 @@ import assets
 class EnterTextGUI:
 
     def __init__(self) -> None:
+        self.button_bgs = {}
+        self.buttons = {}
+
         self.canvas = Canvas(
             root, bg=WINDOW_COLOR,
             height=500, width = 800,
@@ -25,17 +28,12 @@ class EnterTextGUI:
             273,
             image=assets.textscreen_enterbox
         )
-        cancel_button_bg = self.canvas.create_image(
+        self.button_bgs["cancel_button"] = self.canvas.create_image(
             275,
             273,
             image=assets.button_square
         )
-        confirm_button_bg = self.canvas.create_image(
-            525,
-            273,
-            image=assets.button_square
-        )
-        cancel_button = Button(
+        self.buttons["cancel_button"] = Button(
             self.canvas, 
             fg="#000000",
             bg="#D9D9D9",
@@ -46,8 +44,14 @@ class EnterTextGUI:
             highlightthickness=0,
             relief="flat"
         )
-        cancel_button.place(x=250, y=252, width=51, height=43)
-        confirm_button = Button(
+        self.buttons["cancel_button"].place(x=250, y=252, width=51, height=43)
+
+        self.button_bgs["confirm_button"] = self.canvas.create_image(
+            525,
+            273,
+            image=assets.button_square
+        )
+        self.buttons["confirm_button"] = Button(
             self.canvas,
             fg="#000000",
             bg="#D9D9D9",
@@ -58,7 +62,7 @@ class EnterTextGUI:
             highlightthickness=0,
             relief="flat"
         )
-        confirm_button.place(x=500, y=252, width=51, height=43)
+        self.buttons["confirm_button"].place(x=500, y=252, width=51, height=43)
 
 
     def show_canvas(self) -> None:
