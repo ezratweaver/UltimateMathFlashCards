@@ -18,9 +18,9 @@ root.resizable(False, False)
 def image_modify(event, active, canvas,
                     image_id, new_image):
     if active:
-        color = 0
+        color = "#C3C3C3"
     if not active:
-        color = 1
+        color = "#D9D9D9"
     event.widget.config(bg=color, activebackground=color)
     canvas.itemconfigure(image_id, image=new_image)
 
