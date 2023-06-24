@@ -45,11 +45,6 @@ class UserGUI:
             image=get_userlist_banner(usercount, userscreen_banners)
         )
 
-    def image_modify(event, color, canvas,
-                        image_id, new_image):
-        event.widget.config(bg=color, activebackground=color)
-        canvas.itemconfigure(image_id, image=new_image)
-
     def print_user_buttons(self, usercount: int) -> List[object]:
         """
         Create and configure user buttons in the graphical user interface.
@@ -112,17 +107,17 @@ class UserGUI:
                         self.view_user(x)))
         for x, title_button in enumerate(title_buttons):
             title_button.bind("<Enter>", lambda event, x=x: 
-                UserGUI.image_modify(event, "#C3C3C3", self.canvas,
+                assets.image_modify(event, "#C3C3C3", self.canvas,
                             title_buttons_bg[x], assets.button_long_selected))
             title_button.bind("<Leave>" , lambda event, x=x: 
-                UserGUI.image_modify(event, "#D9D9D9", self.canvas,
+                assets.image_modify(event, "#D9D9D9", self.canvas,
                             title_buttons_bg[x], assets.button_long))
         for x, action_button in enumerate(action_buttons):
             action_button.bind("<Enter>", lambda event, x=x: 
-                UserGUI.image_modify(event, "#C3C3C3", self.canvas,
+                assets.image_modify(event, "#C3C3C3", self.canvas,
                             action_buttons_bg[x], assets.button_square_selected))
             action_button.bind("<Leave>" , lambda event, x=x: 
-                UserGUI.image_modify(event, "#D9D9D9", self.canvas,
+                assets.image_modify(event, "#D9D9D9", self.canvas,
                             action_buttons_bg[x], assets.button_square))
 
     def log_into_user(self, user_position) -> dict:

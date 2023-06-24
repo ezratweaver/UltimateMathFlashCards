@@ -15,6 +15,15 @@ root.geometry("800x500")
 root.title("")
 root.resizable(False, False)
 
+def image_modify(event, active, canvas,
+                    image_id, new_image):
+    if active:
+        color = 0
+    if not active:
+        color = 1
+    event.widget.config(bg=color, activebackground=color)
+    canvas.itemconfigure(image_id, image=new_image)
+
 def add_asset(subfolder, filename):
     """
     Load image asset from 'assets/subfolder/filename.png' and return PhotoImage obj.
