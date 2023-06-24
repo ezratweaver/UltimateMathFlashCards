@@ -64,6 +64,14 @@ class EnterTextGUI:
         )
         self.buttons["confirm_button"].place(x=500, y=252, width=51, height=43)
 
+        for key, button in self.buttons.items():
+            button.bind("<Enter>", lambda event, x=key:
+                assets.image_modify(event, True, self.canvas,
+                self.button_bgs[x], assets.button_square_selected))
+            button.bind("<Leave>", lambda event, x=key:
+                assets.image_modify(event, False, self.canvas,
+                self.button_bgs[x], assets.button_square))
+
 
     def show_canvas(self) -> None:
         self.canvas.pack()
