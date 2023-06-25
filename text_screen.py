@@ -1,7 +1,8 @@
 from tkinter import Canvas, Button, Entry, font
 from assets import root, WINDOW_COLOR
-from user_data import get_font_size
+from user_data import get_font_size, create_user, rename_user
 import assets
+import controller_variables
 
 text_entry_font = font.Font(family="Encode Sans", size=20)
 
@@ -77,6 +78,7 @@ class EnterTextGUI:
         
         def validate_input(current_input):
             if current_input == "":
+                text_entry_font.configure(size=20)
                 return True
             text_entry_font.configure(size=
                 get_font_size(current_input, text_entry, text_entry_font, root))
@@ -85,7 +87,8 @@ class EnterTextGUI:
         validate_cmd = root.register(validate_input)
 
         def enter_pressed(event):
-            print("hi   ")
+            text_entry_input = text_entry.get()
+            print(text_entry_input)
 
         text_entry = Entry(
             self.canvas,
@@ -101,6 +104,14 @@ class EnterTextGUI:
         text_entry.place(x=313.0, y=251.0, width=176.0, height=44.0)
         text_entry.bind("<Return>", enter_pressed)
         text_entry.focus_set()
+
+    def confirm_pressed(self):
+        text_entry_input = self.text_entry.get()
+        create_user(text_entry_input)
+
+    def cancel_pressed(self):
+        self.text_entry.delete("0", "end")
+        controller_variables.user_screen = True
 
 
     def show_canvas(self) -> None:
