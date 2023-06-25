@@ -15,11 +15,12 @@ root.geometry("800x500")
 root.title("")
 root.resizable(False, False)
 
-def image_modify(event, active, canvas,
+def image_modify(event, canvas,
                     image_id, new_image):
-    if active:
+    
+    if int(event.type) == 7:
         color = "#C3C3C3"
-    if not active:
+    if int(event.type) == 8:
         color = "#D9D9D9"
     event.widget.config(bg=color, activebackground=color)
     canvas.itemconfigure(image_id, image=new_image)

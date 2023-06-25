@@ -107,17 +107,17 @@ class UserGUI:
                         self.view_user(x)))
         for x, title_button in enumerate(title_buttons):
             title_button.bind("<Enter>", lambda event, x=x: 
-                assets.image_modify(event, True, self.canvas,
+                assets.image_modify(event, self.canvas,
                             title_buttons_bg[x], assets.button_long_selected))
             title_button.bind("<Leave>" , lambda event, x=x: 
-                assets.image_modify(event, False, self.canvas,
+                assets.image_modify(event, self.canvas,
                             title_buttons_bg[x], assets.button_long))
         for x, action_button in enumerate(action_buttons):
             action_button.bind("<Enter>", lambda event, x=x: 
-                assets.image_modify(event, True, self.canvas,
+                assets.image_modify(event, self.canvas,
                             action_buttons_bg[x], assets.button_square_selected))
             action_button.bind("<Leave>" , lambda event, x=x: 
-                assets.image_modify(event, False, self.canvas,
+                assets.image_modify(event, self.canvas,
                             action_buttons_bg[x], assets.button_square))
 
     def log_into_user(self, user_position) -> dict:
@@ -137,6 +137,5 @@ class UserGUI:
 if __name__ == "__main__":
     userscreen = UserGUI()
     userscreen.show_canvas()
-    userscreen.add_user()
     root.title("Userscreen Individual Screen")
     root.mainloop()

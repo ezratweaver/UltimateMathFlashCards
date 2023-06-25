@@ -66,10 +66,10 @@ class EnterTextGUI:
 
         for key, button in self.buttons.items():
             button.bind("<Enter>", lambda event, x=key:
-                assets.image_modify(event, True, self.canvas,
+                assets.image_modify(event, self.canvas,
                 self.button_bgs[x], assets.button_square_selected))
             button.bind("<Leave>", lambda event, x=key:
-                assets.image_modify(event, False, self.canvas,
+                assets.image_modify(event, self.canvas,
                 self.button_bgs[x], assets.button_square))
 
 
