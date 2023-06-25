@@ -1,4 +1,4 @@
-from tkinter import Canvas, Button
+from tkinter import Canvas, Button, Entry
 from assets import root, WINDOW_COLOR
 import assets
 
@@ -71,6 +71,31 @@ class EnterTextGUI:
             button.bind("<Leave>", lambda event, x=key:
                 assets.image_modify(event, self.canvas,
                 self.button_bgs[x], assets.button_square))
+        
+        def validate_input(current_input):
+            if current_input == "":
+                return True
+            return len(current_input) <= 10
+
+        validate_cmd = root.register(validate_input)
+
+        def enter_pressed(event):
+            print("hi   ")
+
+        text_entry = Entry(
+            self.canvas,
+            bd=0,
+            bg="#D9D9D9",
+            fg="#000716",
+            highlightthickness=0,
+            font=("Encode Sans", 20),
+            justify="center",
+            validate="key",
+            validatecommand=(validate_cmd, "%P"),
+        )
+        text_entry.place(x=313.0, y=251.0, width=176.0, height=44.0)
+        text_entry.bind("<Return>", enter_pressed)
+        text_entry.focus_set()
 
 
     def show_canvas(self) -> None:
