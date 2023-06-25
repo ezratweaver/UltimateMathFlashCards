@@ -1,6 +1,9 @@
-from tkinter import Canvas, Button, Entry
+from tkinter import Canvas, Button, Entry, font
 from assets import root, WINDOW_COLOR
+from user_data import get_font_size
 import assets
+
+text_entry_font = font.Font(family="Encode Sans", size=20)
 
 class EnterTextGUI:
 
@@ -75,8 +78,10 @@ class EnterTextGUI:
         def validate_input(current_input):
             if current_input == "":
                 return True
-            return len(current_input) <= 10
-
+            text_entry_font.configure(size=
+                get_font_size(current_input, text_entry, text_entry_font, root))
+            return len(current_input) <= 14
+        
         validate_cmd = root.register(validate_input)
 
         def enter_pressed(event):
@@ -88,7 +93,7 @@ class EnterTextGUI:
             bg="#D9D9D9",
             fg="#000716",
             highlightthickness=0,
-            font=("Encode Sans", 20),
+            font=text_entry_font,
             justify="center",
             validate="key",
             validatecommand=(validate_cmd, "%P"),
