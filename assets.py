@@ -10,6 +10,9 @@ WINDOW_COLOR = "#3556FB"
 USERSCREEN_FOLDER = "userscreen"
 TEXTSCREEN_FOLDER = "textscreen"
 
+ENTER_EVENT_ID = 7
+LEAVE_EVENT_ID = 8
+
 root = Tk()
 root.geometry("800x500")
 root.title("")
@@ -17,10 +20,9 @@ root.resizable(False, False)
 
 def image_modify(event, canvas,
                     image_id, new_image):
-    
-    if int(event.type) == 7:
+    if int(event.type) == ENTER_EVENT_ID:
         color = "#C3C3C3"
-    if int(event.type) == 8:
+    if int(event.type) == LEAVE_EVENT_ID:
         color = "#D9D9D9"
     event.widget.config(bg=color, activebackground=color)
     canvas.itemconfigure(image_id, image=new_image)
