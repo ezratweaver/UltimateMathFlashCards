@@ -19,13 +19,39 @@ root.title("")
 root.resizable(False, False)
 
 def image_modify(event, canvas,
-                    image_id, new_image):
+                    image_variable, new_image):
+    """
+    Modifies the appearance of an image on a canvas based on the given event.
+
+    Args:
+        event (Event): The event object triggered by the user.
+        canvas (Canvas): The canvas object where the image is displayed.
+        image_variable (int): The variable assigned to the image on the canvas
+        new_image (PhotoImage): The new image to be displayed.
+
+    Returns:
+        None
+
+    Description:
+            This function modifies the appearance of an image on a canvas based on the 
+        given event. If the event type is an ENTER_EVENT_ID, the image's background
+        color and active background color are set to "#C3C3C3". If the event type is a 
+        LEAVE_EVENT_ID, the image's background color and active background color are set
+        to "#D9D9D9". The function then updates the image on the canvas with the 
+        new_image provided.
+
+    Example:
+        # Binding events and modifying the image
+        canvas.bind("<Enter>", lambda event: image_modify(event, canvas, 1, my_image))
+        canvas.bind("<Leave>", lambda event: image_modify(event, canvas, 1, my_image))
+
+    """
     if int(event.type) == ENTER_EVENT_ID:
         color = "#C3C3C3"
     if int(event.type) == LEAVE_EVENT_ID:
         color = "#D9D9D9"
     event.widget.config(bg=color, activebackground=color)
-    canvas.itemconfigure(image_id, image=new_image)
+    canvas.itemconfigure(image_variable, image=new_image)
 
 def add_asset(subfolder, filename):
     """
