@@ -1,8 +1,8 @@
 from user_screen import UserGUI, root
 from text_screen import EnterTextGUI
-import controller_variables
+from controller_variables import screen_variables
 
-screens = {"userscreen" : UserGUI(), "textscreen" : EnterTextGUI()}
+screens = {"user_screen" : UserGUI(), "text_screen" : EnterTextGUI()}
 
 class Controller:
 
@@ -11,30 +11,12 @@ class Controller:
             if screen.canvas.winfo_viewable():
                 screen.hide_canvas()
 
-    def go_to_mainscreen_check():
-        if controller_variables.main_screen:
-            controller_variables.main_screen = False
-            Controller.hide_viewable_canvas()
-        root.after(70, Controller.go_to_mainscreen_check)
+    def screen_variable_check():
+        for screen, boolean in screen_variables.items():
+            if boolean:
+                Controller.hide_viewable_canvas()
+                screens[screen].show_canvas()
+                screen_variables[screen] = False
+        root.after(70, Controller.screen_variable_check)
 
-    def go_to_profilescreen_check():
-        if controller_variables.profile_screen:
-            controller_variables.profile_screen = False
-            Controller.hide_viewable_canvas()
-        root.after(70, Controller.go_to_profilescreen_check)
-
-    def go_to_textscreen_check():
-        if controller_variables.text_screen:
-            controller_variables.text_screen = False
-            Controller.hide_viewable_canvas()
-            screens["textscreen"].show_canvas()
-        root.after(70, Controller.go_to_textscreen_check)
-
-
-functions = [
-    getattr(Controller, attr) for attr in dir(
-        Controller) if callable(
-            getattr(Controller, attr)) and attr.startswith('go')
-            ]
-for function in functions:
-    function()
+Controller.screen_variable_check()

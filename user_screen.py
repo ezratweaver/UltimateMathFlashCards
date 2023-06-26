@@ -2,8 +2,9 @@ from tkinter import Canvas, Button, font
 from typing import List
 from user_data import get_userlist_banner, check_for_users, get_font_size
 from assets import root, WINDOW_COLOR, userscreen_banners
+from controller_variables import screen_variables
 import assets
-import controller_variables
+
 
 MAX_USERS = 6
 START_POSITIONS = {
@@ -86,7 +87,7 @@ class UserGUI:
                 fg="#000000",
                 bg="#D9D9D9",
                 activebackground="#D9D9D9",
-                command=lambda: setattr(controller_variables, "text_screen", True),
+                command=self.create_user,
                 image=assets.userscreen_useradd,
                 anchor="center",
                 borderwidth=0,
@@ -121,12 +122,15 @@ class UserGUI:
                             action_buttons_bg[x], assets.button_square))
 
     def log_into_user(self, user_position) -> dict:
-        controller_variables.main_screen = True
+        screen_variables["main_screen"] = True
         return all_users[user_position]
     
     def view_user(self, user_position) -> dict:
-        controller_variables.profile_screen = True
+        screen_variables["profile_screen"] = True
         return all_users[user_position]
+    
+    def create_user(self) -> None:
+        screen_variables["text_screen"] = True
 
     def show_canvas(self) -> None:
         self.canvas.pack()
@@ -137,5 +141,5 @@ class UserGUI:
 if __name__ == "__main__":
     userscreen = UserGUI()
     userscreen.show_canvas()
-    root.title("Userscreen Individual Screen")
+    root.title("Userscreen")
     root.mainloop()
