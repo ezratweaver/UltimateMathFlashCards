@@ -81,10 +81,11 @@ class EnterTextGUI:
         
         def validate_input(current_input):
             if current_input == "":
-                text_entry_font.configure(size=20)
                 return True
-            text_entry_font.configure(size=
-                get_font_size(current_input, self.text_entry, text_entry_font, root))
+            if len(current_input) > 12:
+                text_entry_font.configure(size=16)
+            else:
+                text_entry_font.configure(size=20)
             return len(current_input) <= 14
         
         validate_cmd = root.register(validate_input)
