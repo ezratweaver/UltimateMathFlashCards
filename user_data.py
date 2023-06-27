@@ -1,5 +1,4 @@
 from os import listdir, path, getenv, mkdir, remove
-from tkinter import font
 from typing import List
 from json import loads, dump, JSONDecodeError, dumps
 from cryptography.fernet import InvalidToken

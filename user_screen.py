@@ -1,7 +1,7 @@
 from tkinter import Canvas, Button, font
 from typing import List
-from user_data import get_userlist_banner, check_for_users, get_font_size
-from assets import root, WINDOW_COLOR, userscreen_banners
+from user_data import get_userlist_banner, check_for_users
+from assets import root, WINDOW_COLOR, userscreen_banners, get_font_size
 from controller_variables import screen_variables
 import assets
 

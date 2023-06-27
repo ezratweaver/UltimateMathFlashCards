@@ -1,4 +1,4 @@
-from tkinter import Tk, PhotoImage
+from tkinter import Tk, PhotoImage, font
 from os import path, chdir
 from sys import argv
 
