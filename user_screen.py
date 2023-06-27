@@ -1,12 +1,11 @@
 from tkinter import Canvas, Button, font
 from typing import List
-from user_data import get_userlist_banner, check_for_users
+from user_data import get_userlist_banner, check_for_users, MAX_USERS
 from assets import root, WINDOW_COLOR, userscreen_banners, get_font_size
 from controller_variables import screen_variables
 import assets
 
 
-MAX_USERS = 6
 START_POSITIONS = {
     0 : 250,
     1 : 218, 2 : 186,

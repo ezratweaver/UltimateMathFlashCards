@@ -4,6 +4,7 @@ from json import loads, dump, JSONDecodeError, dumps
 from cryptography.fernet import InvalidToken
 from encryption import fernet_instance
 
+MAX_USERS = 6
 USERDATA_TEMPLATE = {"id": "", 
                      "displayname": "", "highscore": {},
                      "gamehistory": []}
