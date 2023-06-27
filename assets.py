@@ -67,6 +67,42 @@ def add_asset(subfolder, filename):
     """
     return PhotoImage(file=f"assets/{subfolder}/{filename}.png")
 
+def get_font_size(text: str, button: object, inputfont: object, root: object) -> int:
+    """
+    Calculate the optimal font size for a given text to fit within the 
+        dimensions of a button.
+
+    This function determines the appropriate font size that allows the specified `text` 
+    to fit comfortably within the dimensions of the `button` widget. It takes into 
+    account the current font settings specified by the `inputfont` object.
+
+    Args:
+        text (str): The content of the text.
+        button (object): The tkinter button object for which the font size 
+                            needs to be calculated.
+        inputfont (object): The tkinter font object representing the initial
+                            font settings.
+        root (object): The tkinter root object.
+
+    Returns:
+        int: The optimal font size that ensures the `text` fits within the 
+                dimensions of the `button`.
+
+    """
+    instance_font = font.Font(font=inputfont)
+    root.update()
+    button_height = button.winfo_height() 
+    button_width = button.winfo_width() - 5
+    font_height = instance_font.metrics("linespace")
+    font_width = instance_font.measure(text) 
+    font_size = int(instance_font.cget("size"))
+    while font_height > button_height or font_width > button_width:
+        font_height = instance_font.metrics("linespace")
+        font_width = instance_font.measure(text)
+        font_size = font_size - 1
+        instance_font.configure(size=font_size)
+    return font_size
+
 #BUTTON BACKGROUNDS
 button_long = add_asset(
     "buttons", "button_long")
