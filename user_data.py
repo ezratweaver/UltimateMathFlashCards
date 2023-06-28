@@ -119,7 +119,7 @@ def dump_user(user_dictionary: dict, encryption=ENCRYPTION_STATE) -> bool:
         else:
             dump(user_dictionary, file, indent=4)
         return True
-    
+
 def create_user(displayname: str, encryption=ENCRYPTION_STATE) -> bool:
     """
     Creates a new user with the provided display name.
@@ -149,7 +149,7 @@ def create_user(displayname: str, encryption=ENCRYPTION_STATE) -> bool:
         else:
             dump(user_template, file, indent=4)
         return True
-    
+
 def remove_user(user_dictionary: dict) -> bool:
     """
     Remove user from the system.
@@ -192,7 +192,7 @@ def get_userlist_banner(usercount, banner_dictionary) -> object:
                                     corresponding banner image.
 
     Returns:
-        object: A Tkinter PhotoImage object representing the banner 
+        object: A Tkinter PhotoImage object representing the banner
                                     image with the proper size.
 
     """
@@ -254,10 +254,10 @@ def rename_user(user_dictionary: dict, displayname: str) -> dict:
 def check_dictionary(dictionary: dict) -> bool:
     """
     Check if all keys from USERDATA_TEMPLATE are present in the given dictionary.
-    
+
     Args:
         dictionary (dict): The dictionary to be checked.
-        
+
     Returns:
         bool: True if all keys are present, False otherwise.
     """
