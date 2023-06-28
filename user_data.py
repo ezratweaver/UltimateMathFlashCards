@@ -21,11 +21,6 @@ class EncryptionError(Exception):
     def __init__(self, *args: object) -> None:
         super().__init__(*args)
 
-class LengthError(Exception):
-
-    def __init__(self, *args: object) -> None:
-        super().__init__(*args)
-
 def check_for_users(encryption=ENCRYPTION_STATE) -> List[dict]:
     """
     Checks USERDATA_PATH for JSON files and returns all JSON files
@@ -280,13 +275,13 @@ def check_username(displayname: str):
 
     Raises:
         TypeError: If the display name is not a string.
-        LengthError: If the display name length exceeds 14 characters.
+        ValueError: If the display name length exceeds 14 characters.
     """
     if not isinstance(displayname, str):
         raise TypeError("Expected string type for display name, "
                         f"but received {type(displayname).__name__} instead")
     if len(displayname) > 14:
-        raise LengthError("Expected length of display name to be <= 14, "
+        raise ValueError("Expected length of display name to be <= 14, "
                         f"actual name length: {len(displayname)}")
 
 if __name__ == "__main__":
