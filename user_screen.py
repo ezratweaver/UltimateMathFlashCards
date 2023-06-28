@@ -12,11 +12,6 @@ START_POSITIONS = {
     3 : 154, 4 : 121,
     5 : 88, 6 : 88
 }
-FONT_SIZES = {
-    1 : 27, 8 : 25,
-    10 : 22, 12 : 18,
-    14: 16, 15: 15
-}
 
 USER_BUTTON_DIMENSIONS = (43, 160)
 
