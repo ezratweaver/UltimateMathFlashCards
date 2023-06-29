@@ -5,7 +5,7 @@ from cryptography.fernet import InvalidToken
 from encryption import fernet_instance
 
 MAX_USERS = 6
-USERDATA_TEMPLATE = {"id": "", 
+USERDATA_TEMPLATE = {"id": "",
                      "displayname": "", "highscore": {},
                      "gamehistory": []}
 USERDATA_PATH = path.join(getenv('APPDATA'), "ultimate-mfc")
@@ -35,7 +35,6 @@ def check_for_users(encryption=ENCRYPTION_STATE) -> List[dict]:
     Raises:
         EncryptionError: if encryption state does not match encryption of user files
         TamperError: if files have been tampered or are syntaxically incorrect
-
     """ 
     all_users = []
     try:
@@ -82,6 +81,9 @@ def check_for_users(encryption=ENCRYPTION_STATE) -> List[dict]:
     except FileNotFoundError:
         mkdir(USERDATA_PATH)
         return all_users
+    if len(all_users) > MAX_USERS:
+        raise ValueError(f"Total users: {len(all_users)} exceeds maximum allowed "
+                         f"users: {MAX_USERS}")
     return sorted(all_users, key=lambda x: int(x['id']))
 
 def dump_user(user_dictionary: dict, encryption=ENCRYPTION_STATE) -> bool:
