@@ -91,8 +91,7 @@ class EnterTextGUI:
         validate_cmd = root.register(validate_input)
 
         def enter_pressed(event):
-            text_entry_input = self.text_entry.get()
-            print(text_entry_input)
+            self.confirm_pressed()
 
         self.text_entry = Entry(
             self.canvas,
@@ -112,15 +111,16 @@ class EnterTextGUI:
     def confirm_pressed(self):
         text_entry_input = self.text_entry.get()
         create_user(text_entry_input)
+        screen_variables["user_screen"] = True
 
     def cancel_pressed(self):
-        self.text_entry.delete("0", "end")
         screen_variables["user_screen"] = True
 
     def show_canvas(self) -> None:
         self.canvas.pack()
 
     def hide_canvas(self) -> None:
+        self.text_entry.delete("0", "end")
         self.canvas.pack_forget()
 
 
