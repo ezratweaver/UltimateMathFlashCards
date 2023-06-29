@@ -35,6 +35,8 @@ def check_for_users(encryption=ENCRYPTION_STATE) -> List[dict]:
     Raises:
         EncryptionError: if encryption state does not match encryption of user files
         TamperError: if files have been tampered or are syntaxically incorrect
+        ValueError: if user count is greater then MAX_USERS constant
+
     """ 
     all_users = []
     try:
