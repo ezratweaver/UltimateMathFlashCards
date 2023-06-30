@@ -54,7 +54,7 @@ def check_for_users(encryption=ENCRYPTION_STATE) -> List[dict]:
                     file = file.read()
                     if file == "":
                         continue
-                    if encryption:
+                    if encryption is True:
                         try:
                             file = fernet_instance.decrypt(file.encode())
                         except InvalidToken:
@@ -71,7 +71,7 @@ def check_for_users(encryption=ENCRYPTION_STATE) -> List[dict]:
                         except JSONDecodeError:
                                 raise TamperError(f"JSON file {file_path} "
                                 "has been tampered or are sytaxically incorrect")
-                    else:
+                    if encryption is False:
                         try:
                             file = fernet_instance.decrypt(file.encode())
                             raise EncryptionError(f"userfile {file_path} is encrypted; "
