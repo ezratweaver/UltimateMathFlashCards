@@ -1,4 +1,4 @@
-from os import listdir, path, getenv, mkdir, removedirs
+from os import listdir, path, getenv, mkdir, remove
 from platform import system
 from typing import List
 from json import loads, dump, JSONDecodeError, dumps
