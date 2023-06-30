@@ -10,13 +10,13 @@ USERDATA_TEMPLATE = {"id": "",
                      "displayname": "", "highscore": {},
                      "gamehistory": []}
 USERDATA_FOLDER_NAME = "ultimate-mfc"
+ENCRYPTION_STATE = False
+
 
 if system() == "Windows": 
     userdata_path = path.join(getenv('APPDATA'), USERDATA_FOLDER_NAME)
 else:
     userdata_path = path.join(path.expanduser("~"), USERDATA_FOLDER_NAME)
-
-ENCRYPTION_STATE = False
 
 class TamperError(Exception):
 
@@ -56,7 +56,7 @@ def check_for_users(encryption=ENCRYPTION_STATE) -> List[dict]:
                         continue
                     if encryption:
                         try:
-                            file = fernet_instance.decrypt(file)
+                            file = fernet_instance.decrypt(file.encode())
                         except InvalidToken:
                             try:
                                 dictionary = loads(file)
@@ -73,7 +73,7 @@ def check_for_users(encryption=ENCRYPTION_STATE) -> List[dict]:
                                 "has been tampered or are sytaxically incorrect")
                     else:
                         try:
-                            file = fernet_instance.decrypt(file)
+                            file = fernet_instance.decrypt(file.encode())
                             raise EncryptionError(f"userfile {file_path} is encrypted; "
                         f"\n                 ENCRYPTION_STATE = {ENCRYPTION_STATE}; "
                         "Expected: ENCRYPTION_STATE = True")
@@ -296,4 +296,4 @@ def check_username(displayname: str):
                         f"actual name length: {len(displayname)}")
 
 if __name__ == "__main__":
-    check_username()
+    print(check_for_users())
