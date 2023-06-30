@@ -1,4 +1,5 @@
-from os import listdir, path, getenv, mkdir, remove
+from os import listdir, path, getenv, mkdir, removedirs
+from platform import system
 from typing import List
 from json import loads, dump, JSONDecodeError, dumps
 from cryptography.fernet import InvalidToken
@@ -8,7 +9,13 @@ MAX_USERS = 6
 USERDATA_TEMPLATE = {"id": "",
                      "displayname": "", "highscore": {},
                      "gamehistory": []}
-USERDATA_PATH = path.join(getenv('APPDATA'), "ultimate-mfc")
+USERDATA_FOLDER_NAME = "ultimate-mfc"
+
+if system() == "Windows": 
+    userdata_path = path.join(getenv('APPDATA'), USERDATA_FOLDER_NAME)
+else:
+    userdata_path = path.join(path.expanduser("~"), USERDATA_FOLDER_NAME)
+
 ENCRYPTION_STATE = False
 
 class TamperError(Exception):
@@ -40,9 +47,9 @@ def check_for_users(encryption=ENCRYPTION_STATE) -> List[dict]:
     """ 
     all_users = []
     try:
-        for file in listdir(USERDATA_PATH):
+        for file in listdir(userdata_path):
             if file.endswith(".json"):
-                file_path = path.join(USERDATA_PATH, file)
+                file_path = path.join(userdata_path, file)
                 with open(file_path) as file:
                     file = file.read()
                     if file == "":
@@ -81,7 +88,7 @@ def check_for_users(encryption=ENCRYPTION_STATE) -> List[dict]:
                                             "has been tampered")
                     all_users.append(dictionary)
     except FileNotFoundError:
-        mkdir(USERDATA_PATH)
+        mkdir(userdata_path)
         return all_users
     if len(all_users) > MAX_USERS:
         raise ValueError(f"Total users: {len(all_users)} exceeds maximum allowed "
@@ -234,7 +241,7 @@ def mk_json_directory_string(id: int) -> str:
         str: The JSON file directory path.
 
     """
-    return path.join(USERDATA_PATH, f"{int(id)}.json")
+    return path.join(userdata_path, f"{int(id)}.json")
 
 def rename_user(user_dictionary: dict, displayname: str) -> dict:
     """
