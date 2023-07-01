@@ -9,13 +9,13 @@ MAX_USERS = 6
 USERDATA_TEMPLATE = {"id": "",
                      "displayname": "", "highscore": {},
                      "gamehistory": []}
-USERDATA_FOLDER_NAME = "ultimate-mfc"
+USERDATA_FOLDER_NAME = ".ultimate-mfc"
 ENCRYPTION_STATE = False
 
 
 if system() == "Windows": 
     userdata_path = path.join(getenv('APPDATA'), USERDATA_FOLDER_NAME)
-else:
+if system() == "Linux":
     userdata_path = path.join(path.expanduser("~"), USERDATA_FOLDER_NAME)
 
 class TamperError(Exception):
