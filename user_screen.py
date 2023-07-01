@@ -15,8 +15,6 @@ START_POSITIONS = {
 
 USER_BUTTON_DIMENSIONS = (43, 160)
 
-all_users = check_for_users()
-
 user_title_font = font.Font(family="Encode Sans", size=20)
 
 current_user = None
@@ -29,6 +27,8 @@ class UserGUI:
             height=500, width = 800,
             bd=0, highlightthickness=0,
             relief="ridge")
+        
+        self.all_users = check_for_users()
 
     def print_banner(self, usercount) -> None:
         self.userlist_banner = self.canvas.create_image(
@@ -87,7 +87,7 @@ class UserGUI:
             self.action_buttons[x].place(x = 289, y = y_start_pos - 21,
                                     width=50.0, height=43.0)
             y_start_pos = y_start_pos + 65
-        for x, user in enumerate(all_users):
+        for x, user in enumerate(self.all_users):
             font_size = get_font_size(user["displayname"], self.title_buttons[x],
                                        user_title_font, root)
             self.title_buttons[x].config(text=f"{user['displayname']}", 
@@ -114,25 +114,26 @@ class UserGUI:
 
     def log_into_user(self, user_position) -> dict:
         screen_variables["main_screen"] = True
-        return all_users[user_position]
+        return self.all_users[user_position]
     
     def view_user(self, user_position) -> dict:
         screen_variables["profile_screen"] = True
-        return all_users[user_position]
+        return self.all_users[user_position]
     
     def create_user(self) -> None:
         screen_variables["text_screen"] = True
 
     def show_canvas(self) -> None:
-        usercount = len(all_users)
+        self.all_users = check_for_users()
+        usercount = len(self.all_users)
         self.print_banner(usercount)
         self.print_user_buttons(usercount)
         self.canvas.pack()
 
     def hide_canvas(self) -> None:
         self.canvas.delete("all")
-        [x.destroy for x in self.action_buttons]
-        [x.destroy for x in self.title_buttons]
+        [x.destroy() for x in self.action_buttons]
+        [x.destroy() for x in self.title_buttons]
         self.canvas.pack_forget()
 
 if __name__ == "__main__":
