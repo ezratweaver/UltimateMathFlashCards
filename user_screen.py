@@ -16,7 +16,6 @@ START_POSITIONS = {
 USER_BUTTON_DIMENSIONS = (43, 160)
 
 all_users = check_for_users()
-usercount = len(all_users)
 
 user_title_font = font.Font(family="Encode Sans", size=20)
 
@@ -31,7 +30,7 @@ class UserGUI:
             bd=0, highlightthickness=0,
             relief="ridge")
 
-    def print_banner(self) -> None:
+    def print_banner(self, usercount) -> None:
         self.userlist_banner = self.canvas.create_image(
             400,
             250,
@@ -125,11 +124,15 @@ class UserGUI:
         screen_variables["text_screen"] = True
 
     def show_canvas(self) -> None:
-        self.print_banner()
+        usercount = len(all_users)
+        self.print_banner(usercount)
         self.print_user_buttons(usercount)
         self.canvas.pack()
 
     def hide_canvas(self) -> None:
+        self.canvas.delete("all")
+        [x.destroy for x in self.action_buttons]
+        [x.destroy for x in self.title_buttons]
         self.canvas.pack_forget()
 
 if __name__ == "__main__":
