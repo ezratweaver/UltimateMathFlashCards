@@ -9,6 +9,7 @@ WINDOW_COLOR = "#3556FB"
 
 USERSCREEN_FOLDER = "userscreen"
 TEXTSCREEN_FOLDER = "textscreen"
+PROFILESCREEN_FOLDER = "profilescreen"
 
 ENTER_EVENT_ID = 7
 LEAVE_EVENT_ID = 8
@@ -136,3 +137,8 @@ textscreen_username_enter_banner = add_asset(
     TEXTSCREEN_FOLDER, "username_enter_banner")
 textscreen_enterbox = add_asset(
     TEXTSCREEN_FOLDER, "enter_box")
+#PROFILE SCREEN ASSETS
+profilescreen_banner = add_asset(
+    PROFILESCREEN_FOLDER, "banner")
+profilescreen_button_banner = add_asset(
+    PROFILESCREEN_FOLDER, "button_banner")
