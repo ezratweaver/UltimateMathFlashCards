@@ -30,8 +30,6 @@ class UserGUI:
             height=500, width = 800,
             bd=0, highlightthickness=0,
             relief="ridge")
-        self.print_banner()
-        self.print_user_buttons(usercount)
 
     def print_banner(self) -> None:
         self.userlist_banner = self.canvas.create_image(
@@ -50,22 +48,22 @@ class UserGUI:
                         need to be created.
         """
         y_start_pos = START_POSITIONS.get(usercount)
-        title_buttons = []
-        title_buttons_bg = []
-        action_buttons = []
-        action_buttons_bg = []
+        self.title_buttons = []
+        self.title_buttons_bg = []
+        self.action_buttons = []
+        self.action_buttons_bg = []
         if usercount >= MAX_USERS: #Add an extra button if MAX_USERS has not been
             usercount = MAX_USERS - 1                     #reached, otherwise dont.
         for x in range(usercount + 1):
-            title_buttons_bg.append(self.canvas.create_image(
+            self.title_buttons_bg.append(self.canvas.create_image(
                 434,
                 y_start_pos,
                 image=assets.button_long))
-            action_buttons_bg.append(self.canvas.create_image(
+            self.action_buttons_bg.append(self.canvas.create_image(
                 314,
                 y_start_pos,
                 image=assets.button_square))
-            title_buttons.append(Button(
+            self.title_buttons.append(Button(
                 self.canvas,
                 fg="#000000",
                 bg="#D9D9D9",
@@ -74,9 +72,9 @@ class UserGUI:
                 borderwidth=0,
                 highlightthickness=0,
                 relief="flat"))
-            title_buttons[x].place(x = 354, y = y_start_pos - 21,
+            self.title_buttons[x].place(x = 354, y = y_start_pos - 21,
                                  width=160.0, height=43.0)
-            action_buttons.append(Button(
+            self.action_buttons.append(Button(
                 self.canvas,
                 fg="#000000",
                 bg="#D9D9D9",
@@ -87,33 +85,33 @@ class UserGUI:
                 borderwidth=0,
                 highlightthickness=0,
                 relief="flat"))
-            action_buttons[x].place(x = 289, y = y_start_pos - 21,
+            self.action_buttons[x].place(x = 289, y = y_start_pos - 21,
                                     width=50.0, height=43.0)
             y_start_pos = y_start_pos + 65
         for x, user in enumerate(all_users):
-            font_size = get_font_size(user["displayname"], title_buttons[x],
+            font_size = get_font_size(user["displayname"], self.title_buttons[x],
                                        user_title_font, root)
-            title_buttons[x].config(text=f"{user['displayname']}", 
+            self.title_buttons[x].config(text=f"{user['displayname']}", 
                                     command=lambda x=x: setattr(self, "current_user", 
                                     self.log_into_user(x)),
                                     font=("Encode Sans", font_size))
-            action_buttons[x].config(image=assets.userscreen_userprofile, 
+            self.action_buttons[x].config(image=assets.userscreen_userprofile, 
                         command=lambda x=x: setattr(self, "current_user", 
                         self.view_user(x)))
-        for x, title_button in enumerate(title_buttons):
+        for x, title_button in enumerate(self.title_buttons):
             title_button.bind("<Enter>", lambda event, x=x: 
                 assets.image_modify(event, self.canvas,
-                            title_buttons_bg[x], assets.button_long_selected))
+                            self.title_buttons_bg[x], assets.button_long_selected))
             title_button.bind("<Leave>" , lambda event, x=x: 
                 assets.image_modify(event, self.canvas,
-                            title_buttons_bg[x], assets.button_long))
-        for x, action_button in enumerate(action_buttons):
+                            self.title_buttons_bg[x], assets.button_long))
+        for x, action_button in enumerate(self.action_buttons):
             action_button.bind("<Enter>", lambda event, x=x: 
                 assets.image_modify(event, self.canvas,
-                            action_buttons_bg[x], assets.button_square_selected))
+                            self.action_buttons_bg[x], assets.button_square_selected))
             action_button.bind("<Leave>" , lambda event, x=x: 
                 assets.image_modify(event, self.canvas,
-                            action_buttons_bg[x], assets.button_square))
+                            self.action_buttons_bg[x], assets.button_square))
 
     def log_into_user(self, user_position) -> dict:
         screen_variables["main_screen"] = True
@@ -127,6 +125,8 @@ class UserGUI:
         screen_variables["text_screen"] = True
 
     def show_canvas(self) -> None:
+        self.print_banner()
+        self.print_user_buttons(usercount)
         self.canvas.pack()
 
     def hide_canvas(self) -> None:
