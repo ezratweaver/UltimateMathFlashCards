@@ -1,5 +1,5 @@
 from tkinter import Tk, PhotoImage, font
-from os import path, chdir
+from os import path, chdir, listdir
 from sys import argv
 
 exe_dir = path.dirname(path.abspath(argv[0]))
@@ -104,6 +104,15 @@ def get_font_size(text: str, button: object, inputfont: object, root: object) ->
         instance_font.configure(size=font_size)
     return font_size
 
+def grab_all_assets(subfolder: str):
+    dictionary = {}
+    asset_directory = f"assets/{subfolder}"
+    for filename in listdir(asset_directory):
+        if filename.endswith('.png'):
+            file_path = path.join(asset_directory, filename)
+            dictionary[filename[:-4]] = PhotoImage(file=file_path)
+    return dictionary
+
 #BUTTON BACKGROUNDS
 button_long = add_asset(
     "buttons", "button_long")
@@ -137,8 +146,8 @@ textscreen_username_enter_banner = add_asset(
     TEXTSCREEN_FOLDER, "username_enter_banner")
 textscreen_enterbox = add_asset(
     TEXTSCREEN_FOLDER, "enter_box")
-#PROFILE SCREEN ASSETS
-profilescreen_banner = add_asset(
-    PROFILESCREEN_FOLDER, "banner")
-profilescreen_button_banner = add_asset(
-    PROFILESCREEN_FOLDER, "button_banner")
+
+profilescreen = grab_all_assets(PROFILESCREEN_FOLDER)
+
+if __name__ == "__main__":
+    print(profilescreen)
