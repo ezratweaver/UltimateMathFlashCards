@@ -21,17 +21,17 @@ class EnterTextGUI:
         self.canvas.create_image(
             398,
             250,
-            image=assets.textscreen_username_enter_banner
+            image=assets.textscreen["username_enter_banner"]
         )
         self.canvas.create_image(
             400,
             220,
-            image=assets.textscreen_please_enter_name
+            image=assets.textscreen["please_enter_name"]
         )
         self.canvas.create_image(
             400,
             273,
-            image=assets.textscreen_enterbox
+            image=assets.textscreen["enter_box"]
         )
         self.button_bgs["cancel_button"] = self.canvas.create_image(
             275,
@@ -44,7 +44,7 @@ class EnterTextGUI:
             bg="#D9D9D9",
             activebackground="#D9D9D9",
             command=self.cancel_pressed,
-            image=assets.textscreen_cancel,
+            image=assets.textscreen["cancel"],
             anchor="center",
             borderwidth=0,
             highlightthickness=0,
@@ -63,7 +63,7 @@ class EnterTextGUI:
             bg="#D9D9D9",
             activebackground="#D9D9D9",
             command=self.confirm_pressed,
-            image=assets.textscreen_confirm,
+            image=assets.textscreen["confirm"],
             anchor="center",
             borderwidth=0,
             highlightthickness=0,

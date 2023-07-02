@@ -146,16 +146,7 @@ userscreen_useradd = add_asset(
 userscreen_userprofile = add_asset(
     USERSCREEN_FOLDER, "userprofile")
 #ENTER TEXT SCREEN ASSETS
-textscreen_confirm = add_asset(
-    TEXTSCREEN_FOLDER, "confirm")
-textscreen_cancel = add_asset(
-    TEXTSCREEN_FOLDER, "cancel")
-textscreen_please_enter_name = add_asset(
-    TEXTSCREEN_FOLDER, "please_enter_name")
-textscreen_username_enter_banner = add_asset(
-    TEXTSCREEN_FOLDER, "username_enter_banner")
-textscreen_enterbox = add_asset(
-    TEXTSCREEN_FOLDER, "enter_box")
+textscreen = grab_all_assets(TEXTSCREEN_FOLDER)
 
 profilescreen = grab_all_assets(PROFILESCREEN_FOLDER)
 
