@@ -54,7 +54,7 @@ def image_modify(event, canvas,
     event.widget.config(bg=color, activebackground=color)
     canvas.itemconfigure(image_variable, image=new_image)
 
-def add_asset(subfolder, filename):
+def add_asset(subfolder:str, filename:str):
     """
     Load image asset from 'assets/subfolder/filename.png' and return PhotoImage obj.
 
@@ -104,7 +104,17 @@ def get_font_size(text: str, button: object, inputfont: object, root: object) ->
         instance_font.configure(size=font_size)
     return font_size
 
-def grab_all_assets(subfolder: str):
+def grab_all_assets(subfolder: str) -> dict:
+    """
+    Retrieve PNG assets from the specified subfolder.
+
+    Args:
+        subfolder (str): The name of the subfolder within the 'assets' directory.
+
+    Returns:
+        dict: A dictionary mapping asset names (without extension) to PhotoImage objects
+
+    """
     dictionary = {}
     asset_directory = f"assets/{subfolder}"
     for filename in listdir(asset_directory):
