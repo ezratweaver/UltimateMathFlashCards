@@ -57,11 +57,11 @@ class UserGUI:
             self.title_buttons_bg.append(self.canvas.create_image(
                 434,
                 y_start_pos,
-                image=assets.button_long))
+                image=assets.buttons["long"]))
             self.action_buttons_bg.append(self.canvas.create_image(
                 314,
                 y_start_pos,
-                image=assets.button_square))
+                image=assets.buttons["square"]))
             self.title_buttons.append(Button(
                 self.canvas,
                 fg="#000000",
@@ -100,17 +100,18 @@ class UserGUI:
         for x, title_button in enumerate(self.title_buttons):
             title_button.bind("<Enter>", lambda event, x=x: 
                 assets.image_modify(event, self.canvas,
-                            self.title_buttons_bg[x], assets.button_long_selected))
+                            self.title_buttons_bg[x], assets.buttons["long_selected"]))
             title_button.bind("<Leave>" , lambda event, x=x: 
                 assets.image_modify(event, self.canvas,
-                            self.title_buttons_bg[x], assets.button_long))
+                            self.title_buttons_bg[x], assets.buttons["long"]))
         for x, action_button in enumerate(self.action_buttons):
             action_button.bind("<Enter>", lambda event, x=x: 
                 assets.image_modify(event, self.canvas,
-                            self.action_buttons_bg[x], assets.button_square_selected))
+                            self.action_buttons_bg[x], assets.buttons["square_selected"]
+))
             action_button.bind("<Leave>" , lambda event, x=x: 
                 assets.image_modify(event, self.canvas,
-                            self.action_buttons_bg[x], assets.button_square))
+                            self.action_buttons_bg[x], assets.buttons["square"]))
 
     def log_into_user(self, user_position) -> dict:
         screen_variables["main_screen"] = True

@@ -55,7 +55,7 @@ class EnterTextGUI:
         self.button_bgs["confirm_button"] = self.canvas.create_image(
             525,
             273,
-            image=assets.button_square
+            image=assets.buttons["square"]
         )
         self.buttons["confirm_button"] = Button(
             self.canvas,
@@ -74,10 +74,10 @@ class EnterTextGUI:
         for key, button in self.buttons.items():
             button.bind("<Enter>", lambda event, x=key:
                 assets.image_modify(event, self.canvas,
-                self.button_bgs[x], assets.button_square_selected))
+                self.button_bgs[x], assets.buttons["square_selected"]))
             button.bind("<Leave>", lambda event, x=key:
                 assets.image_modify(event, self.canvas,
-                self.button_bgs[x], assets.button_square))
+                self.button_bgs[x], assets.buttons["square"]))
         
         def validate_input(current_input):
             if current_input == "":
