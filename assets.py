@@ -7,6 +7,7 @@ chdir(exe_dir)
 
 WINDOW_COLOR = "#3556FB"
 
+BUTTONS_FOLDER = "buttons"
 USERSCREEN_FOLDER = "userscreen"
 TEXTSCREEN_FOLDER = "textscreen"
 PROFILESCREEN_FOLDER = "profilescreen"
@@ -123,16 +124,6 @@ def grab_all_assets(subfolder: str) -> dict:
             dictionary[filename[:-4]] = PhotoImage(file=file_path)
     return dictionary
 
-#BUTTON BACKGROUNDS
-button_long = add_asset(
-    "buttons", "button_long")
-button_long_selected = add_asset(
-    "buttons", "button_long_selected")
-button_square = add_asset(
-    "buttons", "button_square")
-button_square_selected = add_asset(
-    "buttons", "button_square_selected")
-#USER SCREEN ASSETS
 userscreen_banners = {
     1: PhotoImage(file="assets/userscreen/userlist_1.png"),
     2: PhotoImage(file="assets/userscreen/userlist_2.png"),
@@ -145,9 +136,18 @@ userscreen_useradd = add_asset(
     USERSCREEN_FOLDER, "useradd")
 userscreen_userprofile = add_asset(
     USERSCREEN_FOLDER, "userprofile")
-#ENTER TEXT SCREEN ASSETS
-textscreen = grab_all_assets(TEXTSCREEN_FOLDER)
 
+button_long = add_asset(
+    "buttons", "button_long")
+button_long_selected = add_asset(
+    "buttons", "button_long_selected")
+button_square = add_asset(
+    "buttons", "button_square")
+button_square_selected = add_asset(
+    "buttons", "button_square_selected")
+
+buttons = grab_all_assets(BUTTONS_FOLDER)
+textscreen = grab_all_assets(TEXTSCREEN_FOLDER)
 profilescreen = grab_all_assets(PROFILESCREEN_FOLDER)
 
 if __name__ == "__main__":
