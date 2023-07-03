@@ -138,13 +138,13 @@ userscreen_userprofile = add_asset(
     USERSCREEN_FOLDER, "userprofile")
 
 button_long = add_asset(
-    "buttons", "button_long")
+    "buttons", "long")
 button_long_selected = add_asset(
-    "buttons", "button_long_selected")
+    "buttons", "long_selected")
 button_square = add_asset(
-    "buttons", "button_square")
+    "buttons", "square")
 button_square_selected = add_asset(
-    "buttons", "button_square_selected")
+    "buttons", "square_selected")
 
 buttons = grab_all_assets(BUTTONS_FOLDER)
 textscreen = grab_all_assets(TEXTSCREEN_FOLDER)
