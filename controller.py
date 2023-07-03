@@ -14,9 +14,9 @@ class Controller:
     def screen_variable_check():
         for screen, boolean in screen_variables.items():
             if boolean:
+                screen_variables[screen] = False
                 Controller.hide_viewable_canvas()
                 screens[screen].show_canvas()
-                screen_variables[screen] = False
         root.after(70, Controller.screen_variable_check)
 
 Controller.screen_variable_check()
