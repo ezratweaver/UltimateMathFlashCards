@@ -36,7 +36,7 @@ class EnterTextGUI:
         self.button_bgs["cancel_button"] = self.canvas.create_image(
             275,
             273,
-            image=assets.button_square
+            image=assets.buttons["square"]
         )
         self.buttons["cancel_button"] = Button(
             self.canvas, 
