@@ -15,8 +15,8 @@ class Controller:
         for screen, boolean in screen_variables.items():
             if boolean:
                 screen_variables[screen] = False
-                Controller.hide_viewable_canvas()
                 screens[screen].show_canvas()
-        root.after(70, Controller.screen_variable_check)
+                Controller.hide_viewable_canvas()
+        root.after(1, Controller.screen_variable_check)
 
 Controller.screen_variable_check()
