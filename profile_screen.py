@@ -13,7 +13,7 @@ class ProfileGUI:
 
         self.canvas.create_image(
             400,
-            250,
+            225,
             image=assets.profilescreen["banner"]
         )
 
