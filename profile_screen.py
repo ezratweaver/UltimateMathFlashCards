@@ -13,8 +13,32 @@ class ProfileGUI:
 
         self.canvas.create_image(
             400,
-            225,
+            200,
             image=assets.profilescreen["banner"]
+        )
+
+        self.canvas.create_image(
+            120,
+            430,
+            image=assets.profilescreen["button_banner"]
+        )
+
+        self.canvas.create_image(
+            300,
+            430,
+            image=assets.profilescreen["button_banner"]
+        )
+        
+        self.canvas.create_image(
+            480,
+            430,
+            image=assets.profilescreen["button_banner"]
+        )
+
+        self.canvas.create_image(
+            650,
+            430,
+            image=assets.profilescreen["button_banner"]
         )
 
     def show_canvas(self) -> None:
