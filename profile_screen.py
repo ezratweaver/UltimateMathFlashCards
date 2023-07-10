@@ -18,25 +18,25 @@ class ProfileGUI:
         )
 
         self.canvas.create_image(
-            120,
+            145,
             430,
             image=assets.profilescreen["button_banner"]
         )
 
         self.canvas.create_image(
-            300,
+            315,
             430,
             image=assets.profilescreen["button_banner"]
         )
         
         self.canvas.create_image(
-            480,
+            485,
             430,
             image=assets.profilescreen["button_banner"]
         )
 
         self.canvas.create_image(
-            650,
+            655,
             430,
             image=assets.profilescreen["button_banner"]
         )
