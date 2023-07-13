@@ -1,5 +1,5 @@
 from tkinter import Canvas, Button, Entry, font
-from assets import root, WINDOW_COLOR, get_font_size
+from assets import root, WINDOW_COLOR, get_font_size, bind_buttons
 from user_data import create_user, rename_user
 from controller_variables import screen_variables
 import assets
@@ -71,13 +71,9 @@ class EnterTextGUI:
         )
         self.buttons["confirm_button"].place(x=500, y=252, width=51, height=43)
 
-        for key, button in self.buttons.items():
-            button.bind("<Enter>", lambda event, x=key:
-                assets.image_modify(event, self.canvas,
-                self.button_bgs[x], assets.buttons["square_selected"]))
-            button.bind("<Leave>", lambda event, x=key:
-                assets.image_modify(event, self.canvas,
-                self.button_bgs[x], assets.buttons["square"]))
+        bind_buttons(self.canvas, self.button_bgs, 
+                     self.buttons, assets.buttons["square"], 
+                     assets.buttons["square_selected"])
         
         def validate_input(current_input):
             if current_input == "":
