@@ -1,4 +1,4 @@
-from tkinter import Canvas
+from tkinter import Canvas, Button
 from assets import root, WINDOW_COLOR
 import assets
 
@@ -55,17 +55,69 @@ class ProfileGUI:
             image=assets.buttons["profile_action_button"]
         )
 
-        self.button_bgs["delete_button"] = self.canvas.create_image(
+        self.button_bgs["remove_button"] = self.canvas.create_image(
             485,
             430,
             image=assets.buttons["profile_action_button"]
         )
 
-        self.button_bgs["edit_button"] = self.canvas.create_image(
+        self.button_bgs["rename_button"] = self.canvas.create_image(
             655,
             430,
             image=assets.buttons["profile_action_button"]
         )
+
+        self.buttons["back_button"] = Button(
+            self.canvas, 
+            fg="#000000",
+            bg="#D9D9D9",
+            activebackground="#D9D9D9",
+            image=assets.profilescreen["back"],
+            anchor="center",
+            borderwidth=0,
+            highlightthickness=0,
+            relief="flat"
+        )
+        self.buttons["back_button"].place(x=113, y=416, width=64, height=29)
+
+        self.buttons["history_button"] = Button(
+            self.canvas, 
+            fg="#000000",
+            bg="#D9D9D9",
+            activebackground="#D9D9D9",
+            image=assets.profilescreen["history"],
+            anchor="center",
+            borderwidth=0,
+            highlightthickness=0,
+            relief="flat"
+        )
+        self.buttons["history_button"].place(x=283, y=416, width=64, height=29)
+
+        self.buttons["remove_button"] = Button(
+            self.canvas, 
+            fg="#000000",
+            bg="#D9D9D9",
+            activebackground="#D9D9D9",
+            image=assets.profilescreen["remove"],
+            anchor="center",
+            borderwidth=0,
+            highlightthickness=0,
+            relief="flat"
+        )
+        self.buttons["remove_button"].place(x=453, y=416, width=64, height=29)
+
+        self.buttons["rename_button"] = Button(
+            self.canvas, 
+            fg="#000000",
+            bg="#D9D9D9",
+            activebackground="#D9D9D9",
+            image=assets.profilescreen["rename"],
+            anchor="center",
+            borderwidth=0,
+            highlightthickness=0,
+            relief="flat"
+        )
+        self.buttons["rename_button"].place(x=623, y=416, width=64, height=29)
 
     def show_canvas(self) -> None:
         self.canvas.pack()
