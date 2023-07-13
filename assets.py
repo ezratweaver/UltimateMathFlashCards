@@ -125,12 +125,24 @@ def grab_all_assets(subfolder: str) -> dict:
     return dictionary
 
 def bind_buttons(canvas: Tk, button_bgs: dict, buttons: dict, 
-                    bg_image: PhotoImage, bg_image_selected: PhotoImage):
+                bg_image: PhotoImage, bg_image_selected: PhotoImage) -> None:
     """Binds hover events to buttons on a canvas, modifying their images.
 
     This function assigns event bindings to the buttons on a canvas to dynamically
     modify their background images when the mouse enters or leaves the button area.
     It utilizes the image_modify function to handle the image modifications.
+
+    Description:
+        This function iterates over the buttons dictionary and binds "<Enter>" and 
+        "<Leave>" events to each button. When the mouse enters the button area, the
+        associated image_modify function is called with the event, canvas, button 
+        background image, and the selected background image. This modifies the 
+        appearance of the button to indicate the hover effect. When the mouse leaves the
+        button area, the image_modify function is called again to revert the appearance
+        back to the original state.
+
+    Requires:
+        image_modify()
 
     Args:
         canvas (tkinter.Canvas): The canvas on which the buttons are placed.
@@ -144,15 +156,6 @@ def bind_buttons(canvas: Tk, button_bgs: dict, buttons: dict,
 
     Returns:
         None
-
-    Description:
-        This function iterates over the buttons dictionary and binds "<Enter>" and 
-        "<Leave>" events to each button. When the mouse enters the button area, the
-        associated image_modify function is called with the event, canvas, button 
-        background image, and the selected background image. This modifies the 
-        appearance of the button to indicate the hover effect. When the mouse leaves the
-        button area, the image_modify function is called again to revert the appearance
-        back to the original state.
 
     Example:
         bind_buttons(canvas, button_bgs, buttons, bg_image, bg_image_selected)
