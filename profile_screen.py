@@ -1,5 +1,5 @@
 from tkinter import Canvas, Button
-from assets import root, WINDOW_COLOR
+from assets import root, WINDOW_COLOR, bind_buttons
 import assets
 
 class ProfileGUI:
@@ -118,6 +118,10 @@ class ProfileGUI:
             relief="flat"
         )
         self.buttons["rename_button"].place(x=623, y=416, width=64, height=29)
+
+        bind_buttons(self.canvas, self.button_bgs, 
+                     self.buttons, assets.buttons["profile_action_button"], 
+                     assets.buttons["profile_action_button_selected"])
 
     def show_canvas(self) -> None:
         self.canvas.pack()
