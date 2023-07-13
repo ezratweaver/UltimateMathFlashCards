@@ -5,6 +5,8 @@ import assets
 class ProfileGUI:
 
     def __init__(self) -> None:
+        self.button_bgs = {}
+        self.buttons = {}
         self.canvas = Canvas(
             root, bg=WINDOW_COLOR,
             height=500, width = 800,
@@ -39,6 +41,30 @@ class ProfileGUI:
             655,
             430,
             image=assets.profilescreen["button_banner"]
+        )
+
+        self.button_bgs["back_button"] = self.canvas.create_image(
+            145,
+            430,
+            image=assets.buttons["profile_action_button"]
+        )
+
+        self.button_bgs["history_button"] = self.canvas.create_image(
+            315,
+            430,
+            image=assets.buttons["profile_action_button"]
+        )
+
+        self.button_bgs["delete_button"] = self.canvas.create_image(
+            485,
+            430,
+            image=assets.buttons["profile_action_button"]
+        )
+
+        self.button_bgs["edit_button"] = self.canvas.create_image(
+            655,
+            430,
+            image=assets.buttons["profile_action_button"]
         )
 
     def show_canvas(self) -> None:
