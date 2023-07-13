@@ -124,7 +124,40 @@ def grab_all_assets(subfolder: str) -> dict:
             dictionary[filename[:-4]] = PhotoImage(file=file_path)
     return dictionary
 
-def bind_buttons(canvas, button_bgs, buttons, bg_image, bg_image_selected):
+def bind_buttons(canvas: Tk, button_bgs: dict, buttons: dict, 
+                    bg_image: PhotoImage, bg_image_selected: PhotoImage):
+    """Binds hover events to buttons on a canvas, modifying their images.
+
+    This function assigns event bindings to the buttons on a canvas to dynamically
+    modify their background images when the mouse enters or leaves the button area.
+    It utilizes the image_modify function to handle the image modifications.
+
+    Args:
+        canvas (tkinter.Canvas): The canvas on which the buttons are placed.
+        button_bgs (dict): A dictionary mapping button keys to their respective
+                                background images.
+        buttons (dict): A dictionary mapping button keys to tkinter.Button objects.
+        bg_image (PIL.Image.Image): The background image for the buttons when
+                                        not selected.
+        bg_image_selected (PIL.Image.Image): The background image for the buttons
+                                                when selected.
+
+    Returns:
+        None
+
+    Description:
+        This function iterates over the buttons dictionary and binds "<Enter>" and 
+        "<Leave>" events to each button. When the mouse enters the button area, the
+        associated image_modify function is called with the event, canvas, button 
+        background image, and the selected background image. This modifies the 
+        appearance of the button to indicate the hover effect. When the mouse leaves the
+        button area, the image_modify function is called again to revert the appearance
+        back to the original state.
+
+    Example:
+        bind_buttons(canvas, button_bgs, buttons, bg_image, bg_image_selected)
+
+    """
     for key, button in buttons.items():
             button.bind("<Enter>", lambda event, x=key:
                 image_modify(event, canvas,
