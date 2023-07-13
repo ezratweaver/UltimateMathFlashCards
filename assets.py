@@ -124,6 +124,15 @@ def grab_all_assets(subfolder: str) -> dict:
             dictionary[filename[:-4]] = PhotoImage(file=file_path)
     return dictionary
 
+def bind_buttons(canvas, button_bgs, buttons, bg_image, bg_image_selected):
+    for key, button in buttons.items():
+            button.bind("<Enter>", lambda event, x=key:
+                image_modify(event, canvas,
+                button_bgs[x], bg_image_selected))
+            button.bind("<Leave>", lambda event, x=key:
+                image_modify(event, canvas,
+                button_bgs[x], bg_image))
+
 userscreen_banners = {
     1: PhotoImage(file="assets/userscreen/userlist_1.png"),
     2: PhotoImage(file="assets/userscreen/userlist_2.png"),
