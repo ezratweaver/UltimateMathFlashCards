@@ -1,4 +1,4 @@
-from controller import screens, root
+from utilities.controller import screens, root
 
 if __name__ == "__main__":
     screens["user_screen"].show_canvas()

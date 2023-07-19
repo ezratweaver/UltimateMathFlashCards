@@ -1,7 +1,7 @@
 from tkinter import Canvas, Button, Entry, font
 from assets import root, WINDOW_COLOR, get_font_size, bind_buttons
-from user_data import create_user, rename_user
-from controller_variables import screen_variables
+from userscreen.user_data import create_user, rename_user
+from utilities.controller_variables import screen_variables
 import assets
 
 

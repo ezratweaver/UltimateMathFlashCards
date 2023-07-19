@@ -1,7 +1,7 @@
-from user_screen import UserGUI, root
-from text_screen import EnterTextGUI
-from profile_screen import ProfileGUI
-from controller_variables import screen_variables
+from userscreen.user_screen import UserGUI, root
+from textscreen.text_screen import EnterTextGUI
+from profilescreen.profile_screen import ProfileGUI
+from utilities.controller_variables import screen_variables
 
 screens = {"user_screen" : UserGUI(), "text_screen" : EnterTextGUI(), 
            "profile_screen" : ProfileGUI()}
