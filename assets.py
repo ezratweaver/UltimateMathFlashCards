@@ -27,8 +27,8 @@ def image_modify(event, canvas,
 
     Args:
         event (Event): The event object triggered by the user.
-        canvas (Canvas): The canvas object where the image is displayed.
-        image_variable (int): The variable assigned to the image on the canvas
+        canvas (Canvas): The tk Canvas() object where the image is displayed.
+        image_variable (int): Variable of the image object displaying image
         new_image (PhotoImage): The new image to be displayed.
 
     Returns:
@@ -113,7 +113,8 @@ def grab_all_assets(subfolder: str) -> dict:
         subfolder (str): The name of the subfolder within the 'assets' directory.
 
     Returns:
-        dict: A dictionary mapping asset names (without extension) to PhotoImage objects
+        dict: A dictionary mapping assetfile names (without file extension)
+                to PhotoImage objects
 
     """
     dictionary = {}
