@@ -1,3 +1,6 @@
+import sys
+sys.path.append("..")
+
 from userscreen.user_screen import UserGUI, root
 from textscreen.text_screen import EnterTextGUI
 from profilescreen.profile_screen import ProfileGUI
@@ -8,11 +11,13 @@ screens = {"user_screen" : UserGUI(), "text_screen" : EnterTextGUI(),
 
 class Controller:
 
+    @staticmethod
     def hide_viewable_canvas():
         for _, screen in screens.items():
             if screen.canvas.winfo_viewable():
                 screen.hide_canvas()
 
+    @staticmethod
     def screen_variable_check():
         for screen, boolean in screen_variables.items():
             if boolean:
