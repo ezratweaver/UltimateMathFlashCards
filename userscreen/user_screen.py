@@ -1,3 +1,6 @@
+import sys
+sys.path.append("..")
+
 from tkinter import Canvas, Button, font
 from typing import List
 from userscreen.user_data import get_userlist_banner, check_for_users, MAX_USERS
