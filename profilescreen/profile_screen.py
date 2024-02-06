@@ -1,3 +1,6 @@
+import sys
+sys.path.append("..")
+
 from tkinter import Canvas, Button
 from assets import root, WINDOW_COLOR, bind_buttons
 import assets
