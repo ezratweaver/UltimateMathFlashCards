@@ -102,19 +102,19 @@ class UserGUI:
                         self.view_user(x)))
         for x, title_button in enumerate(self.title_buttons):
             title_button.bind("<Enter>", lambda event, x=x: 
-                assets.image_modify(event, self.canvas,
-                            self.title_buttons_bg[x], assets.buttons["long_selected"]))
+                assets.button_event_map(event, self.canvas,
+                                        self.title_buttons_bg[x], assets.buttons["long_selected"]))
             title_button.bind("<Leave>" , lambda event, x=x: 
-                assets.image_modify(event, self.canvas,
-                            self.title_buttons_bg[x], assets.buttons["long"]))
+                assets.button_event_map(event, self.canvas,
+                                        self.title_buttons_bg[x], assets.buttons["long"]))
         for x, action_button in enumerate(self.action_buttons):
             action_button.bind("<Enter>", lambda event, x=x: 
-                assets.image_modify(event, self.canvas,
-                            self.action_buttons_bg[x], assets.buttons["square_selected"]
-))
+                assets.button_event_map(event, self.canvas,
+                                        self.action_buttons_bg[x], assets.buttons["square_selected"]
+                                        ))
             action_button.bind("<Leave>" , lambda event, x=x: 
-                assets.image_modify(event, self.canvas,
-                            self.action_buttons_bg[x], assets.buttons["square"]))
+                assets.button_event_map(event, self.canvas,
+                                        self.action_buttons_bg[x], assets.buttons["square"]))
 
     def log_into_user(self, user_position) -> dict:
         screen_variables["main_screen"] = True

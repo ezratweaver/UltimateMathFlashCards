@@ -1,5 +1,5 @@
 from tkinter import Canvas, Button, Entry, font
-from assets import root, WINDOW_COLOR, get_font_size, bind_buttons
+from assets import root, WINDOW_COLOR, get_font_size, bind_hover_animation
 from userscreen.user_data import create_user, rename_user
 from utilities.controller_variables import screen_variables
 import assets
@@ -71,9 +71,9 @@ class EnterTextGUI:
         )
         self.buttons["confirm_button"].place(x=500, y=252, width=51, height=43)
 
-        bind_buttons(self.canvas, self.button_bgs, 
-                     self.buttons, assets.buttons["square"], 
-                     assets.buttons["square_selected"])
+        bind_hover_animation(self.canvas, self.button_bgs,
+                             self.buttons, assets.buttons["square"],
+                             assets.buttons["square_selected"])
         
         def validate_input(current_input):
             if current_input == "":

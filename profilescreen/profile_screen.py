@@ -2,7 +2,7 @@ import sys
 sys.path.append("..")
 
 from tkinter import Canvas, Button
-from assets import root, WINDOW_COLOR, bind_buttons
+from assets import root, WINDOW_COLOR, bind_hover_animation
 import assets
 
 class ProfileGUI:
@@ -122,9 +122,9 @@ class ProfileGUI:
         )
         self.buttons["rename_button"].place(x=623, y=416, width=64, height=29)
 
-        bind_buttons(self.canvas, self.button_bgs, 
-                     self.buttons, assets.buttons["profile_action_button"], 
-                     assets.buttons["profile_action_button_selected"])
+        bind_hover_animation(self.canvas, self.button_bgs,
+                             self.buttons, assets.buttons["profile_action_button"],
+                             assets.buttons["profile_action_button_selected"])
 
     def show_canvas(self) -> None:
         self.canvas.pack()
