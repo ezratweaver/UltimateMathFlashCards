@@ -1,4 +1,4 @@
-from os import listdir, path, getenv, mkdir, remove
+from os import listdir, path, getenv, mkdir, remove # TODO: Move to just 'import ...' instead of 'from ... import ...'
 from platform import system
 from typing import List
 from json import loads, dump, JSONDecodeError, dumps
@@ -14,9 +14,9 @@ ENCRYPTION_STATE = False
 
 
 if system() == "Windows": 
-    userdata_path = path.join(getenv('APPDATA'), USERDATA_FOLDER_NAME)
+    USERDATA_PATH = path.join(getenv('APPDATA'), USERDATA_FOLDER_NAME)
 if system() == "Linux":
-    userdata_path = path.join(path.expanduser("~"), USERDATA_FOLDER_NAME)
+    USERDATA_PATH = path.join(path.expanduser("~"), USERDATA_FOLDER_NAME)
 
 
 class TamperError(Exception):
@@ -43,16 +43,16 @@ def check_for_users(encryption=ENCRYPTION_STATE) -> List[dict]:
         List[Dict]: List of dictionaries representing the JSON files found
 
     Raises:
-        EncryptionError: if encryption state does not match encryption of user files
+        EncryptionError: if encryption bool does not match the state of encryption of json files
         TamperError: if files have been tampered or are syntaxically incorrect
         ValueError: if user count is greater then MAX_USERS constant
 
     """ 
     all_users = []
     try:
-        for file in listdir(userdata_path):
+        for file in listdir(USERDATA_PATH):
             if file.endswith(".json"):
-                file_path = path.join(userdata_path, file)
+                file_path = path.join(USERDATA_PATH, file)
                 with open(file_path) as file:
                     file = file.read()
                     if file == "":
@@ -85,13 +85,13 @@ def check_for_users(encryption=ENCRYPTION_STATE) -> List[dict]:
                                 dictionary = loads(file)
                             except JSONDecodeError:
                                 raise TamperError(f"JSON file {file_path} "
-                                "has been tampered or are sytaxically incorrect")
+                                "has been tampered or is sytaxically incorrect")
                     if check_dictionary(dictionary) is False:
                         raise TamperError(f"JSON file {file_path} "
                                             "has been tampered")
                     all_users.append(dictionary)
     except FileNotFoundError:
-        mkdir(userdata_path)
+        mkdir(USERDATA_PATH)
         return all_users
     if len(all_users) > MAX_USERS:
         raise ValueError(f"Total users: {len(all_users)} exceeds maximum allowed "
@@ -251,7 +251,7 @@ def mk_json_directory_string(id: int) -> str:
         str: The JSON file directory path.
 
     """
-    return path.join(userdata_path, f"{int(id)}.json")
+    return path.join(USERDATA_PATH, f"{int(id)}.json")
 
 
 def rename_user(user_dictionary: dict, displayname: str) -> dict:
