@@ -18,15 +18,18 @@ if system() == "Windows":
 if system() == "Linux":
     userdata_path = path.join(path.expanduser("~"), USERDATA_FOLDER_NAME)
 
+
 class TamperError(Exception):
 
     def __init__(self, *args: object) -> None:
         super().__init__(*args)
 
+
 class EncryptionError(Exception):
 
     def __init__(self, *args: object) -> None:
         super().__init__(*args)
+
 
 def check_for_users(encryption=ENCRYPTION_STATE) -> List[dict]:
     """
@@ -95,6 +98,7 @@ def check_for_users(encryption=ENCRYPTION_STATE) -> List[dict]:
                          f"users: {MAX_USERS}")
     return sorted(all_users, key=lambda x: int(x['id']))
 
+
 def dump_user(user_dictionary: dict, encryption=ENCRYPTION_STATE) -> bool:
     """
     Dumps the user dictionary to a JSON file.
@@ -131,6 +135,7 @@ def dump_user(user_dictionary: dict, encryption=ENCRYPTION_STATE) -> bool:
             dump(user_dictionary, file, indent=4)
         return True
 
+
 def create_user(displayname: str, encryption=ENCRYPTION_STATE) -> bool:
     """
     Creates a new user with the provided display name.
@@ -161,6 +166,7 @@ def create_user(displayname: str, encryption=ENCRYPTION_STATE) -> bool:
             dump(user_template, file, indent=4)
         return True
 
+
 def remove_user(user_dictionary: dict) -> bool:
     """
     Remove user from the system.
@@ -180,6 +186,7 @@ def remove_user(user_dictionary: dict) -> bool:
         return True
     return False
 
+
 def get_user_count() -> int:
     """
     Returns the count of users by retrieving the length of the list of users.
@@ -192,6 +199,7 @@ def get_user_count() -> int:
 
     """
     return len(check_for_users())
+
 
 def get_userlist_banner(usercount, banner_dictionary) -> object:
     """
@@ -212,6 +220,7 @@ def get_userlist_banner(usercount, banner_dictionary) -> object:
     else:
         return banner_dictionary.get(usercount + 1)
 
+
 def get_highest_id() -> int:
     """
     Retrieves the highest ID among the users.
@@ -230,6 +239,7 @@ def get_highest_id() -> int:
     except IndexError:
         return 0
 
+
 def mk_json_directory_string(id: int) -> str:
     """
     Creates the JSON file directory path for a given ID.
@@ -242,6 +252,7 @@ def mk_json_directory_string(id: int) -> str:
 
     """
     return path.join(userdata_path, f"{int(id)}.json")
+
 
 def rename_user(user_dictionary: dict, displayname: str) -> dict:
     """
@@ -262,6 +273,7 @@ def rename_user(user_dictionary: dict, displayname: str) -> dict:
     user_dictionary["displayname"] = displayname
     return user_dictionary
 
+
 def check_dictionary(dictionary: dict) -> bool:
     """
     Check if all keys from USERDATA_TEMPLATE are present in the given dictionary.
@@ -276,6 +288,7 @@ def check_dictionary(dictionary: dict) -> bool:
         if key not in dictionary:
             return False
     return True
+
 
 def check_username(displayname: str):
     """
@@ -294,6 +307,7 @@ def check_username(displayname: str):
     if len(displayname) > 14:
         raise ValueError("Expected length of display name to be <= 14, "
                         f"actual name length: {len(displayname)}")
+
 
 if __name__ == "__main__":
     print(check_for_users())
