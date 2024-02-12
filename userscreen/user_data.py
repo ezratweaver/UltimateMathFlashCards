@@ -1,4 +1,4 @@
-from os import listdir, path, getenv, mkdir, remove # TODO: Move to just 'import ...' instead of 'from ... import ...'
+import os
 from platform import system
 from typing import List
 from json import loads, dump, JSONDecodeError, dumps
@@ -14,9 +14,11 @@ ENCRYPTION_STATE = False
 
 
 if system() == "Windows": 
-    USERDATA_PATH = path.join(getenv('APPDATA'), USERDATA_FOLDER_NAME)
-if system() == "Linux":
-    USERDATA_PATH = path.join(path.expanduser("~"), USERDATA_FOLDER_NAME)
+    USERDATA_PATH = os.path.join(os.getenv('APPDATA'), USERDATA_FOLDER_NAME)
+elif system() == "Linux":
+    USERDATA_PATH = os.path.join(os.path.expanduser("~"), USERDATA_FOLDER_NAME)
+else:
+    USERDATA_PATH = "./"
 
 
 class TamperError(Exception):
@@ -50,9 +52,9 @@ def check_for_users(encryption=ENCRYPTION_STATE) -> List[dict]:
     """ 
     all_users = []
     try:
-        for file in listdir(USERDATA_PATH):
+        for file in os.listdir(USERDATA_PATH):
             if file.endswith(".json"):
-                file_path = path.join(USERDATA_PATH, file)
+                file_path = os.path.join(USERDATA_PATH, file)
                 with open(file_path) as file:
                     file = file.read()
                     if file == "":
@@ -91,7 +93,7 @@ def check_for_users(encryption=ENCRYPTION_STATE) -> List[dict]:
                                             "has been tampered")
                     all_users.append(dictionary)
     except FileNotFoundError:
-        mkdir(USERDATA_PATH)
+        os.mkdir(USERDATA_PATH)
         return all_users
     if len(all_users) > MAX_USERS:
         raise ValueError(f"Total users: {len(all_users)} exceeds maximum allowed "
@@ -181,8 +183,8 @@ def remove_user(user_dictionary: dict) -> bool:
         mk_json_directory_string: To create a directory of the user file.
     """
     file = mk_json_directory_string(user_dictionary["id"])
-    if path.exists(file):
-        remove(file)
+    if os.path.exists(file):
+        os.remove(file)
         return True
     return False
 
@@ -251,7 +253,7 @@ def mk_json_directory_string(id: int) -> str:
         str: The JSON file directory path.
 
     """
-    return path.join(USERDATA_PATH, f"{int(id)}.json")
+    return os.path.join(USERDATA_PATH, f"{int(id)}.json")
 
 
 def rename_user(user_dictionary: dict, displayname: str) -> dict:
