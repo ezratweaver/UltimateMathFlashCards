@@ -40,7 +40,7 @@ class UserGUI:
             image=get_userlist_banner(usercount, userscreen_banners)
         )
 
-    def print_user_buttons(self, usercount: int) -> List[object]:
+    def print_user_buttons(self, usercount: int):
         """
         Create and configure user buttons in the graphical user interface.
 
@@ -54,8 +54,9 @@ class UserGUI:
         self.title_buttons_bg = []
         self.action_buttons = []
         self.action_buttons_bg = []
-        if usercount >= MAX_USERS: #Add an extra button if MAX_USERS has not been
+        if usercount >= MAX_USERS:  # Add an extra button if MAX_USERS has not been
             usercount = MAX_USERS - 1                     #reached, otherwise dont.
+
         for x in range(usercount + 1):
             self.title_buttons_bg.append(self.canvas.create_image(
                 434,
@@ -90,6 +91,7 @@ class UserGUI:
             self.action_buttons[x].place(x = 289, y = y_start_pos - 21,
                                     width=50.0, height=43.0)
             y_start_pos = y_start_pos + 65
+
         for x, user in enumerate(self.all_users):
             font_size = get_font_size(user["displayname"], self.title_buttons[x],
                                        user_title_font, root)
@@ -100,6 +102,7 @@ class UserGUI:
             self.action_buttons[x].config(image=assets.userscreen_userprofile, 
                         command=lambda x=x: setattr(self, "current_user", 
                         self.view_user(x)))
+
         for x, title_button in enumerate(self.title_buttons):
             title_button.bind("<Enter>", lambda event, x=x: 
                 assets.button_event_map(event, self.canvas,
@@ -107,6 +110,7 @@ class UserGUI:
             title_button.bind("<Leave>" , lambda event, x=x: 
                 assets.button_event_map(event, self.canvas,
                                         self.title_buttons_bg[x], assets.buttons["long"]))
+
         for x, action_button in enumerate(self.action_buttons):
             action_button.bind("<Enter>", lambda event, x=x: 
                 assets.button_event_map(event, self.canvas,
@@ -116,11 +120,11 @@ class UserGUI:
                 assets.button_event_map(event, self.canvas,
                                         self.action_buttons_bg[x], assets.buttons["square"]))
 
-    def log_into_user(self, user_position) -> dict:
+    def log_into_user(self, user_position: int) -> dict:
         screen_variables["main_screen"] = True
         return self.all_users[user_position]
     
-    def view_user(self, user_position) -> dict:
+    def view_user(self, user_position: int) -> dict:
         screen_variables["profile_screen"] = True
         return self.all_users[user_position]
     
@@ -140,8 +144,10 @@ class UserGUI:
         [x.destroy() for x in self.title_buttons]
         self.canvas.pack_forget()
 
+
 if __name__ == "__main__":
     userscreen = UserGUI()
     userscreen.show_canvas()
     root.title("Userscreen")
     root.mainloop()
+
