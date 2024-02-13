@@ -3,7 +3,9 @@ sys.path.append("..")
 
 from tkinter import Canvas, Button
 from assets import root, WINDOW_COLOR, bind_hover_animation
+from utilities.controller_variables import screen_variables
 import assets
+
 
 class ProfileGUI:
 
@@ -75,6 +77,7 @@ class ProfileGUI:
             fg="#000000",
             bg="#D9D9D9",
             activebackground="#D9D9D9",
+            command=self.back_button_pressed,
             image=assets.profilescreen["back"],
             anchor="center",
             borderwidth=0,
@@ -125,6 +128,9 @@ class ProfileGUI:
         bind_hover_animation(self.canvas, self.button_bgs,
                              self.buttons, assets.buttons["profile_action_button"],
                              assets.buttons["profile_action_button_selected"])
+
+    def back_button_pressed(self):
+        screen_variables["user_screen"] = True
 
     def show_canvas(self) -> None:
         self.canvas.pack()
