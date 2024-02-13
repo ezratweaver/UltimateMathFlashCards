@@ -1,7 +1,7 @@
 import os
-from platform import system
+import platform
+import json
 from typing import List
-from json import loads, dump, JSONDecodeError, dumps
 from cryptography.fernet import InvalidToken
 from utilities.encryption import fernet_instance
 
@@ -13,9 +13,9 @@ USERDATA_FOLDER_NAME = ".ultimate-mfc"
 ENCRYPTION_STATE = False
 
 
-if system() == "Windows": 
+if platform.system() == "Windows": 
     USERDATA_PATH = os.path.join(os.getenv('APPDATA'), USERDATA_FOLDER_NAME)
-elif system() == "Linux":
+elif platform.system() == "Linux":
     USERDATA_PATH = os.path.join(os.path.expanduser("~"), USERDATA_FOLDER_NAME)
 else:
     USERDATA_PATH = "./"
@@ -64,16 +64,16 @@ def check_for_users(encryption=ENCRYPTION_STATE) -> List[dict]:
                             file = fernet_instance.decrypt(file.encode())
                         except InvalidToken:
                             try:
-                                dictionary = loads(file)
-                            except JSONDecodeError:
+                                dictionary = json.loads(file)
+                            except json.JSONDecodeError:
                                 raise TamperError(
                                     f"{file_path} is has been tampered")
                             raise EncryptionError(f"userfile {file_path} is decrypted; "
                         f"\n                 ENCRYPTION_STATE = {ENCRYPTION_STATE}; "
                         "Expected: ENCRYPTION_STATE = False")
                         try:
-                            dictionary = loads(file)
-                        except JSONDecodeError:
+                            dictionary = json.loads(file)
+                        except json.JSONDecodeError:
                                 raise TamperError(f"JSON file {file_path} "
                                 "has been tampered or are sytaxically incorrect")
                     if encryption is False:
@@ -84,8 +84,8 @@ def check_for_users(encryption=ENCRYPTION_STATE) -> List[dict]:
                         "Expected: ENCRYPTION_STATE = True")
                         except InvalidToken:
                             try:
-                                dictionary = loads(file)
-                            except JSONDecodeError:
+                                dictionary = json.loads(file)
+                            except json.JSONDecodeError:
                                 raise TamperError(f"JSON file {file_path} "
                                 "has been tampered or is sytaxically incorrect")
                     if check_dictionary(dictionary) is False:
@@ -130,11 +130,11 @@ def dump_user(user_dictionary: dict, encryption=ENCRYPTION_STATE) -> bool:
     dir = mk_json_directory_string(user_dictionary["id"])
     with open(dir, "w") as file:
         if encryption:
-            user_json = dumps(user_dictionary)
+            user_json = json.dumps(user_dictionary)
             encrypted_data = fernet_instance.encrypt(user_json.encode()).decode()
             file.write(encrypted_data)
         else:
-            dump(user_dictionary, file, indent=4)
+            json.dump(user_dictionary, file, indent=4)
         return True
 
 
@@ -161,11 +161,11 @@ def create_user(displayname: str, encryption=ENCRYPTION_STATE) -> bool:
     user_template["displayname"] = displayname
     with open(mk_json_directory_string(new_id), "w") as file:
         if encryption:
-            user_json = dumps(user_template)
+            user_json = json.dumps(user_template)
             encrypted_data = fernet_instance.encrypt(user_json.encode()).decode()
             file.write(encrypted_data)
         else:
-            dump(user_template, file, indent=4)
+            json.dump(user_template, file, indent=4)
         return True
 
 
@@ -313,3 +313,4 @@ def check_username(displayname: str):
 
 if __name__ == "__main__":
     print(check_for_users())
+
