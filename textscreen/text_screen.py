@@ -78,15 +78,15 @@ class EnterTextGUI:
         def validate_input(current_input):
             if current_input == "":
                 return True
-            if len(current_input) > 12:
+            if len(current_input) > 12:  # TODO: This should be a constant
                 text_entry_font.configure(size=16)
             else:
                 text_entry_font.configure(size=20)
-            return len(current_input) <= 14
+            return len(current_input) <= 14 # TODO: This should also probably be a constant
         
         validate_cmd = root.register(validate_input)
 
-        def enter_pressed(event):
+        def enter_pressed(_):
             self.confirm_pressed()
 
         self.text_entry = Entry(
@@ -105,6 +105,8 @@ class EnterTextGUI:
         self.text_entry.focus_set()
 
     def confirm_pressed(self):
+        # TODO: Modulate this function to work for other actions that
+        # Involve this screen
         text_entry_input = self.text_entry.get()
         create_user(text_entry_input)
         screen_variables["user_screen"] = True
