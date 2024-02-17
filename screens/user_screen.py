@@ -3,8 +3,9 @@ from tkinter import Canvas, Button, font
 from typing import List
 
 sys.path.append("../utilities")
-from user_data import get_userlist_banner, check_for_users, MAX_USERS
 sys.path.append("../assets")
+
+from user_data import get_userlist_banner, check_for_users, MAX_USERS
 from assets import root, WINDOW_COLOR, userscreen_banners, get_font_size
 import assets
 
@@ -20,7 +21,7 @@ USER_BUTTON_DIMENSIONS = (43, 160)
 
 user_title_font = font.Font(family="Encode Sans", size=20)
 
-class UserGUI:
+class UserScreen:
 
     def __init__(self) -> None:
         self.canvas = Canvas(
@@ -47,7 +48,9 @@ class UserGUI:
             usercount: An integer representing the number of users for whom buttons 
                         need to be created.
         """
-        y_start_pos = START_POSITIONS.get(usercount) self.title_buttons = [] self.title_buttons_bg = []
+        y_start_pos = START_POSITIONS.get(usercount)
+        self.title_buttons = []
+        self.title_buttons_bg = []
         self.action_buttons = []
         self.action_buttons_bg = []
         if usercount >= MAX_USERS:  # Add an extra button if MAX_USERS has not been
@@ -140,7 +143,7 @@ class UserGUI:
 
 
 if __name__ == "__main__":
-    userscreen = UserGUI()
+    userscreen = UserScreen()
     userscreen.show_canvas()
     root.title("Userscreen")
     root.mainloop()
