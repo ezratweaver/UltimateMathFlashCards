@@ -8,6 +8,7 @@ import screens.text_screen
 import screens.profile_screen
 import memory
 import assets
+import user_data
 
 screen_objects = { "user_screen" : screens.user_screen.UserScreen(), "text_screen" : screens.text_screen.TextScreen(),
                   "profile_screen" : screens.profile_screen.ProfileScreen() }
@@ -17,17 +18,25 @@ def hide_viewable_canvas():
     for _, screen in screen_objects.items():
         if screen.canvas.winfo_viewable():
             screen.hide_canvas()
+# SHOW SCREENS FUNCTIONS 
 
- 
 def show_userscreen():
     hide_viewable_canvas()
     screen_objects["user_screen"].show_canvas()
+    user_screen_init()
 
 
 def show_profile_screen():
     hide_viewable_canvas()
     screen_objects["profile_screen"].show_canvas()
 
+
+def show_text_screen():
+    hide_viewable_canvas()
+    screen_objects["text_screen"].show_canvas()
+    text_screen_init()
+
+# USER_SCREEN FUNCTIONS
 
 def title_button_pressed(position):
     memory.current_user = position
@@ -39,6 +48,12 @@ def action_button_pressed(position):
     show_profile_screen()
 
 
+def empty_action_button_pressed():
+    show_text_screen()
+    screen_objects["text_screen"].buttons["confirm_button"].config(command=create_user_action)
+    screen_objects["text_screen"].text_entry.bind("<Return>", create_user_action)
+
+
 def user_screen_init():
     action_buttons = screen_objects["user_screen"].action_buttons
     title_buttons = screen_objects["user_screen"].title_buttons
@@ -47,5 +62,33 @@ def user_screen_init():
         if title_buttons[x].cget("text") != "":
             title_buttons[x].config(command=lambda x=x: title_button_pressed(x)) 
             action_buttons[x].config(command=lambda x=x: action_button_pressed(x))
+        else:
+            action_buttons[x].config(command=empty_action_button_pressed)
+
+# TEXT_SCREEN FUNCTIONS
+
+def create_user_action(_):
+    entry_data = screen_objects["text_screen"].text_entry.get()
+    user_data.create_user(entry_data)
+    show_userscreen()
+    
+
+def rename_user_action(_):
+    entry_data = screen_objects["text_screen"].text_entry.get()
+    current_user = memory.all_users[memory.current_user] 
+    new_user_dict = user_data.rename_user(current_user, entry_data)
+    user_data.dump_user(new_user_dict)
+    show_profile_screen()
 
 
+def cancel_button_pressed():
+    show_userscreen()
+
+
+def text_screen_init():
+    screen_objects["text_screen"].buttons["cancel_button"].config(command=cancel_button_pressed)
+
+# PROFILE_SCREEN FUNCTIONS
+
+def profile_screen_init():
+    pass
