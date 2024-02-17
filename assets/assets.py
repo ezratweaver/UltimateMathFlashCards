@@ -2,8 +2,8 @@ import os
 from sys import argv
 from tkinter import Tk, PhotoImage, font
 
-# exe_dir = os.path.dirname(os.path.abspath(argv[0]))
-# os.chdir(exe_dir)
+exe_dir = os.path.dirname(os.path.abspath(argv[0]))
+os.chdir(exe_dir)
 
 if os.path.basename(os.getcwd()) == "screens":
     os.chdir("../assets")
@@ -73,7 +73,7 @@ def add_image(subfolder: str, filename: str):
         PhotoImage: Loaded image asset as a PhotoImage object.
 
     """
-    return PhotoImage(file=f"images/{subfolder}/{filename}.png")
+    return PhotoImage(file=f"assets/images/{subfolder}/{filename}.png")
 
 
 def get_font_size(text: str, button: object, inputfont: object, root: object) -> int:
@@ -126,7 +126,7 @@ def grab_all_images(subfolder: str) -> dict:
 
     """
     dictionary = {}
-    asset_directory = f"images/{subfolder}"
+    asset_directory = f"assets/images/{subfolder}"
     for filename in os.listdir(asset_directory):
         if filename.endswith('.png'):
             file_path = os.path.join(asset_directory, filename)
@@ -181,12 +181,12 @@ def bind_hover_animation(canvas: Tk, button_bgs: dict, buttons: dict,
 
 
 userscreen_banners = {
-    1: PhotoImage(file="images/user_screen/userlist_1.png"),
-    2: PhotoImage(file="images/user_screen/userlist_2.png"),
-    3: PhotoImage(file="images/user_screen/userlist_3.png"),
-    4: PhotoImage(file="images/user_screen/userlist_4.png"),
-    5: PhotoImage(file="images/user_screen/userlist_5.png"),
-    6: PhotoImage(file="images/user_screen/userlist_6.png"),
+    1: PhotoImage(file="assets/images/user_screen/userlist_1.png"),
+    2: PhotoImage(file="assets/images/user_screen/userlist_2.png"),
+    3: PhotoImage(file="assets/images/user_screen/userlist_3.png"),
+    4: PhotoImage(file="assets/images/user_screen/userlist_4.png"),
+    5: PhotoImage(file="assets/images/user_screen/userlist_5.png"),
+    6: PhotoImage(file="assets/images/user_screen/userlist_6.png"),
 }
 userscreen_useradd = add_image(
     USERSCREEN_FOLDER, "useradd")
