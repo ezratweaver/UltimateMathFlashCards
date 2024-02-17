@@ -2,15 +2,15 @@ import sys
 from tkinter import Canvas, Button, Entry, font
 
 sys.path.append("../utilities")
-from user_data import create_user, rename_user
-
 sys.path.append("../assets")
+
+from user_data import create_user, rename_user
 from assets import root, WINDOW_COLOR, get_font_size, bind_hover_animation
 import assets
 
 text_entry_font = font.Font(family="Encode Sans", size=20)
 
-class EnterTextGUI:
+class TextScreen:
 
     def __init__(self) -> None:
         self.button_bgs = {}
@@ -127,6 +127,6 @@ class EnterTextGUI:
 
 
 if __name__ == "__main__":
-    text = EnterTextGUI()
+    text = TextScreen()
     text.show_canvas()
     root.mainloop()
