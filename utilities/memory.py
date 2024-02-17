@@ -1,4 +1,4 @@
-all_users = None
+all_users = []
 
-current_user = None
+current_user = []
 
