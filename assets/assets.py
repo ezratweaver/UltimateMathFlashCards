@@ -6,7 +6,7 @@ exe_dir = os.path.dirname(os.path.abspath(argv[0]))
 os.chdir(exe_dir)
 
 if os.path.basename(os.getcwd()) == "screens":
-    os.chdir("../assets")
+    os.chdir("..")
 
 WINDOW_COLOR = "#3556FB"
 
