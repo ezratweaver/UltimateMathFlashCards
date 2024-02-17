@@ -46,7 +46,6 @@ class TextScreen:
             fg="#000000",
             bg="#D9D9D9",
             activebackground="#D9D9D9",
-            command=self.cancel_pressed,
             image=assets.textscreen["cancel"],
             anchor="center",
             borderwidth=0,
@@ -65,7 +64,6 @@ class TextScreen:
             fg="#000000",
             bg="#D9D9D9",
             activebackground="#D9D9D9",
-            command=self.confirm_pressed,
             image=assets.textscreen["confirm"],
             anchor="center",
             borderwidth=0,
@@ -89,9 +87,6 @@ class TextScreen:
         
         validate_cmd = root.register(validate_input)
 
-        def enter_pressed(_):
-            self.confirm_pressed()
-
         self.text_entry = Entry(
             self.canvas,
             bd=0,
@@ -104,18 +99,7 @@ class TextScreen:
             validatecommand=(validate_cmd, "%P"),
         )
         self.text_entry.place(x=313.0, y=251.0, width=176.0, height=44.0)
-        self.text_entry.bind("<Return>", enter_pressed)
         self.text_entry.focus_set()
-
-    def confirm_pressed(self):
-        pass
-        # TODO: Modulate this function to work for other actions that
-        # Involve this screen
-        # text_entry_input = self.text_entry.get()
-        # create_user(text_entry_input)
-
-    def cancel_pressed(self):
-        pass
 
     def show_canvas(self) -> None:
         self.canvas.pack()
