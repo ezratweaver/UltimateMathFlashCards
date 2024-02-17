@@ -2,11 +2,12 @@ import sys
 from tkinter import Canvas, Button
 
 sys.path.append("../assets")
+
 from assets import root, WINDOW_COLOR, bind_hover_animation
 import assets
 
 
-class ProfileGUI:
+class ProfileScreen:
 
     def __init__(self) -> None:
         self.button_bgs = {}
@@ -139,6 +140,6 @@ class ProfileGUI:
 
 
 if __name__ == "__main__":
-    p = ProfileGUI()
+    p = ProfileScreen()
     p.show_canvas()
     root.mainloop()
