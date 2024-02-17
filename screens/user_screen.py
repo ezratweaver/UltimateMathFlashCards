@@ -8,6 +8,7 @@ sys.path.append("../assets")
 from user_data import get_userlist_banner, check_for_users, MAX_USERS
 from assets import root, WINDOW_COLOR, userscreen_banners, get_font_size
 import assets
+import memory
 
 
 START_POSITIONS = {
@@ -30,7 +31,7 @@ class UserScreen:
             bd=0, highlightthickness=0,
             relief="ridge")
         
-        self.all_users = check_for_users()
+        memory.all_users = check_for_users()
 
     def print_banner(self, usercount) -> None:
         self.userlist_banner = self.canvas.create_image(
@@ -81,7 +82,6 @@ class UserScreen:
                 fg="#000000",
                 bg="#D9D9D9",
                 activebackground="#D9D9D9",
-                command=self.create_user,
                 image=assets.userscreen_useradd,
                 anchor="center",
                 borderwidth=0,
@@ -91,17 +91,12 @@ class UserScreen:
                                     width=50.0, height=43.0)
             y_start_pos = y_start_pos + 65
 
-        for x, user in enumerate(self.all_users):
+        for x, user in enumerate(memory.all_users):
             font_size = get_font_size(user["displayname"], self.title_buttons[x],
                                        user_title_font, root)
             self.title_buttons[x].config(text=f"{user['displayname']}", 
-                                    command=lambda x=x: setattr(self, "current_user", 
-                                    self.log_into_user(x)),
                                     font=("Encode Sans", font_size))
-            self.action_buttons[x].config(image=assets.userscreen_userprofile, 
-                        command=lambda x=x: setattr(self, "current_user", 
-                        self.view_user(x)))
-
+            self.action_buttons[x].config(image=assets.userscreen_userprofile)
         for x, title_button in enumerate(self.title_buttons):
             title_button.bind("<Enter>", lambda event, x=x: 
                 assets.button_event_map(event, self.canvas,
@@ -129,8 +124,8 @@ class UserScreen:
         pass
 
     def show_canvas(self) -> None:
-        self.all_users = check_for_users()
-        usercount = len(self.all_users)
+        memory.all_users = check_for_users()
+        usercount = len(memory.all_users)
         self.print_banner(usercount)
         self.print_user_buttons(usercount)
         self.canvas.pack()
