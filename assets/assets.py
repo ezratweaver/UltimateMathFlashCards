@@ -2,8 +2,11 @@ import os
 from sys import argv
 from tkinter import Tk, PhotoImage, font
 
-exe_dir = os.path.dirname(os.path.abspath(argv[0]))
-os.chdir(exe_dir)
+# exe_dir = os.path.dirname(os.path.abspath(argv[0]))
+# os.chdir(exe_dir)
+
+if os.path.basename(os.getcwd()) == "screens":
+    os.chdir("../assets")
 
 WINDOW_COLOR = "#3556FB"
 
