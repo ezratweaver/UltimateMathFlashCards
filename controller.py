@@ -18,6 +18,7 @@ def hide_viewable_canvas():
     for _, screen in screen_objects.items():
         if screen.canvas.winfo_viewable():
             screen.hide_canvas()
+
 # SHOW SCREENS FUNCTIONS 
 
 def show_userscreen():
@@ -29,12 +30,12 @@ def show_userscreen():
 def show_profile_screen():
     hide_viewable_canvas()
     screen_objects["profile_screen"].show_canvas()
+    profile_screen_init()
 
 
 def show_text_screen():
     hide_viewable_canvas()
     screen_objects["text_screen"].show_canvas()
-    text_screen_init()
 
 # USER_SCREEN FUNCTIONS
 
@@ -51,6 +52,7 @@ def action_button_pressed(position):
 def empty_action_button_pressed():
     show_text_screen()
     screen_objects["text_screen"].buttons["confirm_button"].config(command=create_user_action)
+    screen_objects["text_screen"].buttons["cancel_button"].config(command=show_userscreen)
     screen_objects["text_screen"].text_entry.bind("<Return>", create_user_action)
 
 
@@ -67,13 +69,13 @@ def user_screen_init():
 
 # TEXT_SCREEN FUNCTIONS
 
-def create_user_action(_):
+def create_user_action(_=None):
     entry_data = screen_objects["text_screen"].text_entry.get()
     user_data.create_user(entry_data)
     show_userscreen()
     
 
-def rename_user_action(_):
+def rename_user_action(_=None):
     entry_data = screen_objects["text_screen"].text_entry.get()
     current_user = memory.all_users[memory.current_user] 
     new_user_dict = user_data.rename_user(current_user, entry_data)
@@ -81,14 +83,28 @@ def rename_user_action(_):
     show_profile_screen()
 
 
-def cancel_button_pressed():
-    show_userscreen()
-
-
-def text_screen_init():
-    screen_objects["text_screen"].buttons["cancel_button"].config(command=cancel_button_pressed)
-
 # PROFILE_SCREEN FUNCTIONS
 
 def profile_screen_init():
+    screen_objects["profile_screen"].buttons["back_button"].config(command=back_button_pressed)
+    screen_objects["profile_screen"].buttons["rename_button"].config(command=rename_button_pressed)
+
+
+def back_button_pressed():
+    show_userscreen()
+
+
+def history_button_pressed():
     pass
+
+
+def delete_user():
+    pass
+
+
+def rename_button_pressed():
+    screen_objects["text_screen"].buttons["confirm_button"].config(command=rename_user_action)
+    screen_objects["text_screen"].text_entry.bind("<Return>", rename_user_action)
+    screen_objects["text_screen"].buttons["cancel_button"].config(command=show_profile_screen)
+    show_text_screen()
+
